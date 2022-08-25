@@ -1,0 +1,57 @@
+{
+	"name": "Call of Cthulhu 7e",
+	"version": "0.0.3",
+	"author": "Michael Heilemann",
+	"description": "Attempt at a better system... system.",
+	"code": "dist/index.html",
+	"assetsPath": "build/static/media/",
+	"collections": [
+		{
+			"type": "character",
+			"singularName": "Character",
+			"pluralName": "Characters",
+			"description": "A player character.",
+			"hasEditMode": "true",
+			"windowSize": "large",
+			"thumbnailField": ["portrait", "token"],
+			"allowCreate": "true"
+		},
+		{
+			"type": "note",
+			"singularName": "Note",
+			"pluralName": "Notes",
+			"description": "For simple note taking.",
+			"hasEditMode": "true",
+			"windowSize": "medium",
+			"allowCreate": "true"
+		},
+		{
+			"type": "scene",
+			"singularName": "Scene",
+			"pluralName": "Scenes",
+			"description": "Provide context, cover art and maps.",
+			"hasEditMode": "false",
+			"windowSize": "small",
+			"allowCreate": "false"
+		},
+		{
+			"type": "weapon",
+			"singularName": "Weapon",
+			"pluralName": "Weapons",
+			"description": "Various things to hit, shoot and blow up things with.",
+			"hasEditMode": "true",
+			"windowSize": "small",
+			"allowCreate": "false"
+		},
+		{
+			"type": "handout",
+			"singularName": "Handout",
+			"pluralName": "Handouts",
+			"description": "Evidence, newspaper clippings, notes and the like.",
+			"hasEditMode": "true",
+			"windowSize": "small",
+			"allowCreate": "false",
+			"thumbnailField": ["image"]
+		}
+	]
+}
