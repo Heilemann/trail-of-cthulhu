@@ -48,16 +48,14 @@ export default function Skill(props: ISkillProps) {
 				&nbsp;
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
-					type='number'
-					className='w-12 py-1'
+					className='w-12 bg-gray-50 py-0.5 text-right dark:bg-gray-800/50'
 					title='Pool points'
 					placeholder='&mdash;'
 					{...register(`skills.${name}.pool`)}
 				/>
 				<span className='mx-1 self-center'>/</span>
 				<Input
-					type='number'
-					className='w-12 py-1'
+					className='w-12 bg-gray-50 py-0.5 dark:bg-gray-800/50'
 					title='Rating points'
 					placeholder='&mdash;'
 					{...register(`skills.${name}.rating`)}
