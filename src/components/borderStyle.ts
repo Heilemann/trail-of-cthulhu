@@ -1,0 +1,1 @@
+export const borderStyle = 'border-gray-300 dark:border-gray-800 border-b';

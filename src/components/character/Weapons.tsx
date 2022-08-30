@@ -1,7 +1,9 @@
 import { PlusIcon } from '@heroicons/react/solid'
 import { DragEvent, useContext } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import { TWeapon, TWeaponOnCharacter } from '../../interfaces'
+import { borderStyle } from '../borderStyle'
 import Button from '../Button'
 import context from '../context'
 import DecoBox from '../DecoBox'
@@ -53,9 +55,9 @@ export default function Weapons(props: IWeaponsProps) {
 
 	return (
 		<DecoBox onDrop={handleDrop}>
-			<table className='w-full border-collapse border border-yellow-600/60 text-center dark:border-yellow-400/60'>
+			<table className='w-full border-collapse text-center'>
 				<thead>
-					<tr className='border-b border-yellow-600/60 p-2 text-left dark:border-yellow-400/60 dark:border-gray-800'>
+					<tr className={twMerge('p-2 text-left', borderStyle)}>
 						<th className='font-normal text-gray-500'>Name</th>
 						<th className='font-normal text-gray-500'>Damage</th>
 						<th className='w-24 text-center font-normal text-gray-500'>

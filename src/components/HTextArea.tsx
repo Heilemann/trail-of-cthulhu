@@ -2,6 +2,7 @@ import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Label from './Label'
 import TextareaAutosize from 'react-textarea-autosize'
+import { borderStyle } from './borderStyle'
 
 interface ITextareaProps
 	extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -30,7 +31,8 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 				<TextareaAutosize
 					ref={ref}
 					className={twMerge(
-						`leading-16 mt-1 mb-1 block w-full border-b border-yellow-600/60 bg-transparent py-2 text-xl placeholder-gray-500 shadow-sm hover:bg-gray-200 focus:ring-0 dark:text-white dark:shadow-none dark:hover:bg-gray-800 dark:focus:ring-0 sm:text-sm`,
+						`leading-16 mt-1 mb-1 block w-full   bg-transparent py-2 text-xl placeholder-gray-500 shadow-sm hover:bg-gray-200 focus:ring-0 dark:text-white dark:shadow-none dark:hover:bg-gray-800 dark:focus:ring-0 sm:text-sm`,
+						borderStyle,
 					)}
 					// @ts-ignore
 					style={{

@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { borderStyle } from './borderStyle'
 import Input from './Input'
 import Label from './Label'
 
@@ -14,7 +15,8 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 		return (
 			<div
 				className={twMerge(
-					'flex flex-1 space-x-4 border-b border-yellow-600/60 text-xl dark:border-gray-800',
+					'flex flex-1 space-x-4 text-xl ',
+					borderStyle,
 					className,
 				)}
 				style={{

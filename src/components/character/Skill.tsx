@@ -1,5 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
+import { borderStyle } from '../borderStyle'
 import context from '../context'
 import Input from '../Input'
 import SkillSpecialities from './SkillSpecialities'
@@ -25,8 +27,6 @@ export default function Skill(props: ISkillProps) {
 	// 'convert' rating to array to map over
 	const ratingArray = Array(parseInt(rating || 0, 10)).fill(0) || []
 
-	console.log(name, rating, ratingArray)
-
 	const handleSpend = () => {
 		if (!messageToApp) return
 
@@ -36,7 +36,7 @@ export default function Skill(props: ISkillProps) {
 	}
 
 	return (
-		<div className='border-b border-yellow-600/60 py-1'>
+		<div className={twMerge('py-1', borderStyle)}>
 			<div onClick={handleSpend} className='flex'>
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
