@@ -36,7 +36,12 @@ export default function Skill(props: ISkillProps) {
 	}
 
 	return (
-		<div className={twMerge('py-1', borderStyle)}>
+		<div
+			className={twMerge('py-1 text-base', borderStyle)}
+			style={{
+				fontFamily: 'DustismoRoman',
+			}}
+		>
 			<div onClick={handleSpend} className='flex'>
 				<span className='flex-1 self-center'>{name}</span>
 				<Input

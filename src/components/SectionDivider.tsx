@@ -18,7 +18,6 @@ export default function SectionDivider({
 			)}
 			style={{
 				fontFamily: 'CovingtonCondensed',
-				// fontVariant: 'small-caps',
 			}}
 		>
 			{children}

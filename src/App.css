@@ -9,3 +9,8 @@ body,
 	font-family: 'CovingtonCondensed';
 	src: url(./assets/CovingtonCond.ttf);
 }
+
+@font-face {
+	font-family: 'DustismoRoman';
+	src: url(./assets/Dustismo_Roman.ttf);
+}
