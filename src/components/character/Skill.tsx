@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import context from '../context'
 import Input from '../Input'
-// import skillList from './skillList'
 import SkillSpecialities from './SkillSpecialities'
 
 export interface ISkillProps {
@@ -13,7 +12,7 @@ export interface ISkillProps {
 export default function Skill(props: ISkillProps) {
 	const { name, specialities } = props
 	const { state } = useContext(context)
-	const { document, editMode, messageToApp } = state
+	const { document, messageToApp } = state
 	const { values } = document
 	const { skills } = values
 	const { register } = useFormContext()
