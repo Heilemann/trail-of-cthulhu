@@ -15,7 +15,7 @@ export interface ISkillProps {
 export default function Skill(props: ISkillProps) {
 	const { name, specialities } = props
 	const { state } = useContext(context)
-	const { document, messageToApp } = state
+	const { document, editMode, messageToApp } = state
 	const { values } = document
 	const { skills } = values
 	const { register } = useFormContext()
@@ -43,7 +43,12 @@ export default function Skill(props: ISkillProps) {
 				fontFamily: 'DustismoRoman',
 			}}
 		>
-			<div onClick={handleSpend} className='flex'>
+			<div
+				onClick={() => {
+					!editMode && handleSpend()
+				}}
+				className='flex'
+			>
 				<OccupationalAbility name={name} />
 				&nbsp;
 				<span className='flex-1 self-center'>{name}</span>
