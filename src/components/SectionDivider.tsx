@@ -13,9 +13,12 @@ export default function SectionDivider({
 	return (
 		<div
 			className={twMerge(
-				`sectionDivider relative flex flex-none overflow-hidden text-xs font-bold uppercase tracking-wider text-yellow-500 before:m-auto before:mr-4 before:h-1 before:flex-1 before:rounded-full before:bg-yellow-500 before:content-[""] after:m-auto after:ml-4 after:h-1 after:flex-1 after:rounded-full after:bg-yellow-500 after:content-[""]`,
+				`sectionDivider relative flex flex-none overflow-hidden text-xl font-bold uppercase tracking-wider text-gray-600 before:m-auto before:mr-4 before:h-0.5 before:flex-1 before:rounded-full before:bg-gray-800 before:content-[""] after:m-auto after:ml-4 after:h-0.5 after:flex-1 after:rounded-full after:bg-gray-800 after:content-[""]`,
 				className,
 			)}
+			style={{
+				fontFamily: 'CovingtonCondensed',
+			}}
 		>
 			{children}
 		</div>

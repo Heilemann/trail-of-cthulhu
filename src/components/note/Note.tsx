@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../context'
+import DecoBox from '../DecoBox'
 import Input from '../Input'
 import TextArea from '../Textarea'
 
@@ -16,7 +17,7 @@ export default function Note(props: INoteProps) {
 	if (!document?.values) return null
 
 	return (
-		<>
+		<DecoBox className='flex-1 flex-col flex'>
 			{editMode === 'view' && (
 				<div>{values.note ? values.note : 'Note is empty'}</div>
 			)}
@@ -35,6 +36,6 @@ export default function Note(props: INoteProps) {
 				placeholder='Note...'
 				{...register('note')}
 			/>
-		</>
+		</DecoBox>
 	)
 }

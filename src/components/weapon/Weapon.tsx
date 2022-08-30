@@ -1,4 +1,5 @@
 import { useFormContext, useWatch } from 'react-hook-form'
+import DecoBox from '../DecoBox'
 import HInput from '../HInput'
 import weaponSkillList from '../weaponSkillList'
 
@@ -14,7 +15,7 @@ export default function Weapon(props: IWeaponProps) {
 	})
 
 	return (
-		<div className='mx-auto max-w-md w-full'>
+		<DecoBox className='mx-auto max-w-md w-full'>
 			<HInput label='Name' {...register('name')} />
 
 			<div className='relative border-b h-9'>
@@ -54,6 +55,6 @@ export default function Weapon(props: IWeaponProps) {
 			/>
 
 			<HInput label='Common Era' placeholder='—' {...register('commonEra')} />
-		</div>
+		</DecoBox>
 	)
 }

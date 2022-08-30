@@ -14,12 +14,15 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 		return (
 			<div
 				className={twMerge(
-					'flex flex-1 space-x-4 border-b border-gray-200 dark:border-gray-800',
+					'flex flex-1 space-x-4 border-b border-yellow-600/60 text-xl dark:border-gray-800',
 					className,
 				)}
+				style={{
+					fontFamily: 'CovingtonCondensed',
+				}}
 			>
 				<Label
-					className='w-2/5 self-center text-gray-500 whitespace-nowrap'
+					className='w-2/5 self-center whitespace-nowrap text-gray-500'
 					htmlFor={rest.name}
 				>
 					{label}
@@ -27,7 +30,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 
 				<Input
 					ref={ref}
-					className=' my-1 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-800 bg-transparent text-right dark:bg-transparent'
+					className=' my-1 bg-transparent py-1.5 text-right autofill:bg-yellow-400/20 hover:bg-gray-200 dark:bg-transparent dark:autofill:bg-yellow-400/20 dark:hover:bg-gray-800'
 					id={rest.name}
 					{...rest}
 				/>

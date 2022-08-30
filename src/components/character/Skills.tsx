@@ -1,94 +1,91 @@
-import { useContext, useMemo } from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
-import Button from '../Button'
-import context from '../context'
-import Input from '../Input'
-import Label from '../Label'
-import skillList from './skillList'
+import DecoBox from '../DecoBox'
+import SectionDivider from '../SectionDivider'
+import Skill from './Skill'
 
 export interface ISkillsListProps {}
 
 export default function SkillsList(props: ISkillsListProps) {
-	const { state } = useContext(context)
-	const { document, editMode, messageToApp } = state
-	const { register } = useFormContext()
-
-	// sort a-z and hide hidden skills
-	const skills = useMemo(() => {
-		return skillList.sort((a, b) => (a.name < b.name ? -1 : 1))
-		// .filter(skill => !skill.hidden)
-	}, [])
-
-	const skillValues = useWatch({
-		name: 'skills',
-		defaultValue: document.values.skills || {},
-	})
-
-	const handleRoll = (skillName: string, skillValue: string) => {
-		if (!messageToApp) return
-
-		messageToApp('send message', {
-			message: `/roll d100 < ${skillValue} for ${skillName}`,
-		})
-	}
-
 	return (
-		<div className='-mx-4 columns-none sm:columns-2 md:columns-3 lg:columns-4'>
-			{skills.map(skill => {
-				let value = skill.starting
-				const sluggifiedName = skill.name.replace(/ /g, '-')
+		<DecoBox className='grid grid-cols-3 gap-4'>
+			<div>
+				<SectionDivider>Academic Abilities</SectionDivider>
 
-				if (
-					skillValues &&
-					skillValues[sluggifiedName] &&
-					skillValues[sluggifiedName].value
-				) {
-					value = skillValues[sluggifiedName].value
-				}
+				<Skill name='Accounting' />
+				<Skill name='Anthropology' />
+				<Skill name='Archaeology' />
+				<Skill name='Architecture' />
+				<Skill name='Art History' />
+				<Skill name='Biology' />
+				<Skill name='Cthulhu Mythos' />
+				<Skill name='Cryptography' />
+				<Skill name='Geology' />
+				<Skill name='History' />
+				<Skill name='Languages' specialities />
+				<Skill name='Law' />
+				<Skill name='Library Use' />
+				<Skill name='Medicine' />
+				<Skill name='Occult' />
+				<Skill name='Physics' />
+				<Skill name='Theology' />
+			</div>
 
-				return (
-					<div
-						key={sluggifiedName}
-						className='mx-4 flex space-x-2 border-b border-gray-200 py-0.5 dark:border-gray-800'
-					>
-						<input
-							type='checkbox'
-							className={twMerge(
-								'h-4 w-4 cursor-pointer appearance-none self-center rounded-md bg-gray-200 hover:bg-gray-700 dark:bg-gray-800',
-								skill.tickable === false && 'opacity-0',
-							)}
-							{...register(`skills.${sluggifiedName}.ticked`)}
-						/>
+			<div>
+				<SectionDivider>Interpersonal Abilities</SectionDivider>
 
-						<Label className='flex-1 self-center' htmlFor={skill.name}>
-							{skill.name}
-							{/* {skill.addable && <span> (addable)</span>} */}
-						</Label>
+				<Skill name='Assess Honesty' />
+				<Skill name='Bargain' />
+				<Skill name='Bureaucracy' />
+				<Skill name='Cop Talk' />
+				<Skill name='Credit Rating' />
+				<Skill name='Flattery' />
+				<Skill name='Interrogation' />
+				<Skill name='Intimidation' />
+				<Skill name='Oral History' />
+				<Skill name='Reassurance' />
+				<Skill name='Streetwise' />
 
-						<Input
-							// type='number'
-							id={sluggifiedName}
-							className={twMerge(
-								'my-1 w-12 appearance-none bg-transparent py-1 pr-0 text-right dark:bg-transparent',
-								editMode === 'view' && 'hidden',
-							)}
-							disabled={state.editMode ? false : true}
-							placeholder={skill.starting.toString()}
-							{...register(`skills.${sluggifiedName}.value`)}
-						/>
-						{editMode === 'edit' && <span className='self-center'>%</span>}
-						{editMode === 'view' && (
-							<Button
-								className='w-14 px-2'
-								onClick={() => handleRoll(skill.name, value)}
-							>
-								{value}%
-							</Button>
-						)}
-					</div>
-				)
-			})}
-		</div>
+				<SectionDivider className='mt-8'>Technical Abilities</SectionDivider>
+
+				<Skill name='Art' specialities />
+				<Skill name='Astronomy' />
+				<Skill name='Chemistry' />
+				<Skill name='Craft' specialities />
+				<Skill name='Evidence Collection' />
+				<Skill name='Forensics' />
+				<Skill name='Locksmith' />
+				<Skill name='Outdoorsman' />
+				<Skill name='Pharmacy' />
+				<Skill name='Photography' />
+			</div>
+
+			<div>
+				<SectionDivider>General Abilities</SectionDivider>
+
+				<Skill name='Athletics' />
+				<Skill name='Conceal' />
+				<Skill name='Disguise' />
+				<Skill name='Driving' />
+				<Skill name='Electrical Repair' />
+				<Skill name='Explosives' />
+				<Skill name='Filch' />
+				<Skill name='Firearms' />
+				<Skill name='First Aid' />
+				<Skill name='Fleeing' />
+				<Skill name='Health' />
+				<Skill name='Hypnosis' />
+				<Skill name='Mechnical Repair' />
+				<Skill name='Piloting' />
+				<Skill name='Preparedness' />
+				<Skill name='Psyhcoanalysis' />
+				<Skill name='Riding' />
+				<Skill name='Sanity' />
+				<Skill name='Stability' />
+				<Skill name='Scuffling' />
+				<Skill name='Sense Trouble' />
+				<Skill name='Shadowing' />
+				<Skill name='Stealth' />
+				<Skill name='Weapons' />
+			</div>
+		</DecoBox>
 	)
 }

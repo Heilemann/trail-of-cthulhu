@@ -4,7 +4,6 @@ import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeaponOnCharacter } from '../../interfaces'
 import Button from '../Button'
-import WeaponSkills from './WeaponSkills'
 import context from '../context'
 import Input from '../Input'
 import WeaponDamage from './WeaponDamage'
@@ -48,10 +47,10 @@ export default function WeaponRow(props: IWeaponRowProps) {
 				{editMode === 'view' && <span>{weapon.name || '—'}</span>}
 			</td>
 
-			<WeaponSkills index={index} />
-
 			<WeaponDamage index={index} />
 
+			{/* <WeaponSkills index={index} /> */}
+
 			<td className='text-center'>
 				<Input
 					className={twMerge(
@@ -59,9 +58,9 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.range`)}
+					{...register(`weapons.${index}.pointBlank`)}
 				/>
-				{editMode === 'view' && <span>{weapon.range || '—'}</span>}
+				{editMode === 'view' && <span>{weapon.pointBlank || '—'}</span>}
 			</td>
 
 			<td className='text-center'>
@@ -71,9 +70,9 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.ammoCapacity`)}
+					{...register(`weapons.${index}.close`)}
 				/>
-				{editMode === 'view' && <span>{weapon.ammoCapacity || '—'}</span>}
+				{editMode === 'view' && <span>{weapon.close || '—'}</span>}
 			</td>
 
 			<td className='text-center'>
@@ -83,9 +82,9 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.usesPerRound`)}
+					{...register(`weapons.${index}.near`)}
 				/>
-				{editMode === 'view' && <span>{weapon.usesPerRound || '—'}</span>}
+				{editMode === 'view' && <span>{weapon.near || '—'}</span>}
 			</td>
 
 			<td className='text-center'>
@@ -95,9 +94,21 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.malfunction`)}
+					{...register(`weapons.${index}.long`)}
 				/>
-				{editMode === 'view' && <span>{weapon.malfunction || '—'}</span>}
+				{editMode === 'view' && <span>{weapon.long || '—'}</span>}
+			</td>
+
+			<td className='text-center'>
+				<Input
+					className={twMerge(
+						'bg-transparent dark:bg-transparent',
+						editMode === 'view' && 'hidden',
+					)}
+					placeholder='—'
+					{...register(`weapons.${index}.notes`)}
+				/>
+				{editMode === 'view' && <span>{weapon.notes || '—'}</span>}
 			</td>
 
 			<td className='w-4'>

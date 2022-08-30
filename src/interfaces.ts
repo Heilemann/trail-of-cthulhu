@@ -27,11 +27,9 @@ export type TSkills = {
 }
 
 export type TSkill = {
-  name: string
-  starting: string
-  value: string
-  addable?: boolean
-  tickable?: boolean
+  pool: number
+  rating: number
+  specialities?: string[]
 }
 
 export type TAsset = {
@@ -145,18 +143,15 @@ export type TWeaponSkills = 'Firearms (Bow)' | 'Fighting (Brawl)' | 'Firearms (H
 
 export type TWeapon = {
   name: string
-  skill: TWeaponSkills
   damage: string
-  range: string
-  usesPerRound: string
-  weight: string
-  ammoCapacity: string
-  malfunction: string
-  commonEra: string
+  pointBlank: number
+  close: number
+  near: number
+  long: number
+  notes: string
 }
 
 export type TWeaponOnCharacter = TWeapon & {
   documentId: string
-  regular: string
 }
 

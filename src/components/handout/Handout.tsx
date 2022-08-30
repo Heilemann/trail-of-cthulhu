@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Asset from '../Asset'
 import context from '../context'
+import DecoBox from '../DecoBox'
 import Input from '../Input'
 import TextArea from '../Textarea'
 
@@ -17,7 +18,7 @@ export default function Handout(props: IHandoutProps) {
 	if (!document?.values) return null
 
 	return (
-		<div>
+		<DecoBox>
 			<Input
 				className={twMerge(
 					'flex-0 font-bold mb-2',
@@ -44,6 +45,6 @@ export default function Handout(props: IHandoutProps) {
 			/>
 
 			{editMode === 'view' && <div className='mt-2'>{values.note}</div>}
-		</div>
+		</DecoBox>
 	)
 }

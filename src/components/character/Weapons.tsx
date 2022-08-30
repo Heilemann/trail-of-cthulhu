@@ -4,6 +4,7 @@ import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { TWeapon, TWeaponOnCharacter } from '../../interfaces'
 import Button from '../Button'
 import context from '../context'
+import DecoBox from '../DecoBox'
 import WeaponRow from './WeaponRow'
 
 export interface IWeaponsProps {}
@@ -20,16 +21,12 @@ export default function Weapons(props: IWeaponsProps) {
 	const handleAdd = () => {
 		prepend({
 			name: '',
-			skill: 'Other',
-			regular: '',
 			damage: '',
-			range: '',
-			weight: '',
-			ammoCapacity: '',
-			usesPerRound: '',
-			malfunction: '',
-			commonEra: '',
-			documentId: '',
+			pointBlank: 0,
+			close: 0,
+			near: 0,
+			long: 0,
+			notes: '',
 		} as TWeaponOnCharacter)
 	}
 
@@ -55,30 +52,26 @@ export default function Weapons(props: IWeaponsProps) {
 	}
 
 	return (
-		<div onDrop={handleDrop}>
-			<table className='w-full border-collapse'>
+		<DecoBox onDrop={handleDrop}>
+			<table className='w-full border-collapse border border-yellow-600/60 text-center dark:border-yellow-400/60'>
 				<thead>
-					<tr className='border-b border-gray-300 p-2 text-left dark:border-gray-800'>
+					<tr className='border-b border-yellow-600/60 p-2 text-left dark:border-yellow-400/60 dark:border-gray-800'>
 						<th className='font-normal text-gray-500'>Name</th>
-						<th className='font-normal text-gray-500'>Skill</th>
-						<th className='w-12 text-center font-normal text-gray-500'>Reg.</th>
-						<th className='w-12 text-center font-normal text-gray-500'>Har.</th>
-						<th className='w-12 text-center font-normal text-gray-500'>Exp.</th>
-						<th>
-							<span className='font-normal text-gray-500 hidden md:inline'>
-								Damage
-							</span>
-							<span className='font-normal text-gray-500 inline md:hidden'>
-								Dmg
-							</span>
+						<th className='font-normal text-gray-500'>Damage</th>
+						<th className='w-24 text-center font-normal text-gray-500'>
+							Point Blank
 						</th>
-						<th className='font-normal text-gray-500'>Range</th>
-						<th className='font-normal text-gray-500'>Ammo</th>
-						<th className='font-normal text-gray-500'>Uses Per Round</th>
-						<th className='font-normal text-gray-500'>Malfunction</th>
-						<th className='font-normal text-gray-500'>Info</th>
+						<th className='w-24 text-center font-normal text-gray-500'>
+							Close
+						</th>
+						<th className='w-24 text-center font-normal text-gray-500'>Near</th>
+						<th className='w-24 text-center font-normal text-gray-500'>Long</th>
+						<th className='w-24 text-center font-normal text-gray-500'>
+							Notes
+						</th>
+						<th className='w-24 text-center font-normal text-gray-500'></th>
 						<th className='w-4'>
-							<Button onClick={handleAdd} className='p-1.5 my-1'>
+							<Button onClick={handleAdd} className='my-1 p-1.5'>
 								<PlusIcon className='h-4 w-4' />
 							</Button>
 						</th>
@@ -90,6 +83,6 @@ export default function Weapons(props: IWeaponsProps) {
 					})}
 				</tbody>
 			</table>
-		</div>
+		</DecoBox>
 	)
 }

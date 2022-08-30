@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import Asset from '../Asset'
 import Button from '../Button'
 import context from '../context'
+import DecoBox from '../DecoBox'
 import Input from '../Input'
 import Label from '../Label'
 import SectionDivider from '../SectionDivider'
@@ -29,7 +30,7 @@ export default function Scene(props: ISceneProps) {
 	const hasMapAndCover = values?.mapId && values?.coverId
 
 	return (
-		<div className='mx-auto max-w-2xl space-y-2 lg:space-y-4'>
+		<DecoBox className='mx-auto max-w-2xl space-y-2 lg:space-y-4'>
 			<Button onClick={handleSetScene} className='w-full'>
 				Set Scene
 			</Button>
@@ -199,6 +200,6 @@ export default function Scene(props: ISceneProps) {
 					/>
 				</div>
 			</div>
-		</div>
+		</DecoBox>
 	)
 }
