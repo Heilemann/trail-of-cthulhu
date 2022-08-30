@@ -55,7 +55,12 @@ export default function Weapons(props: IWeaponsProps) {
 
 	return (
 		<DecoBox onDrop={handleDrop}>
-			<table className='w-full border-collapse text-center'>
+			<table
+				className='w-full border-collapse text-center text-base'
+				style={{
+					fontFamily: 'DustismoRoman',
+				}}
+			>
 				<thead>
 					<tr className={twMerge('p-2 text-left', borderStyle)}>
 						<th className='font-normal text-gray-500'>Name</th>

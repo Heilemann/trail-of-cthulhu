@@ -63,17 +63,17 @@ export default function SkillsList(props: ISkillsListProps) {
 
 				<Skill name='Athletics' />
 				<Skill name='Conceal' />
-				<Skill name='Disguise' />
+				<Skill name='Disguise &#x271D;' />
 				<Skill name='Driving' />
-				<Skill name='Electrical Repair' />
-				<Skill name='Explosives' />
+				<Skill name='Electrical Repair &#x271D;' />
+				<Skill name='Explosives &#x271D;' />
 				<Skill name='Filch' />
 				<Skill name='Firearms' />
 				<Skill name='First Aid' />
 				<Skill name='Fleeing' />
 				<Skill name='Health' />
 				<Skill name='Hypnosis' />
-				<Skill name='Mechnical Repair' />
+				<Skill name='Mechnical Repair &#x271D;' />
 				<Skill name='Piloting' />
 				<Skill name='Preparedness' />
 				<Skill name='Psyhcoanalysis' />

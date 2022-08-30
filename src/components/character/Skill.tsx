@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import { borderStyle } from '../borderStyle'
 import context from '../context'
 import Input from '../Input'
+import OccupationalAbility from './OccupationalAbility'
 import SkillSpecialities from './SkillSpecialities'
 
 export interface ISkillProps {
@@ -43,10 +44,13 @@ export default function Skill(props: ISkillProps) {
 			}}
 		>
 			<div onClick={handleSpend} className='flex'>
+				<OccupationalAbility name={name} />
+				&nbsp;
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
 					type='number'
 					className='w-12 py-1'
+					title='Pool points'
 					placeholder='&mdash;'
 					{...register(`skills.${name}.pool`)}
 				/>
@@ -54,6 +58,7 @@ export default function Skill(props: ISkillProps) {
 				<Input
 					type='number'
 					className='w-12 py-1'
+					title='Rating points'
 					placeholder='&mdash;'
 					{...register(`skills.${name}.rating`)}
 				/>
