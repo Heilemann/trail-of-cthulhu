@@ -24,6 +24,10 @@ export default function Skill(props: ISkillProps) {
 		name: `skills.${name}.rating`,
 		defaultValue: (skills && skills[name]?.rating) || 0,
 	})
+	const pool = useWatch({
+		name: `skills.${name}.pool`,
+		defaultValue: (skills && skills[name]?.pool) || 0,
+	})
 
 	// 'convert' rating to array to map over
 	const ratingArray = Array(parseInt(rating || 0, 10)).fill(0) || []
@@ -38,7 +42,11 @@ export default function Skill(props: ISkillProps) {
 
 	return (
 		<div
-			className={twMerge('py-1 text-base', borderStyle)}
+			className={twMerge(
+				'py-1 px-2 text-base',
+				borderStyle,
+				editMode === 'view' && 'cursor-pointer hover:bg-gray-800',
+			)}
 			style={{
 				fontFamily: 'DustismoRoman',
 			}}
@@ -47,24 +55,33 @@ export default function Skill(props: ISkillProps) {
 				onClick={() => {
 					!editMode && handleSpend()
 				}}
-				className='flex'
+				className={'flex dark:text-gray-300'}
 			>
 				<OccupationalAbility name={name} />
-				&nbsp;
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
-					className='w-12 bg-gray-50 py-0.5 text-right dark:bg-gray-800/50'
+					className={twMerge(
+						'w-12 bg-gray-50 py-0.5 text-right dark:bg-gray-800/50',
+						editMode === 'view' && 'hidden',
+					)}
 					title='Pool points'
+					type='number'
 					placeholder='&mdash;'
 					{...register(`skills.${name}.pool`)}
 				/>
+				{editMode === 'view' && <div>{pool}</div>}
 				<span className='mx-1 self-center'>/</span>
 				<Input
-					className='w-12 bg-gray-50 py-0.5 dark:bg-gray-800/50'
+					className={twMerge(
+						'w-12 bg-gray-50 py-0.5 dark:bg-gray-800/50',
+						editMode === 'view' && 'hidden',
+					)}
 					title='Rating points'
+					type='number'
 					placeholder='&mdash;'
 					{...register(`skills.${name}.rating`)}
 				/>
+				{editMode === 'view' && <div>{rating}</div>}
 			</div>
 			{specialities &&
 				ratingArray.map((_, index) => (

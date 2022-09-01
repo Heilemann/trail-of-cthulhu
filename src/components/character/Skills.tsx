@@ -85,6 +85,10 @@ export default function SkillsList(props: ISkillsListProps) {
 				<Skill name='Shadowing' />
 				<Skill name='Stealth' />
 				<Skill name='Weapons' />
+
+				<div className='mt-2 text-gray-500'>
+					&#x271D; Can be used as investigative ability
+				</div>
 			</div>
 		</DecoBox>
 	)
