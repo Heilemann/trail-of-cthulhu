@@ -15,7 +15,7 @@ export default function OccupationalAbility(props: IOccupationalAbilityProps) {
 
 	return (
 		<input
-			className={twMerge('mr-1 self-center', editMode === 'view' && 'hidden')}
+			className={twMerge('mr-2 self-center', editMode === 'view' && 'hidden')}
 			type='checkbox'
 			title='Occupational ability'
 			{...register(`skills.${name}.pool`)}
