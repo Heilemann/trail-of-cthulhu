@@ -5,12 +5,18 @@ import SectionDivider from '../SectionDivider'
 import Skill from './Skill'
 import context from '../context'
 import RefreshSkills from './RefreshSkills'
+import Health from './Health'
+import { useFormContext } from 'react-hook-form'
 
 export interface ISkillsListProps {}
 
 export default function SkillsList(props: ISkillsListProps) {
 	const { state } = useContext(context)
 	const { editMode } = state
+	const {
+		formState: { errors },
+	} = useFormContext()
+	console.log(errors)
 
 	return (
 		<DecoBox>
@@ -88,7 +94,7 @@ export default function SkillsList(props: ISkillsListProps) {
 					<Skill name='Firearms' />
 					<Skill name='First Aid' />
 					<Skill name='Fleeing' />
-					<Skill name='Health' />
+					<Health />
 					<Skill name='Hypnosis' />
 					<Skill name='Mechnical Repair &#x271D;' />
 					<Skill name='Piloting' />

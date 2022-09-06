@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import context from '../context'
 import Input from '../Input'
 
@@ -11,14 +12,15 @@ export interface ISkillSpecialitiesProps {
 export default function SkillSpecialities(props: ISkillSpecialitiesProps) {
 	const { name, index } = props
 	const { state } = useContext(context)
-	const { document, editMode, messageToApp } = state
+	const { editMode } = state
 	const { register } = useFormContext()
 
 	return (
 		<Input
 			type='text'
-			className='mt-1'
+			className={twMerge('mt-1 py-1')}
 			placeholder='&mdash;'
+			disabled={editMode === 'view'}
 			{...register(`skills.${name}.specialities[${index}]`)}
 		/>
 	)

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { borderStyle } from '../borderStyle'
@@ -10,10 +10,11 @@ import SkillSpecialities from './SkillSpecialities'
 export interface ISkillProps {
 	name: string
 	specialities?: boolean
+	note?: JSX.Element
 }
 
 export default function Skill(props: ISkillProps) {
-	const { name, specialities } = props
+	const { name, specialities, note } = props
 	const { state } = useContext(context)
 	const { document, editMode, messageToApp } = state
 	const { values } = document
@@ -69,7 +70,7 @@ export default function Skill(props: ISkillProps) {
 					placeholder='0'
 					defaultValue={pool}
 					{...register(`skills.${name}.pool`, {
-						min: 0,
+						// min: 0,
 						max: rating || 0,
 						valueAsNumber: true,
 					})}
@@ -92,6 +93,9 @@ export default function Skill(props: ISkillProps) {
 				/>
 				{editMode === 'view' && <div>{rating}</div>}
 			</div>
+
+			{note}
+
 			{specialities &&
 				ratingArray.map((_, index) => (
 					<SkillSpecialities name={name} index={index} />
