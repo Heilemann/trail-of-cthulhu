@@ -34,6 +34,13 @@ export default function BasicInfo(props: IBasicInfoProps) {
 				/>
 
 				<HInput
+					label='Drive'
+					className='mx-2'
+					placeholder='&mdash;'
+					{...register('drive')}
+				/>
+
+				<HInput
 					label='Occupation'
 					className='mx-2'
 					placeholder='&mdash;'

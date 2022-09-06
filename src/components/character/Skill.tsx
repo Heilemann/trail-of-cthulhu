@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { borderStyle } from '../borderStyle'
@@ -30,7 +30,7 @@ export default function Skill(props: ISkillProps) {
 	})
 
 	// 'convert' rating to array to map over
-	const ratingArray = Array(parseInt(rating || 0, 10)).fill(0) || []
+	const ratingArray = Array(rating || 0).fill(0) || []
 
 	const handleSpend = () => {
 		if (!messageToApp) return
@@ -60,26 +60,35 @@ export default function Skill(props: ISkillProps) {
 				<OccupationalAbility name={name} />
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
+					type='number'
+					title='Pool points'
 					className={twMerge(
 						'w-12 bg-gray-50 py-0.5 text-right dark:bg-gray-800/50',
 						editMode === 'view' && 'hidden',
 					)}
-					title='Pool points'
-					type='number'
-					placeholder='&mdash;'
-					{...register(`skills.${name}.pool`)}
+					placeholder='0'
+					defaultValue={pool}
+					{...register(`skills.${name}.pool`, {
+						min: 0,
+						max: rating || 0,
+						valueAsNumber: true,
+					})}
 				/>
 				{editMode === 'view' && <div>{pool}</div>}
 				<span className='mx-1 self-center'>/</span>
 				<Input
+					type='number'
+					title='Rating points'
 					className={twMerge(
 						'w-12 bg-gray-50 py-0.5 dark:bg-gray-800/50',
 						editMode === 'view' && 'hidden',
 					)}
-					title='Rating points'
-					type='number'
-					placeholder='&mdash;'
-					{...register(`skills.${name}.rating`)}
+					placeholder='0'
+					defaultValue={rating}
+					{...register(`skills.${name}.rating`, {
+						min: 0,
+						valueAsNumber: true,
+					})}
 				/>
 				{editMode === 'view' && <div>{rating}</div>}
 			</div>

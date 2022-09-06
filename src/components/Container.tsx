@@ -3,12 +3,10 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
 import Character from './character/Character'
 import context from './context'
-import Copyright from './Copyright'
 import DragAndDrop from './DragAndDrop'
 import Handout from './handout/Handout'
 import Note from './note/Note'
 import Scene from './scene/Scene'
-import Sizes from './Sizes'
 import Weapon from './weapon/Weapon'
 
 export interface IContainerProps {}

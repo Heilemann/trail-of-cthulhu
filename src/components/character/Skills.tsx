@@ -4,6 +4,7 @@ import DecoBox from '../DecoBox'
 import SectionDivider from '../SectionDivider'
 import Skill from './Skill'
 import context from '../context'
+import RefreshSkills from './RefreshSkills'
 
 export interface ISkillsListProps {}
 
@@ -13,7 +14,9 @@ export default function SkillsList(props: ISkillsListProps) {
 
 	return (
 		<DecoBox>
-			<button>Refresh Pool Points</button>
+			<div className='mb-4'>
+				<RefreshSkills />
+			</div>
 
 			<div
 				className={twMerge(
