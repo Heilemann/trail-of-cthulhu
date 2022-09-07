@@ -5,10 +5,11 @@ import context from '../context'
 
 export interface IOccupationalAbilityProps {
 	name: string
+	category: 'investigative' | 'general'
 }
 
 export default function OccupationalAbility(props: IOccupationalAbilityProps) {
-	const { name } = props
+	const { name, category } = props
 	const { state } = useContext(context)
 	const { editMode } = state
 	const { register } = useFormContext()
@@ -18,7 +19,7 @@ export default function OccupationalAbility(props: IOccupationalAbilityProps) {
 			className={twMerge('mr-2 self-center', editMode === 'view' && 'hidden')}
 			type='checkbox'
 			title='Occupational ability'
-			{...register(`skills.${name}.pool`)}
+			{...register(`skills.${category}.${name}.isOccupational`)}
 		/>
 	)
 }

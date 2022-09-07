@@ -22,5 +22,5 @@ export default function CreditRating(props: ICreditRatingProps) {
 		</div>
 	)
 
-	return <Skill name='Credit Rating' note={note} />
+	return <Skill name='Credit Rating' category='investigative' note={note} />
 }

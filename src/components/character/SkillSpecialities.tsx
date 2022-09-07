@@ -6,11 +6,12 @@ import Input from '../Input'
 
 export interface ISkillSpecialitiesProps {
 	name: string
+	category: 'investigative' | 'general'
 	index: number
 }
 
 export default function SkillSpecialities(props: ISkillSpecialitiesProps) {
-	const { name, index } = props
+	const { name, category, index } = props
 	const { state } = useContext(context)
 	const { editMode } = state
 	const { register } = useFormContext()
@@ -21,7 +22,7 @@ export default function SkillSpecialities(props: ISkillSpecialitiesProps) {
 			className={twMerge('mt-1 py-1')}
 			placeholder='&mdash;'
 			disabled={editMode === 'view'}
-			{...register(`skills.${name}.specialities[${index}]`)}
+			{...register(`skills.${category}.${name}.specialities[${index}]`)}
 		/>
 	)
 }

@@ -1,12 +1,19 @@
+import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import Dropdown from '../Dropdown'
+import context from '../context'
 
 export interface ISettingsProps {}
 
 export default function Settings(props: ISettingsProps) {
+	const { state } = useContext(context)
+	const { document } = state
+	const { values } = document
+	const { idium } = values
+
 	const { register } = useFormContext()
 
-	const idium = useWatch({ name: 'idium', defaultValue: 'purist' })
+	// const idium = useWatch({ name: 'idium', defaultValue: 'purist' })
 	const bookhounds = useWatch({ name: 'bookhounds', defaultValue: false })
 
 	return (

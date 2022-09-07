@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export interface IDropdownProps
@@ -5,12 +6,26 @@ export interface IDropdownProps
 	children: React.ReactNode
 }
 
-export default function Dropdown(props: IDropdownProps) {
-	const { children, className, ...rest } = props
+const Dropdown = forwardRef<HTMLSelectElement, IDropdownProps>(
+	(props: IDropdownProps, ref) => {
+		const { children, className, ...rest } = props
 
-	return (
-		<select className={twMerge('bg-gray-800 p-2', className)} {...rest}>
-			{children}
-		</select>
-	)
-}
+		return (
+			<select
+				ref={ref}
+				className={twMerge(
+					'rounded-lg bg-gray-800 p-2 px-4 text-xl',
+					className,
+				)}
+				style={{
+					fontFamily: 'CovingtonCondensed',
+				}}
+				{...rest}
+			>
+				{children}
+			</select>
+		)
+	},
+)
+
+export default Dropdown

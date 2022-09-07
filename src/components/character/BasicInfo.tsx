@@ -13,9 +13,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 	const { messageToApp } = state
 	const { register } = useFormContext()
 
-	const idium = useWatch({ name: 'idium', defaultValue: 'purist' })
-
-	console.log('idium', idium)
+	const idium = useWatch({ name: 'idium' })
 
 	if (!messageToApp) return null
 
@@ -64,7 +62,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 
 				{idium === 'pulp' && (
 					<HTextArea
-						label='Pillars of Sanity'
+						label='Sources of Stability'
 						className='col-span-2 mx-2'
 						placeholder='&mdash;'
 						{...register('info.pillars')}

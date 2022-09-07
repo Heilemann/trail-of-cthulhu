@@ -14,11 +14,18 @@ export default function RefreshSkills(props: IRefreshSkillsProps) {
 	const handleRefresh = () => {
 		const newSkills = { ...skills }
 
-		Object.keys(newSkills).forEach(skillName => {
-			const skill = newSkills[skillName]
+		Object.keys(newSkills.investigative).forEach(skillName => {
+			const skill = newSkills.investigative[skillName]
 			skill.pool = skill.rating
 
-			newSkills[skillName] = skill
+			newSkills.investigative[skillName] = skill
+		})
+
+		Object.keys(newSkills.general).forEach(skillName => {
+			const skill = newSkills.general[skillName]
+			skill.pool = skill.rating
+
+			newSkills.general[skillName] = skill
 		})
 
 		setValue('skills', newSkills, { shouldDirty: true })

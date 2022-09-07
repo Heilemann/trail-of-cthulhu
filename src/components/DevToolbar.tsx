@@ -127,7 +127,7 @@ export default function DevToolbar(props: IDevToolbarProps) {
 
 			if (source !== 'System') return
 
-			console.log('app heard message from system:', message, ', data:', data)
+			// console.log('app heard message from system:', message, ', data:', data)
 
 			switch (message) {
 				case 'system is ready':
@@ -167,7 +167,7 @@ export default function DevToolbar(props: IDevToolbarProps) {
 	useEffect(simulateParentFrameOnDev, []) // eslint-disable-line
 
 	return (
-		<div className='sticky top-0 flex bg-black py-4 px-4 text-sm text-white z-40'>
+		<div className='sticky top-0 z-40 flex bg-black py-4 px-4 text-sm text-white'>
 			<select className='mr-4 text-black' {...register('documentId')}>
 				{collections.map((collection: any) => (
 					<option

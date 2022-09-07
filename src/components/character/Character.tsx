@@ -34,16 +34,15 @@ export default function Character(props: ICharacterProps) {
 
 					<DecoBox>
 						<HInput label='Hit Threshold' placeholder={defaultHitThreshold} />
-						<HInput label='Build Points' placeholder='&mdash;' />
 					</DecoBox>
 				</div>
 			</div>
 
-			<Settings />
-
 			<Skills />
 
 			<Weapons />
+
+			<Settings />
 
 			{/* <Backstory /> */}
 			{/* <TestWeapon />

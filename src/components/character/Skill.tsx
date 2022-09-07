@@ -9,12 +9,13 @@ import SkillSpecialities from './SkillSpecialities'
 
 export interface ISkillProps {
 	name: string
+	category: 'investigative' | 'general'
 	specialities?: boolean
 	note?: JSX.Element
 }
 
 export default function Skill(props: ISkillProps) {
-	const { name, specialities, note } = props
+	const { name, category, specialities, note } = props
 	const { state } = useContext(context)
 	const { document, editMode, messageToApp } = state
 	const { values } = document
@@ -63,18 +64,18 @@ export default function Skill(props: ISkillProps) {
 				}}
 				className={'flex dark:text-gray-300'}
 			>
-				<OccupationalAbility name={name} />
+				<OccupationalAbility name={name} category={category} />
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
-					type='number'
-					title='Pool points'
 					className={twMerge(
 						'w-12 bg-gray-50 py-0.5 text-right dark:bg-gray-800/50',
 						editMode === 'view' && 'hidden',
 					)}
+					type='number'
+					title='Pool points'
 					placeholder='0'
 					defaultValue={pool}
-					{...register(`skills.${name}.pool`, {
+					{...register(`skills.${category}.${name}.pool`, {
 						// min: 0,
 						max: rating || 0,
 						valueAsNumber: true,
@@ -83,15 +84,15 @@ export default function Skill(props: ISkillProps) {
 				{editMode === 'view' && <div>{pool}</div>}
 				<span className='mx-1 self-center'>/</span>
 				<Input
-					type='number'
-					title='Rating points'
 					className={twMerge(
 						'w-12 bg-gray-50 py-0.5 dark:bg-gray-800/50',
 						editMode === 'view' && 'hidden',
 					)}
+					type='number'
+					title='Rating points'
 					placeholder='0'
 					defaultValue={rating}
-					{...register(`skills.${name}.rating`, {
+					{...register(`skills.${category}.${name}.rating`, {
 						min: 0,
 						valueAsNumber: true,
 					})}
@@ -103,7 +104,7 @@ export default function Skill(props: ISkillProps) {
 
 			{specialities &&
 				ratingArray.map((_, index) => (
-					<SkillSpecialities name={name} index={index} />
+					<SkillSpecialities name={name} category={category} index={index} />
 				))}
 
 			{/* <div
