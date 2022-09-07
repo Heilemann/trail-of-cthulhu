@@ -36,6 +36,11 @@ export default function Skill(props: ISkillProps) {
 	const handleSpend = () => {
 		if (!messageToApp) return
 
+		if (pool <= 0) {
+			alert('You have no points left to spend.')
+			return
+		}
+
 		messageToApp('send message', {
 			message: `Spend 1 point of ${name}`,
 		})

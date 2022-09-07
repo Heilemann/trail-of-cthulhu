@@ -4,6 +4,7 @@ import context from '../context'
 import DecoBox from '../DecoBox'
 import HInput from '../HInput'
 import BasicInfo from './BasicInfo'
+import Settings from './Settings'
 import Skills from './Skills'
 import Token from './Token'
 import Weapons from './Weapons'
@@ -37,6 +38,8 @@ export default function Character(props: ICharacterProps) {
 					</DecoBox>
 				</div>
 			</div>
+
+			<Settings />
 
 			<Skills />
 

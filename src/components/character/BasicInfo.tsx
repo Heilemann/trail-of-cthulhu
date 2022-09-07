@@ -10,11 +10,12 @@ export interface IBasicInfoProps {}
 
 export default function BasicInfo(props: IBasicInfoProps) {
 	const { state } = useContext(context)
-	const { editMode, messageToApp } = state
-	const { register, setValue } = useFormContext()
+	const { messageToApp } = state
+	const { register } = useFormContext()
 
-	const name = useWatch({ name: 'name' })
-	const info = useWatch({ name: 'info', defaultValue: {} })
+	const idium = useWatch({ name: 'idium', defaultValue: 'purist' })
+
+	console.log('idium', idium)
 
 	if (!messageToApp) return null
 
@@ -60,6 +61,15 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					placeholder='&mdash;'
 					{...register('info.pillars')}
 				/>
+
+				{idium === 'pulp' && (
+					<HTextArea
+						label='Pillars of Sanity'
+						className='col-span-2 mx-2'
+						placeholder='&mdash;'
+						{...register('info.pillars')}
+					/>
+				)}
 			</div>
 		</DecoBox>
 	)

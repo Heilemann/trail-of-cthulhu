@@ -7,6 +7,7 @@ import context from '../context'
 import RefreshSkills from './RefreshSkills'
 import Health from './Health'
 import { useFormContext } from 'react-hook-form'
+import CreditRating from './CreditRating'
 
 export interface ISkillsListProps {}
 
@@ -59,7 +60,7 @@ export default function SkillsList(props: ISkillsListProps) {
 					<Skill name='Bargain' />
 					<Skill name='Bureaucracy' />
 					<Skill name='Cop Talk' />
-					<Skill name='Credit Rating' />
+					<CreditRating />
 					<Skill name='Flattery' />
 					<Skill name='Interrogation' />
 					<Skill name='Intimidation' />
