@@ -33,7 +33,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 						placeholder='&mdash;'
 						{...register('name')}
 					/>
-					{state.editMode && (
+					{state.editMode !== 'view' && (
 						<Button
 							onClick={() =>
 								messageToApp('generate', {
