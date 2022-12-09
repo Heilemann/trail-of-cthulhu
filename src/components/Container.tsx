@@ -106,6 +106,8 @@ export default function Container(props: IContainerProps) {
 						keepErrors: true,
 						keepIsSubmitted: true,
 						keepTouched: true,
+						keepIsValid: true,
+						keepSubmitCount: true,
 					})
 
 					break
