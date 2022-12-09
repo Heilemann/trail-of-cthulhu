@@ -91,15 +91,15 @@ export default function Container(props: IContainerProps) {
 
 					console.log('trail of cthulhu: update data dispatch', newDocument)
 
-					dispatch({
-						type: 'LOAD',
-						payload: {
-							...data,
-							document: newDocument,
-						},
-					})
+					// dispatch({
+					// 	type: 'LOAD',
+					// 	payload: {
+					// 		...data,
+					// 		document: newDocument,
+					// 	},
+					// })
 
-					form.reset(newDocument?.values)
+					form.reset({ values: newDocument?.values })
 
 					break
 
