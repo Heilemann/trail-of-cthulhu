@@ -99,7 +99,7 @@ export default function Container(props: IContainerProps) {
 					// 	},
 					// })
 
-					form.reset(newDocument?.values)
+					form.reset({ values: newDocument?.values })
 
 					break
 
