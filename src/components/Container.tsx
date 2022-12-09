@@ -49,7 +49,7 @@ export default function Container(props: IContainerProps) {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleFormChanges, [state]) // eslint-disable-line
+	useEffect(handleFormChanges, []) // eslint-disable-line
 
 	const messageListener = useCallback(
 		(e: MessageEvent) => {
