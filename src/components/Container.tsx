@@ -93,15 +93,13 @@ export default function Container(props: IContainerProps) {
 
 					console.log('trail of cthulhu: update data dispatch', newDocument)
 
-					// dispatch({
-					// 	type: 'LOAD',
-					// 	payload: {
-					// 		...data,
-					// 		document: newDocument,
-					// 	},
-					// })
-
-					form.reset({ values: newDocument?.values })
+					dispatch({
+						type: 'LOAD',
+						payload: {
+							...data,
+							document: newDocument,
+						},
+					})
 
 					break
 
@@ -115,6 +113,14 @@ export default function Container(props: IContainerProps) {
 		},
 		[dispatch, form, state.documentId],
 	)
+
+	useEffect(() => {
+		const newDocument = state.documents?.find(
+			(d: TDocument) => d._id === state.documentId,
+		)
+
+		form.reset({ values: newDocument?.values })
+	}, [form, state])
 
 	useEffect(() => {
 		window.addEventListener('message', messageListener)
