@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import Button from '../Button'
 import context from '../context'
 import DecoBox from '../DecoBox'
 import HInput from '../HInput'
@@ -31,6 +32,16 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					placeholder='&mdash;'
 					{...register('name')}
 				/>
+				<Button
+					onClick={() =>
+						messageToApp('generate', {
+							name: 'name',
+							prompt: 'Generate a unique name for a man in the 1930s',
+						})
+					}
+				>
+					Generate
+				</Button>
 
 				<HInput
 					label='Drive'
