@@ -26,22 +26,24 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					// , editMode === 'view' && 'hidden'
 				)}
 			>
-				<HInput
-					label='Name'
-					className='mx-2'
-					placeholder='&mdash;'
-					{...register('name')}
-				/>
-				<Button
-					onClick={() =>
-						messageToApp('generate', {
-							name: 'name',
-							prompt: 'Generate a unique name for a man in the 1930s',
-						})
-					}
-				>
-					Generate
-				</Button>
+				<div className='flex flex-col space-y-4'>
+					<HInput
+						label='Name'
+						className='mx-2'
+						placeholder='&mdash;'
+						{...register('name')}
+					/>
+					<Button
+						onClick={() =>
+							messageToApp('generate', {
+								name: 'name',
+								prompt: 'Generate a unique name for a man in the 1930s',
+							})
+						}
+					>
+						Generate
+					</Button>
+				</div>
 
 				<HInput
 					label='Drive'
