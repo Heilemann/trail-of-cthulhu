@@ -91,13 +91,13 @@ export default function Container(props: IContainerProps) {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					// dispatch({
-					// 	type: 'LOAD',
-					// 	payload: {
-					// 		...data,
-					// 		document: newDocument,
-					// 	},
-					// })
+					dispatch({
+						type: 'LOAD',
+						payload: {
+							...data,
+							document: newDocument,
+						},
+					})
 
 					console.log('trail of cthulhu: resetting data', newDocument?.values)
 
