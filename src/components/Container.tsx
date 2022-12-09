@@ -99,7 +99,10 @@ export default function Container(props: IContainerProps) {
 					// 	},
 					// })
 
-					form.reset({ values: newDocument?.values })
+					form.reset({
+						values: newDocument?.values,
+						keepIsSubmitted: true,
+					})
 
 					break
 
