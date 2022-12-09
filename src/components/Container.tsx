@@ -89,6 +89,8 @@ export default function Container(props: IContainerProps) {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
+					console.log('trail of cthulhu: update data dispatch', newDocument)
+
 					dispatch({
 						type: 'LOAD',
 						payload: {

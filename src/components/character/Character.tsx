@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useWatch } from 'react-hook-form'
 import context from '../context'
 import DecoBox from '../DecoBox'
@@ -23,6 +23,11 @@ export default function Character(props: ICharacterProps) {
 	})
 	const athleticsInt = parseInt(athletics || 0, 10)
 	const defaultHitThreshold = athleticsInt < 8 ? '3' : '4'
+
+	// if state changes, console.log the new state
+	useEffect(() => {
+		console.log('trail of cthulhu character sheet: state changed', state)
+	}, [state])
 
 	return (
 		<div className='space-y-4'>
