@@ -102,7 +102,10 @@ export default function Container(props: IContainerProps) {
 					console.log('trail of cthulhu: resetting data', newDocument?.values)
 
 					form.reset(newDocument?.values, {
-						keepDefaultValues: true,
+						keepDirty: true,
+						keepErrors: true,
+						keepIsSubmitted: true,
+						keepTouched: true,
 					})
 
 					break
