@@ -99,6 +99,8 @@ export default function Container(props: IContainerProps) {
 						},
 					})
 
+					form.reset(newDocument?.values)
+
 					break
 
 				case 'update document mode':
