@@ -90,9 +90,7 @@ export default function Container(props: IContainerProps) {
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
-
-					console.log('trail of cthulhu: update data dispatch', newDocument)
-
+					debugger
 					dispatch({
 						type: 'LOAD',
 						payload: {
@@ -100,6 +98,8 @@ export default function Container(props: IContainerProps) {
 							document: newDocument,
 						},
 					})
+
+					form.reset(newDocument?.values)
 
 					break
 
