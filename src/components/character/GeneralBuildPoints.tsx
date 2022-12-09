@@ -18,7 +18,7 @@ export default function GeneralBuildPoints(props: IGeneralBuildPointsProps) {
 		return acc + (isOccupational ? rating / 2 : rating)
 	}, 0)
 
-	console.log('total general', total)
+	// console.log('total general', total)
 
 	return (
 		<HInput

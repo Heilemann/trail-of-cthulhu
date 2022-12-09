@@ -20,7 +20,7 @@ export default function InvestigativeBuildPoints(
 		return acc + (isOccupational ? rating / 2 : rating)
 	}, 0)
 
-	console.log('total', total)
+	// console.log('total', total)
 
 	return (
 		<HInput

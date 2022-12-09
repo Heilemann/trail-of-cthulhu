@@ -57,14 +57,14 @@ export default function Container(props: IContainerProps) {
 
 			if (wrongSource) return
 
+			console.log('trail of cthulhu: message received', message, data)
+
 			switch (message) {
 				case 'load':
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
 					)
-
-					console.log('load', documentId, document)
 
 					if (!document) {
 						throw new Error(`document with id ${documentId} not found by aux`)
