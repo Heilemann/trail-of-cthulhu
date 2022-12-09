@@ -40,6 +40,8 @@ export default function Container(props: IContainerProps) {
 				},
 			}
 
+			console.log('trail of cthulhu: form changed', payload)
+
 			messageToApp('save', payload)
 		})
 
@@ -91,15 +93,15 @@ export default function Container(props: IContainerProps) {
 
 					console.log('trail of cthulhu: update data dispatch', newDocument)
 
-					// dispatch({
-					// 	type: 'LOAD',
-					// 	payload: {
-					// 		...data,
-					// 		document: newDocument,
-					// 	},
-					// })
+					dispatch({
+						type: 'LOAD',
+						payload: {
+							...data,
+							document: newDocument,
+						},
+					})
 
-					form.reset({ values: newDocument?.values })
+					// form.reset({ values: newDocument?.values })
 
 					break
 
