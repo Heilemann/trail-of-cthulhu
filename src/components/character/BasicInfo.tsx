@@ -27,7 +27,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 				)}
 			>
 				<HInput
-					label='Name'
+					label='Name 2'
 					className='mx-2'
 					placeholder='&mdash;'
 					{...register('name')}
