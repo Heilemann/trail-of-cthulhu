@@ -90,7 +90,7 @@ export default function Container(props: IContainerProps) {
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
-					debugger
+
 					dispatch({
 						type: 'LOAD',
 						payload: {
@@ -113,14 +113,6 @@ export default function Container(props: IContainerProps) {
 		},
 		[dispatch, form, state.documentId],
 	)
-
-	useEffect(() => {
-		const newDocument = state.documents?.find(
-			(d: TDocument) => d._id === state.documentId,
-		)
-
-		form.reset({ values: newDocument?.values })
-	}, [form, state])
 
 	useEffect(() => {
 		window.addEventListener('message', messageListener)
