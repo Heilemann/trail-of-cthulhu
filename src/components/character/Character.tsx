@@ -24,11 +24,6 @@ export default function Character(props: ICharacterProps) {
 	const athleticsInt = parseInt(athletics || 0, 10)
 	const defaultHitThreshold = athleticsInt < 8 ? '3' : '4'
 
-	// if state changes, console.log the new state
-	useEffect(() => {
-		console.log('trail of cthulhu character sheet: state changed', state)
-	}, [state])
-
 	return (
 		<div className='space-y-4'>
 			<div className='space-y-4 md:flex md:space-y-0 md:space-x-4'>

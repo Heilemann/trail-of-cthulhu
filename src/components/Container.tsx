@@ -91,15 +91,15 @@ export default function Container(props: IContainerProps) {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					dispatch({
-						type: 'LOAD',
-						payload: {
-							...data,
-							document: newDocument,
-						},
-					})
+					// dispatch({
+					// 	type: 'LOAD',
+					// 	payload: {
+					// 		...data,
+					// 		document: newDocument,
+					// 	},
+					// })
 
-					// form.reset(newDocument?.values)
+					form.reset(newDocument?.values)
 
 					break
 
