@@ -99,6 +99,8 @@ export default function Container(props: IContainerProps) {
 					// 	},
 					// })
 
+					console.log('trail of cthulhu: resetting data', newDocument?.values)
+
 					form.reset({
 						values: newDocument?.values,
 						keepIsSubmitted: true,
