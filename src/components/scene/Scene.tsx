@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
 import Asset from '../Asset'
 import Button from '../Button'
 import context from '../context'
@@ -15,7 +14,7 @@ export default function Scene(props: ISceneProps) {
 	const { state } = useContext(context)
 	const { document, messageToApp } = state
 	const { values } = document
-	const { register, setValue } = useFormContext()
+	const { register } = useFormContext()
 
 	// if (!register) return null
 	if (!document?.values) return null
@@ -27,7 +26,7 @@ export default function Scene(props: ISceneProps) {
 			})
 	}
 
-	const hasMapAndCover = values?.mapId && values?.coverId
+	// const hasMapAndCover = values?.mapId && values?.coverId
 
 	return (
 		<DecoBox className='mx-auto max-w-2xl space-y-2 lg:space-y-4'>
