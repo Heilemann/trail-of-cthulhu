@@ -21,8 +21,6 @@ export default function Container(props: IContainerProps) {
 	})
 
 	const messageToApp = (message: string, data?: any) => {
-		console.log(window.parent.postMessage)
-
 		window.parent.postMessage({
 			source: 'System',
 			message,
@@ -43,7 +41,11 @@ export default function Container(props: IContainerProps) {
 				},
 			}
 
-			console.log('trail of cthulhu: form changed', payload)
+			console.log(
+				'trail of cthulhu: form changed',
+				payload,
+				window.parent.postMessage,
+			)
 
 			messageToApp('save', payload)
 		})
