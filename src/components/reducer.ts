@@ -3,6 +3,7 @@ import { TState, TReducerAction } from "../interfaces";
 export default function Reducer(state: TState, action: TReducerAction) {
   switch (action.type) {
     case "LOAD":
+      console.log("LOAD", action.payload);
       return {
         ...state,
         ...action.payload

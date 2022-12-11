@@ -63,6 +63,7 @@ export default function Container(props: IContainerProps) {
 
 			switch (message) {
 				case 'load':
+					console.log('trail of cthulhu: loading data', data)
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
@@ -82,11 +83,12 @@ export default function Container(props: IContainerProps) {
 						payload,
 					})
 
-					// form.reset(document.values)
+					form.reset(document.values)
 
 					break
 
 				case 'update data':
+					console.log('trail of cthulhu: updating data', data)
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
