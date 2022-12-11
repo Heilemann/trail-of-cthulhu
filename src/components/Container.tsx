@@ -30,7 +30,8 @@ export default function Container(props: IContainerProps) {
 
 	const handleFormChanges = () => {
 		const subscription = form.watch(values => {
-			console.log('trail of cthulhu: form changed', values)
+			console.log('trail of cthulhu: form changed', values, document)
+
 			if (!document || !values) return
 
 			const payload = {
