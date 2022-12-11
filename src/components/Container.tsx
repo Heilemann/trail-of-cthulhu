@@ -145,7 +145,8 @@ export default function Container(props: IContainerProps) {
 					break
 			}
 		},
-		[dispatch, form, state],
+		// eslint-disable-next-line
+		[dispatch, form, JSON.stringify(state)],
 	)
 
 	useEffect(() => {
