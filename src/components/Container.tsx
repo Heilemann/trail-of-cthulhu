@@ -28,10 +28,6 @@ export default function Container(props: IContainerProps) {
 		})
 	}
 
-	useEffect(() => {
-		console.log('trail of cthulhu: state updated', state)
-	}, [state])
-
 	const handleFormChanges = () => {
 		const subscription = form.watch(values => {
 			console.log('trail of cthulhu: form changed', values, document, state)
@@ -53,7 +49,7 @@ export default function Container(props: IContainerProps) {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleFormChanges, []) // eslint-disable-line
+	useEffect(handleFormChanges, [document]) // eslint-disable-line
 
 	const messageListener = useCallback(
 		(e: MessageEvent) => {
