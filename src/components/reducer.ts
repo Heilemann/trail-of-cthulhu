@@ -10,6 +10,7 @@ export default function Reducer(state: TState, action: TReducerAction) {
       }
 
     case "UPDATE_DOCUMENT_VALUES":
+      console.log("UPDATE_DOCUMENT_VALUES", action.payload);
       return {
         ...state,
         document: {
