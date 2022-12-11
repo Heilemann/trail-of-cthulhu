@@ -88,12 +88,11 @@ export default function Container(props: IContainerProps) {
 					break
 
 				case 'update data':
-					console.log('trail of cthulhu: updating data', data)
+					console.log('trail of cthulhu: updating data', data, state.document)
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					// make sure the incoming data is actually different from what we have before updating, remember to stringify the values
 					if (
 						JSON.stringify(newDocument?.values) ===
 						JSON.stringify(state.document?.values)
