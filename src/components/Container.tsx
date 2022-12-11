@@ -28,6 +28,10 @@ export default function Container(props: IContainerProps) {
 		})
 	}
 
+	useEffect(() => {
+		console.log('trail of cthulhu: state updated', state)
+	}, [state])
+
 	const handleFormChanges = () => {
 		const subscription = form.watch(values => {
 			console.log('trail of cthulhu: form changed', values, document, state)
