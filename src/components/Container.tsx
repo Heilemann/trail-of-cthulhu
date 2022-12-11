@@ -42,12 +42,6 @@ export default function Container(props: IContainerProps) {
 				},
 			}
 
-			console.log(
-				'trail of cthulhu: form changed',
-				payload,
-				window.parent.postMessage,
-			)
-
 			messageToApp('save', payload)
 		})
 
@@ -87,6 +81,8 @@ export default function Container(props: IContainerProps) {
 						type: 'LOAD',
 						payload,
 					})
+
+					console.log('trail of cthulhu: load', payload)
 
 					form.reset(document.values)
 
