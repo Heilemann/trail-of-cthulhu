@@ -29,7 +29,7 @@ export default function Container(props: IContainerProps) {
 	}
 
 	const handleFormChanges = () => {
-		if (document.values) form.reset(document.values)
+		if (document?.values) form.reset(document.values)
 
 		const subscription = form.watch(values => {
 			console.log('trail of cthulhu: form changed', values, document, state)
