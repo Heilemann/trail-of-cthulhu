@@ -137,7 +137,7 @@ export default function Container(props: IContainerProps) {
 					break
 			}
 		},
-		[dispatch, form, state.documentId],
+		[dispatch, form, state],
 	)
 
 	useEffect(() => {
@@ -146,7 +146,7 @@ export default function Container(props: IContainerProps) {
 		return () => {
 			window.removeEventListener('message', messageListener)
 		}
-	}, [messageListener])
+	}, [state, messageListener])
 
 	const addMessageToAppToState = useCallback(() => {
 		dispatch({
