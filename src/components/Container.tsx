@@ -42,6 +42,12 @@ export default function Container(props: IContainerProps) {
 				},
 			}
 
+			dispatch({
+				type: 'UPDATE_DOCUMENT_VALUES',
+				// @ts-ignore
+				payload: values,
+			})
+
 			messageToApp('save', payload)
 		})
 
