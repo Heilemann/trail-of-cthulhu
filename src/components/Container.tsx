@@ -93,6 +93,17 @@ export default function Container(props: IContainerProps) {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
+					// make sure the incoming data is actually different from what we have before updating, remember to stringify the values
+					if (
+						JSON.stringify(newDocument?.values) ===
+						JSON.stringify(state.document?.values)
+					) {
+						console.log(
+							'trail of cthulhu: no changes detected, skipping update',
+						)
+						return
+					}
+
 					dispatch({
 						type: 'LOAD',
 						payload: {
