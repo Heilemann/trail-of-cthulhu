@@ -29,11 +29,6 @@ export default function Container(props: IContainerProps) {
 	}
 
 	const handleFormChanges = () => {
-		// if (document?.values) {
-		// 	console.log('trail of cthulhu: resetting form', document.values)
-		// 	form.reset(document.values)
-		// }
-
 		const subscription = form.watch(values => {
 			console.log('trail of cthulhu: form changed', values, document, state)
 
@@ -47,10 +42,10 @@ export default function Container(props: IContainerProps) {
 				},
 			}
 
-			dispatch({
-				type: 'UPDATE_DOCUMENT_VALUES',
-				payload: { values: values },
-			})
+			// dispatch({
+			// 	type: 'UPDATE_DOCUMENT_VALUES',
+			// 	payload: { values: values },
+			// })
 
 			messageToApp('save', payload)
 		})
@@ -114,10 +109,12 @@ export default function Container(props: IContainerProps) {
 						JSON.stringify(state.document?.values)
 					) {
 						console.log(
-							'trail of cthulhu: no changes detected, skipping update',
+							'++++++++++ trail of cthulhu: no changes detected, skipping update ++++++++++',
 						)
 						return
 					}
+
+					console.log('trail of cthulhu: resetting data', newDocument?.values)
 
 					dispatch({
 						type: 'LOAD',
@@ -126,8 +123,6 @@ export default function Container(props: IContainerProps) {
 							document: newDocument,
 						},
 					})
-
-					console.log('trail of cthulhu: resetting data', newDocument?.values)
 
 					form.reset(newDocument?.values)
 
