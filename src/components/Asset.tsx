@@ -17,6 +17,7 @@ const Asset: FC<AssetProps> = props => {
 	const { name, className, style, addLabel, removeLabel } = props
 	const { state } = useContext(context)
 	const { assets, document, messageToApp } = state
+	const { values } = document
 	const [assetId, setAssetId] = useState<string>(document.values[name])
 	const asset = assetId && assets.find((asset: TAsset) => asset._id === assetId)
 	const { setValue, register } = useFormContext()
@@ -47,7 +48,7 @@ const Asset: FC<AssetProps> = props => {
 	if (!asset) {
 		return (
 			<div>
-				<input {...register(name)} />
+				<input defaultValue={values[name]} {...register(name)} />
 
 				<Button
 					// className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
@@ -63,7 +64,7 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
-			<input {...register(name)} />
+			<input defaultValue={values[name]} {...register(name)} />
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'
