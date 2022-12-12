@@ -49,12 +49,6 @@ const Asset: FC<AssetProps> = props => {
 	if (!asset) {
 		return (
 			<div>
-				<Input
-					placeholder='Empty'
-					defaultValue={values[name]}
-					{...register(name)}
-				/>
-
 				<Button
 					// className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
 					onClick={handleUpload}
@@ -69,11 +63,6 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
-			<Input
-				placeholder='Empty'
-				defaultValue={values[name]}
-				{...register(name)}
-			/>
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'
