@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import { TAsset } from '../interfaces'
 import Button from './Button'
 import context from './context'
+import Input from './Input'
 
 interface AssetProps {
 	name: string
@@ -48,7 +49,11 @@ const Asset: FC<AssetProps> = props => {
 	if (!asset) {
 		return (
 			<div>
-				<input defaultValue={values[name]} {...register(name)} />
+				<Input
+					placeholder='Empty'
+					defaultValue={values[name]}
+					{...register(name)}
+				/>
 
 				<Button
 					// className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
@@ -64,7 +69,11 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
-			<input defaultValue={values[name]} {...register(name)} />
+			<Input
+				placeholder='Empty'
+				defaultValue={values[name]}
+				{...register(name)}
+			/>
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'
