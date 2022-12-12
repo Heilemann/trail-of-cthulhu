@@ -29,10 +29,10 @@ export default function Container(props: IContainerProps) {
 	}
 
 	const handleFormChanges = () => {
-		if (document?.values) {
-			console.log('trail of cthulhu: resetting form', document.values)
-			form.reset(document.values)
-		}
+		// if (document?.values) {
+		// 	console.log('trail of cthulhu: resetting form', document.values)
+		// 	form.reset(document.values)
+		// }
 
 		const subscription = form.watch(values => {
 			console.log('trail of cthulhu: form changed', values, document, state)
@@ -59,7 +59,7 @@ export default function Container(props: IContainerProps) {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleFormChanges, [document]) // eslint-disable-line
+	useEffect(handleFormChanges, [JSON.stringify(document)]) // eslint-disable-line
 
 	const messageListener = useCallback(
 		(e: MessageEvent) => {
@@ -129,14 +129,7 @@ export default function Container(props: IContainerProps) {
 
 					console.log('trail of cthulhu: resetting data', newDocument?.values)
 
-					form.reset(newDocument?.values, {
-						keepDirty: true,
-						keepErrors: true,
-						keepIsSubmitted: true,
-						keepTouched: true,
-						keepIsValid: true,
-						keepSubmitCount: true,
-					})
+					form.reset(newDocument?.values)
 
 					break
 

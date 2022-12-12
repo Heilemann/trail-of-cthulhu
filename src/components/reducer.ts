@@ -15,7 +15,10 @@ export default function Reducer(state: TState, action: TReducerAction) {
         ...state,
         document: {
           ...state.document,
-          ...action.payload
+          values: {
+            ...state.document.values,
+            ...action.payload.values
+          }
         }
       }
 
