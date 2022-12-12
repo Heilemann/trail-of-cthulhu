@@ -16,10 +16,10 @@ interface AssetProps {
 const Asset: FC<AssetProps> = props => {
 	const { name, className, style, addLabel, removeLabel } = props
 	const { state } = useContext(context)
-	const { editMode, assets, document, messageToApp } = state
+	const { assets, document, messageToApp } = state
 	const [assetId, setAssetId] = useState<string>(document.values[name])
 	const asset = assetId && assets.find((asset: TAsset) => asset._id === assetId)
-	const { setValue } = useFormContext()
+	const { setValue, register } = useFormContext()
 
 	useEffect(() => {
 		setAssetId(document.values[name])
@@ -59,6 +59,7 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
+			<input type='hidden' {...register(name)} />
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'
