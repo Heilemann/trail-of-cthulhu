@@ -59,7 +59,7 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: alt text
 	return (
 		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
-			<input type='hidden' {...register(name)} />
+			<input {...register(name)} />
 			{asset.filetype.includes('image') && (
 				<img
 					alt='wonderful'
