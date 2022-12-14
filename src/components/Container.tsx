@@ -39,8 +39,6 @@ export default function Container(props: IContainerProps) {
 				return
 			}
 
-			console.log('trail of cthulhu: form changed', values, document, state)
-
 			const payload = {
 				...document,
 				values: {
@@ -71,12 +69,8 @@ export default function Container(props: IContainerProps) {
 
 			if (wrongSource) return
 
-			console.log('trail of cthulhu: message received', message, data)
-
 			switch (message) {
 				case 'load':
-					console.log('trail of cthulhu: loading data', data)
-
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
@@ -107,20 +101,8 @@ export default function Container(props: IContainerProps) {
 						JSON.stringify(newDocument?.values) ===
 						JSON.stringify(state.document?.values)
 					) {
-						console.log(
-							'++++++++++ trail of cthulhu: no changes detected, skipping update ++++++++++',
-						)
 						return
 					}
-
-					console.log(
-						'trail of cthulhu: updating data',
-						data,
-						JSON.stringify(newDocument?.values),
-						JSON.stringify(state.document?.values),
-						JSON.stringify(newDocument?.values) ===
-							JSON.stringify(state.document?.values),
-					)
 
 					dispatch({
 						type: 'LOAD',
