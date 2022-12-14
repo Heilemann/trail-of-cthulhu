@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
 import Character from './character/Character'
@@ -28,10 +28,16 @@ export default function Container(props: IContainerProps) {
 		})
 	}
 
+	const resetInProgress = useRef(false)
+
 	const handleFormChanges = () => {
 		const subscription = form.watch(values => {
 			if (!values || !document) return
 			if (JSON.stringify(values) === JSON.stringify(document.values)) return
+			if (resetInProgress.current) {
+				resetInProgress.current = false
+				return
+			}
 
 			console.log('trail of cthulhu: form changed', values, document, state)
 
@@ -123,6 +129,8 @@ export default function Container(props: IContainerProps) {
 							document: newDocument,
 						},
 					})
+
+					resetInProgress.current = true
 
 					form.reset(newDocument?.values)
 
