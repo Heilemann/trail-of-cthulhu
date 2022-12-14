@@ -70,6 +70,7 @@ export default function Container(props: IContainerProps) {
 			switch (message) {
 				case 'load':
 					console.log('trail of cthulhu: loading data', data)
+
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
@@ -96,15 +97,6 @@ export default function Container(props: IContainerProps) {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					console.log(
-						'trail of cthulhu: updating data',
-						data,
-						JSON.stringify(newDocument?.values),
-						JSON.stringify(state.document?.values),
-						JSON.stringify(newDocument?.values) ===
-							JSON.stringify(state.document?.values),
-					)
-
 					if (
 						JSON.stringify(newDocument?.values) ===
 						JSON.stringify(state.document?.values)
@@ -115,7 +107,14 @@ export default function Container(props: IContainerProps) {
 						return
 					}
 
-					console.log('trail of cthulhu: resetting data', newDocument?.values)
+					console.log(
+						'trail of cthulhu: updating data',
+						data,
+						JSON.stringify(newDocument?.values),
+						JSON.stringify(state.document?.values),
+						JSON.stringify(newDocument?.values) ===
+							JSON.stringify(state.document?.values),
+					)
 
 					dispatch({
 						type: 'LOAD',
