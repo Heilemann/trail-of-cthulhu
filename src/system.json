@@ -31,6 +31,7 @@
 			"pluralName": "Scenes",
 			"description": "Provide context, cover art and maps.",
 			"hasEditMode": "false",
+			"thumbnailField": ["mapId"],
 			"windowSize": "small",
 			"allowCreate": "false"
 		},
