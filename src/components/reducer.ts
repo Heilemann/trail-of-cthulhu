@@ -13,6 +13,18 @@ export default function Reducer(state: TState, action: TReducerAction) {
       console.log("UPDATE_DOCUMENT_VALUES", action.payload);
       return {
         ...state,
+        documents: state.documents.map(document => {
+          if (document._id === state.documentId) {
+            return {
+              ...document,
+              values: {
+                ...document.values,
+                ...action.payload.values
+              }
+            }
+          }
+          return document;
+        }),
         document: {
           ...state.document,
           values: {

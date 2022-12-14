@@ -32,7 +32,8 @@ export default function Container(props: IContainerProps) {
 		const subscription = form.watch(values => {
 			console.log('trail of cthulhu: form changed', values, document, state)
 
-			if (!document || !values) return
+			if (!values || !document) return
+			if (JSON.stringify(values) === JSON.stringify(document.values)) return
 
 			const payload = {
 				...document,
@@ -42,10 +43,10 @@ export default function Container(props: IContainerProps) {
 				},
 			}
 
-			// dispatch({
-			// 	type: 'UPDATE_DOCUMENT_VALUES',
-			// 	payload: { values: values },
-			// })
+			dispatch({
+				type: 'UPDATE_DOCUMENT_VALUES',
+				payload: { values: values },
+			})
 
 			messageToApp('save', payload)
 		})
@@ -140,13 +141,15 @@ export default function Container(props: IContainerProps) {
 		[dispatch, form, JSON.stringify(state)],
 	)
 
-	useEffect(() => {
+	const initMessageListener = () => {
 		window.addEventListener('message', messageListener)
 
 		return () => {
 			window.removeEventListener('message', messageListener)
 		}
-	}, [state, messageListener])
+	}
+
+	useEffect(initMessageListener, [state, messageListener])
 
 	const addMessageToAppToState = useCallback(() => {
 		dispatch({
@@ -158,6 +161,7 @@ export default function Container(props: IContainerProps) {
 
 		messageToApp('system is ready')
 	}, [dispatch])
+
 	useEffect(addMessageToAppToState, [addMessageToAppToState])
 
 	if (!type) return null
