@@ -24,7 +24,8 @@
 			"description": "For simple note taking.",
 			"hasEditMode": "true",
 			"windowSize": "medium",
-			"allowCreate": "true"
+			"allowCreate": "true",
+			"canAssumeAsCharacter": "false"
 		},
 		{
 			"type": "scene",
@@ -34,7 +35,8 @@
 			"hasEditMode": "false",
 			"thumbnailField": ["mapId"],
 			"windowSize": "small",
-			"allowCreate": "false"
+			"allowCreate": "false",
+			"canAssumeAsCharacter": "false"
 		},
 		{
 			"type": "weapon",
@@ -43,7 +45,8 @@
 			"description": "Various things to hit, shoot and blow up things with.",
 			"hasEditMode": "true",
 			"windowSize": "small",
-			"allowCreate": "false"
+			"allowCreate": "false",
+			"canAssumeAsCharacter": "false"
 		},
 		{
 			"type": "handout",
@@ -53,7 +56,8 @@
 			"hasEditMode": "true",
 			"windowSize": "small",
 			"allowCreate": "false",
-			"thumbnailField": ["image"]
+			"thumbnailField": ["image"],
+			"canAssumeAsCharacter": "false"
 		}
 	]
 }
