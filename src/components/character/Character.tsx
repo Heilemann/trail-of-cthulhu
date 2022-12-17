@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useWatch } from 'react-hook-form'
 import context from '../context'
 import DecoBox from '../DecoBox'

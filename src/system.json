@@ -14,7 +14,8 @@
 			"hasEditMode": "true",
 			"windowSize": "large",
 			"thumbnailField": ["portrait", "token"],
-			"allowCreate": "true"
+			"allowCreate": "true",
+			"canAssumeAsCharacter": "true"
 		},
 		{
 			"type": "note",
