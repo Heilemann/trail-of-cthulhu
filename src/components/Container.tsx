@@ -90,6 +90,8 @@ export default function Container(props: IContainerProps) {
 						payload,
 					})
 
+					console.log('trail of chtulhu: load', payload)
+
 					break
 
 				case 'update data':
