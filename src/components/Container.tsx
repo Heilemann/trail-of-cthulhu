@@ -90,7 +90,7 @@ export default function Container(props: IContainerProps) {
 						payload,
 					})
 
-					console.log('trail of chtulhu: load', payload)
+					form.reset(payload.document.values)
 
 					break
 
