@@ -14,8 +14,12 @@ export interface ISkillProps {
 	note?: JSX.Element
 }
 
-export default function Skill(props: ISkillProps) {
-	const { name, category, specialities, note } = props
+export default function Skill({
+	name,
+	category,
+	specialities,
+	note,
+}: ISkillProps) {
 	const { state } = useContext(context)
 	const { document, editMode, messageToApp } = state
 	const { values } = document
@@ -35,6 +39,7 @@ export default function Skill(props: ISkillProps) {
 	const ratingArray = Array(rating || 0).fill(0) || []
 
 	const handleSpend = () => {
+		console.log('handleSpend', name, pool, rating, messageToApp)
 		if (!messageToApp) return
 
 		if (pool <= 0) {
