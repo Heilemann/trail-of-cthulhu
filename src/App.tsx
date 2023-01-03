@@ -17,7 +17,7 @@ function App() {
 	return (
 		<Context.Provider value={{ state, dispatch }}>
 			<FormProvider {...form}>
-				{isDevelopment && <DevToolbar />}
+				{/* {isDevelopment && <DevToolbar />} */}
 				<Container />
 			</FormProvider>
 		</Context.Provider>
