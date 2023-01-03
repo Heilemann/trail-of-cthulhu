@@ -89,6 +89,9 @@ export type TEditMode = 'view' | 'edit'
 export type TSystemReceivableMessage = 'load data' | 'update data' | 'update document mode' | 'upload asset success'
 
 export type TAppReceivableMessages = {
+  message: 'system is ready'
+  data: null
+} | {
   message: 'save'
   data: TDocument
 } | {

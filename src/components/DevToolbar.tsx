@@ -1,5 +1,5 @@
 import { EyeIcon, PencilIcon } from '@heroicons/react/solid'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { TAccess, TState } from '../interfaces'
 import systemConfig from '../system.json'
@@ -7,6 +7,7 @@ import Button from './Button'
 import Tabs from './Tabs'
 import context from './context'
 import CollectionPicker from './dev/CollectionPicker'
+import useMessageToApp from './UseMessageToApp'
 
 /*
 	This is a development tool which is enabled by creating a .env file and putting this in it:
@@ -57,6 +58,7 @@ export default function DevToolbar() {
 	const { state, dispatch } = useContext(context)
 	const [collections, setCollections] = useState<any[]>([])
 	const { register, watch, control } = useForm()
+	const messageToApp = useMessageToApp()
 
 	// track which document type to display, e.g. 'character'
 	const documentId = useWatch({
@@ -187,6 +189,12 @@ export default function DevToolbar() {
 		}
 	}
 	useEffect(simulateParentFrame, []) // eslint-disable-line
+
+	const addMessageToAppToState = useCallback(() => {
+		messageToApp({ message: 'system is ready', data: null })
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+	useEffect(addMessageToAppToState, [addMessageToAppToState])
 
 	return (
 		<div className='sticky top-0 z-40 flex bg-black py-4 px-4 text-sm text-white'>
