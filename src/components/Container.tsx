@@ -59,6 +59,9 @@ export default function Container() {
 
 			if (wrongSource) return
 
+			// make an alert that shows the message
+			alert('Message: ' + message)
+
 			console.log('system message received', messagePayload)
 
 			switch (message) {
