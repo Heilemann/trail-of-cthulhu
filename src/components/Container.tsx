@@ -139,6 +139,10 @@ export default function Container() {
 	}
 	useEffect(initMessageListener, [state, messageListener])
 
+	useEffect(() => {
+		messageToApp({ message: 'system is ready', data: null })
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
 	if (!type) return null
 
 	return (

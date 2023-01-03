@@ -190,12 +190,6 @@ export default function DevToolbar() {
 	}
 	useEffect(simulateParentFrame, []) // eslint-disable-line
 
-	const addMessageToAppToState = useCallback(() => {
-		messageToApp({ message: 'system is ready', data: null })
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-	useEffect(addMessageToAppToState, [addMessageToAppToState])
-
 	return (
 		<div className='sticky top-0 z-40 flex bg-black py-4 px-4 text-sm text-white'>
 			<CollectionPicker collections={collections} />
