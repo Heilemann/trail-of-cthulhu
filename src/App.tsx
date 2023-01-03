@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import './App.css'
 import Container from './components/Container'
@@ -13,6 +13,21 @@ function App() {
 	const form = useForm<TValues>({
 		shouldUnregister: true,
 	})
+
+	const initMessageListener = () => {
+		const messageListener = (event: MessageEvent) => {
+			const { message, source, data } = event.data
+
+			console.log('messageListener', message, source, data)
+		}
+
+		window.addEventListener('message', messageListener)
+
+		return () => {
+			window.removeEventListener('message', messageListener)
+		}
+	}
+	useEffect(initMessageListener, [state, initMessageListener])
 
 	return (
 		<Context.Provider value={{ state, dispatch }}>
