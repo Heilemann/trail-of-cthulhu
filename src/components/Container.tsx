@@ -19,8 +19,8 @@ export default function Container() {
 	const messageToApp = useMessageToApp()
 
 	useEffect(() => {
-		alert('Container useEffect')
-	}, [])
+		alert('Container useEffect: ' + document._id)
+	}, [document])
 
 	const handleFormChanges = () => {
 		const subscription = watch(values => {
