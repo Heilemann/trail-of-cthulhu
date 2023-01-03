@@ -62,7 +62,7 @@ export default function Container() {
 			console.error('system message received', messagePayload)
 
 			switch (message) {
-				case 'load':
+				case 'onLoad':
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
@@ -130,29 +130,25 @@ export default function Container() {
 			window.removeEventListener('message', messageListener)
 		}
 	}
-
 	useEffect(initMessageListener, [state, messageListener])
 
 	if (!type) return null
 
 	return (
-		<div>
-			hello
-			<DragAndDrop>
-				<div
-					className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-					onDrop={e => {
-						console.log('dropped on iframe', e)
-					}}
-				>
-					{/* <Sizes /> */}
-					{type === 'character' && <Character />}
-					{type === 'note' && <Note />}
-					{type === 'scene' && <Scene />}
-					{type === 'weapon' && <Weapon />}
-					{type === 'handout' && <Handout />}
-				</div>
-			</DragAndDrop>
-		</div>
+		<DragAndDrop>
+			<div
+				className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'
+				onDrop={e => {
+					console.log('dropped on iframe', e)
+				}}
+			>
+				{/* <Sizes /> */}
+				{type === 'character' && <Character />}
+				{type === 'note' && <Note />}
+				{type === 'scene' && <Scene />}
+				{type === 'weapon' && <Weapon />}
+				{type === 'handout' && <Handout />}
+			</div>
+		</DragAndDrop>
 	)
 }

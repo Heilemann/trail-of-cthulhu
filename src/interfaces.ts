@@ -118,7 +118,7 @@ export type TAppReceivableMessages = {
 }
 
 export type TSystemReceivableMessages = {
-  message: 'load'
+  message: 'onLoad'
   source: 'Aux'
   data: {
     documentId: string
