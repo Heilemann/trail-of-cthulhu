@@ -18,6 +18,10 @@ export default function Container() {
 	const resetInProgress = useRef(false)
 	const messageToApp = useMessageToApp()
 
+	useEffect(() => {
+		alert('Container useEffect')
+	}, [])
+
 	const handleFormChanges = () => {
 		const subscription = watch(values => {
 			if (!values || !document) return
