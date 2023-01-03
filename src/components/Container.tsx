@@ -118,8 +118,7 @@ export default function Container() {
 					break
 			}
 		},
-		// eslint-disable-next-line
-		[dispatch, JSON.stringify(state)],
+		[dispatch, reset, JSON.stringify(state)], // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const initMessageListener = () => {
