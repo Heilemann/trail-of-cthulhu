@@ -1,44 +1,75 @@
+import { EyeIcon, PencilIcon } from '@heroicons/react/solid'
 import { useContext, useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
-import { TState } from '../interfaces'
+import { TAccess, TState } from '../interfaces'
 import systemConfig from '../system.json'
 import Button from './Button'
-import context from './context'
 import Tabs from './Tabs'
+import context from './context'
+import CollectionPicker from './dev/CollectionPicker'
 
-export interface IDevToolbarProps {}
+/*
+	This is a development tool which is enabled by creating a .env file and putting this in it:
+
+	NODE_ENV = 'development'
+
+	This will enable the development toolbar which allows you to switch between edit and view mode, and also allows you to select a document to edit, as well as managing the data handling. This is a not a proper substitute for deploying to a real game for testing, but it is useful for development.
+
+	It will do very simple message handling to the parent window, and will also listen for messages from the parent window, and it will store the documentId in localStorage so that it will persist between page refreshes.
+*/
+
+const documents = [
+	{
+		_id: '123',
+		creator: 'abc',
+		access: 'public' as TAccess,
+		accessList: [],
+		type: 'character',
+		values: {},
+	},
+]
 
 let initialData = {
 	documentId: '123',
-	editMode: 'edit',
-	documents: [
+	editMode: 'edit' as 'edit' | 'view',
+	document: documents[0],
+	documents: documents,
+	assets: [],
+} as TState
+
+const tabs = {
+	name: 'editMode',
+	options: [
 		{
-			_id: '123',
-			creator: 'abc',
-			access: [],
-			type: 'character',
-			values: {},
+			label: <PencilIcon className='h-4 w-4' aria-hidden='true' />,
+			value: 'edit',
+		},
+		{
+			label: <EyeIcon className='h-4 w-4' aria-hidden='true' />,
+			value: 'view',
 		},
 	],
-	assets: [],
 }
 
-export default function DevToolbar(props: IDevToolbarProps) {
+export default function DevToolbar() {
 	const { state, dispatch } = useContext(context)
 	const [collections, setCollections] = useState<any[]>([])
 	const { register, watch, control } = useForm()
 
+	// track which document type to display, e.g. 'character'
 	const documentId = useWatch({
 		control,
 		name: 'documentId',
 		defaultValue: localStorage.getItem('documentId') || 'character',
 	})
 
-	useEffect(() => {
+	const saveActiveDocumentType = () => {
 		localStorage.setItem('documentId', documentId)
-	}, [documentId])
+	}
+	useEffect(saveActiveDocumentType, [documentId])
 
-	useEffect(() => {
+	// Update the state with the editMode when it changes
+	const initEditModeWatcher = () => {
 		const subscription = watch(values => {
 			const { editMode } = values
 
@@ -51,14 +82,15 @@ export default function DevToolbar(props: IDevToolbarProps) {
 			})
 		})
 
-		return () => {
-			subscription.unsubscribe()
-		}
-	}, [dispatch, state, watch])
+		return () => subscription.unsubscribe()
+	}
+	useEffect(initEditModeWatcher, [dispatch, state, watch])
 
+	//
 	const fakeDocumentsFromSystemConfig = () => {
 		setCollections(systemConfig.collections)
 
+		// create a fake state object
 		const fakeData = {
 			documents: [],
 			assets: [],
@@ -71,7 +103,8 @@ export default function DevToolbar(props: IDevToolbarProps) {
 				_id: collection.type,
 				type: collection.type,
 				creator: 'abc',
-				access: [],
+				access: 'public' as TAccess,
+				accessList: [],
 				values: {
 					name: 'No name',
 				},
@@ -79,8 +112,11 @@ export default function DevToolbar(props: IDevToolbarProps) {
 			fakeData.documents?.push(document)
 		})
 
+		// set the first document as the default
 		fakeData['document'] = fakeData.documents![0]
 
+		// if there is any previously stored data, load it and
+		// overwrite the appropriate the default fake data as needed
 		const savedData = JSON.parse(localStorage.getItem('state') || '{}')
 
 		fakeData['documentId'] = documentId
@@ -89,8 +125,6 @@ export default function DevToolbar(props: IDevToolbarProps) {
 			...fakeData.document,
 			...savedData,
 		}
-
-		// console.log('fakeData', fakeData)
 
 		setTimeout(() => {
 			window.postMessage({
@@ -102,32 +136,18 @@ export default function DevToolbar(props: IDevToolbarProps) {
 	}
 	useEffect(fakeDocumentsFromSystemConfig, [documentId])
 
-	const tabs = {
-		name: 'editMode',
-		options: [
-			{
-				label: 'Edit',
-				value: 'edit',
-			},
-			{
-				label: 'View',
-				value: 'view',
-			},
-		],
-	}
-
 	const handleClearStorage = () => {
 		localStorage.clear()
 		window.location.reload()
 	}
 
-	const simulateParentFrameOnDev = () => {
+	const simulateParentFrame = () => {
 		const simulatedMessages = ({ data: payload }: any) => {
 			const { message, source, data } = payload
 
 			if (source !== 'System') return
 
-			// console.log('app heard message from system:', message, ', data:', data)
+			console.log('app heard message from system:', message, ', data:', data)
 
 			switch (message) {
 				case 'system is ready':
@@ -151,7 +171,7 @@ export default function DevToolbar(props: IDevToolbarProps) {
 				case 'save':
 					const newState = {
 						...state,
-						documents: [payload.data],
+						documents: [...state.documents, payload.data],
 					}
 
 					localStorage.setItem('state', JSON.stringify(newState))
@@ -164,28 +184,18 @@ export default function DevToolbar(props: IDevToolbarProps) {
 			window.removeEventListener('message', simulatedMessages)
 		}
 	}
-	useEffect(simulateParentFrameOnDev, []) // eslint-disable-line
+	useEffect(simulateParentFrame, []) // eslint-disable-line
 
 	return (
 		<div className='sticky top-0 z-40 flex bg-black py-4 px-4 text-sm text-white'>
-			<select className='mr-4 text-black' {...register('documentId')}>
-				{collections.map((collection: any) => (
-					<option
-						key={collection.type}
-						value={collection.type}
-						onClick={() => {}}
-					>
-						{collection.singularName}
-					</option>
-				))}
-			</select>
+			<CollectionPicker collections={collections} />
 
 			<div className='flex flex-1 justify-end space-x-2'>
 				<Tabs tabs={tabs} register={register} activeTab={state.editMode} />
 
 				<Button
 					onClick={handleClearStorage}
-					className='rounded-full bg-gray-800 dark:bg-gray-800'
+					className='h-10 self-center rounded-full bg-gray-800 py-0 px-3 '
 				>
 					Clear <span className='hidden sm:inline'>Storage</span>
 				</Button>

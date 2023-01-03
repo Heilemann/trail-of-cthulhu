@@ -2,8 +2,9 @@ import * as React from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Button from '../Button'
-import context from '../context'
 import Input from '../Input'
+import useMessageToApp from '../UseMessageToApp'
+import context from '../context'
 
 export interface IWeaponDamageProps {
 	index: number
@@ -12,9 +13,9 @@ export interface IWeaponDamageProps {
 export default function WeaponDamage(props: IWeaponDamageProps) {
 	const { index } = props
 	const { state } = React.useContext(context)
-	const { messageToApp } = state
 	const { editMode } = state
 	const { register } = useFormContext()
+	const messageToApp = useMessageToApp()
 
 	const name = useWatch({
 		name: `weapons.${index}.name`,
@@ -53,7 +54,7 @@ export default function WeaponDamage(props: IWeaponDamageProps) {
 			/>
 
 			{editMode === 'view' && damage && (
-				<Button className='py-1 px-2 m-1' onClick={handleRollDamage}>
+				<Button className='m-1 py-1 px-2' onClick={handleRollDamage}>
 					{`${damage} ${brawlBonus}` || '—'}
 				</Button>
 			)}

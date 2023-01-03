@@ -2,16 +2,17 @@ import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Button from '../Button'
-import context from '../context'
 import DecoBox from '../DecoBox'
 import HInput from '../HInput'
 import HTextArea from '../HTextArea'
+import useMessageToApp from '../UseMessageToApp'
+import context from '../context'
 
 export interface IBasicInfoProps {}
 
 export default function BasicInfo(props: IBasicInfoProps) {
 	const { state } = useContext(context)
-	const { messageToApp } = state
+	const messageToApp = useMessageToApp()
 	const { register } = useFormContext()
 
 	const idium = useWatch({ name: 'idium' })

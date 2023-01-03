@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import Input from '../Input'
+import useMessageToApp from '../UseMessageToApp'
 import { borderStyle } from '../borderStyle'
 import context from '../context'
-import Input from '../Input'
 import OccupationalAbility from './OccupationalAbility'
 import SkillSpecialities from './SkillSpecialities'
 
@@ -21,10 +22,11 @@ export default function Skill({
 	note,
 }: ISkillProps) {
 	const { state } = useContext(context)
-	const { document, editMode, messageToApp } = state
+	const { document, editMode } = state
 	const { values } = document
 	const { skills } = values
 	const { register } = useFormContext()
+	const messageToApp = useMessageToApp()
 
 	const rating = useWatch({
 		name: `skills.${name}.rating`,

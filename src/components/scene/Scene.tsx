@@ -2,19 +2,21 @@ import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import Asset from '../Asset'
 import Button from '../Button'
-import context from '../context'
 import DecoBox from '../DecoBox'
 import Input from '../Input'
 import Label from '../Label'
 import SectionDivider from '../SectionDivider'
+import useMessageToApp from '../UseMessageToApp'
+import context from '../context'
 
 export interface ISceneProps {}
 
 export default function Scene(props: ISceneProps) {
 	const { state } = useContext(context)
-	const { document, messageToApp } = state
+	const { document } = state
 	const { values } = document
 	const { register } = useFormContext()
+	const messageToApp = useMessageToApp()
 
 	// if (!register) return null
 	if (!document?.values) return null

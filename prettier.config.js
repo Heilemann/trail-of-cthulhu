@@ -10,4 +10,5 @@ module.exports = {
 	bracketSameLine: false,
 	arrowParens: 'avoid',
 	plugins: [require('prettier-plugin-tailwindcss')],
+	// tailwindConfig: './tailwind.config.js',
 }

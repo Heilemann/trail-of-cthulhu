@@ -3,10 +3,15 @@ import { FieldValues } from "react-hook-form"
 export type TDocument = {
   _id: string // UID
   type: string // e.g. 'chararacter' or 'spell'
-  creator: string // user ID
-  access: string[] // list of userIds 
-  values: TValues
+  creator: string // UID of the creating user
+  access: TAccess // 'private' or 'public'
+  accessList: string[] // list of userIds
+  values: { // folders use values as 'children'
+    [key: string]: any
+  }
 }
+
+export type TAccess = 'private' | 'public'
 
 export type TValues = {
   // info: {
@@ -49,7 +54,6 @@ export type TState = {
   document: TDocument
   documents: TDocument[]
   assets: TAsset[],
-  messageToApp?: (message: string, data?: any) => void
 }
 
 export type TReducerAction =
@@ -81,29 +85,39 @@ export type TPostMessage =
 
 export type TEditMode = 'view' | 'edit'
 
+export type TMessage = 'save' | 'focus' | 'send message' | 'upload asset' | 'remove asset' | 'set scene' | 'open document' | 'generate'
+
 export type TAppReceivableMessages = {
   message: 'save'
-  source: 'System'
   data: TDocument
+  source: 'System'
 } | {
   message: 'focus'
   source: 'System'
 } | {
   message: 'send message'
-  source: 'System'
   data: { message: string }
+  source: 'System'
 } | {
   message: 'upload asset'
-  source: 'System'
   data: { assetId: string }
+  source: 'System'
 } | {
   message: 'remove asset'
-  source: 'System'
   data: { assetId: string }
+  source: 'System'
 } | {
   message: 'set scene'
-  source: 'System'
   data: { sceneId: string }
+  source: 'System'
+} | {
+  message: 'open document'
+  data: { documentId: string }
+  source: 'System'
+} | {
+  message: 'generate'
+  data: { type: string }
+  source: 'System'
 }
 
 export type TSystemReceivableMessages = {

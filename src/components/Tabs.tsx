@@ -7,7 +7,7 @@ export interface ITabs {
 }
 
 export interface ITab {
-	label: string
+	label: string | JSX.Element
 	value: string
 }
 
@@ -21,7 +21,7 @@ export default function Tabs(props: ITabsProps) {
 	const { tabs, register, activeTab } = props
 
 	return (
-		<div className='flex rounded-full bg-gray-800'>
+		<div className='flex h-10 rounded-full bg-gray-800 p-1'>
 			{tabs.options.map(tab => (
 				<div key={tab.value} className='flex self-center'>
 					<input

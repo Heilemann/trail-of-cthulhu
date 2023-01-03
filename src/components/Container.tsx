@@ -1,37 +1,25 @@
 import { useCallback, useContext, useEffect, useRef } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
+import DragAndDrop from './DragAndDrop'
+import useMessageToApp from './UseMessageToApp'
 import Character from './character/Character'
 import context from './context'
-import DragAndDrop from './DragAndDrop'
 import Handout from './handout/Handout'
 import Note from './note/Note'
 import Scene from './scene/Scene'
 import Weapon from './weapon/Weapon'
 
-export interface IContainerProps {}
-
-export default function Container(props: IContainerProps) {
-	// const isDevelopment = process.env.NODE_ENV === 'development'
+export default function Container() {
 	const { state, dispatch } = useContext(context)
 	const { document } = state
 	const type = document?.type || null
-	const form = useForm<TValues>({
-		shouldUnregister: true,
-	})
-
-	const messageToApp = (message: string, data?: any) => {
-		window.parent.postMessage({
-			source: 'System',
-			message,
-			data,
-		})
-	}
-
+	const { watch, reset } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
+	const messageToApp = useMessageToApp()
 
 	const handleFormChanges = () => {
-		const subscription = form.watch(values => {
+		const subscription = watch(values => {
 			if (!values || !document) return
 			if (JSON.stringify(values) === JSON.stringify(document.values)) return
 			if (resetInProgress.current) {
@@ -61,6 +49,8 @@ export default function Container(props: IContainerProps) {
 	}
 	useEffect(handleFormChanges, [JSON.stringify(document)]) // eslint-disable-line
 
+	// listen for messages from the app (which are forwarded by aux)
+	// on window.parent, and dispatch them to the context as needed
 	const messageListener = useCallback(
 		(e: MessageEvent) => {
 			const messagePayload = e.data as TSystemReceivableMessages
@@ -90,7 +80,7 @@ export default function Container(props: IContainerProps) {
 						payload,
 					})
 
-					form.reset(payload.document.values)
+					reset(payload.document.values)
 
 					break
 
@@ -116,7 +106,7 @@ export default function Container(props: IContainerProps) {
 
 					resetInProgress.current = true
 
-					form.reset(newDocument?.values)
+					reset(newDocument?.values)
 
 					break
 
@@ -129,7 +119,7 @@ export default function Container(props: IContainerProps) {
 			}
 		},
 		// eslint-disable-next-line
-		[dispatch, form, JSON.stringify(state)],
+		[dispatch, JSON.stringify(state)],
 	)
 
 	const initMessageListener = () => {
@@ -142,38 +132,23 @@ export default function Container(props: IContainerProps) {
 
 	useEffect(initMessageListener, [state, messageListener])
 
-	const addMessageToAppToState = useCallback(() => {
-		dispatch({
-			type: 'LOAD',
-			payload: {
-				messageToApp,
-			},
-		})
-
-		messageToApp('system is ready')
-	}, [dispatch])
-
-	useEffect(addMessageToAppToState, [addMessageToAppToState])
-
 	if (!type) return null
 
 	return (
-		<FormProvider {...form}>
-			<DragAndDrop>
-				<div
-					className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-					onDrop={e => {
-						console.log('dropped on iframe', e)
-					}}
-				>
-					{/* <Sizes /> */}
-					{type === 'character' && <Character />}
-					{type === 'note' && <Note />}
-					{type === 'scene' && <Scene />}
-					{type === 'weapon' && <Weapon />}
-					{type === 'handout' && <Handout />}
-				</div>
-			</DragAndDrop>
-		</FormProvider>
+		<DragAndDrop>
+			<div
+				className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'
+				onDrop={e => {
+					console.log('dropped on iframe', e)
+				}}
+			>
+				{/* <Sizes /> */}
+				{type === 'character' && <Character />}
+				{type === 'note' && <Note />}
+				{type === 'scene' && <Scene />}
+				{type === 'weapon' && <Weapon />}
+				{type === 'handout' && <Handout />}
+			</div>
+		</DragAndDrop>
 	)
 }

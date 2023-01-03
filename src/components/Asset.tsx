@@ -3,8 +3,8 @@ import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TAsset } from '../interfaces'
 import Button from './Button'
+import useMessageToApp from './UseMessageToApp'
 import context from './context'
-import Input from './Input'
 
 interface AssetProps {
 	name: string
@@ -17,11 +17,11 @@ interface AssetProps {
 const Asset: FC<AssetProps> = props => {
 	const { name, className, style, addLabel, removeLabel } = props
 	const { state } = useContext(context)
-	const { assets, document, messageToApp } = state
-	const { values } = document
+	const { assets, document } = state
 	const [assetId, setAssetId] = useState<string>(document.values[name])
 	const asset = assetId && assets.find((asset: TAsset) => asset._id === assetId)
-	const { setValue, register } = useFormContext()
+	const { setValue } = useFormContext()
+	const messageToApp = useMessageToApp()
 
 	useEffect(() => {
 		setAssetId(document.values[name])

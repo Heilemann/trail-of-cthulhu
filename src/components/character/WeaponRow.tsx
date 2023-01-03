@@ -4,8 +4,9 @@ import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeaponOnCharacter } from '../../interfaces'
 import Button from '../Button'
-import context from '../context'
 import Input from '../Input'
+import useMessageToApp from '../UseMessageToApp'
+import context from '../context'
 import WeaponDamage from './WeaponDamage'
 
 export interface IWeaponRowProps {
@@ -16,8 +17,9 @@ export interface IWeaponRowProps {
 export default function WeaponRow(props: IWeaponRowProps) {
 	const { index, remove } = props
 	const { state } = useContext(context)
-	const { editMode, messageToApp } = state
+	const { editMode } = state
 	const { register } = useFormContext()
+	const messageToApp = useMessageToApp()
 
 	const weapon = useWatch({
 		name: `weapons.${index}`,

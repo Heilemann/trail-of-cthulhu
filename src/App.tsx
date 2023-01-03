@@ -1,21 +1,25 @@
 import { useReducer } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import './App.css'
 import Container from './components/Container'
-import Context from './components/context'
 import DevToolbar from './components/DevToolbar'
+import Context from './components/context'
 import Reducer from './components/reducer'
-import { TState } from './interfaces'
+import { TState, TValues } from './interfaces'
 
 function App() {
-	// @ts-ignore
 	const [state, dispatch] = useReducer(Reducer, {} as TState)
 	const isDevelopment = process.env.NODE_ENV === 'development'
+	const form = useForm<TValues>({
+		shouldUnregister: true,
+	})
 
 	return (
 		<Context.Provider value={{ state, dispatch }}>
-			{isDevelopment && <DevToolbar />}
-			{/* <DevToolbar /> */}
-			<Container />
+			<FormProvider {...form}>
+				{isDevelopment && <DevToolbar />}
+				<Container />
+			</FormProvider>
 		</Context.Provider>
 	)
 }
