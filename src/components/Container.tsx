@@ -49,8 +49,8 @@ export default function Container() {
 	}
 	useEffect(handleFormChanges, [JSON.stringify(document)]) // eslint-disable-line
 
-	// listen for messages from the app (which are forwarded by aux)
-	// on window.parent, and dispatch them to the context as needed
+	// listen for messages from the app in window.parent
+	// (which are forwarded by aux) deal with them as needed
 	const messageListener = useCallback(
 		(e: MessageEvent) => {
 			const messagePayload = e.data as TSystemReceivableMessages
@@ -58,6 +58,8 @@ export default function Container() {
 			const wrongSource = source !== 'Aux' && source !== 'App'
 
 			if (wrongSource) return
+
+			console.error('system message received', messagePayload)
 
 			switch (message) {
 				case 'load':
