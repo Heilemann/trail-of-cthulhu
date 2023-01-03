@@ -19,7 +19,7 @@ export default function Container() {
 	const messageToApp = useMessageToApp()
 
 	useEffect(() => {
-		alert('Container useEffect: ' + document._id)
+		alert('Container useEffect: ' + document?._id)
 	}, [document])
 
 	const handleFormChanges = () => {
