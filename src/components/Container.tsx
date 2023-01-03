@@ -62,7 +62,7 @@ export default function Container() {
 			console.log('system received message:', messagePayload)
 
 			switch (message) {
-				case 'load data':
+				case 'load':
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,

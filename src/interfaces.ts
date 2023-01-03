@@ -86,7 +86,7 @@ export type TPostMessage =
 export type TEditMode = 'view' | 'edit'
 
 // message that can be received by the system
-export type TSystemReceivableMessage = 'load data' | 'update data' | 'update document mode' | 'upload asset success'
+export type TSystemReceivableMessage = 'load' | 'update data' | 'update document mode' | 'upload asset success'
 
 export type TAppReceivableMessages = {
   message: 'system is ready'
@@ -121,7 +121,7 @@ export type TAppReceivableMessages = {
 }
 
 export type TSystemReceivableMessages = {
-  message: 'load data'
+  message: 'load'
   source: 'Aux'
   data: {
     documentId: string
