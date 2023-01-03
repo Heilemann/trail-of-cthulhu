@@ -59,10 +59,10 @@ export default function Container() {
 
 			if (wrongSource) return
 
-			console.error('system message received', messagePayload)
+			console.log('system message received', messagePayload)
 
 			switch (message) {
-				case 'onLoad':
+				case 'load data':
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
