@@ -27,8 +27,10 @@ export default function WeaponRow(props: IWeaponRowProps) {
 
 	const handleOpenWeapon = () => {
 		const { documentId } = weapon
+
 		console.log('trying to open weapon', documentId)
-		messageToApp && messageToApp('open document', documentId)
+
+		messageToApp({ message: 'open document', data: { documentId } })
 	}
 
 	const handleRemove = (index: number) => {

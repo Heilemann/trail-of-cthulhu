@@ -36,10 +36,12 @@ export default function WeaponDamage(props: IWeaponDamageProps) {
 	const brawlBonus = skill === 'brawl' ? `+ ${damagebonus}` : ''
 
 	const handleRollDamage = () => {
-		messageToApp &&
-			messageToApp('send message', {
+		messageToApp({
+			message: 'send message',
+			data: {
 				message: `/roll ${damage} ${brawlBonus} for ${name} damage`,
-			})
+			},
+		})
 	}
 
 	return (

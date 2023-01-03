@@ -25,12 +25,14 @@ const documents = [
 		access: 'public' as TAccess,
 		accessList: [],
 		type: 'character',
-		values: {},
+		values: {
+			name: 'Dr. Bongo',
+		},
 	},
 ]
 
 let initialData = {
-	documentId: '123',
+	documentId: documents[0]._id,
 	editMode: 'edit' as 'edit' | 'view',
 	document: documents[0],
 	documents: documents,

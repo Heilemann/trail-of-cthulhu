@@ -22,10 +22,12 @@ export default function Scene(props: ISceneProps) {
 	if (!document?.values) return null
 
 	const handleSetScene = () => {
-		messageToApp &&
-			messageToApp('set scene', {
+		messageToApp({
+			message: 'set scene',
+			data: {
 				sceneId: document._id,
-			})
+			},
+		})
 	}
 
 	// const hasMapAndCover = values?.mapId && values?.coverId

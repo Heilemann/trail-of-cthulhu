@@ -85,39 +85,36 @@ export type TPostMessage =
 
 export type TEditMode = 'view' | 'edit'
 
-export type TMessage = 'save' | 'focus' | 'send message' | 'upload asset' | 'remove asset' | 'set scene' | 'open document' | 'generate'
+// message that can be received by the system
+export type TSystemReceivableMessage = 'onLoad' | 'update data' | 'update document mode' | 'upload asset success'
 
 export type TAppReceivableMessages = {
   message: 'save'
   data: TDocument
-  source: 'System'
 } | {
   message: 'focus'
-  source: 'System'
+  data: undefined
 } | {
   message: 'send message'
   data: { message: string }
-  source: 'System'
 } | {
   message: 'upload asset'
-  data: { assetId: string }
-  source: 'System'
+  data: string
 } | {
   message: 'remove asset'
   data: { assetId: string }
-  source: 'System'
 } | {
   message: 'set scene'
   data: { sceneId: string }
-  source: 'System'
 } | {
   message: 'open document'
   data: { documentId: string }
-  source: 'System'
 } | {
   message: 'generate'
-  data: { type: string }
-  source: 'System'
+  data: {
+    name: string,
+    prompt: string,
+  }
 }
 
 export type TSystemReceivableMessages = {

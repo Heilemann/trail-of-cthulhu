@@ -37,9 +37,12 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					{state.editMode !== 'view' && (
 						<Button
 							onClick={() =>
-								messageToApp('generate', {
-									name: 'name',
-									prompt: 'Generate a unique name for a man in the 1930s',
+								messageToApp({
+									message: 'generate',
+									data: {
+										name: 'name',
+										prompt: 'Generate a unique name for a man in the 1930s',
+									},
 								})
 							}
 						>

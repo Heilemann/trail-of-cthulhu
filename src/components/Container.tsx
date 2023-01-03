@@ -40,7 +40,7 @@ export default function Container() {
 				payload: { values: values },
 			})
 
-			messageToApp('save', payload)
+			messageToApp({ message: 'save', data: payload })
 		})
 
 		return () => {

@@ -38,12 +38,12 @@ const Asset: FC<AssetProps> = props => {
 	// }
 
 	const handleUpload = () => {
-		messageToApp && messageToApp('upload asset', name)
+		messageToApp({ message: 'upload asset', data: name })
 	}
 
 	const handleRemoveAsset = () => {
 		setValue(name, '')
-		messageToApp && messageToApp('remove asset', { assetId })
+		messageToApp({ message: 'remove asset', data: { assetId } })
 	}
 
 	if (!asset) {

@@ -42,15 +42,17 @@ export default function Skill({
 
 	const handleSpend = () => {
 		console.log('handleSpend', name, pool, rating, messageToApp)
-		if (!messageToApp) return
 
 		if (pool <= 0) {
 			alert('You have no points left to spend.')
 			return
 		}
 
-		messageToApp('send message', {
-			message: `Spend 1 point of ${name}`,
+		messageToApp({
+			message: 'send message',
+			data: {
+				message: `Spend 1 point of ${name}`,
+			},
 		})
 	}
 
