@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useReducer } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import './App.css'
 import Container from './components/Container'
@@ -7,11 +7,6 @@ import Context from './components/context'
 import Reducer from './components/reducer'
 import { TState, TValues } from './interfaces'
 
-window.addEventListener('message', (event: MessageEvent) => {
-	const { message, source, data } = event.data
-	alert('system messageListener: ' + message + ' ' + source)
-})
-
 function App() {
 	const [state, dispatch] = useReducer(Reducer, {} as TState)
 	const isDevelopment = process.env.NODE_ENV === 'development'
@@ -19,20 +14,20 @@ function App() {
 		shouldUnregister: true,
 	})
 
-	const initMessageListener = () => {
-		const messageListener = (event: MessageEvent) => {
-			const { message, source, data } = event.data
+	// const initMessageListener = () => {
+	// 	const messageListener = (event: MessageEvent) => {
+	// 		const { message, source, data } = event.data
 
-			console.log('messageListener', message, source, data)
-		}
+	// 		console.log('messageListener', message, source, data)
+	// 	}
 
-		window.addEventListener('message', messageListener)
+	// 	window.addEventListener('message', messageListener)
 
-		return () => {
-			window.removeEventListener('message', messageListener)
-		}
-	}
-	useEffect(initMessageListener, [state, initMessageListener])
+	// 	return () => {
+	// 		window.removeEventListener('message', messageListener)
+	// 	}
+	// }
+	// useEffect(initMessageListener, [state, initMessageListener])
 
 	return (
 		<Context.Provider value={{ state, dispatch }}>

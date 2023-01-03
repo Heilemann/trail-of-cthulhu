@@ -18,10 +18,6 @@ export default function Container() {
 	const resetInProgress = useRef(false)
 	const messageToApp = useMessageToApp()
 
-	useEffect(() => {
-		alert('Container useEffect: ' + document?._id)
-	}, [document])
-
 	const handleFormChanges = () => {
 		const subscription = watch(values => {
 			if (!values || !document) return
@@ -63,10 +59,7 @@ export default function Container() {
 
 			if (wrongSource) return
 
-			// make an alert that shows the message
-			alert('Message: ' + message)
-
-			console.log('system message received', messagePayload)
+			console.log('system received message:', messagePayload)
 
 			switch (message) {
 				case 'load data':
