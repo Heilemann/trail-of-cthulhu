@@ -7,6 +7,11 @@ import Context from './components/context'
 import Reducer from './components/reducer'
 import { TState, TValues } from './interfaces'
 
+window.addEventListener('message', (event: MessageEvent) => {
+	const { message, source, data } = event.data
+	console.log('messageListener', message, source, data)
+})
+
 function App() {
 	const [state, dispatch] = useReducer(Reducer, {} as TState)
 	const isDevelopment = process.env.NODE_ENV === 'development'
