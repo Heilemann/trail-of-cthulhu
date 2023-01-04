@@ -31,5 +31,9 @@ export default function RefreshSkills(props: IRefreshSkillsProps) {
 		setValue('skills', newSkills, { shouldDirty: true })
 	}
 
-	return <Button onClick={handleRefresh}>Refresh Pool Points</Button>
+	return (
+		<Button onClick={handleRefresh}>
+			Refresh<span className='hidden sm:inline'> Pool Points</span>
+		</Button>
+	)
 }
