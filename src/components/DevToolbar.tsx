@@ -1,5 +1,5 @@
 import { EyeIcon, PencilIcon } from '@heroicons/react/solid'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { TAccess, TState } from '../interfaces'
 import systemConfig from '../system.json'
@@ -7,7 +7,6 @@ import Button from './Button'
 import Tabs from './Tabs'
 import context from './context'
 import CollectionPicker from './dev/CollectionPicker'
-import useMessageToApp from './UseMessageToApp'
 
 /*
 	This is a development tool which is enabled by creating a .env file and putting this in it:
@@ -58,7 +57,6 @@ export default function DevToolbar() {
 	const { state, dispatch } = useContext(context)
 	const [collections, setCollections] = useState<any[]>([])
 	const { register, watch, control } = useForm()
-	const messageToApp = useMessageToApp()
 
 	// track which document type to display, e.g. 'character'
 	const documentId = useWatch({
@@ -173,10 +171,13 @@ export default function DevToolbar() {
 					break
 
 				case 'save':
-					const newState = {
-						...state,
-						documents: [...state.documents, payload.data],
-					}
+					const newState = { ...state }
+
+					// update the document in the state
+					const documentIndex = newState.documents.findIndex(
+						(document: any) => document._id === data._id,
+					)
+					newState.documents[documentIndex] = data
 
 					localStorage.setItem('state', JSON.stringify(newState))
 			}

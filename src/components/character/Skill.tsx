@@ -29,24 +29,25 @@ export default function Skill({
 	const messageToApp = useMessageToApp()
 
 	const rating = useWatch({
-		name: `skills.${name}.rating`,
-		defaultValue: (skills && skills[name]?.rating) || 0,
+		name: `skills.${category}.${name}.rating`,
+		defaultValue: (skills && skills[category][name]?.rating) || 0,
 	})
 	const pool = useWatch({
-		name: `skills.${name}.pool`,
-		defaultValue: (skills && skills[name]?.pool) || 0,
+		name: `skills.${category}.${name}.pool`,
+		defaultValue: (skills && skills[category][name]?.pool) || 0,
 	})
 
 	// 'convert' rating to array to map over
 	const ratingArray = Array(rating || 0).fill(0) || []
 
 	const handleSpend = () => {
-		console.log('handleSpend', name, pool, rating, messageToApp)
-
 		if (pool <= 0) {
-			alert('You have no points left to spend.')
+			alert(`You have no points to spend in ${name}!`)
 			return
 		}
+
+		// deduct one point from the pool
+		// `skills.${category}.${name}.pool`
 
 		messageToApp({
 			message: 'send message',
@@ -69,7 +70,7 @@ export default function Skill({
 		>
 			<div
 				onClick={() => {
-					!editMode && handleSpend()
+					editMode === 'view' && handleSpend()
 				}}
 				className={'flex dark:text-gray-300'}
 			>
