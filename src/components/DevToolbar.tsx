@@ -118,7 +118,7 @@ export default function DevToolbar() {
 		fakeData['document'] = fakeData.documents![0]
 
 		// if there is any previously stored data, load it and
-		// overwrite the appropriate the default fake data as needed
+		// overwrite the appropriate default fake data as needed
 		const savedData = JSON.parse(localStorage.getItem('state') || '{}')
 
 		fakeData['documentId'] = documentId
@@ -155,12 +155,13 @@ export default function DevToolbar() {
 				case 'system is ready':
 					let loadedState = JSON.parse(localStorage.getItem('state') || '{}')
 
-					if (Object.keys(loadedState).length) {
+					if (Object.keys(loadedState).length)
 						initialData = {
 							...initialData,
 							...loadedState,
 						}
-					}
+
+					console.log('sending initial data to system:', initialData)
 
 					window.parent.postMessage({
 						source: 'Aux',
@@ -172,6 +173,8 @@ export default function DevToolbar() {
 
 				case 'save':
 					const newState = { ...state }
+
+					console.log('saving document:', newState)
 
 					// update the document in the state
 					const documentIndex = newState.documents.findIndex(

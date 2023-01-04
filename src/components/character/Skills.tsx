@@ -25,7 +25,7 @@ export default function SkillsList(props: ISkillsListProps) {
 
 	return (
 		<DecoBox>
-			<div className='mb-4 grid grid-cols-3 gap-4'>
+			<div className='mb-4 grid-cols-3 gap-4 sm:grid'>
 				<RefreshSkills />
 				<InvestigativeBuildPoints />
 				<GeneralBuildPoints />

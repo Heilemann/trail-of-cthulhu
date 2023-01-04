@@ -64,9 +64,13 @@ export default function Weapons(props: IWeaponsProps) {
 				<thead>
 					<tr className={twMerge('p-2 text-left', borderStyle)}>
 						<th className='font-normal text-gray-500'>Name</th>
-						<th className='font-normal text-gray-500'>Damage</th>
+						<th className='font-normal text-gray-500'>
+							<span className='hidden sm:inline'>Damage</span>
+							<span className='sm:hidden'>Dmg</span>
+						</th>
 						<th className='w-24 text-center font-normal text-gray-500'>
-							Point Blank
+							<span className='hidden sm:inline'>Point Blank</span>
+							<span className='sm:hidden'>PB</span>
 						</th>
 						<th className='w-24 text-center font-normal text-gray-500'>
 							Close

@@ -32,8 +32,8 @@ export default function RefreshSkills(props: IRefreshSkillsProps) {
 	}
 
 	return (
-		<Button onClick={handleRefresh}>
-			Refresh<span className='hidden sm:inline'> Pool Points</span>
+		<Button onClick={handleRefresh} className='w-full sm:w-auto'>
+			Refresh Pool Points
 		</Button>
 	)
 }
