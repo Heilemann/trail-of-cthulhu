@@ -1,3 +1,4 @@
+import { LightningBoltIcon } from '@heroicons/react/solid'
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -27,7 +28,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					// , editMode === 'view' && 'hidden'
 				)}
 			>
-				<div className='flex flex-row space-y-4'>
+				<div className='flex flex-row'>
 					<HInput
 						label='Name'
 						className='mx-2'
@@ -36,6 +37,8 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					/>
 					{state.editMode !== 'view' && (
 						<Button
+							className='mt-0'
+							aria-label='Generate Name'
 							onClick={() =>
 								messageToApp({
 									message: 'generate',
@@ -46,7 +49,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 								})
 							}
 						>
-							Generate
+							<LightningBoltIcon className='h-4 w-4' aria-hidden='true' />
 						</Button>
 					)}
 				</div>

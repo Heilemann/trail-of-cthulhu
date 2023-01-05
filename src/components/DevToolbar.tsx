@@ -149,7 +149,14 @@ export default function DevToolbar() {
 
 			if (source !== 'System') return
 
-			console.log('app heard message from system:', message, ', data:', data)
+			console.log(
+				'app heard message from system:',
+				message,
+				'data:',
+				data,
+				'state:',
+				state,
+			)
 
 			switch (message) {
 				case 'system is ready':
@@ -172,12 +179,12 @@ export default function DevToolbar() {
 					break
 
 				case 'save':
+					if (!Object.keys(state).length) return
+
 					const newState = { ...state }
 
-					console.log('saving document:', newState)
-
 					// update the document in the state
-					const documentIndex = newState.documents.findIndex(
+					const documentIndex = newState.documents?.findIndex(
 						(document: any) => document._id === data._id,
 					)
 					newState.documents[documentIndex] = data

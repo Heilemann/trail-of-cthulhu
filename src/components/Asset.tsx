@@ -50,7 +50,10 @@ const Asset: FC<AssetProps> = props => {
 		return (
 			<div>
 				<Button
-					// className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
+					className={twMerge(
+						'w-full',
+						// editMode === 'view' ? 'hidden' : 'block',
+					)}
 					onClick={handleUpload}
 				>
 					{addLabel || 'Upload'}

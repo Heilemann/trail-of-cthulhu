@@ -3,9 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export default function Button(props: IButtonProps) {
-	const { children, className, ...rest } = props
-
+export default function Button({ children, className, ...rest }: IButtonProps) {
 	return (
 		<button
 			className={twMerge(
