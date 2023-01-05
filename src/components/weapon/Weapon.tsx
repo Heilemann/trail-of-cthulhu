@@ -26,17 +26,19 @@ export default function Weapon(props: IWeaponProps) {
 					fontFamily: 'CovingtonCondensed',
 				}}
 			>
-				<select
-					className='m-0 w-full p-2 text-base opacity-0'
-					{...register('skill')}
-				>
-					{weaponSkillList.map(skill => (
-						<option key={skill}>{skill}</option>
-					))}
-				</select>
-				<div className='pointer-events-none absolute top-0 left-0 flex h-full w-full'>
-					<span className='flex-1 self-center text-gray-500'>Skill</span>
-					<span className='self-center'>{skill}</span>
+				<div className=' cursor-pointer rounded-lg hover:bg-gray-800'>
+					<select
+						className='m-0 w-full p-2 text-base opacity-0'
+						{...register('skill')}
+					>
+						{weaponSkillList.map(skill => (
+							<option key={skill}>{skill}</option>
+						))}
+					</select>
+					<div className='pointer-events-none absolute top-0 left-0 flex h-full w-full'>
+						<span className='flex-1 self-center text-gray-500'>Skill</span>
+						<span className='flex-1 self-center pr-2 text-right '>{skill}</span>
+					</div>
 				</div>
 			</div>
 
