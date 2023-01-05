@@ -1,11 +1,31 @@
-import { useFormContext } from 'react-hook-form'
+import { useContext, useEffect } from 'react'
+import { useFormContext, useWatch } from 'react-hook-form'
+import context from '../context'
 
 type Props = {
 	collections: any
 }
 
 export default function CollectionPicker({ collections }: Props) {
+	const { state, dispatch } = useContext(context)
 	const { register } = useFormContext()
+
+	const documentId = useWatch({
+		name: 'documentId',
+		defaultValue: '',
+	})
+
+	useEffect(() => {
+		if (!documentId) return
+
+		dispatch({
+			type: 'LOAD',
+			payload: {
+				documentId,
+				document: state.documents?.find(d => d._id === documentId),
+			},
+		})
+	}, [documentId]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<select

@@ -59,7 +59,7 @@ export default function Container() {
 
 			if (wrongSource) return
 
-			console.log('system received message:', messagePayload)
+			console.log('System received message:', messagePayload)
 
 			switch (message) {
 				case 'load':
@@ -120,15 +120,12 @@ export default function Container() {
 					break
 			}
 		},
-		[dispatch, reset, state.document?.values, state.documentId],
+		[dispatch, reset, state],
 	)
 
 	const initMessageListener = () => {
 		window.addEventListener('message', messageListener)
-
-		return () => {
-			window.removeEventListener('message', messageListener)
-		}
+		return () => window.removeEventListener('message', messageListener)
 	}
 	useEffect(initMessageListener, [state, messageListener])
 

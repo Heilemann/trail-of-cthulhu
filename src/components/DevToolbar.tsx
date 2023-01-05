@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { TAccess, TState } from '../interfaces'
 import systemConfig from '../system.json'
-import Button from './Button'
 import Tabs from './Tabs'
 import context from './context'
 import CollectionPicker from './dev/CollectionPicker'
+import ResetButton from './dev/ResetButton'
 
 /*
 	This is a development tool which is enabled by creating a .env file and putting this in it:
@@ -56,19 +56,18 @@ const tabs = {
 export default function DevToolbar() {
 	const { state, dispatch } = useContext(context)
 	const [collections, setCollections] = useState<any[]>([])
-	const { register, watch, control } = useForm()
+	const { register, watch } = useForm()
 
 	// track which document type to display, e.g. 'character'
 	const documentId = useWatch({
-		control,
 		name: 'documentId',
 		defaultValue: localStorage.getItem('documentId') || 'character',
 	})
 
-	const saveActiveDocumentType = () => {
-		localStorage.setItem('documentId', documentId)
-	}
-	useEffect(saveActiveDocumentType, [documentId])
+	// const saveActiveDocumentType = () => {
+	// 	localStorage.setItem('documentId', documentId)
+	// }
+	// useEffect(saveActiveDocumentType, [documentId])
 
 	// Update the state with the editMode when it changes
 	const initEditModeWatcher = () => {
@@ -88,8 +87,8 @@ export default function DevToolbar() {
 	}
 	useEffect(initEditModeWatcher, [dispatch, state, watch])
 
-	//
 	const fakeDocumentsFromSystemConfig = () => {
+		console.log('fakeDocumentsFromSystemConfig', documentId)
 		setCollections(systemConfig.collections)
 
 		// create a fake state object
@@ -136,12 +135,7 @@ export default function DevToolbar() {
 			})
 		}, 200)
 	}
-	useEffect(fakeDocumentsFromSystemConfig, [documentId])
-
-	const handleClearStorage = () => {
-		localStorage.clear()
-		window.location.reload()
-	}
+	useEffect(fakeDocumentsFromSystemConfig, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	const simulateParentFrame = () => {
 		const simulatedMessages = ({ data: payload }: any) => {
@@ -208,12 +202,7 @@ export default function DevToolbar() {
 			<div className='flex flex-1 justify-end space-x-2'>
 				<Tabs tabs={tabs} register={register} activeTab={state.editMode} />
 
-				<Button
-					onClick={handleClearStorage}
-					className='h-10 self-center rounded-full bg-gray-800 py-0 px-3 '
-				>
-					Clear <span className='hidden sm:inline'>Storage</span>
-				</Button>
+				<ResetButton />
 			</div>
 		</div>
 	)
