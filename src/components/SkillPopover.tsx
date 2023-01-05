@@ -24,7 +24,7 @@ export function SkillPopover({
 						<Popover.Close className='PopoverClose' aria-label='Close'>
 							X
 						</Popover.Close>
-						<Popover.Arrow className='dark:fill-white' />
+						<Popover.Arrow className='fill-white dark:fill-white' />
 					</Popover.Content>
 				</Popover.Portal>
 			</Popover.Root>

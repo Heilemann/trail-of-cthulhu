@@ -1,4 +1,4 @@
-import { EyeIcon, PencilIcon } from '@heroicons/react/solid'
+import { EyeIcon, PencilIcon } from '@heroicons/react/24/solid'
 import { useContext, useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { TAccess, TState } from '../interfaces'

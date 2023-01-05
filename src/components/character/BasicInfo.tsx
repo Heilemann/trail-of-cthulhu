@@ -1,4 +1,4 @@
-import { LightningBoltIcon } from '@heroicons/react/solid'
+import { BoltIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -49,7 +49,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 								})
 							}
 						>
-							<LightningBoltIcon className='h-4 w-4' aria-hidden='true' />
+							<BoltIcon className='h-4 w-4' aria-hidden='true' />
 						</Button>
 					)}
 				</div>

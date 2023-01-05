@@ -1,4 +1,4 @@
-import { InformationCircleIcon, XIcon } from '@heroicons/react/solid'
+import { InformationCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -127,7 +127,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 
 			<td className='w-4'>
 				<Button onClick={() => handleRemove(index)} className='self-end p-1.5'>
-					<XIcon className='h-4 w-4' />
+					<XMarkIcon className='h-4 w-4' />
 				</Button>
 			</td>
 		</tr>

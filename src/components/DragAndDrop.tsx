@@ -54,14 +54,17 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 
 			switch (message) {
 				case 'onDragEnter':
+					console.log('drag enter')
 					handleDragEnterFromParent(e)
 					break
 
 				case 'onDragOver':
+					console.log('drag over')
 					handleDragOverFromParent(e)
 					break
 
 				case 'onDrop':
+					console.log('drop')
 					handleDropFromParent(e)
 					break
 			}
@@ -95,7 +98,7 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 	useEffect(handleInitialLoad, [postMessageListener])
 
 	return (
-		<div className='min-h-full h-full' onDrop={handleDrop}>
+		<div className='h-full min-h-full' onDrop={handleDrop}>
 			{children}
 		</div>
 	)

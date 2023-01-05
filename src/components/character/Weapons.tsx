@@ -1,4 +1,4 @@
-import { PlusIcon } from '@heroicons/react/solid'
+import { PlusIcon } from '@heroicons/react/24/solid'
 import { DragEvent, useContext } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'

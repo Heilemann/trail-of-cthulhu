@@ -52,23 +52,31 @@ export default function SkillPopoverContents({ name, category }: Props) {
 	}
 
 	return (
-		<div className='rounded-lg bg-white p-2'>
+		<div
+			className='rounded-lg bg-white p-1 shadow-lg'
+			style={{
+				fontFamily: 'DustismoRoman',
+			}}
+		>
 			{/* two buttons, one that spends one point and one that spends two */}
-			<div className='flex justify-between'>
+			<div className='mb-1 text-center text-sm font-bold'>
+				{name} ({category})
+			</div>
+			<div className='flex justify-between space-x-1'>
 				<button
-					className='rounded-l bg-gray-200 py-2 px-4 font-bold text-gray-800 hover:bg-gray-300'
+					className='rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
 					onClick={() => handleSpend(1)}
 				>
 					Spend 1
 				</button>
 				<button
-					className='rounded-r bg-gray-200 py-2 px-4 font-bold text-gray-800 hover:bg-gray-300'
+					className='rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
 					onClick={() => handleSpend(2)}
 				>
 					Spend 2
 				</button>
 				<button
-					className='rounded-r bg-gray-200 py-2 px-4 font-bold text-gray-800 hover:bg-gray-300'
+					className='rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
 					onClick={handleRefresh}
 				>
 					Refresh
