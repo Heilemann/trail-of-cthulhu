@@ -1,4 +1,4 @@
-import { useWatch } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
 import { useContext } from 'react'
@@ -10,10 +10,11 @@ type Props = {
 
 export default function SkillPopoverContents({ name, category }: Props) {
 	const { state } = useContext(context)
-	const { document, editMode } = state
+	const { document } = state
 	const { values } = document
 	const { skills } = values
 	const messageToApp = useMessageToApp()
+	const { setValue } = useFormContext()
 
 	const rating = useWatch({
 		name: `skills.${category}.${name}.rating`,
@@ -24,14 +25,23 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		defaultValue: (skills && skills[category][name]?.pool) || 0,
 	})
 
+	const handleRefresh = () => {
+		setValue(`skills.${category}.${name}.pool`, rating)
+		messageToApp({
+			message: 'send message',
+			data: {
+				message: `Refresh ${name}`,
+			},
+		})
+	}
+
 	const handleSpend = (points: number) => {
 		if (pool <= 0) {
-			alert(`You have no points to spend in ${name}!`)
+			alert(`No points to spend in ${name}!`)
 			return
 		}
 
-		// deduct one point from the pool
-		// `skills.${category}.${name}.pool`
+		setValue(`skills.${category}.${name}.pool`, pool - points)
 
 		messageToApp({
 			message: 'send message',
@@ -56,6 +66,12 @@ export default function SkillPopoverContents({ name, category }: Props) {
 					onClick={() => handleSpend(2)}
 				>
 					Spend 2
+				</button>
+				<button
+					className='rounded-r bg-gray-200 py-2 px-4 font-bold text-gray-800 hover:bg-gray-300'
+					onClick={handleRefresh}
+				>
+					Refresh
 				</button>
 			</div>
 		</div>
