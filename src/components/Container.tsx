@@ -55,6 +55,7 @@ export default function Container() {
 		(e: MessageEvent) => {
 			const messagePayload = e.data as TSystemReceivableMessages
 			const { message, source, data } = { ...messagePayload }
+			console.log('message', message, 'source', source, 'data', data)
 			const wrongSource = source !== 'Aux' && source !== 'App'
 
 			if (wrongSource) return
