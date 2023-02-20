@@ -13,7 +13,7 @@ function App() {
 	const form = useForm<TValues>({
 		shouldUnregister: true,
 	})
-
+	console.log('Trail of Cthulhu!')
 	// const initMessageListener = () => {
 	// 	const messageListener = (event: MessageEvent) => {
 	// 		const { message, source, data } = event.data
