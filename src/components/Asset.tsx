@@ -88,6 +88,17 @@ const Asset: FC<AssetProps> = props => {
 					}}
 				/>
 			)}
+			{asset.filetype.includes('pdf') && (
+				<iframe
+					title='PDF Preview'
+					src={parentOrigin + asset.fileurl}
+					style={{
+						objectFit: 'cover',
+						width: '100%',
+						height: '100%',
+					}}
+				/>
+			)}
 			<Button
 				className={twMerge(
 					'w-full',

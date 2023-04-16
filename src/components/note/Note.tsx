@@ -6,9 +6,7 @@ import DecoBox from '../DecoBox'
 import Input from '../Input'
 import TextArea from '../Textarea'
 
-export interface INoteProps {}
-
-export default function Note(props: INoteProps) {
+export default function Note() {
 	const { state } = useContext(context)
 	const { document, editMode } = state
 	const { values } = document

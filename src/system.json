@@ -28,6 +28,16 @@
 			"canAssumeAsCharacter": "false"
 		},
 		{
+			"type": "book",
+			"singularName": "Book",
+			"pluralName": "Books",
+			"description": "Keep PDF books on hand.",
+			"hasEditMode": "true",
+			"windowSize": "medium",
+			"allowCreate": "true",
+			"canAssumeAsCharacter": "false"
+		},
+		{
 			"type": "scene",
 			"singularName": "Scene",
 			"pluralName": "Scenes",

@@ -3,6 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
 import DragAndDrop from './DragAndDrop'
 import useMessageToApp from './UseMessageToApp'
+import Book from './book/Book'
 import Character from './character/Character'
 import context from './context'
 import Handout from './handout/Handout'
@@ -147,6 +148,7 @@ export default function Container() {
 				{/* <Sizes /> */}
 				{type === 'character' && <Character />}
 				{type === 'note' && <Note />}
+				{type === 'Book' && <Book />}
 				{type === 'scene' && <Scene />}
 				{type === 'weapon' && <Weapon />}
 				{type === 'handout' && <Handout />}
