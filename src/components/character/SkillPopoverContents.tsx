@@ -84,7 +84,9 @@ export default function SkillPopoverContents({ name, category }: Props) {
 						Spend 2
 					</CloseableButton>
 				)}
-				<CloseableButton onClick={handleRefresh}>Refresh</CloseableButton>
+				{pool !== rating && (
+					<CloseableButton onClick={handleRefresh}>Refresh</CloseableButton>
+				)}
 			</div>
 		</div>
 	)
