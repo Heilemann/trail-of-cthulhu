@@ -14,9 +14,6 @@ type CloseableButtonProps = {
 	children: ReactNode
 }
 
-const buttonStyles =
-	'rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 w-full'
-
 export default function SkillPopoverContents({ name, category }: Props) {
 	const { state } = useContext(context)
 	const {
@@ -62,7 +59,10 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		children,
 	}) => (
 		<Popover.Close className='w-full'>
-			<button className={buttonStyles} onClick={onClick}>
+			<button
+				className='w-full whitespace-nowrap rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+				onClick={onClick}
+			>
 				{children}
 			</button>
 		</Popover.Close>
