@@ -42,11 +42,6 @@ export default function SkillPopoverContents({ name, category }: Props) {
 	}
 
 	const handleSpend = (points: number) => {
-		if (pool <= 0) {
-			alert(`No points to spend in ${name}!`)
-			return
-		}
-
 		setValue(`skills.${category}.${name}.pool`, pool - points)
 		messageToApp({
 			message: 'send message',
@@ -65,12 +60,16 @@ export default function SkillPopoverContents({ name, category }: Props) {
 				{name} ({category})
 			</div>
 			<div className='flex justify-between space-x-1'>
-				<button className={buttonStyles} onClick={() => handleSpend(1)}>
-					Spend 1
-				</button>
-				<button className={buttonStyles} onClick={() => handleSpend(2)}>
-					Spend 2
-				</button>
+				{pool >= 1 && (
+					<button className={buttonStyles} onClick={() => handleSpend(1)}>
+						Spend 1
+					</button>
+				)}
+				{pool >= 2 && (
+					<button className={buttonStyles} onClick={() => handleSpend(2)}>
+						Spend 2
+					</button>
+				)}
 				<button className={buttonStyles} onClick={handleRefresh}>
 					Refresh
 				</button>
