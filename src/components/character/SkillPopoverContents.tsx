@@ -53,13 +53,13 @@ export default function SkillPopoverContents({ name, category }: Props) {
 
 	return (
 		<div
-			className='min-w-[300px] rounded-lg bg-white p-1 shadow-lg dark:bg-gray-800 dark:text-gray-200'
+			className='min-w-[200px] rounded-lg bg-white p-1 shadow-lg dark:bg-gray-800 dark:text-gray-200'
 			style={{ fontFamily: 'DustismoRoman' }}
 		>
-			<div className='mb-1 text-center text-sm font-bold'>
+			{/* <div className='mb-1 text-center text-sm font-bold'>
 				{name} ({category})
-			</div>
-			<div className='flex justify-between space-x-1'>
+			</div> */}
+			<div className='flex space-x-1'>
 				{pool >= 1 && (
 					<button className={buttonStyles} onClick={() => handleSpend(1)}>
 						Spend 1
