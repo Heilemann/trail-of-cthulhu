@@ -6,7 +6,7 @@ import { borderStyle } from '../borderStyle'
 import context from '../context'
 import OccupationalAbility from './OccupationalAbility'
 import SkillSpecialities from './SkillSpecialities'
-import SkillSpendButton from './SkillSpendButton'
+import { SkillPopover } from '../SkillPopover'
 
 export interface ISkillProps {
 	name: string
@@ -39,7 +39,7 @@ export default function Skill({
 	// 'convert' rating to array to map over
 	const ratingArray = Array(rating || 0).fill(0) || []
 
-	return (
+	const SkillContent = (
 		<div
 			className={twMerge(
 				'py-1 px-2 text-base',
@@ -85,7 +85,6 @@ export default function Skill({
 					})}
 				/>
 				{editMode === 'view' && <div>{rating}</div>}
-				<SkillSpendButton name={name} category={category} />
 			</div>
 
 			{note}
@@ -96,4 +95,14 @@ export default function Skill({
 				))}
 		</div>
 	)
+
+	if (rating) {
+		return (
+			<SkillPopover name={name} category={category}>
+				{SkillContent}
+			</SkillPopover>
+		)
+	} else {
+		return SkillContent
+	}
 }
