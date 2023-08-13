@@ -61,7 +61,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		onClick,
 		children,
 	}) => (
-		<Popover.Close>
+		<Popover.Close className='w-full'>
 			<button className={buttonStyles} onClick={onClick}>
 				{children}
 			</button>
