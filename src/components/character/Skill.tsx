@@ -96,7 +96,7 @@ export default function Skill({
 		</div>
 	)
 
-	if (rating) {
+	if (editMode === 'view' && rating) {
 		return (
 			<SkillPopover name={name} category={category}>
 				{SkillContent}
