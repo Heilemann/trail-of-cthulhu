@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import * as Popover from '@radix-ui/react-popover'
+import { MouseEventHandler, ReactNode, useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
@@ -6,6 +7,11 @@ import context from '../context'
 type Props = {
 	name: string
 	category: 'investigative' | 'general'
+}
+
+type CloseableButtonProps = {
+	onClick: MouseEventHandler<HTMLButtonElement>
+	children: ReactNode
 }
 
 const buttonStyles =
@@ -51,28 +57,34 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		})
 	}
 
+	const CloseableButton: React.FC<CloseableButtonProps> = ({
+		onClick,
+		children,
+	}) => (
+		<Popover.Close>
+			<button className={buttonStyles} onClick={onClick}>
+				{children}
+			</button>
+		</Popover.Close>
+	)
+
 	return (
 		<div
 			className='min-w-[200px] rounded-lg bg-white p-1 shadow-lg dark:bg-gray-800 dark:text-gray-200'
 			style={{ fontFamily: 'DustismoRoman' }}
 		>
-			{/* <div className='mb-1 text-center text-sm font-bold'>
-				{name} ({category})
-			</div> */}
 			<div className='flex justify-between space-x-1'>
 				{pool >= 1 && (
-					<button className={buttonStyles} onClick={() => handleSpend(1)}>
+					<CloseableButton onClick={() => handleSpend(1)}>
 						Spend 1
-					</button>
+					</CloseableButton>
 				)}
 				{pool >= 2 && (
-					<button className={buttonStyles} onClick={() => handleSpend(2)}>
+					<CloseableButton onClick={() => handleSpend(2)}>
 						Spend 2
-					</button>
+					</CloseableButton>
 				)}
-				<button className={buttonStyles} onClick={handleRefresh}>
-					Refresh
-				</button>
+				<CloseableButton onClick={handleRefresh}>Refresh</CloseableButton>
 			</div>
 		</div>
 	)
