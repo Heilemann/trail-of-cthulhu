@@ -9,7 +9,7 @@ type Props = {
 }
 
 const buttonStyles =
-	'rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+	'rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 w-full'
 
 export default function SkillPopoverContents({ name, category }: Props) {
 	const { state } = useContext(context)
@@ -59,7 +59,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 			{/* <div className='mb-1 text-center text-sm font-bold'>
 				{name} ({category})
 			</div> */}
-			<div className='flex space-x-1'>
+			<div className='flex justify-between space-x-1'>
 				{pool >= 1 && (
 					<button className={buttonStyles} onClick={() => handleSpend(1)}>
 						Spend 1
