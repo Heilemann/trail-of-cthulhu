@@ -1,29 +1,34 @@
+import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
-import { useContext } from 'react'
 
 type Props = {
 	name: string
 	category: 'investigative' | 'general'
 }
 
+const buttonStyles =
+	'rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
+
 export default function SkillPopoverContents({ name, category }: Props) {
 	const { state } = useContext(context)
-	const { document } = state
-	const { values } = document
-	const { skills } = values
+	const {
+		document: {
+			values: { skills },
+		},
+	} = state
 	const messageToApp = useMessageToApp()
 	const { setValue } = useFormContext()
 
 	const rating = useWatch({
 		name: `skills.${category}.${name}.rating`,
-		defaultValue: (skills && skills[category][name]?.rating) || 0,
+		defaultValue: skills?.[category]?.[name]?.rating || 0,
 	})
 
 	const pool = useWatch({
 		name: `skills.${category}.${name}.pool`,
-		defaultValue: (skills && skills[category][name]?.pool) || 0,
+		defaultValue: skills?.[category]?.[name]?.pool || 0,
 	})
 
 	const handleRefresh = () => {
@@ -43,7 +48,6 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		}
 
 		setValue(`skills.${category}.${name}.pool`, pool - points)
-
 		messageToApp({
 			message: 'send message',
 			data: {
@@ -54,32 +58,20 @@ export default function SkillPopoverContents({ name, category }: Props) {
 
 	return (
 		<div
-			className='rounded-lg bg-white p-1 shadow-lg'
-			style={{
-				fontFamily: 'DustismoRoman',
-			}}
+			className='rounded-lg bg-white p-1 shadow-lg dark:bg-gray-800 dark:text-gray-200'
+			style={{ fontFamily: 'DustismoRoman' }}
 		>
-			{/* two buttons, one that spends one point and one that spends two */}
 			<div className='mb-1 text-center text-sm font-bold'>
 				{name} ({category})
 			</div>
 			<div className='flex justify-between space-x-1'>
-				<button
-					className='rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
-					onClick={() => handleSpend(1)}
-				>
+				<button className={buttonStyles} onClick={() => handleSpend(1)}>
 					Spend 1
 				</button>
-				<button
-					className='rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
-					onClick={() => handleSpend(2)}
-				>
+				<button className={buttonStyles} onClick={() => handleSpend(2)}>
 					Spend 2
 				</button>
-				<button
-					className='rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300'
-					onClick={handleRefresh}
-				>
+				<button className={buttonStyles} onClick={handleRefresh}>
 					Refresh
 				</button>
 			</div>

@@ -10,7 +10,6 @@ export default function SkillSpendButton({ name, category }: Props) {
 	return (
 		<SkillPopover name={name} category={category}>
 			<div className='ml-2 flex aspect-square h-7 justify-center rounded-md bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-200'>
-				123
 				<ChatBubbleLeftIcon
 					className='h-3.5 w-3.5 self-center'
 					aria-hidden='true'
