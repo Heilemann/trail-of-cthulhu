@@ -20,6 +20,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		name: `skills.${category}.${name}.rating`,
 		defaultValue: (skills && skills[category][name]?.rating) || 0,
 	})
+
 	const pool = useWatch({
 		name: `skills.${category}.${name}.pool`,
 		defaultValue: (skills && skills[category][name]?.pool) || 0,
