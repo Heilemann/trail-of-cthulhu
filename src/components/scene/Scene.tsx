@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import Asset from '../Asset'
 import Button from '../Button'
 import DecoBox from '../DecoBox'
@@ -19,8 +19,12 @@ export default function Scene(props: ISceneProps) {
 	const { register } = useFormContext()
 	const messageToApp = useMessageToApp()
 
-	// if (!register) return null
-	if (!document?.values) return null
+	const showMap = useWatch({
+		name: 'showMap',
+		defaultValue: values.showMap,
+	})
+
+	console.log('showMap', showMap)
 
 	const handleSetScene = () => {
 		messageToApp({
@@ -32,6 +36,9 @@ export default function Scene(props: ISceneProps) {
 	}
 
 	const hasMapAndCover = values?.mapId && values?.coverId
+
+	// if (!register) return null
+	if (!values) return null
 
 	return (
 		<DecoBox className='mx-auto w-full max-w-2xl space-y-2 lg:space-y-4'>
@@ -91,9 +98,6 @@ export default function Scene(props: ISceneProps) {
 								'flex-1 rounded-lg p-2 text-center',
 								values.showMap === false && 'bg-gray-700',
 							)}
-							onClick={() => {
-								console.log('click cover radio')
-							}}
 						>
 							Cover
 						</label>
@@ -102,7 +106,7 @@ export default function Scene(props: ISceneProps) {
 							type='radio'
 							className='hidden'
 							value='false'
-							// defaultChecked={values.showMap === false}
+							defaultChecked={values.showMap === false}
 							{...register('showMap')}
 						/>
 
@@ -120,7 +124,7 @@ export default function Scene(props: ISceneProps) {
 							type='radio'
 							className='hidden'
 							value='true'
-							// defaultChecked={values.showMap !== false}
+							defaultChecked={values.showMap !== false}
 							{...register('showMap')}
 						/>
 					</div>
