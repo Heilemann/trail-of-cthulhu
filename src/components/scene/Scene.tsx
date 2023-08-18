@@ -8,6 +8,7 @@ import Label from '../Label'
 import SectionDivider from '../SectionDivider'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
+import { twMerge } from 'tailwind-merge'
 
 export interface ISceneProps {}
 
@@ -30,7 +31,7 @@ export default function Scene(props: ISceneProps) {
 		})
 	}
 
-	// const hasMapAndCover = values?.mapId && values?.coverId
+	const hasMapAndCover = values?.mapId && values?.coverId
 
 	return (
 		<DecoBox className='mx-auto w-full max-w-2xl space-y-2 lg:space-y-4'>
@@ -80,7 +81,7 @@ export default function Scene(props: ISceneProps) {
 
 			<SectionDivider className='mt-4'>Media</SectionDivider>
 
-			{/* {hasMapAndCover && (
+			{hasMapAndCover && (
 				<div className='flex space-x-2'>
 					<Label className='w-32 self-center' htmlFor='mapId'>
 						Show
@@ -123,7 +124,7 @@ export default function Scene(props: ISceneProps) {
 						/>
 					</div>
 				</div>
-			)} */}
+			)}
 
 			<div className='flex space-x-2'>
 				<div className='flex flex-1 flex-col space-y-2'>
@@ -133,12 +134,12 @@ export default function Scene(props: ISceneProps) {
 					<Asset name='mapId' style={{ maxWidth: '200px' }} />
 				</div>
 
-				{/* <div className='flex flex-1 flex-col space-y-2'>
+				<div className='flex flex-1 flex-col space-y-2'>
 					<Label className='mt-2 w-32' htmlFor='coverId'>
 						Cover
 					</Label>
 					<Asset name='coverId' style={{ maxWidth: '200px' }} />
-				</div> */}
+				</div>
 			</div>
 
 			{/* <SectionDivider className='mt-4'>Grid</SectionDivider>
