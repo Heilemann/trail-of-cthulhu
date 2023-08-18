@@ -81,12 +81,12 @@ export default function Scene() {
 			{hasBothMapAndCover && (
 				<div className='flex space-x-2'>
 					<p className='w-32 self-center'>Show</p>
-					<div className='flex w-full rounded-lg dark:bg-gray-800'>
+					<div className='flex w-full rounded-lg bg-gray-800'>
 						<label
 							htmlFor='coverRadio'
 							className={twMerge(
 								'flex-1 rounded-lg p-2 text-center',
-								values.showMap === false && 'bg-gray-700',
+								values.showMap === 'false' && 'bg-gray-700',
 							)}
 						>
 							Cover
@@ -104,7 +104,7 @@ export default function Scene() {
 							htmlFor='mapRadio'
 							className={twMerge(
 								'flex-1 rounded-lg p-2 text-center',
-								values.showMap !== false && 'bg-gray-700',
+								values.showMap !== 'false' && 'bg-gray-700',
 							)}
 						>
 							Map
