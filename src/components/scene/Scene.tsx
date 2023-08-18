@@ -83,25 +83,23 @@ export default function Scene(props: ISceneProps) {
 
 			{hasMapAndCover && (
 				<div className='flex space-x-2'>
-					<Label className='w-32 self-center' htmlFor='mapId'>
-						Show
-					</Label>
+					<p className='w-32 self-center'>Show</p>
 					<div className='flex w-full rounded-lg dark:bg-gray-800'>
 						<label
 							htmlFor='coverRadio'
 							className={twMerge(
 								'flex-1 rounded-lg p-2 text-center',
-								!values.showMap && 'bg-gray-700',
+								values.showMap === false && 'bg-gray-700',
 							)}
 						>
 							Cover
 						</label>
 						<input
 							type='radio'
+							className='hidden'
 							id='coverRadio'
 							value='false'
-							className='hidden'
-							defaultChecked={!values.showMap}
+							defaultChecked={values.showMap === false}
 							{...register('showMap')}
 						/>
 
@@ -109,17 +107,17 @@ export default function Scene(props: ISceneProps) {
 							htmlFor='mapRadio'
 							className={twMerge(
 								'flex-1 rounded-lg p-2 text-center',
-								values.showMap && 'bg-gray-700',
+								values.showMap !== false && 'bg-gray-700',
 							)}
 						>
 							Map
 						</label>
 						<input
 							type='radio'
+							className='hidden'
 							id='mapRadio'
 							value='true'
-							className='hidden'
-							defaultChecked={values.showMap || values.showMap === undefined}
+							defaultChecked={values.showMap !== false}
 							{...register('showMap')}
 						/>
 					</div>
