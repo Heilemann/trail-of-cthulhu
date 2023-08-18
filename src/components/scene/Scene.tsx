@@ -86,7 +86,7 @@ export default function Scene(props: ISceneProps) {
 					<Label className='w-32 self-center' htmlFor='mapId'>
 						Show
 					</Label>
-					<div className='p flex w-full rounded-lg dark:bg-gray-800'>
+					<div className='flex w-full rounded-lg dark:bg-gray-800'>
 						<label
 							htmlFor='coverRadio'
 							className={twMerge(
