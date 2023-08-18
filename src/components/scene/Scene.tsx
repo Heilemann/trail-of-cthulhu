@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import Asset from '../Asset'
 import Button from '../Button'
 import DecoBox from '../DecoBox'
@@ -8,7 +9,6 @@ import Label from '../Label'
 import SectionDivider from '../SectionDivider'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
-import { twMerge } from 'tailwind-merge'
 
 export interface ISceneProps {}
 
@@ -18,13 +18,6 @@ export default function Scene(props: ISceneProps) {
 	const { values } = document
 	const { register } = useFormContext()
 	const messageToApp = useMessageToApp()
-
-	const showMap = useWatch({
-		name: 'showMap',
-		defaultValue: values.showMap,
-	})
-
-	console.log('showMap', showMap)
 
 	const handleSetScene = () => {
 		messageToApp({
