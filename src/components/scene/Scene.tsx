@@ -10,9 +10,7 @@ import SectionDivider from '../SectionDivider'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
 
-export interface ISceneProps {}
-
-export default function Scene(props: ISceneProps) {
+export default function Scene() {
 	const { state } = useContext(context)
 	const { document } = state
 	const { values } = document
@@ -98,7 +96,7 @@ export default function Scene(props: ISceneProps) {
 							type='radio'
 							className='hidden'
 							value='false'
-							defaultChecked={values.showMap === false}
+							defaultChecked={values.showMap === 'false'}
 							{...register('showMap')}
 						/>
 
@@ -116,7 +114,7 @@ export default function Scene(props: ISceneProps) {
 							type='radio'
 							className='hidden'
 							value='true'
-							defaultChecked={values.showMap !== false}
+							defaultChecked={values.showMap !== 'false'}
 							{...register('showMap')}
 						/>
 					</div>

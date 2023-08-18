@@ -144,7 +144,7 @@ export default function Container() {
 			<div
 				className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'
 				onDrop={e => {
-					console.log('dropped on iframe', e)
+					console.log('>>>>>> dropped on iframe', e)
 				}}
 			>
 				{type === 'character' && <Character />}
