@@ -28,9 +28,8 @@ export default function Scene(props: ISceneProps) {
 		})
 	}
 
-	const hasMapAndCover = values?.mapId && values?.coverId
+	const hasBothMapAndCover = values?.mapId && values?.coverId
 
-	// if (!register) return null
 	if (!values) return null
 
 	return (
@@ -81,7 +80,7 @@ export default function Scene(props: ISceneProps) {
 
 			<SectionDivider className='mt-4'>Media</SectionDivider>
 
-			{hasMapAndCover && (
+			{hasBothMapAndCover && (
 				<div className='flex space-x-2'>
 					<p className='w-32 self-center'>Show</p>
 					<div className='flex w-full rounded-lg dark:bg-gray-800'>

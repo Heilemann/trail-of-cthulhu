@@ -36,7 +36,7 @@ export default function Skill({
 		defaultValue: (skills && skills[category][name]?.pool) || 0,
 	})
 
-	// 'convert' rating to array to map over
+	// 'convert' rating to an array to map over
 	const ratingArray = Array(rating || 0).fill(0) || []
 
 	const SkillContent = (
