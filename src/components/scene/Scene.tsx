@@ -33,7 +33,7 @@ export default function Scene(props: ISceneProps) {
 	// const hasMapAndCover = values?.mapId && values?.coverId
 
 	return (
-		<DecoBox className='mx-auto max-w-2xl space-y-2 lg:space-y-4'>
+		<DecoBox className='mx-auto w-full max-w-2xl space-y-2 lg:space-y-4'>
 			<Button onClick={handleSetScene} className='w-full'>
 				Set Scene
 			</Button>
