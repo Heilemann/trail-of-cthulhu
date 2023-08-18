@@ -141,7 +141,7 @@ export default function Scene(props: ISceneProps) {
 				</div> */}
 			</div>
 
-			<SectionDivider className='mt-4'>Grid</SectionDivider>
+			{/* <SectionDivider className='mt-4'>Grid</SectionDivider>
 
 			<div className='flex space-x-2'>
 				<div className='flex-1'>
@@ -202,7 +202,7 @@ export default function Scene(props: ISceneProps) {
 						placeholder='1...'
 					/>
 				</div>
-			</div>
+			</div> */}
 		</DecoBox>
 	)
 }
