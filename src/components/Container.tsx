@@ -147,10 +147,9 @@ export default function Container() {
 					console.log('dropped on iframe', e)
 				}}
 			>
-				{/* <Sizes /> */}
 				{type === 'character' && <Character />}
 				{type === 'note' && <Note />}
-				{type === 'Book' && <Book />}
+				{type === 'book' && <Book />}
 				{type === 'scene' && <Scene />}
 				{type === 'weapon' && <Weapon />}
 				{type === 'handout' && <Handout />}
