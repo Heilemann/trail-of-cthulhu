@@ -102,7 +102,7 @@ export default function Scene(props: ISceneProps) {
 							type='radio'
 							className='hidden'
 							value='false'
-							defaultChecked={values.showMap === false}
+							// defaultChecked={values.showMap === false}
 							{...register('showMap')}
 						/>
 
@@ -120,7 +120,7 @@ export default function Scene(props: ISceneProps) {
 							type='radio'
 							className='hidden'
 							value='true'
-							defaultChecked={values.showMap !== false}
+							// defaultChecked={values.showMap !== false}
 							{...register('showMap')}
 						/>
 					</div>
