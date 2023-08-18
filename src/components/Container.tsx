@@ -28,6 +28,8 @@ export default function Container() {
 				return
 			}
 
+			console.log('TOC values changed', values)
+
 			const payload = {
 				...document,
 				values: {
