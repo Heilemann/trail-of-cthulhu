@@ -91,13 +91,16 @@ export default function Scene(props: ISceneProps) {
 								'flex-1 rounded-lg p-2 text-center',
 								values.showMap === false && 'bg-gray-700',
 							)}
+							onClick={() => {
+								console.log('click cover radio')
+							}}
 						>
 							Cover
 						</label>
 						<input
+							id='coverRadio'
 							type='radio'
 							className='hidden'
-							id='coverRadio'
 							value='false'
 							defaultChecked={values.showMap === false}
 							{...register('showMap')}
@@ -113,9 +116,9 @@ export default function Scene(props: ISceneProps) {
 							Map
 						</label>
 						<input
+							id='mapRadio'
 							type='radio'
 							className='hidden'
-							id='mapRadio'
 							value='true'
 							defaultChecked={values.showMap !== false}
 							{...register('showMap')}
