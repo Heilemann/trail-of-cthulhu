@@ -4,6 +4,12 @@
 	"author": "Michael Heilemann",
 	"description": "Attempt at a better system... system.",
 	"code": "dist/index.html",
+	"grid": {
+		"type": "square",
+		"size": 1,
+		"unitSize": 70,
+		"unit": "px"
+	},
 	"assetsPath": "build/static/media/",
 	"collections": [
 		{
