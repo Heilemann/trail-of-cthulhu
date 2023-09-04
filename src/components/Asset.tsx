@@ -38,7 +38,10 @@ const Asset: FC<AssetProps> = props => {
 	// }
 
 	const handleUpload = () => {
-		messageToApp({ message: 'upload asset', data: name })
+		messageToApp({
+			message: 'upload asset',
+			data: { name: name, documentId: document._id },
+		})
 	}
 
 	const handleRemoveAsset = () => {
