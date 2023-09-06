@@ -49,7 +49,7 @@
 			"pluralName": "Scenes",
 			"description": "Provide context, cover art and maps.",
 			"hasEditMode": "false",
-			"thumbnailField": ["coverId", "mapId"],
+			"thumbnailField": ["mapId", "coverId"],
 			"windowSize": "small",
 			"allowCreate": "false",
 			"canAssumeAsCharacter": "false"
