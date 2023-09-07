@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
 import DragAndDrop from './DragAndDrop'
@@ -13,11 +13,15 @@ import Weapon from './weapon/Weapon'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
-	const { document } = state
+	const [document, setDocument] = useState<TDocument | null>(state.document)
 	const type = document?.type || null
 	const { watch, reset } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
 	const messageToApp = useMessageToApp()
+
+	useEffect(() => {
+		setDocument(state.document)
+	}, [state.document])
 
 	const handleFormChanges = () => {
 		const subscription = watch(values => {
