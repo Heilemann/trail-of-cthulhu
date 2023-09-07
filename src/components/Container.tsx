@@ -105,11 +105,10 @@ export default function Container() {
 						return
 					}
 
-					// Use Lodash's isEqual function for deep equality check
 					if (_.isEqual(newDocument?.values, state.document?.values)) {
 						return
 					}
-
+					console.log('>>>>>>>>>> updating data', newDocument)
 					dispatch({
 						type: 'LOAD',
 						payload: {
