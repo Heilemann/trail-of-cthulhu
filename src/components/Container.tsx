@@ -99,19 +99,13 @@ export default function Container() {
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
-					console.log(
-						'UPDATE DATA: newDocument',
-						newDocument,
-						data,
-						_.isEqual(newDocument?.values, state.document?.values),
-					)
 
 					if (!newDocument) {
 						console.error('New document not found')
 						return
 					}
 
-					if (_.isEqual(newDocument?.values, state.document?.values)) {
+					if (_.isEqual(newDocument, state.document)) {
 						return
 					}
 
