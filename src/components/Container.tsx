@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
@@ -99,10 +100,13 @@ export default function Container() {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					if (
-						JSON.stringify(newDocument?.values) ===
-						JSON.stringify(state.document?.values)
-					) {
+					if (!newDocument) {
+						console.error('New document not found')
+						return
+					}
+
+					// Use Lodash's isEqual function for deep equality check
+					if (_.isEqual(newDocument?.values, state.document?.values)) {
 						return
 					}
 
