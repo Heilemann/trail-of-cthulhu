@@ -99,7 +99,7 @@ export default function Container() {
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
-
+					console.log('UPDATE DATA: newDocument', newDocument, data, state)
 					if (!newDocument) {
 						console.error('New document not found')
 						return
@@ -108,7 +108,7 @@ export default function Container() {
 					if (_.isEqual(newDocument?.values, state.document?.values)) {
 						return
 					}
-					console.log('>>>>>>>>>> updating data', newDocument)
+
 					dispatch({
 						type: 'LOAD',
 						payload: {
