@@ -44,9 +44,9 @@ export default function Skill({
 			className={twMerge(
 				'py-1 px-2 text-base',
 				borderStyle,
-				editMode === 'view' && pool === 0 && 'text-gray-400',
+				editMode === 'view' && rating === 0 && 'text-gray-400',
 				editMode === 'view' &&
-					pool > 0 &&
+					rating > 0 &&
 					'cursor-pointer text-gray-800 hover:bg-gray-800 dark:text-gray-200',
 			)}
 			style={{
@@ -54,8 +54,6 @@ export default function Skill({
 			}}
 		>
 			<div className={'flex'}>
-				editmode: {editMode}
-				pool: {pool}
 				<OccupationalAbility name={name} category={category} />
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
