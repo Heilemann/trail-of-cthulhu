@@ -53,7 +53,9 @@ export default function Skill({
 				fontFamily: 'DustismoRoman',
 			}}
 		>
-			<div className={'flex dark:text-gray-300'}>
+			<div className={'flex'}>
+				editmode: {editMode}
+				pool: {pool}
 				<OccupationalAbility name={name} category={category} />
 				<span className='flex-1 self-center'>{name}</span>
 				<Input
