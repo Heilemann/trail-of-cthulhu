@@ -154,7 +154,6 @@ export default function Container() {
 					console.log('>>>>>> dropped on iframe', e)
 				}}
 			>
-				{state.document.access}
 				{type === 'character' && <Character />}
 				{type === 'note' && <Note />}
 				{type === 'book' && <Book />}
