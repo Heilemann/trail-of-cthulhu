@@ -129,12 +129,12 @@ export default function Scene() {
 					<Asset name='coverId' style={{ maxWidth: '200px' }} />
 				</div>
 
-				<div className='flex flex-1 flex-col space-y-2'>
+				{/* <div className='flex flex-1 flex-col space-y-2'>
 					<Label className='mt-2 w-32' htmlFor='mapId'>
 						Map
 					</Label>
 					<Asset name='mapId' style={{ maxWidth: '200px' }} />
-				</div>
+				</div> */}
 			</div>
 
 			{/* <SectionDivider className='mt-4'>Grid</SectionDivider>
