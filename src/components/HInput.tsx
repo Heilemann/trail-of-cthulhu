@@ -35,7 +35,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 
 				<Input
 					ref={ref}
-					className=' my-1 bg-transparent py-1.5 text-right autofill:bg-yellow-400/20 hover:bg-gray-200 dark:bg-transparent dark:autofill:bg-yellow-400/20 dark:hover:bg-gray-800'
+					className=' my-1 bg-transparent py-1.5 text-right hover:bg-gray-200 dark:bg-transparent dark:autofill:bg-yellow-400/20 dark:hover:bg-gray-800'
 					id={rest.name}
 					disabled={editMode === 'view'}
 					{...rest}
