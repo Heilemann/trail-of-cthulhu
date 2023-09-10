@@ -33,8 +33,8 @@ export default function Weapons(props: IWeaponsProps) {
 	}
 
 	const handleDrop = (e: DragEvent) => {
-		console.log('data in drop', e.dataTransfer.getData('documentId'))
-		const droppedDocumentId = e.dataTransfer.getData('documentId')[0]
+		// @ts-ignore
+		const droppedDocumentId = e.dataTransfer.getData('documentId').documentId
 		const droppedDoc = documents.find(d => d._id === droppedDocumentId)
 
 		if (!droppedDoc)
