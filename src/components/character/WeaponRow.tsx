@@ -123,11 +123,12 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					<TextArea
 						className={twMerge(
 							'bg-transparent text-sm text-gray-500 dark:bg-transparent dark:text-gray-500',
+							editMode === 'view' && 'hidden',
 						)}
-						disabled={editMode === 'view'}
 						placeholder='&mdash;'
 						{...register(`weapons.${index}.notes`)}
 					/>
+					{editMode === 'view' && weapon.notes && <span>{weapon.notes}</span>}
 				</td>
 			</tr>
 		</>
