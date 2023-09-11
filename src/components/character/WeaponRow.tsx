@@ -38,7 +38,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 	return (
 		<>
 			<tr key={index}>
-				<td>
+				<td className='text-left'>
 					<TextArea
 						className={twMerge(
 							'bg-transparent dark:bg-transparent',
@@ -63,7 +63,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						placeholder='—'
 						{...register(`weapons.${index}.range.pointBlank`)}
 					/>
-					{editMode === 'view' && <span>{weapon.range.pointBlank || '—'}</span>}
+					{editMode === 'view' && <span>{weapon.range.pointblank || '—'}</span>}
 				</td>
 
 				<td className='text-center'>

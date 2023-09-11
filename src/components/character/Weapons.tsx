@@ -25,7 +25,7 @@ export default function Weapons(props: IWeaponsProps) {
 			documentId: '',
 			name: '',
 			range: {
-				pointBlank: 0,
+				pointblank: 0,
 				close: 0,
 				near: 0,
 				long: 0,

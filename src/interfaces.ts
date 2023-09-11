@@ -202,7 +202,7 @@ export type TWeaponSkills =
 export type TWeapon = {
 	name: string
 	range: {
-		pointBlank: number
+		pointblank: number
 		close: number
 		near: number
 		long: number
