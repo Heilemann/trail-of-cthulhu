@@ -38,98 +38,104 @@ export default function WeaponRow(props: IWeaponRowProps) {
 	}
 
 	return (
-		<tr key={index} className='border-b border-gray-300 dark:border-gray-800'>
-			<td>
-				<Input
-					className={twMerge(
-						'bg-transparent dark:bg-transparent',
-						editMode === 'view' && 'hidden',
-					)}
-					placeholder='Weapon...'
-					{...register(`weapons.${index}.name`)}
-				/>
-				{editMode === 'view' && <span>{weapon.name || '—'}</span>}
-			</td>
+		<>
+			<tr key={index} className='border-b border-gray-300 dark:border-gray-800'>
+				<td>
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='Weapon...'
+						{...register(`weapons.${index}.name`)}
+					/>
+					{editMode === 'view' && <span>{weapon.name || '—'}</span>}
+				</td>
 
-			<WeaponDamage index={index} />
+				<WeaponDamage index={index} />
 
-			{/* <WeaponSkills index={index} /> */}
+				{/* <WeaponSkills index={index} /> */}
 
-			<td className='text-center'>
-				<Input
-					className={twMerge(
-						'bg-transparent dark:bg-transparent',
-						editMode === 'view' && 'hidden',
-					)}
-					placeholder='—'
-					{...register(`weapons.${index}.range.pointBlank`)}
-				/>
-				{editMode === 'view' && <span>{weapon.pointBlank || '—'}</span>}
-			</td>
+				<td className='text-center'>
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='—'
+						{...register(`weapons.${index}.range.pointBlank`)}
+					/>
+					{editMode === 'view' && <span>{weapon.pointBlank || '—'}</span>}
+				</td>
 
-			<td className='text-center'>
-				<Input
-					className={twMerge(
-						'bg-transparent dark:bg-transparent',
-						editMode === 'view' && 'hidden',
-					)}
-					placeholder='—'
-					{...register(`weapons.${index}.range.close`)}
-				/>
-				{editMode === 'view' && <span>{weapon.close || '—'}</span>}
-			</td>
+				<td className='text-center'>
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='—'
+						{...register(`weapons.${index}.range.close`)}
+					/>
+					{editMode === 'view' && <span>{weapon.close || '—'}</span>}
+				</td>
 
-			<td className='text-center'>
-				<Input
-					className={twMerge(
-						'bg-transparent dark:bg-transparent',
-						editMode === 'view' && 'hidden',
-					)}
-					placeholder='—'
-					{...register(`weapons.${index}.range.near`)}
-				/>
-				{editMode === 'view' && <span>{weapon.near || '—'}</span>}
-			</td>
+				<td className='text-center'>
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='—'
+						{...register(`weapons.${index}.range.near`)}
+					/>
+					{editMode === 'view' && <span>{weapon.near || '—'}</span>}
+				</td>
 
-			<td className='text-center'>
-				<Input
-					className={twMerge(
-						'bg-transparent dark:bg-transparent',
-						editMode === 'view' && 'hidden',
-					)}
-					placeholder='—'
-					{...register(`weapons.${index}.range.long`)}
-				/>
-				{editMode === 'view' && <span>{weapon.long || '—'}</span>}
-			</td>
+				<td className='text-center'>
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='—'
+						{...register(`weapons.${index}.range.long`)}
+					/>
+					{editMode === 'view' && <span>{weapon.long || '—'}</span>}
+				</td>
 
-			<td className='text-center'>
-				<Input
-					className={twMerge(
-						'bg-transparent dark:bg-transparent',
-						editMode === 'view' && 'hidden',
-					)}
-					placeholder='—'
-					{...register(`weapons.${index}.notes`)}
-				/>
-				{editMode === 'view' && <span>{weapon.notes || '—'}</span>}
-			</td>
-
-			<td className='w-4'>
-				<Button onClick={handleOpenWeapon} className='self-end p-1.5'>
-					<InformationCircleIcon className='h-4 w-4' />
-				</Button>
-				<input type='hidden' {...register(`weapons.${index}.documentId`)} />
-				{/* {weapons[index].documentId && (
+				<td className='w-4'>
+					<Button onClick={handleOpenWeapon} className='self-end p-1.5'>
+						<InformationCircleIcon className='h-4 w-4' />
+					</Button>
+					<input type='hidden' {...register(`weapons.${index}.documentId`)} />
+					{/* {weapons[index].documentId && (
 					<input type='hidden' {...register(`weapons.${index}.documentId`)} />
 				)} */}
-			</td>
+				</td>
 
-			<td className='w-4'>
-				<Button onClick={() => handleRemove(index)} className='self-end p-1.5'>
-					<XMarkIcon className='h-4 w-4' />
-				</Button>
-			</td>
-		</tr>
+				<td className='w-4'>
+					<Button
+						onClick={() => handleRemove(index)}
+						className='self-end p-1.5'
+					>
+						<XMarkIcon className='h-4 w-4' />
+					</Button>
+				</td>
+			</tr>
+			<tr>
+				<td className='' colSpan={7}>
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='—'
+						{...register(`weapons.${index}.notes`)}
+					/>
+					{editMode === 'view' && <span>{weapon.notes || '—'}</span>}
+				</td>
+			</tr>
+		</>
 	)
 }

@@ -48,7 +48,7 @@ export default function Weapons(props: IWeaponsProps) {
 
 		const droppedWeapon = droppedDoc.values as TWeapon
 
-		console.log(droppedWeapon)
+		console.log('>>>>>>>>>> DROPPED WEAPON:', droppedWeapon)
 
 		prepend({
 			...droppedWeapon,
