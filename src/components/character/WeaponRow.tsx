@@ -8,6 +8,7 @@ import Input from '../Input'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
 import WeaponDamage from './WeaponDamage'
+import TextArea from '../Textarea'
 
 export interface IWeaponRowProps {
 	index: number
@@ -101,20 +102,6 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					{editMode === 'view' && <span>{weapon.range.long || '—'}</span>}
 				</td>
 
-				<td className='py-1 text-sm text-gray-500'>
-					<Input
-						className={twMerge(
-							'bg-transparent dark:bg-transparent',
-							editMode === 'view' ? 'hidden' : '',
-						)}
-						placeholder='&mdash;'
-						{...register(`weapons.${index}.notes`)}
-					/>
-					<span className={editMode === 'edit' ? 'hidden' : ''}>
-						{weapon.notes}
-					</span>
-				</td>
-
 				<td className='w-4'>
 					<Button onClick={handleOpenWeapon} className='self-end p-1.5'>
 						<WindowIcon className='h-4 w-4' />
@@ -129,6 +116,16 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					>
 						<XMarkIcon className='h-4 w-4' />
 					</Button>
+				</td>
+			</tr>
+			<tr>
+				<td className='py-1 text-sm text-gray-500' colSpan={7}>
+					<TextArea
+						className={twMerge('bg-transparent dark:bg-transparent')}
+						disabled={editMode === 'view'}
+						placeholder='&mdash;'
+						{...register(`weapons.${index}.notes`)}
+					/>
 				</td>
 			</tr>
 		</>
