@@ -125,7 +125,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 			</tr>
 			{editMode === 'edit' && (
 				<tr className='border-b border-gray-300 dark:border-gray-800'>
-					<td className='' colSpan={8}>
+					<td colSpan={8} className='py-1 text-sm text-gray-500'>
 						<Input
 							className={twMerge('bg-transparent dark:bg-transparent')}
 							placeholder='&mdash;'
@@ -136,7 +136,9 @@ export default function WeaponRow(props: IWeaponRowProps) {
 			)}
 			{editMode === 'view' && (
 				<tr className='border-b border-gray-300 dark:border-gray-800'>
-					<td>{weapon.notes}</td>
+					<td colSpan={8} className='py-1 text-sm text-gray-500'>
+						{weapon.notes}
+					</td>
 				</tr>
 			)}
 		</>
