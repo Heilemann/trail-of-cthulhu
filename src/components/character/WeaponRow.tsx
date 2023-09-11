@@ -49,7 +49,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					{editMode === 'view' && <span>{weapon.name || '—'}</span>}
 				</td>
 
-				<WeaponDamage index={index} />
+				{/* <WeaponDamage index={index} /> */}
 
 				{/* <WeaponSkills index={index} /> */}
 
