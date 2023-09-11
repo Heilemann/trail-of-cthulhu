@@ -1,7 +1,12 @@
 import _ from 'lodash'
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { TDocument, TSystemReceivableMessages, TValues } from '../interfaces'
+import {
+	TDocument,
+	TState,
+	TSystemReceivableMessages,
+	TValues,
+} from '../interfaces'
 import DragAndDrop from './DragAndDrop'
 import useMessageToApp from './UseMessageToApp'
 import Book from './book/Book'
@@ -96,26 +101,30 @@ export default function Container() {
 					break
 
 				case 'update data':
+					let updatePayload: Partial<TState> = {
+						...data,
+						documents: data.documents,
+					}
+
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					// if (!newDocument) {
-					// 	console.error('New document not found')
-					// 	return
-					// }
+					if (!newDocument) {
+						console.error('New document not found')
+						return
+					}
 
-					// if (_.isEqual(newDocument, state.document)) {
-					// 	return
-					// }
+					if (!_.isEqual(newDocument, state.document)) {
+						updatePayload = {
+							...updatePayload,
+							document: newDocument,
+						}
+					}
 
 					dispatch({
 						type: 'LOAD',
-						payload: {
-							...data,
-							document: newDocument,
-							documents: data.documents,
-						},
+						payload: updatePayload,
 					})
 
 					resetInProgress.current = true
