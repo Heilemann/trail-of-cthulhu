@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
-import { DragEvent, useContext } from 'react'
+import { DragEvent, useContext, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeapon, TWeaponOnCharacter } from '../../interfaces'
@@ -54,8 +54,18 @@ export default function Weapons(props: IWeaponsProps) {
 		} as TWeaponOnCharacter)
 	}
 
+	const [dragIsOver, setDragIsOver] = useState(false)
+
+	const handleDragOver = (e: DragEvent) => {
+		e.preventDefault()
+	}
+
 	return (
-		<DecoBox onDrop={handleDrop}>
+		<DecoBox
+			onDrop={handleDrop}
+			onDragOver={handleDragOver}
+			className={dragIsOver ? 'outline outline-4 outline-red-500' : ''}
+		>
 			<table
 				className='w-full border-collapse text-center text-base'
 				style={{

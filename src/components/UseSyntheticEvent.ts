@@ -41,8 +41,6 @@ const useSyntheticEvent = () => {
 			},
 		}
 
-		console.log(type, event.clientX, event.clientY, targetElement)
-
 		targetElement.dispatchEvent(event)
 	}
 
