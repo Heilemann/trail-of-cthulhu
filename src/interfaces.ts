@@ -51,7 +51,7 @@ export type TAsset = {
 
 export type TState = {
 	documentId: string
-	editMode: 'view' | 'edit'
+	editMode: TEditMode
 	document: TDocument
 	documents: TDocument[]
 	assets: TAsset[]
