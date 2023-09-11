@@ -56,14 +56,27 @@ export default function Weapons(props: IWeaponsProps) {
 
 	const [dragIsOver, setDragIsOver] = useState(false)
 
+	const handleDragEnter = (e: DragEvent) => {
+		setDragIsOver(true)
+		e.preventDefault()
+	}
+
 	const handleDragOver = (e: DragEvent) => {
+		setDragIsOver(true)
+		e.preventDefault()
+	}
+
+	const handleDragLeave = (e: DragEvent) => {
+		setDragIsOver(false)
 		e.preventDefault()
 	}
 
 	return (
 		<DecoBox
 			onDrop={handleDrop}
+			onDragEnter={handleDragEnter}
 			onDragOver={handleDragOver}
+			onDragLeave={handleDragLeave}
 			className={dragIsOver ? 'outline outline-4 outline-red-500' : ''}
 		>
 			<table
