@@ -38,9 +38,9 @@ export default function Character(props: ICharacterProps) {
 				</div>
 			</div>
 
-			<Skills />
-
 			<Weapons />
+
+			<Skills />
 
 			<Settings />
 
