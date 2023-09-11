@@ -35,6 +35,8 @@ export default function WeaponRow(props: IWeaponRowProps) {
 		remove(index)
 	}
 
+	if (!weapon) return null
+
 	return (
 		<>
 			<tr key={index}>
