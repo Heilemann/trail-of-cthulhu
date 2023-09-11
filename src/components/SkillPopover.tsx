@@ -21,9 +21,9 @@ export function SkillPopover({
 				<Popover.Portal>
 					<Popover.Content className='PopoverContent' sideOffset={5}>
 						<SkillPopoverContents name={name} category={category} />
-						<Popover.Close className='PopoverClose' aria-label='Close'>
+						{/* <Popover.Close className='PopoverClose' aria-label='Close'>
 							X
-						</Popover.Close>
+						</Popover.Close> */}
 						<Popover.Arrow className='fill-white dark:fill-gray-800' />
 					</Popover.Content>
 				</Popover.Portal>

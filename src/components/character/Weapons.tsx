@@ -48,6 +48,8 @@ export default function Weapons(props: IWeaponsProps) {
 
 		const droppedWeapon = droppedDoc.values as TWeapon
 
+		console.log(droppedWeapon)
+
 		prepend({
 			...droppedWeapon,
 			documentId: droppedDoc._id,
