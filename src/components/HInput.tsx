@@ -10,8 +10,7 @@ interface IHInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const HInput = forwardRef<HTMLInputElement, IHInputProps>(
-	(props: IHInputProps, ref) => {
-		const { className, label, ...rest } = props
+	({ className, label, ...rest }: IHInputProps, ref) => {
 		const { state } = useContext(context)
 		const { editMode } = state
 
@@ -35,7 +34,10 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 
 				<Input
 					ref={ref}
-					className=' my-1 bg-transparent py-1.5 text-right hover:bg-gray-200 dark:bg-transparent dark:autofill:bg-yellow-400/20 dark:hover:bg-gray-800'
+					className={twMerge(
+						'my-1 bg-transparent py-1.5 text-right dark:bg-transparent dark:autofill:bg-yellow-400/20',
+						editMode ? 'hover:bg-gray-200 dark:hover:bg-gray-800' : '',
+					)}
 					id={rest.name}
 					disabled={editMode === 'view'}
 					{...rest}
