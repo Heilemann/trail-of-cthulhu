@@ -36,8 +36,8 @@ export default function Weapons(props: IWeaponsProps) {
 	}
 
 	useEffect(() => {
-		alert(`weapons saw documents update: ${JSON.stringify(documents)}`)
-	}, [documents])
+		alert(`weapons saw documents update: ${JSON.stringify(state.documents)}`)
+	}, [state])
 
 	const handleDrop = (e: DragEvent) => {
 		// @ts-ignore
