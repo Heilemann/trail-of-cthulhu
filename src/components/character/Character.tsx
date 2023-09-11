@@ -13,7 +13,7 @@ export interface ICharacterProps {}
 
 export default function Character(props: ICharacterProps) {
 	const { state } = useContext(context)
-	const { document } = state
+	const { editMode, document } = state
 	const { values } = document
 	const { skills } = values
 
@@ -39,7 +39,7 @@ export default function Character(props: ICharacterProps) {
 			</div>
 
 			<Weapons />
-
+			{editMode}
 			<Skills />
 
 			<Settings />
