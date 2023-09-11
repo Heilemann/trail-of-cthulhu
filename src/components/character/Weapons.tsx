@@ -21,15 +21,18 @@ export default function Weapons(props: IWeaponsProps) {
 	})
 
 	const handleAdd = () => {
-		prepend({
+		const weapon: TWeaponOnCharacter = {
+			documentId: '',
 			name: '',
-			damage: '',
-			pointBlank: 0,
-			close: 0,
-			near: 0,
-			long: 0,
+			range: {
+				pointBlank: 0,
+				close: 0,
+				near: 0,
+				long: 0,
+			},
 			notes: '',
-		} as TWeaponOnCharacter)
+		}
+		prepend(weapon)
 	}
 
 	const handleDrop = (e: DragEvent) => {
@@ -90,10 +93,6 @@ export default function Weapons(props: IWeaponsProps) {
 				<thead>
 					<tr className={twMerge('p-2 text-left', borderStyle)}>
 						<th className='font-normal text-gray-500'>Name</th>
-						<th className='font-normal text-gray-500'>
-							<span className='hidden sm:inline'>Damage</span>
-							<span className='sm:hidden'>Dmg</span>
-						</th>
 						<th className='w-24 text-center font-normal text-gray-500'>
 							<span className='hidden sm:inline'>Point Blank</span>
 							<span className='sm:hidden'>PB</span>

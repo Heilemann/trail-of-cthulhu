@@ -1,4 +1,4 @@
-import { InformationCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { WindowIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -27,9 +27,6 @@ export default function WeaponRow(props: IWeaponRowProps) {
 
 	const handleOpenWeapon = () => {
 		const { documentId } = weapon
-
-		console.log('trying to open weapon', documentId)
-
 		messageToApp({ message: 'open document', data: { documentId } })
 	}
 
@@ -65,7 +62,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						placeholder='—'
 						{...register(`weapons.${index}.range.pointBlank`)}
 					/>
-					{editMode === 'view' && <span>{weapon.pointBlank || '—'}</span>}
+					{editMode === 'view' && <span>{weapon.range.pointBlank || '—'}</span>}
 				</td>
 
 				<td className='text-center'>
@@ -77,7 +74,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						placeholder='—'
 						{...register(`weapons.${index}.range.close`)}
 					/>
-					{editMode === 'view' && <span>{weapon.close || '—'}</span>}
+					{editMode === 'view' && <span>{weapon.range.close || '—'}</span>}
 				</td>
 
 				<td className='text-center'>
@@ -89,7 +86,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						placeholder='—'
 						{...register(`weapons.${index}.range.near`)}
 					/>
-					{editMode === 'view' && <span>{weapon.near || '—'}</span>}
+					{editMode === 'view' && <span>{weapon.range.near || '—'}</span>}
 				</td>
 
 				<td className='text-center'>
@@ -101,17 +98,25 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						placeholder='—'
 						{...register(`weapons.${index}.range.long`)}
 					/>
-					{editMode === 'view' && <span>{weapon.long || '—'}</span>}
+					{editMode === 'view' && <span>{weapon.range.long || '—'}</span>}
+				</td>
+
+				<td className='py-1 text-sm text-gray-500'>
+					{editMode === 'edit' && (
+						<Input
+							className={twMerge('bg-transparent dark:bg-transparent')}
+							placeholder='&mdash;'
+							{...register(`weapons.${index}.notes`)}
+						/>
+					)}
+					{editMode === 'view' && <>{weapon.notes}</>}
 				</td>
 
 				<td className='w-4'>
 					<Button onClick={handleOpenWeapon} className='self-end p-1.5'>
-						<InformationCircleIcon className='h-4 w-4' />
+						<WindowIcon className='h-4 w-4' />
 					</Button>
 					<input type='hidden' {...register(`weapons.${index}.documentId`)} />
-					{/* {weapons[index].documentId && (
-					<input type='hidden' {...register(`weapons.${index}.documentId`)} />
-				)} */}
 				</td>
 
 				<td className='w-4'>
@@ -123,24 +128,6 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					</Button>
 				</td>
 			</tr>
-			{editMode === 'edit' && (
-				<tr className='border-b border-gray-300 dark:border-gray-800'>
-					<td colSpan={8} className='py-1 text-sm text-gray-500'>
-						<Input
-							className={twMerge('bg-transparent dark:bg-transparent')}
-							placeholder='&mdash;'
-							{...register(`weapons.${index}.notes`)}
-						/>
-					</td>
-				</tr>
-			)}
-			{editMode === 'view' && (
-				<tr className='border-b border-gray-300 dark:border-gray-800'>
-					<td colSpan={8} className='py-1 text-sm text-gray-500'>
-						{weapon.notes}
-					</td>
-				</tr>
-			)}
 		</>
 	)
 }

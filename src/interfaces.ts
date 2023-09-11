@@ -201,11 +201,12 @@ export type TWeaponSkills =
 
 export type TWeapon = {
 	name: string
-	damage: string
-	pointBlank: number
-	close: number
-	near: number
-	long: number
+	range: {
+		pointBlank: number
+		close: number
+		near: number
+		long: number
+	}
 	notes: string
 }
 

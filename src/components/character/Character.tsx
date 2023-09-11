@@ -39,9 +39,7 @@ export default function Character(props: ICharacterProps) {
 			</div>
 
 			<Weapons />
-			{editMode}
 			<Skills />
-
 			<Settings />
 
 			{/* <Backstory /> */}
