@@ -103,8 +103,8 @@ export default function Weapons(props: IWeaponsProps) {
 						<th className='w-18 text-center font-normal text-gray-500'>Near</th>
 						<th className='w-18 text-center font-normal text-gray-500'>Long</th>
 						<th className='text-center font-normal text-gray-500'>Notes</th>
-						<th className='w-4 text-center font-normal text-gray-500'></th>
-						<th className='w-4'>
+						<th className='w-6'></th>
+						<th className='w-6'>
 							<Button onClick={handleAdd} className='my-1 p-1.5'>
 								<PlusIcon className='h-4 w-4' />
 							</Button>

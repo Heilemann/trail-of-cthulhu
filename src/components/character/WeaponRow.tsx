@@ -102,14 +102,17 @@ export default function WeaponRow(props: IWeaponRowProps) {
 				</td>
 
 				<td className='py-1 text-sm text-gray-500'>
-					{editMode === 'edit' && (
-						<Input
-							className={twMerge('bg-transparent dark:bg-transparent')}
-							placeholder='&mdash;'
-							{...register(`weapons.${index}.notes`)}
-						/>
-					)}
-					{editMode === 'view' && <>{weapon.notes}</>}
+					<Input
+						className={twMerge(
+							'bg-transparent dark:bg-transparent',
+							editMode === 'view' ? 'hidden' : '',
+						)}
+						placeholder='&mdash;'
+						{...register(`weapons.${index}.notes`)}
+					/>
+					<span className={editMode === 'edit' ? 'hidden' : ''}>
+						{weapon.notes}
+					</span>
 				</td>
 
 				<td className='w-4'>
