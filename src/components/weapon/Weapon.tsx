@@ -5,6 +5,7 @@ import HInput from '../HInput'
 import weaponSkillList from '../weaponSkillList'
 import { twMerge } from 'tailwind-merge'
 import HTextArea from '../HTextArea'
+import VInput from '../VInput'
 
 export interface IWeaponProps {}
 
@@ -43,18 +44,28 @@ export default function Weapon(props: IWeaponProps) {
 				</div>
 			</div>
 
-			<HInput
-				label='Point Blank'
-				placeholder='&mdash;'
-				{...register('range.pointblank')}
-			/>
-			<HInput
-				label='Close'
-				placeholder='&mdash;'
-				{...register('range.close')}
-			/>
-			<HInput label='Near' placeholder='&mdash;' {...register('range.near')} />
-			<HInput label='Long' placeholder='&mdash;' {...register('range.long')} />
+			<div className='flex flex-row space-x-2'>
+				<VInput
+					label='Point Blank'
+					placeholder='&mdash;'
+					{...register('range.pointblank')}
+				/>
+				<VInput
+					label='Close'
+					placeholder='&mdash;'
+					{...register('range.close')}
+				/>
+				<VInput
+					label='Near'
+					placeholder='&mdash;'
+					{...register('range.near')}
+				/>
+				<VInput
+					label='Long'
+					placeholder='&mdash;'
+					{...register('range.long')}
+				/>
+			</div>
 
 			<HInput
 				label='Ammo Capacity'
