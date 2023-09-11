@@ -37,7 +37,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 
 	return (
 		<>
-			<tr key={index} className='border-b border-gray-300 dark:border-gray-800'>
+			<tr key={index}>
 				<td>
 					<Input
 						className={twMerge(
@@ -118,10 +118,12 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					</Button>
 				</td>
 			</tr>
-			<tr>
-				<td className='py-1 text-sm text-gray-500' colSpan={7}>
+			<tr className='border-b border-gray-300 dark:border-gray-800'>
+				<td className='' colSpan={7}>
 					<TextArea
-						className={twMerge('bg-transparent dark:bg-transparent')}
+						className={twMerge(
+							'bg-transparent text-sm text-gray-500 dark:bg-transparent dark:text-gray-500',
+						)}
 						disabled={editMode === 'view'}
 						placeholder='&mdash;'
 						{...register(`weapons.${index}.notes`)}
