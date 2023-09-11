@@ -100,20 +100,21 @@ export default function Container() {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					if (!newDocument) {
-						console.error('New document not found')
-						return
-					}
+					// if (!newDocument) {
+					// 	console.error('New document not found')
+					// 	return
+					// }
 
-					if (_.isEqual(newDocument, state.document)) {
-						return
-					}
+					// if (_.isEqual(newDocument, state.document)) {
+					// 	return
+					// }
 
 					dispatch({
 						type: 'LOAD',
 						payload: {
 							...data,
 							document: newDocument,
+							documents: data.documents,
 						},
 					})
 
