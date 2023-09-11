@@ -44,13 +44,14 @@ export default function Weapon(props: IWeaponProps) {
 
 			<HInput label='Damage' placeholder='—' {...register('damage')} />
 
-			<HInput label='Range' placeholder='—' {...register('range')} />
-
 			<HInput
-				label='Uses Per Round'
+				label='Point Blank'
 				placeholder='—'
-				{...register('usesPerRound')}
+				{...register('range.pointblank')}
 			/>
+			<HInput label='Close' placeholder='—' {...register('range.close')} />
+			<HInput label='Near' placeholder='—' {...register('range.near')} />
+			<HInput label='Long' placeholder='—' {...register('range.long')} />
 
 			<HInput
 				label='Ammo Capacity'
@@ -59,14 +60,6 @@ export default function Weapon(props: IWeaponProps) {
 			/>
 
 			<HInput label='Cost' placeholder='—' {...register('cost')} />
-
-			<HInput
-				label='Malfunction'
-				placeholder='—'
-				{...register('malfunction')}
-			/>
-
-			<HInput label='Common Era' placeholder='—' {...register('commonEra')} />
 		</DecoBox>
 	)
 }
