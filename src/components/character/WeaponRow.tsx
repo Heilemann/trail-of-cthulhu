@@ -134,7 +134,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 					</td>
 				</tr>
 			)}
-			{weapon.notes && editMode === 'view' && (
+			{editMode === 'view' && (
 				<tr className='border-b border-gray-300 dark:border-gray-800'>
 					<td>{weapon.notes}</td>
 				</tr>
