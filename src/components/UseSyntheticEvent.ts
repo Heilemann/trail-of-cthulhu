@@ -1,35 +1,52 @@
+interface CustomPayload {
+	pointer: {
+		x: number
+		y: number
+	}
+	data: string
+}
+
+interface CustomMessageEvent extends MessageEvent {
+	data: CustomPayload
+}
+
 const useSyntheticEvent = () => {
-  const getElementFromEvent = (e: any) => {
-    const y = e.data.pointer.y
-    const x = e.data.pointer.x
-    return document.elementsFromPoint(x, y)[0]
-  }
-  return (e: any, eventName: string) => {
-    const target = getElementFromEvent(e)
+	const getElementFromEvent = (e: CustomMessageEvent) => {
+		const y = e.data.pointer.y
+		const x = e.data.pointer.x
+		return document.elementsFromPoint(x, y)[0]
+	}
 
-    const syntheticEvent = new CustomEvent('CustomEvent')
-    // TODO: If this is deprecated, is there a better way to do this?
-    syntheticEvent.initCustomEvent(eventName, true, true, null)
+	const fireFakeEvent = (e: CustomMessageEvent, type: string) => {
+		const x = e.data.pointer.x
+		const y = e.data.pointer.y
+		const targetElement = getElementFromEvent(e)
 
-    // @ts-ignore: we're setting dataTransfer, not reading it...
-    syntheticEvent.dataTransfer = {
-      data: {
-        documentId: e.data.data,
-      },
-      setData: function (type: string, val: string) {
-        this.data[type] = val
-      },
-      getData: function (type: string) {
-        return this.data[type]
-      },
-    }
+		const event = new MouseEvent(type, {
+			bubbles: true,
+			cancelable: true,
+			clientX: x,
+			clientY: y,
+		})
 
-    Object.defineProperty(syntheticEvent, 'target', {
-      value: target,
-    })
+		;(event as any).dataTransfer = {
+			data: {
+				documentId: e.data.data,
+			},
+			setData(type: string, val: string) {
+				this.data[type] = val
+			},
+			getData(type: string) {
+				return this.data[type]
+			},
+		}
 
-    target.dispatchEvent(syntheticEvent)
-  }
+		console.log('fireFakeEvent', event, targetElement, type)
+
+		targetElement.dispatchEvent(event)
+	}
+
+	return fireFakeEvent
 }
 
 export default useSyntheticEvent
