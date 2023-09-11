@@ -14,11 +14,14 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 		return (
 			<div
 				className={twMerge(
-					'flex flex-1 flex-col border-b border-gray-200 dark:border-gray-800 mb-1',
+					'mb-1 flex flex-1 flex-col border-b border-gray-200 dark:border-gray-800',
 					className,
 				)}
+				style={{
+					fontFamily: 'CovingtonCondensed',
+				}}
 			>
-				<Label className='text-center text-gray-500 -mb-2' htmlFor={rest.name}>
+				<Label className='-mb-2 text-center text-gray-500' htmlFor={rest.name}>
 					{label}
 				</Label>
 				<Input
