@@ -41,7 +41,7 @@ const useSyntheticEvent = () => {
 			},
 		}
 
-		console.log('fireFakeEvent', event, targetElement, type)
+		console.log(type, event.clientX, event.clientY, targetElement)
 
 		targetElement.dispatchEvent(event)
 	}
