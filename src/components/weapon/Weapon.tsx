@@ -4,6 +4,7 @@ import DecoBox from '../DecoBox'
 import HInput from '../HInput'
 import weaponSkillList from '../weaponSkillList'
 import { twMerge } from 'tailwind-merge'
+import HTextArea from '../HTextArea'
 
 export interface IWeaponProps {}
 
@@ -42,24 +43,28 @@ export default function Weapon(props: IWeaponProps) {
 				</div>
 			</div>
 
-			<HInput label='Damage' placeholder='—' {...register('damage')} />
-
 			<HInput
 				label='Point Blank'
-				placeholder='—'
+				placeholder='&mdash;'
 				{...register('range.pointblank')}
 			/>
-			<HInput label='Close' placeholder='—' {...register('range.close')} />
-			<HInput label='Near' placeholder='—' {...register('range.near')} />
-			<HInput label='Long' placeholder='—' {...register('range.long')} />
+			<HInput
+				label='Close'
+				placeholder='&mdash;'
+				{...register('range.close')}
+			/>
+			<HInput label='Near' placeholder='&mdash;' {...register('range.near')} />
+			<HInput label='Long' placeholder='&mdash;' {...register('range.long')} />
 
 			<HInput
 				label='Ammo Capacity'
-				placeholder='—'
+				placeholder='&mdash;'
 				{...register('ammoCapacity')}
 			/>
 
-			<HInput label='Cost' placeholder='—' {...register('cost')} />
+			<HInput label='Cost' placeholder='&mdash;' {...register('cost')} />
+
+			<HTextArea label='Notes' placeholder='&mdash;' {...register('notes')} />
 		</DecoBox>
 	)
 }
