@@ -62,7 +62,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.pointBlank`)}
+					{...register(`weapons.${index}.damage.pointBlank`)}
 				/>
 				{editMode === 'view' && <span>{weapon.pointBlank || '—'}</span>}
 			</td>
@@ -74,7 +74,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.close`)}
+					{...register(`weapons.${index}.damage.close`)}
 				/>
 				{editMode === 'view' && <span>{weapon.close || '—'}</span>}
 			</td>
@@ -86,7 +86,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.near`)}
+					{...register(`weapons.${index}.damage.near`)}
 				/>
 				{editMode === 'view' && <span>{weapon.near || '—'}</span>}
 			</td>
@@ -98,7 +98,7 @@ export default function WeaponRow(props: IWeaponRowProps) {
 						editMode === 'view' && 'hidden',
 					)}
 					placeholder='—'
-					{...register(`weapons.${index}.long`)}
+					{...register(`weapons.${index}.damage.long`)}
 				/>
 				{editMode === 'view' && <span>{weapon.long || '—'}</span>}
 			</td>

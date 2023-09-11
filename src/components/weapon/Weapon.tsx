@@ -48,22 +48,22 @@ export default function Weapon(props: IWeaponProps) {
 				<VInput
 					label='Point Blank'
 					placeholder='&mdash;'
-					{...register('range.pointblank')}
+					{...register('damage.pointblank')}
 				/>
 				<VInput
 					label='Close'
 					placeholder='&mdash;'
-					{...register('range.close')}
+					{...register('damage.close')}
 				/>
 				<VInput
 					label='Near'
 					placeholder='&mdash;'
-					{...register('range.near')}
+					{...register('damage.near')}
 				/>
 				<VInput
 					label='Long'
 					placeholder='&mdash;'
-					{...register('range.long')}
+					{...register('damage.long')}
 				/>
 			</div>
 

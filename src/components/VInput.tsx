@@ -2,19 +2,21 @@ import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Input from './Input'
 import Label from './Label'
+import context from './context'
 
 interface IVInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
 }
 
 const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
-	(props: IVInputProps, ref) => {
-		const { className, label, ...rest } = props
+	({ className, label, ...rest }: IVInputProps, ref) => {
+		const { state } = React.useContext(context)
+		const { editMode } = state
 
 		return (
 			<div
 				className={twMerge(
-					'mb-1 flex flex-1 flex-col border-b border-gray-200 dark:border-gray-800',
+					'mb-1 flex flex-1 flex-col border-b border-gray-200 px-1 dark:border-gray-800',
 					className,
 				)}
 				style={{
@@ -26,7 +28,12 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 				</Label>
 				<Input
 					ref={ref}
-					className='flex-1 bg-transparent text-center dark:bg-transparent '
+					className={twMerge(
+						'flex-1 bg-transparent text-center dark:bg-transparent',
+						editMode === 'edit'
+							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
+							: '',
+					)}
 					id={rest.name}
 					{...rest}
 				/>
