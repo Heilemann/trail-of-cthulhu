@@ -1,5 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
-import { DragEvent, useContext, useState } from 'react'
+import { DragEvent, useContext, useEffect, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeapon, TWeaponOnCharacter } from '../../interfaces'
@@ -34,6 +34,10 @@ export default function Weapons(props: IWeaponsProps) {
 		}
 		prepend(weapon)
 	}
+
+	useEffect(() => {
+		alert(`weapons saw documents update: ${JSON.stringify(documents)}`)
+	}, [documents])
 
 	const handleDrop = (e: DragEvent) => {
 		// @ts-ignore
