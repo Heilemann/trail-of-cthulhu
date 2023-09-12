@@ -23,10 +23,11 @@ const WeaponSkill = ({ index }: Props) => {
 
 	const handleClick = () => {
 		const modifier = 0
+
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `/r 1d6 ${modifier && modifier} to attack using ${
+				message: `/r 1d6 ${modifier !== 0 ? modifier : ''} to attack using ${
 					watchedWeapon.skill
 				} with my ${watchedWeapon.name}.`,
 			},
