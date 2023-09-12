@@ -45,7 +45,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 						placeholder='Weapon...'
 						{...register(`weapons.${index}.name`)}
 					/>
-					{editMode === 'view' && <span>{watchedWeapon.name || '—'}</span>}
+					{editMode === 'view' && <span>{watchedWeapon?.name || '—'}</span>}
 				</td>
 
 				<WeaponSkill index={index} />

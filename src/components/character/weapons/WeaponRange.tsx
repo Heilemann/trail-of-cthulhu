@@ -23,7 +23,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	})
 
 	const isDisabled =
-		!watchedWeapon.range ||
+		!watchedWeapon?.range ||
 		!watchedWeapon.range[rangeType] ||
 		isNaN(watchedWeapon.range[rangeType])
 

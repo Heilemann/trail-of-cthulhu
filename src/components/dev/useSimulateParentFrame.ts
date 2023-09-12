@@ -60,7 +60,7 @@ const useSimulateParentFrame = () => {
 
 			case 'upload asset':
 				console.log(
-					'App received upload asset message (this does nothing in devmode):',
+					'App received "upload asset" (does nothing in devmode):',
 					data,
 				)
 
@@ -68,7 +68,7 @@ const useSimulateParentFrame = () => {
 
 			case 'remove asset':
 				console.log(
-					'App received remove asset message (this does nothing in devmode):',
+					'App received "remove asset" (does nothing in devmode):',
 					data,
 				)
 
@@ -76,33 +76,27 @@ const useSimulateParentFrame = () => {
 
 			case 'send message':
 				console.log(
-					'App received send message message (this does nothing in devmode):',
+					'App received "send message" (does nothing in devmode):',
 					data,
 				)
 
 				break
 
 			case 'set scene':
-				console.log(
-					'App received set scene message (this does nothing in devmode):',
-					data,
-				)
+				console.log('App received "set scene" (does nothing in devmode):', data)
 
 				break
 
 			case 'open document':
 				console.log(
-					'App received open document message (this does nothing in devmode):',
+					'App received "open document" (does nothing in devmode):',
 					data,
 				)
 
 				break
 
 			case 'generate':
-				console.log(
-					'App received generate message (this does nothing in devmode):',
-					data,
-				)
+				console.log('App received "generate" (does nothing in devmode):', data)
 
 				break
 		}
