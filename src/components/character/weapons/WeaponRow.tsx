@@ -9,6 +9,7 @@ import TextArea from '../../Textarea'
 import useMessageToApp from '../../UseMessageToApp'
 import context from '../../context'
 import WeaponSkill from './WeaponSkill'
+import WeaponRange from './WeaponRange'
 
 export interface IWeaponRowProps {
 	index: number
@@ -49,61 +50,10 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 
 				<WeaponSkill index={index} />
 
-				<td className='text-center'>
-					<Input
-						className={twMerge(
-							'mt-1 text-center',
-							editMode === 'view' ? 'hidden' : '',
-						)}
-						placeholder='—'
-						{...register(`weapons.${index}.range.pointblank`)}
-					/>
-					{editMode === 'view' && (
-						<span>{watchedWeapon.range.pointblank || '—'}</span>
-					)}
-				</td>
-
-				<td className='text-center'>
-					<Input
-						className={twMerge(
-							'mt-1 text-center',
-							editMode === 'view' ? 'hidden' : '',
-						)}
-						placeholder='—'
-						{...register(`weapons.${index}.range.close`)}
-					/>
-					{editMode === 'view' && (
-						<span>{watchedWeapon.range.close || '—'}</span>
-					)}
-				</td>
-
-				<td className='text-center'>
-					<Input
-						className={twMerge(
-							'mt-1 text-center',
-							editMode === 'view' ? 'hidden' : '',
-						)}
-						placeholder='—'
-						{...register(`weapons.${index}.range.near`)}
-					/>
-					{editMode === 'view' && (
-						<span>{watchedWeapon.range.near || '—'}</span>
-					)}
-				</td>
-
-				<td className='text-center'>
-					<Input
-						className={twMerge(
-							'mt-1 text-center',
-							editMode === 'view' ? 'hidden' : '',
-						)}
-						placeholder='—'
-						{...register(`weapons.${index}.range.long`)}
-					/>
-					{editMode === 'view' && (
-						<span>{watchedWeapon.range.long || '—'}</span>
-					)}
-				</td>
+				<WeaponRange index={index} rangeType='pointblank' />
+				<WeaponRange index={index} rangeType='close' />
+				<WeaponRange index={index} rangeType='near' />
+				<WeaponRange index={index} rangeType='long' />
 
 				<td>
 					<Button
