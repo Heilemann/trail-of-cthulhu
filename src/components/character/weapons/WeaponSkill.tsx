@@ -24,7 +24,7 @@ const WeaponSkill = ({ index }: Props) => {
 	const handleClick = () => {
 		messageToApp({
 			message: 'send message',
-			data: { message: 'Skill test' },
+			data: { message: '/r 1d6' },
 		})
 	}
 
@@ -45,7 +45,7 @@ const WeaponSkill = ({ index }: Props) => {
 			</div>
 			{editMode === 'view' && (
 				<Button
-					className='py-1 text-left'
+					className='w-full py-1'
 					disabled={!watchedWeapon.skill && true}
 					onClick={handleClick}
 				>
