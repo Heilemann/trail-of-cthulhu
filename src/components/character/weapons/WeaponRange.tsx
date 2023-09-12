@@ -38,7 +38,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	const handleClick = () => {
 		const roll = '/r 1d6'
 		const modifier = watchedWeapon.range[rangeType]
-		const message = `${roll} + ${modifier} for damage at ${range[rangeType]} range`
+		const message = `${roll} + ${modifier} for damage at ${range[rangeType]} range with my ${watchedWeapon.name}`
 
 		messageToApp({
 			message: 'send message',

@@ -30,11 +30,15 @@ const WeaponSkill = ({ index }: Props) => {
 
 	return (
 		<td className='relative rounded-lg'>
-			<div className='mt-1 rounded-lg pr-3 dark:bg-gray-800/50'>
+			<div
+				className={twMerge(
+					'mt-1 rounded-lg pr-3 dark:bg-gray-800/50',
+					editMode === 'view' ? 'hidden' : '',
+				)}
+			>
 				<select
 					className={twMerge(
 						'm-0 w-full cursor-pointer bg-transparent py-2.5 pl-1 text-base',
-						editMode === 'view' ? 'hidden' : '',
 					)}
 					{...register(`weapons.${index}.skill`)}
 				>

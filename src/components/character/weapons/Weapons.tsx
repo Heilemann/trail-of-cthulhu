@@ -90,7 +90,7 @@ export default function Weapons() {
 				<thead>
 					<tr className={twMerge('p-2 text-left', borderStyle)}>
 						<th className='font-normal text-gray-500'>Name</th>
-						<th className='w-24 font-normal text-gray-500'>Skill</th>
+						<th className='w-44 font-normal text-gray-500'>Skill</th>
 						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
 							<div className='hidden md:inline'>Pt. Blank</div>
 							<div className='md:hidden'>Pt. Blnk</div>

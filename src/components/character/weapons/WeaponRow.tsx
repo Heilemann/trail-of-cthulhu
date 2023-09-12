@@ -86,9 +86,9 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 						placeholder='Notes...'
 						{...register(`weapons.${index}.notes`)}
 					/>
-					{editMode === 'view' && watchedWeapon.notes && (
+					{editMode === 'view' && watchedWeapon?.notes && (
 						<div className='my-1 text-sm text-gray-500 dark:text-gray-500'>
-							{watchedWeapon.notes}
+							{watchedWeapon?.notes}
 						</div>
 					)}
 				</td>
