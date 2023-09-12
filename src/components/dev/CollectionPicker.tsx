@@ -6,7 +6,7 @@ import context from '../context'
 
 export default function CollectionPicker() {
 	const { state, dispatch } = useContext(context)
-	const { register, reset } = useFormContext()
+	const { register } = useFormContext()
 	const { collections } = systemConfig as TSystemConfig
 
 	const defaultCollectionType = collections[0].type

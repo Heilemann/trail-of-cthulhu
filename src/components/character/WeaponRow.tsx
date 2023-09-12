@@ -40,18 +40,15 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 			<tr key={index}>
 				<td className='text-left'>
 					<Input
-						className={twMerge(
-							'bg-transparent',
-							editMode === 'view' && 'hidden',
-						)}
+						className={twMerge('mt-1', editMode === 'view' && 'hidden')}
 						placeholder='Weapon...'
 						{...register(`weapons.${index}.name`)}
 					/>
 					{editMode === 'view' && <span>{watchedWeapon.name || '—'}</span>}
 				</td>
 
-				<td className='relative w-28 rounded-lg'>
-					<div className='rounded-lg bg-gray-800'>
+				<td className='relative w-16 rounded-lg'>
+					<div className='mt-1 rounded-lg pr-3 dark:bg-gray-800/50'>
 						<select
 							className={twMerge(
 								'm-0 w-full cursor-pointer bg-transparent py-2.5 pl-1 text-base',
@@ -72,7 +69,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'text-center',
+							'mt-1 text-center',
 							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
@@ -86,7 +83,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'text-center',
+							'mt-1 text-center',
 							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
@@ -100,7 +97,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'text-center',
+							'mt-1 text-center',
 							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
@@ -114,7 +111,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'text-center',
+							'mt-1 text-center',
 							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
@@ -145,7 +142,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 				<td className='text-left ' colSpan={6}>
 					<TextArea
 						className={twMerge(
-							'text-sm text-gray-500 dark:text-gray-500',
+							'mt-0 text-sm text-gray-500 placeholder:text-gray-700 dark:text-gray-500',
 							editMode === 'view' && 'hidden',
 						)}
 						placeholder='Notes...'

@@ -24,7 +24,7 @@ export default function InvestigativeBuildPoints(
 
 	return (
 		<HInput
-			label='Investigative Build Points'
+			label='Invest. Build Points'
 			placeholder={total + '' || '&mdash;'}
 		/>
 	)

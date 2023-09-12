@@ -33,10 +33,8 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 				<TextareaAutosize
 					ref={ref}
 					className={twMerge(
-						`leading-16 mt-1 mb-1 block w-full bg-transparent py-2 text-xl placeholder-gray-500 shadow-sm focus:ring-0 dark:text-white dark:shadow-none dark:focus:ring-0 sm:text-sm`,
-						editMode === 'edit'
-							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-							: '',
+						`leading-16 mt-1 mb-1 block w-full rounded-lg bg-transparent py-2 text-xl placeholder-gray-500 shadow-sm focus:ring-0 dark:text-white dark:shadow-none dark:focus:ring-0 sm:text-sm`,
+						editMode === 'edit' ? 'bg-gray-200 dark:bg-gray-800/50' : '',
 						borderStyle,
 					)}
 					disabled={editMode === 'view'}
