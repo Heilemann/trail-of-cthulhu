@@ -36,7 +36,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 					ref={ref}
 					className={twMerge(
 						'my-1 bg-transparent py-1.5 text-right dark:bg-transparent dark:autofill:bg-yellow-400/20',
-						editMode === 'edit' ? 'bg-gray-200 dark:bg-gray-800/50' : '',
+						editMode === 'edit' ? 'bg-white dark:bg-gray-800/50' : '',
 					)}
 					id={rest.name}
 					disabled={editMode === 'view'}

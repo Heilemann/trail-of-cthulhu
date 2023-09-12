@@ -9,6 +9,19 @@ import { borderStyle } from '../../borderStyle'
 import context from '../../context'
 import WeaponRow from './WeaponRow'
 
+const emptyWeapon: TWeaponOnCharacter = {
+	documentId: '',
+	skill: 'Weapons',
+	name: 'Unnamed Weapon',
+	range: {
+		pointblank: 0,
+		close: 0,
+		near: 0,
+		long: 0,
+	},
+	notes: '',
+}
+
 export default function Weapons() {
 	const { state } = useContext(context)
 	const { documents } = state
@@ -19,19 +32,7 @@ export default function Weapons() {
 	})
 
 	const handleAdd = () => {
-		const weapon: TWeaponOnCharacter = {
-			documentId: '',
-			skill: 'Fighting (Brawl)',
-			name: 'Unnamed Weapon',
-			range: {
-				pointblank: 0,
-				close: 0,
-				near: 0,
-				long: 0,
-			},
-			notes: '',
-		}
-		prepend(weapon)
+		prepend(emptyWeapon)
 	}
 
 	const handleDrop = (e: DragEvent) => {

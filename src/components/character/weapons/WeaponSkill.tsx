@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import { TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../context'
 import weaponSkillList from '../../weaponSkillList'
-import { TWeaponOnCharacter } from '../../../interfaces'
-import Button from '../../Button'
-import useMessageToApp from '../../UseMessageToApp'
+import { WeaponSkillPopover } from './WeaponSkillPopover'
 
 type Props = {
 	index: number
@@ -15,30 +14,16 @@ const WeaponSkill = ({ index }: Props) => {
 	const { state } = useContext(context)
 	const { editMode } = state
 	const { register } = useFormContext()
-	const messageToApp = useMessageToApp()
 
 	const watchedWeapon: TWeaponOnCharacter = useWatch({
 		name: `weapons.${index}`,
 	})
 
-	const handleClick = () => {
-		const modifier = 0
-
-		messageToApp({
-			message: 'send message',
-			data: {
-				message: `/r 1d6 ${modifier !== 0 ? modifier : ''} to attack using ${
-					watchedWeapon.skill
-				} with my ${watchedWeapon.name}.`,
-			},
-		})
-	}
-
 	return (
 		<td className='relative rounded-lg'>
 			<div
 				className={twMerge(
-					'mt-1 rounded-lg pr-3 dark:bg-gray-800/50',
+					'mt-1 rounded-lg bg-gray-200/50 pr-3 dark:bg-gray-800/50',
 					editMode === 'view' ? 'hidden' : '',
 				)}
 			>
@@ -54,13 +39,9 @@ const WeaponSkill = ({ index }: Props) => {
 				</select>
 			</div>
 			{editMode === 'view' && (
-				<Button
-					className='w-full py-1'
-					disabled={!watchedWeapon.skill && true}
-					onClick={handleClick}
-				>
-					{watchedWeapon.skill || '—'}
-				</Button>
+				<WeaponSkillPopover index={index}>
+					<span>{watchedWeapon.skill || '—'}</span>
+				</WeaponSkillPopover>
 			)}
 		</td>
 	)

@@ -206,28 +206,7 @@ export type TSystemReceivableMessages =
 			}
 	  }
 
-export type TWeaponSkills =
-	| 'Firearms (Bow)'
-	| 'Fighting (Brawl)'
-	| 'Firearms (Handgun)'
-	| 'Firearms (Rifle/Shotgun)'
-	| 'Fighting (Whip)'
-	| 'Fighting (Garrote)'
-	| 'Fighting (Axe)'
-	| 'Fighting (Flail)'
-	| 'Throw'
-	| 'Fighting (Spear)'
-	| 'Fighting (Chainsaw)'
-	| 'Fighting (Sword)'
-	| 'Firearms (SMG)'
-	| 'Firearms (MG)'
-	| 'Firearms (HG)'
-	| 'Firearms (Heavy)'
-	| 'Electrical Repair'
-	| 'Demolitions'
-	| 'Artillery'
-	| 'Firearms (Flamethrower)'
-	| 'Other'
+export type TWeaponSkills = 'Firearms' | 'Weapons' | 'Scuffling'
 
 export type TWeapon = {
 	name: string

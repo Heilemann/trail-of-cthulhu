@@ -17,7 +17,11 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 
 		return (
 			<div
-				className={twMerge('flex flex-1 flex-col text-xl', className)}
+				className={twMerge(
+					'flex flex-1 flex-col text-xl',
+					borderStyle,
+					className,
+				)}
 				style={{
 					fontFamily: 'CovingtonCondensed',
 				}}
@@ -33,9 +37,8 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 				<TextareaAutosize
 					ref={ref}
 					className={twMerge(
-						`leading-16 mt-1 mb-1 block w-full rounded-lg bg-transparent py-2 text-xl placeholder-gray-500 shadow-sm focus:ring-0 dark:text-white dark:shadow-none dark:focus:ring-0 sm:text-sm`,
-						editMode === 'edit' ? 'bg-gray-200 dark:bg-gray-800/50' : '',
-						borderStyle,
+						`leading-16 mt-1 mb-1 block w-full rounded-lg border-0 bg-transparent py-2 text-xl placeholder-gray-500 transition-all focus:ring-0 dark:text-white dark:shadow-none dark:focus:ring-0 sm:text-sm`,
+						editMode === 'edit' ? 'bg-white px-2 dark:bg-gray-800/50' : 'px-0',
 					)}
 					disabled={editMode === 'view'}
 					// @ts-ignore - the component is typed wrong; it works fine

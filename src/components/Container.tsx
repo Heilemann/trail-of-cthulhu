@@ -22,15 +22,13 @@ export default function Container() {
 	const messageToApp = useMessageToApp()
 	usePostMessageListener({ resetInProgress })
 
+	// type is how we control which sheet to show, if the document is updated
+	// we want to make sure we update the type as well
 	useEffect(() => {
 		setType(document?.type || null)
 	}, [document])
 
-	// useEffect(() => {
-	// 	console.log('>>>>>>>>>> TOC type changed', type)
-	// }, [type])
-
-	const handleFormChanges = () => {
+	const handleDocumentChanges = () => {
 		const subscription = watch(values => {
 			if (!values || !document) return
 			if (JSON.stringify(values) === JSON.stringify(document.values)) return
@@ -61,10 +59,11 @@ export default function Container() {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleFormChanges, [JSON.stringify(document)]) // eslint-disable-line
+	useEffect(handleDocumentChanges, [JSON.stringify(document)]) // eslint-disable-line
 
+	// tell the platform we're ready to receive messages,
+	// the first of which will be 'load' containing our data
 	useEffect(() => {
-		console.log('>>>>>>>>>> TOC system is ready')
 		messageToApp({ message: 'system is ready', data: null })
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -78,12 +77,7 @@ export default function Container() {
 
 	return (
 		<DragAndDrop>
-			<div
-				className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'
-				onDrop={e => {
-					console.log('>>>>>> dropped on iframe', e)
-				}}
-			>
+			<div className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'>
 				{type === 'character' && <Character />}
 				{type === 'note' && <Note />}
 				{type === 'book' && <Book />}

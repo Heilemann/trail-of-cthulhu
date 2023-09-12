@@ -2,7 +2,7 @@ import { TAccess, TDocument, TWeapon, TWeaponDocument } from '../../interfaces'
 
 const weapon: TWeapon = {
 	name: 'Sword',
-	skill: 'Fighting (Brawl)',
+	skill: 'Weapons',
 	range: {
 		pointblank: 1,
 		close: 0,

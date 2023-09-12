@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import { TWeaponOnCharacter } from '../../../interfaces'
+import Button from '../../Button'
 import Input from '../../Input'
 import useMessageToApp from '../../UseMessageToApp'
 import context from '../../context'
-import { TWeaponOnCharacter } from '../../../interfaces'
-import Button from '../../Button'
 
 type Props = {
 	index: number
