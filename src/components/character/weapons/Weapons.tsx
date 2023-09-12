@@ -2,11 +2,11 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 import { DragEvent, useContext, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TWeapon, TWeaponOnCharacter } from '../../interfaces'
-import Button from '../Button'
-import DecoBox from '../DecoBox'
-import { borderStyle } from '../borderStyle'
-import context from '../context'
+import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
+import Button from '../../Button'
+import DecoBox from '../../DecoBox'
+import { borderStyle } from '../../borderStyle'
+import context from '../../context'
 import WeaponRow from './WeaponRow'
 
 export default function Weapons() {
@@ -89,21 +89,29 @@ export default function Weapons() {
 			>
 				<thead>
 					<tr className={twMerge('p-2 text-left', borderStyle)}>
-						<th className='w-36 font-normal text-gray-500'>Name</th>
+						<th className='font-normal text-gray-500'>Name</th>
 						<th className='w-36 font-normal text-gray-500'>Skill</th>
-						<th className='w-18 text-center font-normal text-gray-500'>
-							<span className='hidden sm:inline'>Point Blank</span>
-							<span className='sm:hidden'>PB</span>
+						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
+							<div className='hidden md:inline'>Pt. Blank</div>
+							<div className='md:hidden'>Pt. Blnk</div>
 						</th>
-						<th className='w-18 text-center font-normal text-gray-500'>
+						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
 							Close
 						</th>
-						<th className='w-18 text-center font-normal text-gray-500'>Near</th>
-						<th className='w-18 text-center font-normal text-gray-500'>Long</th>
-						<th className='w-6'></th>
-						<th className='w-6'>
-							<Button onClick={handleAdd} className='my-1 p-1.5'>
-								<PlusIcon className='h-4 w-4' />
+						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
+							Near
+						</th>
+						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
+							Long
+						</th>
+						<th className='w-5'></th>
+						<th className='w-5 text-center'>
+							<Button
+								onClick={handleAdd}
+								className='my-1 p-1.5'
+								aria-label='Add a weapon'
+							>
+								<PlusIcon className='h-4 w-4' title='Add weapon' />
 							</Button>
 						</th>
 					</tr>

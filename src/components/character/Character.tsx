@@ -7,7 +7,7 @@ import BasicInfo from './BasicInfo'
 import Settings from './Settings'
 import Skills from './Skills'
 import Token from './Token'
-import Weapons from './Weapons'
+import Weapons from './weapons/Weapons'
 
 export interface ICharacterProps {}
 

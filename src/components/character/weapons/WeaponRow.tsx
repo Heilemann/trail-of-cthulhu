@@ -1,14 +1,14 @@
-import { WindowIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { TrashIcon, WindowIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TWeaponOnCharacter } from '../../interfaces'
-import Button from '../Button'
-import Input from '../Input'
-import TextArea from '../Textarea'
-import useMessageToApp from '../UseMessageToApp'
-import context from '../context'
-import weaponSkillList from '../weaponSkillList'
+import { TWeaponOnCharacter } from '../../../interfaces'
+import Button from '../../Button'
+import Input from '../../Input'
+import TextArea from '../../Textarea'
+import useMessageToApp from '../../UseMessageToApp'
+import context from '../../context'
+import WeaponSkill from './WeaponSkill'
 
 export interface IWeaponRowProps {
 	index: number
@@ -47,26 +47,9 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 					{editMode === 'view' && <span>{watchedWeapon.name || '—'}</span>}
 				</td>
 
-				<td className='relative w-16 rounded-lg'>
-					<div className='mt-1 rounded-lg pr-3 dark:bg-gray-800/50'>
-						<select
-							className={twMerge(
-								'm-0 w-full cursor-pointer bg-transparent py-2.5 pl-1 text-base',
-								editMode === 'view' ? 'hidden' : '',
-							)}
-							{...register(`weapons.${index}.skill`)}
-						>
-							{weaponSkillList.map(skill => (
-								<option key={skill}>{skill}</option>
-							))}
-						</select>
-					</div>
-					{editMode === 'view' && (
-						<div className='text-left'>{watchedWeapon.skill || '—'}</div>
-					)}
-				</td>
+				<WeaponSkill index={index} />
 
-				<td className='w-4 text-center'>
+				<td className='text-center'>
 					<Input
 						className={twMerge(
 							'mt-1 text-center',
@@ -80,7 +63,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 					)}
 				</td>
 
-				<td className='w-4 text-center'>
+				<td className='text-center'>
 					<Input
 						className={twMerge(
 							'mt-1 text-center',
@@ -94,7 +77,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 					)}
 				</td>
 
-				<td className='w-4 text-center'>
+				<td className='text-center'>
 					<Input
 						className={twMerge(
 							'mt-1 text-center',
@@ -108,7 +91,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 					)}
 				</td>
 
-				<td className='w-4 text-center'>
+				<td className='text-center'>
 					<Input
 						className={twMerge(
 							'mt-1 text-center',
@@ -122,19 +105,24 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 					)}
 				</td>
 
-				<td className='w-4'>
-					<Button onClick={handleOpenWeapon} className='self-end p-1.5'>
-						<WindowIcon className='h-4 w-4' />
+				<td>
+					<Button
+						onClick={handleOpenWeapon}
+						className='self-end p-1.5'
+						aria-label='Open weapon sheet'
+					>
+						<WindowIcon className='h-4 w-4' title='Open weapon sheet' />
 					</Button>
 					<input type='hidden' {...register(`weapons.${index}.documentId`)} />
 				</td>
 
-				<td className='w-4'>
+				<td>
 					<Button
 						onClick={() => handleRemove(index)}
 						className='self-end p-1.5'
+						aria-label='Remove weapon'
 					>
-						<XMarkIcon className='h-4 w-4' />
+						<TrashIcon className='h-4 w-4' title='Remove weapon' />
 					</Button>
 				</td>
 			</tr>
