@@ -7,9 +7,7 @@ import { twMerge } from 'tailwind-merge'
 import HTextArea from '../HTextArea'
 import VInput from '../VInput'
 
-export interface IWeaponProps {}
-
-export default function Weapon(props: IWeaponProps) {
+export default function Weapon() {
 	const { register, control } = useFormContext()
 
 	const skill = useWatch({

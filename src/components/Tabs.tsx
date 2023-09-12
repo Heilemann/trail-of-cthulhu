@@ -1,4 +1,4 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 
 export interface ITabs {
@@ -13,12 +13,11 @@ export interface ITab {
 
 export interface ITabsProps {
 	tabs: ITabs
-	register: UseFormRegister<FieldValues>
 	activeTab: string
 }
 
-export default function Tabs(props: ITabsProps) {
-	const { tabs, register, activeTab } = props
+export default function Tabs({ tabs, activeTab }: ITabsProps) {
+	const { register } = useFormContext()
 
 	return (
 		<div className='flex h-10 rounded-full bg-gray-800 p-1'>

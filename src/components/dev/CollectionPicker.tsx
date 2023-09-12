@@ -1,43 +1,46 @@
 import { useContext, useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+import { TCollection, TSystemConfig } from '../../interfaces'
+import systemConfig from '../../system.json'
 import context from '../context'
 
-type Props = {
-	collections: any
-}
-
-export default function CollectionPicker({ collections }: Props) {
+export default function CollectionPicker() {
 	const { state, dispatch } = useContext(context)
-	const { register } = useFormContext()
+	const { register, reset } = useFormContext()
+	const { collections } = systemConfig as TSystemConfig
 
-	const documentId = useWatch({
+	const defaultCollectionType = collections[0].type
+	// const defaultCollectionType = 'weapon' // TODO: change back to the above
+
+	const selectedCollectionType = useWatch({
 		name: 'documentId',
-		defaultValue: '',
+		defaultValue: defaultCollectionType,
 	})
 
 	useEffect(() => {
-		if (!documentId) return
+		if (!selectedCollectionType || !state.documents) return
+		if (selectedCollectionType === state.documentId) return
 
 		dispatch({
 			type: 'LOAD',
 			payload: {
-				documentId,
-				document: state.documents?.find(d => d._id === documentId),
+				...state,
+				document: state.documents.find(d => d.type === selectedCollectionType),
+				documentId: selectedCollectionType,
 			},
 		})
-	}, [documentId]) // eslint-disable-line react-hooks/exhaustive-deps
+		// reset(state.documents.find(d => d.type === selectedCollectionType))
+	}, [state.documents, selectedCollectionType]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<select
 			className='mr-4 h-10 rounded-full bg-gray-800 px-3 text-white'
+			defaultValue={defaultCollectionType}
 			{...register('documentId')}
 		>
-			{collections.map((collection: any) => (
-				<option
-					key={collection.type}
-					value={collection.type}
-					onClick={() => {}}
-				>
+			pruda
+			{collections.map((collection: TCollection) => (
+				<option key={collection.type} value={collection.type}>
 					{collection.singularName}
 				</option>
 			))}

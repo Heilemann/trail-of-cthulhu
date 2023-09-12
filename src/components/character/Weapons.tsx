@@ -1,17 +1,15 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
-import { DragEvent, useContext, useEffect, useState } from 'react'
+import { DragEvent, useContext, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeapon, TWeaponOnCharacter } from '../../interfaces'
-import { borderStyle } from '../borderStyle'
 import Button from '../Button'
-import context from '../context'
 import DecoBox from '../DecoBox'
+import { borderStyle } from '../borderStyle'
+import context from '../context'
 import WeaponRow from './WeaponRow'
 
-export interface IWeaponsProps {}
-
-export default function Weapons(props: IWeaponsProps) {
+export default function Weapons() {
 	const { state } = useContext(context)
 	const { documents } = state
 	const { control } = useFormContext()
@@ -23,7 +21,8 @@ export default function Weapons(props: IWeaponsProps) {
 	const handleAdd = () => {
 		const weapon: TWeaponOnCharacter = {
 			documentId: '',
-			name: '',
+			skill: 'Fighting (Brawl)',
+			name: 'Unnamed Weapon',
 			range: {
 				pointblank: 0,
 				close: 0,
@@ -91,6 +90,7 @@ export default function Weapons(props: IWeaponsProps) {
 				<thead>
 					<tr className={twMerge('p-2 text-left', borderStyle)}>
 						<th className='w-36 font-normal text-gray-500'>Name</th>
+						<th className='w-36 font-normal text-gray-500'>Skill</th>
 						<th className='w-18 text-center font-normal text-gray-500'>
 							<span className='hidden sm:inline'>Point Blank</span>
 							<span className='sm:hidden'>PB</span>
@@ -110,7 +110,14 @@ export default function Weapons(props: IWeaponsProps) {
 				</thead>
 				<tbody>
 					{fields.map((weapon, index) => {
-						return <WeaponRow key={index} index={index} remove={remove} />
+						return (
+							<WeaponRow
+								key={index}
+								index={index}
+								remove={remove}
+								weapon={weapon as any}
+							/>
+						)
 					})}
 				</tbody>
 			</table>

@@ -1,8 +1,49 @@
 import { FieldValues } from 'react-hook-form'
 
+export type TGrid = {
+	type: 'hex' | 'square'
+	size: number
+	unitSize: number
+	unit: string
+}
+
+export type stringBoolean = 'true' | 'false'
+export type windowSize = 'small' | 'medium' | 'large'
+
+export type TCollection = {
+	type: TDocumentType
+	singularName: string
+	pluralName: string
+	description: string
+	hasEditMode: stringBoolean
+	windowSize: windowSize
+	thumbnailField: string[]
+	allowCreate: stringBoolean
+	canAssumeAsCharacter: stringBoolean
+}
+
+export type TSystemConfig = {
+	name: string
+	version: string
+	author: string
+	description: string
+	code: string
+	grid: TGrid
+	assetsPath: string
+	collections: TCollection[]
+}
+
+export type TDocumentType =
+	| 'character'
+	| 'note'
+	| 'book'
+	| 'scene'
+	| 'weapon'
+	| 'handout'
+
 export type TDocument = {
 	_id: string // UID
-	type: string // e.g. 'chararacter' or 'spell'
+	type: TDocumentType // e.g. 'chararacter' or 'spell'
 	creator: string // UID of the creating user
 	access: TAccess // 'private' or 'public'
 	accessList: string[] // list of userIds
@@ -15,14 +56,6 @@ export type TDocument = {
 export type TAccess = 'private' | 'public'
 
 export type TValues = {
-	// info: {
-	//   name: string
-	//   occupation: string
-	//   residence: string
-	//   birthplace: string
-	//   pronouns: string
-	//   age: string
-	// }
 	[key: string]: any
 	weapons?: TWeapon[]
 	skills?: TSkills
@@ -140,26 +173,23 @@ export type TAppReceivableMessages =
 			}
 	  }
 
+export type TSystemReceivableMessageData = {
+	documentId: string
+	documents: TDocument[]
+	assets: TAsset[]
+	editMode: TEditMode
+}
+
 export type TSystemReceivableMessages =
 	| {
 			message: 'load'
 			source: 'Aux'
-			data: {
-				documentId: string
-				documents: TDocument[]
-				assets: TAsset[]
-				editMode: TEditMode
-			}
+			data: TSystemReceivableMessageData
 	  }
 	| {
 			message: 'update data'
 			source: 'App'
-			data: {
-				documentId: string
-				documents: TDocument[]
-				assets: TAsset[]
-				editMode: TEditMode
-			}
+			data: TSystemReceivableMessageData
 	  }
 	| {
 			message: 'update document mode'
@@ -201,6 +231,7 @@ export type TWeaponSkills =
 
 export type TWeapon = {
 	name: string
+	skill: TWeaponSkills
 	range: {
 		pointblank: number
 		close: number
@@ -212,4 +243,8 @@ export type TWeapon = {
 
 export type TWeaponOnCharacter = TWeapon & {
 	documentId: string
+}
+
+export type TWeaponDocument = TDocument & {
+	values: TWeapon
 }

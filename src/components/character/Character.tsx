@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { useWatch } from 'react-hook-form'
-import context from '../context'
 import DecoBox from '../DecoBox'
 import HInput from '../HInput'
+import context from '../context'
 import BasicInfo from './BasicInfo'
 import Settings from './Settings'
 import Skills from './Skills'
@@ -13,7 +13,7 @@ export interface ICharacterProps {}
 
 export default function Character(props: ICharacterProps) {
 	const { state } = useContext(context)
-	const { editMode, document } = state
+	const { document } = state
 	const { values } = document
 	const { skills } = values
 
@@ -43,9 +43,6 @@ export default function Character(props: ICharacterProps) {
 			<Settings />
 
 			{/* <Backstory /> */}
-			{/* <TestWeapon />
-			<TestWeapon />
-			<TestWeapon /> */}
 		</div>
 	)
 }

@@ -5,29 +5,29 @@ import { twMerge } from 'tailwind-merge'
 import { TWeaponOnCharacter } from '../../interfaces'
 import Button from '../Button'
 import Input from '../Input'
+import TextArea from '../Textarea'
 import useMessageToApp from '../UseMessageToApp'
 import context from '../context'
-import WeaponDamage from './WeaponDamage'
-import TextArea from '../Textarea'
+import weaponSkillList from '../weaponSkillList'
 
 export interface IWeaponRowProps {
 	index: number
 	remove: UseFieldArrayRemove
+	weapon: TWeaponOnCharacter
 }
 
-export default function WeaponRow(props: IWeaponRowProps) {
-	const { index, remove } = props
+export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 	const { state } = useContext(context)
 	const { editMode } = state
 	const { register } = useFormContext()
 	const messageToApp = useMessageToApp()
 
-	const weapon = useWatch({
+	const watchedWeapon: TWeaponOnCharacter = useWatch({
 		name: `weapons.${index}`,
-	}) as TWeaponOnCharacter
+	})
 
 	const handleOpenWeapon = () => {
-		const { documentId } = weapon
+		const { documentId } = watchedWeapon
 		messageToApp({ message: 'open document', data: { documentId } })
 	}
 
@@ -35,73 +35,94 @@ export default function WeaponRow(props: IWeaponRowProps) {
 		remove(index)
 	}
 
-	if (!weapon) return null
-
 	return (
 		<>
 			<tr key={index}>
 				<td className='text-left'>
-					<TextArea
+					<Input
 						className={twMerge(
-							'bg-transparent dark:bg-transparent',
+							'bg-transparent',
 							editMode === 'view' && 'hidden',
 						)}
 						placeholder='Weapon...'
 						{...register(`weapons.${index}.name`)}
 					/>
-					{editMode === 'view' && <span>{weapon.name || '—'}</span>}
+					{editMode === 'view' && <span>{watchedWeapon.name || '—'}</span>}
 				</td>
 
-				{/* <WeaponDamage index={index} /> */}
+				<td className='relative w-28 rounded-lg'>
+					<div className='rounded-lg bg-gray-800'>
+						<select
+							className={twMerge(
+								'm-0 w-full cursor-pointer bg-transparent py-2.5 pl-1 text-base',
+								editMode === 'view' ? 'hidden' : '',
+							)}
+							{...register(`weapons.${index}.skill`)}
+						>
+							{weaponSkillList.map(skill => (
+								<option key={skill}>{skill}</option>
+							))}
+						</select>
+					</div>
+					{editMode === 'view' && (
+						<div className='text-left'>{watchedWeapon.skill || '—'}</div>
+					)}
+				</td>
 
-				{/* <WeaponSkills index={index} /> */}
-
-				<td className='text-center'>
+				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'bg-transparent dark:bg-transparent',
-							editMode === 'view' && 'hidden',
+							'text-center',
+							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
-						{...register(`weapons.${index}.range.pointBlank`)}
+						{...register(`weapons.${index}.range.pointblank`)}
 					/>
-					{editMode === 'view' && <span>{weapon.range.pointblank || '—'}</span>}
+					{editMode === 'view' && (
+						<span>{watchedWeapon.range.pointblank || '—'}</span>
+					)}
 				</td>
 
-				<td className='text-center'>
+				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'bg-transparent dark:bg-transparent',
-							editMode === 'view' && 'hidden',
+							'text-center',
+							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
 						{...register(`weapons.${index}.range.close`)}
 					/>
-					{editMode === 'view' && <span>{weapon.range.close || '—'}</span>}
+					{editMode === 'view' && (
+						<span>{watchedWeapon.range.close || '—'}</span>
+					)}
 				</td>
 
-				<td className='text-center'>
+				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'bg-transparent dark:bg-transparent',
-							editMode === 'view' && 'hidden',
+							'text-center',
+							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
 						{...register(`weapons.${index}.range.near`)}
 					/>
-					{editMode === 'view' && <span>{weapon.range.near || '—'}</span>}
+					{editMode === 'view' && (
+						<span>{watchedWeapon.range.near || '—'}</span>
+					)}
 				</td>
 
-				<td className='text-center'>
+				<td className='w-4 text-center'>
 					<Input
 						className={twMerge(
-							'bg-transparent dark:bg-transparent',
-							editMode === 'view' && 'hidden',
+							'text-center',
+							editMode === 'view' ? 'hidden' : '',
 						)}
 						placeholder='—'
 						{...register(`weapons.${index}.range.long`)}
 					/>
-					{editMode === 'view' && <span>{weapon.range.long || '—'}</span>}
+					{editMode === 'view' && (
+						<span>{watchedWeapon.range.long || '—'}</span>
+					)}
 				</td>
 
 				<td className='w-4'>
@@ -121,18 +142,18 @@ export default function WeaponRow(props: IWeaponRowProps) {
 				</td>
 			</tr>
 			<tr className='border-b border-gray-300 dark:border-gray-800'>
-				<td className='text-left ' colSpan={7}>
+				<td className='text-left ' colSpan={6}>
 					<TextArea
 						className={twMerge(
-							'bg-transparent text-sm text-gray-500 dark:bg-transparent dark:text-gray-500',
+							'text-sm text-gray-500 dark:text-gray-500',
 							editMode === 'view' && 'hidden',
 						)}
-						placeholder='&mdash;'
+						placeholder='Notes...'
 						{...register(`weapons.${index}.notes`)}
 					/>
-					{editMode === 'view' && weapon.notes && (
-						<div className='mt-1 text-sm text-gray-500 dark:text-gray-500'>
-							{weapon.notes}
+					{editMode === 'view' && watchedWeapon.notes && (
+						<div className='my-1 text-sm text-gray-500 dark:text-gray-500'>
+							{watchedWeapon.notes}
 						</div>
 					)}
 				</td>

@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import context from '../context'
 import DecoBox from '../DecoBox'
 import SectionDivider from '../SectionDivider'
+import context from '../context'
 import CreditRating from './CreditRating'
 import GeneralBuildPoints from './GeneralBuildPoints'
 import Health from './Health'
@@ -18,10 +18,6 @@ export default function SkillsList(props: ISkillsListProps) {
 	const { editMode } = state
 
 	const bookhounds = useWatch({ name: 'bookhounds' })
-	// const {
-	// 	formState: { errors },
-	// } = useFormContext()
-	// console.log(errors)
 
 	return (
 		<DecoBox>
@@ -34,7 +30,9 @@ export default function SkillsList(props: ISkillsListProps) {
 			<div
 				className={twMerge(
 					'grid grid-cols-1 gap-4',
-					editMode === 'view' ? 'md:grid-cols-3' : 'lg:grid-cols-3',
+					editMode === 'view'
+						? 'md:grid-cols-2 lg:grid-cols-3'
+						: 'md:grid-cols-2 lg:grid-cols-3',
 				)}
 			>
 				<div>

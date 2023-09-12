@@ -1,14 +1,10 @@
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
-import context from './context'
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, IInputProps>(
 	({ className, ...rest }, ref) => {
-		const { state } = React.useContext(context)
-		const { editMode } = state
-
 		return (
 			<input
 				ref={ref}

@@ -1,12 +1,6 @@
-import _ from 'lodash'
-import { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import {
-	TDocument,
-	TState,
-	TSystemReceivableMessages,
-	TValues,
-} from '../interfaces'
+import { TDocument, TDocumentType, TValues } from '../interfaces'
 import DragAndDrop from './DragAndDrop'
 import useMessageToApp from './UseMessageToApp'
 import Book from './book/Book'
@@ -16,18 +10,25 @@ import Handout from './handout/Handout'
 import Note from './note/Note'
 import Scene from './scene/Scene'
 import Weapon from './weapon/Weapon'
+import usePostMessageListener from './hooks/usePostMessageListener'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
 	const [document, setDocument] = useState<TDocument | null>(state.document)
-	const type = document?.type || null
-	const { watch, reset } = useFormContext<TValues>()
+	const [type, setType] = useState<TDocumentType | null>(state.document?.type)
+	const { watch } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
+
 	const messageToApp = useMessageToApp()
+	usePostMessageListener({ resetInProgress })
 
 	useEffect(() => {
-		setDocument(state.document)
-	}, [state.document])
+		setType(document?.type || null)
+	}, [document])
+
+	// useEffect(() => {
+	// 	console.log('>>>>>>>>>> TOC type changed', type)
+	// }, [type])
 
 	const handleFormChanges = () => {
 		const subscription = watch(values => {
@@ -62,97 +63,16 @@ export default function Container() {
 	}
 	useEffect(handleFormChanges, [JSON.stringify(document)]) // eslint-disable-line
 
-	// listen for messages from the app in window.parent
-	// (which are forwarded by aux) deal with them as needed
-	const messageListener = useCallback(
-		(e: MessageEvent) => {
-			const messagePayload = e.data as TSystemReceivableMessages
-			const { message, source, data } = { ...messagePayload }
-			console.log('message', message, 'source', source, 'data', data)
-			const wrongSource = source !== 'Aux' && source !== 'App'
-
-			if (wrongSource) return
-
-			console.log('System received message:', messagePayload)
-
-			switch (message) {
-				case 'load':
-					const { documentId } = data
-					const document = data.documents?.find(
-						(d: TDocument) => d._id === documentId,
-					)
-
-					if (!document) {
-						throw new Error(`document with id ${documentId} not found by aux`)
-					}
-
-					const payload = {
-						...data,
-						document,
-					}
-
-					dispatch({
-						type: 'LOAD',
-						payload,
-					})
-
-					reset(payload.document.values)
-
-					break
-
-				case 'update data':
-					let updatePayload: Partial<TState> = {
-						...data,
-						documents: data.documents,
-					}
-
-					const newDocument = data.documents?.find(
-						(d: TDocument) => d._id === state.documentId,
-					)
-
-					if (!newDocument) {
-						console.error('New document not found')
-						return
-					}
-
-					if (!_.isEqual(newDocument, state.document)) {
-						updatePayload = {
-							...updatePayload,
-							document: newDocument,
-						}
-					}
-
-					dispatch({
-						type: 'LOAD',
-						payload: updatePayload,
-					})
-
-					resetInProgress.current = true
-
-					reset(newDocument?.values)
-
-					break
-
-				case 'update document mode':
-					dispatch({
-						type: 'LOAD',
-						payload: data,
-					})
-					break
-			}
-		},
-		[dispatch, reset, state],
-	)
-
-	const initMessageListener = () => {
-		window.addEventListener('message', messageListener)
-		return () => window.removeEventListener('message', messageListener)
-	}
-	useEffect(initMessageListener, [state, messageListener])
-
 	useEffect(() => {
+		console.log('>>>>>>>>>> TOC system is ready')
 		messageToApp({ message: 'system is ready', data: null })
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+	useEffect(() => {
+		if (!state.document) return
+		setDocument(state.document)
+		setType(state.document.type)
+	}, [state.document])
 
 	if (!type) return null
 

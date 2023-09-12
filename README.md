@@ -9,9 +9,7 @@ This will enable the developemnt toolbar to show up when you're running the loca
 `npm install`
 `npm start`
 
-## To Develop
-
-During development use the localhost server to test your immediate changes. It attempts to create a way to quickly iterate through ideas without having to go to the platform to test them.
+The server runs at `http://localhost:3004/`. During development use the localhost server to test your immediate changes like layout. It attempts to create a way to quickly iterate through ideas without having to go to the platform to test them.
 
 It is however a very imperfect preview, and it's best to test your changes on the platform. To get the project built and running on the platform, make sure your project is checked into git and run the following command, and when it's done import the system into the platform.
 
