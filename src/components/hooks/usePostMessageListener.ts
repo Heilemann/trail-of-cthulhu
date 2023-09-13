@@ -55,12 +55,16 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						(d: TDocument) => d._id === state.documentId,
 					)
 
-					if (!newDocument) {
-						console.error('New document not found')
-						return
-					}
+					// if (!newDocument) {
+					// 	console.error('New document not found')
+					// 	return
+					// }
 
-					if (_.isEqual(newDocument, state.document)) {
+					if (
+						_.isEqual(data.documents, state.documents) &&
+						_.isEqual(newDocument, state.document) &&
+						_.isEqual(data.assets, state.assets)
+					) {
 						return
 					}
 
