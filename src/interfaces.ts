@@ -98,6 +98,7 @@ export type TReducerAction =
 	| {
 			type: 'UPDATE_DOCUMENT_VALUES'
 			payload: {
+				documentId: string
 				values: FieldValues
 			}
 	  }

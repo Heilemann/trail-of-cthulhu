@@ -9,6 +9,8 @@ export default function Reducer(state: TState, action: TReducerAction) {
 			}
 
 		case 'UPDATE_DOCUMENT_VALUES':
+			if (!state.documentId) throw new Error('No documentId')
+
 			return {
 				...state,
 				documents: state.documents.map(document => {

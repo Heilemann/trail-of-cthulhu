@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { TDocument, TDocumentType, TValues } from '../interfaces'
@@ -7,10 +8,10 @@ import Book from './book/Book'
 import Character from './character/Character'
 import context from './context'
 import Handout from './handout/Handout'
+import usePostMessageListener from './hooks/usePostMessageListener'
 import Note from './note/Note'
 import Scene from './scene/Scene'
 import Weapon from './weapon/Weapon'
-import usePostMessageListener from './hooks/usePostMessageListener'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
@@ -22,16 +23,14 @@ export default function Container() {
 	const messageToApp = useMessageToApp()
 	usePostMessageListener({ resetInProgress })
 
-	// type is how we control which sheet to show, if the document is updated
-	// we want to make sure we update the type as well
-	useEffect(() => {
-		setType(document?.type || null)
-	}, [document])
-
 	const handleDocumentChanges = () => {
+		// type controls the sheet to show, if the document is updated
+		// we update the type as well
+		setType(document?.type || null)
+
 		const subscription = watch(values => {
 			if (!values || !document) return
-			if (JSON.stringify(values) === JSON.stringify(document.values)) return
+			if (_.isEqual(values, document.values)) return
 			if (resetInProgress.current) {
 				resetInProgress.current = false
 				return
@@ -49,7 +48,10 @@ export default function Container() {
 
 			dispatch({
 				type: 'UPDATE_DOCUMENT_VALUES',
-				payload: { values: values },
+				payload: {
+					documentId: document._id,
+					values: values,
+				},
 			})
 
 			messageToApp({ message: 'save', data: payload })
@@ -61,9 +63,9 @@ export default function Container() {
 	}
 	useEffect(handleDocumentChanges, [JSON.stringify(document)]) // eslint-disable-line
 
-	// tell the platform we're ready to receive messages,
-	// the first of which will be 'load' containing our data
 	useEffect(() => {
+		// tell the platform we're ready to receive messages,
+		// the first of which will be 'load' containing our data
 		messageToApp({ message: 'system is ready', data: null })
 	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 

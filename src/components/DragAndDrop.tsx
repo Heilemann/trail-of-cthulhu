@@ -48,9 +48,6 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 			const wrongSource = source !== 'App' && source !== 'Aux'
 
 			if (wrongSource) return
-			// if (e.origin !== parentOrigin || source !== 'App') return
-
-			// console.log('drag and drop message listener', message, source)
 
 			switch (message) {
 				case 'onDragEnter':
