@@ -1,8 +1,8 @@
 import * as Popover from '@radix-ui/react-popover'
 import { MouseEventHandler, ReactNode, useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import useMessageToApp from '../UseMessageToApp'
-import context from '../context'
+import useMessageToApp from '../../UseMessageToApp'
+import context from '../../context'
 
 type Props = {
 	name: string

@@ -14,10 +14,10 @@ const emptyWeapon: TWeaponOnCharacter = {
 	skill: 'Weapons',
 	name: 'Unnamed Weapon',
 	range: {
-		pointblank: 0,
-		close: 0,
-		near: 0,
-		long: 0,
+		pointblank: '',
+		close: '',
+		near: '',
+		long: '',
 	},
 	notes: '',
 }

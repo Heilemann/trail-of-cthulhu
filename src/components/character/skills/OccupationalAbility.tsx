@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import context from '../context'
+import context from '../../context'
 
 export interface IOccupationalAbilityProps {
 	name: string

@@ -213,10 +213,10 @@ export type TWeapon = {
 	name: string
 	skill: TWeaponSkills
 	range: {
-		pointblank: number
-		close: number
-		near: number
-		long: number
+		pointblank: string
+		close: string
+		near: string
+		long: string
 	}
 	notes: string
 }

@@ -1,5 +1,5 @@
 import * as Popover from '@radix-ui/react-popover'
-import SkillPopoverContents from './character/SkillPopoverContents'
+import SkillPopoverContents from './character/skills/SkillPopoverContents'
 
 type Props = {
 	name: string

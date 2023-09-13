@@ -1,54 +1,32 @@
 import * as Popover from '@radix-ui/react-popover'
-import Button from '../../Button'
-import { TWeaponOnCharacter } from '../../../interfaces'
-import { useWatch } from 'react-hook-form'
-import useMessageToApp from '../../UseMessageToApp'
+import React, { useState } from 'react'
+import WeaponSkillPopoverContent from './WeaponSkillPopoverContent'
 
 type Props = {
 	index: number
+	skillName: string
 	children: React.ReactNode
 }
 
 export function WeaponSkillPopover({
 	index,
+	skillName,
 	children,
 	...rest
 }: Props & React.HTMLAttributes<HTMLDivElement>) {
-	const messageToApp = useMessageToApp()
-
-	const watchedWeapon: TWeaponOnCharacter = useWatch({
-		name: `weapons.${index}`,
-	})
-
-	const handleClick = () => {
-		const modifier = 0
-
-		messageToApp({
-			message: 'send message',
-			data: {
-				message: `/r 1d6 ${modifier !== 0 ? modifier : ''} to attack using ${
-					watchedWeapon.skill
-				} with my ${watchedWeapon.name}.`,
-			},
-		})
-	}
+	const [open, setOpen] = useState(false)
 
 	return (
 		<div {...rest}>
-			<Popover.Root>
-				<Popover.Trigger asChild>{children}</Popover.Trigger>
-				<Popover.Portal>
-					<Popover.Content className='PopoverContent' sideOffset={5}>
-						<Button
-							className='w-full py-1'
-							disabled={!watchedWeapon?.skill && true}
-							onClick={handleClick}
-						>
-							Attack!
-						</Button>
-						<Popover.Arrow className='fill-white dark:fill-gray-800' />
-					</Popover.Content>
-				</Popover.Portal>
+			<Popover.Root open={open}>
+				<Popover.Trigger
+					asChild
+					onClick={() => setOpen(!open)}
+					className='cursor-pointer'
+				>
+					{children}
+				</Popover.Trigger>
+				<WeaponSkillPopoverContent setOpen={setOpen} index={index} />
 			</Popover.Root>
 		</div>
 	)

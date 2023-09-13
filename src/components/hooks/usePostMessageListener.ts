@@ -90,7 +90,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					break
 			}
 		},
-		[dispatch, reset, resetInProgress, state.document, state.documentId],
+		[dispatch, reset, resetInProgress], // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	useEffect(() => {

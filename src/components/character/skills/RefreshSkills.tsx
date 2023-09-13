@@ -1,9 +1,9 @@
 import { useFormContext, useWatch } from 'react-hook-form'
-import Button from '../Button'
+import Button from '../../Button'
 
-export interface IRefreshSkillsProps {}
+export interface IRefreshAllSkillsProps {}
 
-export default function RefreshSkills(props: IRefreshSkillsProps) {
+export default function RefreshAllSkills(props: IRefreshAllSkillsProps) {
 	const { setValue } = useFormContext()
 
 	const skills = useWatch({
@@ -33,7 +33,7 @@ export default function RefreshSkills(props: IRefreshSkillsProps) {
 
 	return (
 		<Button onClick={handleRefresh} className='w-full sm:w-auto'>
-			Refresh Pool Points
+			Refresh All
 		</Button>
 	)
 }

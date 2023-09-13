@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import DecoBox from '../DecoBox'
-import SectionDivider from '../SectionDivider'
-import context from '../context'
-import CreditRating from './CreditRating'
-import GeneralBuildPoints from './GeneralBuildPoints'
-import Health from './Health'
-import InvestigativeBuildPoints from './InvestigativeBuildPoints'
+import DecoBox from '../../DecoBox'
+import SectionDivider from '../../SectionDivider'
+import context from '../../context'
+import BuildPoints from './BuildPoints'
+import CreditRating from '../CreditRating'
+import Health from '../Health'
+import Refresh24Hour from './Refresh24Hour'
 import RefreshSkills from './RefreshSkills'
 import Skill from './Skill'
 
@@ -21,10 +21,14 @@ export default function SkillsList(props: ISkillsListProps) {
 
 	return (
 		<DecoBox>
-			<div className='mb-4 grid-cols-3 gap-4 sm:grid'>
+			<div className='mb-4 grid-cols-4 gap-4 sm:grid'>
 				<RefreshSkills />
-				<InvestigativeBuildPoints />
-				<GeneralBuildPoints />
+				<Refresh24Hour />
+				<BuildPoints
+					watchKey='skills.investigative'
+					label='Invest. Build Points'
+				/>
+				<BuildPoints watchKey='skills.general' label='General Build Points' />
 			</div>
 
 			<div

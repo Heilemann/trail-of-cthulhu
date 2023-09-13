@@ -4,10 +4,10 @@ const weapon: TWeapon = {
 	name: 'Sword',
 	skill: 'Weapons',
 	range: {
-		pointblank: 1,
-		close: 0,
-		near: 0,
-		long: 0,
+		pointblank: '1',
+		close: '0',
+		near: '',
+		long: '',
 	},
 	notes: '',
 }

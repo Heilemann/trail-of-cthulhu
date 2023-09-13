@@ -5,7 +5,7 @@ import HInput from '../HInput'
 import context from '../context'
 import BasicInfo from './BasicInfo'
 import Settings from './Settings'
-import Skills from './Skills'
+import Skills from './skills/Skills'
 import Token from './Token'
 import Weapons from './weapons/Weapons'
 

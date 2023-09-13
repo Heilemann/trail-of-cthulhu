@@ -24,8 +24,8 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 
 	const isDisabled =
 		!watchedWeapon?.range ||
-		!watchedWeapon.range[rangeType] ||
-		isNaN(watchedWeapon.range[rangeType])
+		watchedWeapon.range[rangeType] === '' ||
+		watchedWeapon.range[rangeType] === undefined
 
 	// enum for rangeType
 	enum range {
@@ -35,10 +35,33 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 		long = 'long',
 	}
 
+	const validateNumberOrEmpty = (value: string) => {
+		return (
+			value === '' || !isNaN(Number(value)) || 'Input must be a number or empty'
+		)
+	}
+
 	const handleClick = () => {
 		const roll = '/r 1d6'
-		const modifier = watchedWeapon.range[rangeType]
-		const message = `${roll} + ${modifier} for damage at ${range[rangeType]} range with my ${watchedWeapon.name}`
+		const modifier = watchedWeapon.range[rangeType] // This is initially a string
+
+		let modifierString = ''
+
+		if (modifier !== undefined && modifier !== '') {
+			const modifierNumber = Number(modifier)
+
+			// Ensure the conversion was successful and the value is not NaN
+			if (!isNaN(modifierNumber)) {
+				if (modifierNumber > 0) {
+					modifierString = ` + ${modifierNumber}`
+				} else if (modifierNumber < 0) {
+					// Convert to positive to avoid double minus (e.g., --3)
+					modifierString = ` - ${Math.abs(modifierNumber)}`
+				} // No need for an else clause here because modifierNumber === 0 effectively adds nothing
+			}
+		}
+
+		const message = `${roll}${modifierString} for damage at ${range[rangeType]} range with my ${watchedWeapon.name}`
 
 		messageToApp({
 			message: 'send message',
@@ -55,14 +78,13 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 				)}
 				type='number'
 				placeholder='—'
-				{...register(`weapons.${index}.range.${rangeType}`)}
+				{...register(`weapons.${index}.range.${rangeType}`, {
+					validate: validateNumberOrEmpty,
+				})}
 			/>
 			{editMode === 'view' && (
 				<Button
-					className={twMerge(
-						'w-full py-1',
-						isDisabled && 'cursor-default bg-transparent dark:bg-transparent',
-					)}
+					className='w-full py-1'
 					disabled={isDisabled}
 					onClick={handleClick}
 				>

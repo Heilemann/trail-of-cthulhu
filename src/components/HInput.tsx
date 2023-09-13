@@ -7,10 +7,15 @@ import context from './context'
 
 interface IHInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
+	labelClassName?: string
+	inputClassName?: string
 }
 
 const HInput = forwardRef<HTMLInputElement, IHInputProps>(
-	({ className, label, ...rest }: IHInputProps, ref) => {
+	(
+		{ className, label, labelClassName, inputClassName, ...rest }: IHInputProps,
+		ref,
+	) => {
 		const { state } = useContext(context)
 		const { editMode } = state
 
@@ -26,7 +31,10 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 				}}
 			>
 				<Label
-					className='w-2/5 self-center whitespace-nowrap text-gray-500'
+					className={twMerge(
+						'w-2/5 self-center whitespace-nowrap text-gray-500',
+						labelClassName,
+					)}
 					htmlFor={rest.name}
 				>
 					{label}
@@ -35,8 +43,9 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 				<Input
 					ref={ref}
 					className={twMerge(
-						'my-1 bg-transparent py-1.5 text-right dark:bg-transparent dark:autofill:bg-yellow-400/20',
+						'my-1 w-3/5 bg-transparent py-1.5 text-right dark:bg-transparent',
 						editMode === 'edit' ? 'bg-white dark:bg-gray-800/50' : '',
+						inputClassName,
 					)}
 					id={rest.name}
 					disabled={editMode === 'view'}

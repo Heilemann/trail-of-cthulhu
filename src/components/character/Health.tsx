@@ -1,5 +1,5 @@
 import { useWatch } from 'react-hook-form'
-import Skill from './Skill'
+import Skill from './skills/Skill'
 
 export interface IHealthProps {}
 
