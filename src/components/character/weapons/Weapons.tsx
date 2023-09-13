@@ -19,6 +19,7 @@ const emptyWeapon: TWeaponOnCharacter = {
 		near: '',
 		long: '',
 	},
+	ammo: '',
 	notes: '',
 }
 
@@ -104,6 +105,9 @@ export default function Weapons() {
 						</th>
 						<th className='w-14 text-center font-normal text-gray-500 md:w-20'>
 							Long
+						</th>
+						<th className='w-12 text-center font-normal text-gray-500 md:w-20'>
+							Ammo
 						</th>
 						<th className='w-5'></th>
 						<th className='w-5 text-center'>

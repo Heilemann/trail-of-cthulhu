@@ -9,6 +9,7 @@ const weapon: TWeapon = {
 		near: '',
 		long: '',
 	},
+	ammo: '',
 	notes: '',
 }
 

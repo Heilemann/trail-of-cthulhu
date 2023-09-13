@@ -218,6 +218,7 @@ export type TWeapon = {
 		near: string
 		long: string
 	}
+	ammo: string
 	notes: string
 }
 

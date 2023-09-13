@@ -10,6 +10,7 @@ import useMessageToApp from '../../UseMessageToApp'
 import context from '../../context'
 import WeaponSkill from './WeaponSkill'
 import WeaponRange from './WeaponRange'
+import WeaponAmmo from './WeaponAmmo'
 
 export interface IWeaponRowProps {
 	index: number
@@ -54,6 +55,8 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 				<WeaponRange index={index} rangeType='close' />
 				<WeaponRange index={index} rangeType='near' />
 				<WeaponRange index={index} rangeType='long' />
+
+				<WeaponAmmo index={index} />
 
 				<td>
 					<Button
