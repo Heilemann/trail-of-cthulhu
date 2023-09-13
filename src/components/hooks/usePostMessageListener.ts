@@ -22,6 +22,8 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 
 			if (wrongSource) return
 
+			console.log('System received message:', message, data)
+
 			switch (message) {
 				case 'load':
 					console.log('System received load message:', data)
