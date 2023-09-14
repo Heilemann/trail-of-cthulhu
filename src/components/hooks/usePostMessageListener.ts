@@ -45,9 +45,9 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						type: 'LOAD',
 						payload,
 					})
-					console.log('payload', payload)
+
 					reset(payload.document.values)
-					console.log('payload.document.values', payload.document.values)
+
 					break
 
 				case 'update data': {
@@ -55,6 +55,8 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
 					)
+
+					console.log('newDocument', newDocument, documentId, data.documents)
 
 					if (!newDocument) {
 						console.error('New document not found')
