@@ -79,6 +79,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					})
 
 					resetInProgress.current = true
+					console.log('Resetting form', newDocument?.values)
 
 					reset(newDocument?.values)
 

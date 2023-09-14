@@ -45,6 +45,7 @@ export default function Container() {
 					...values,
 				},
 			}
+			console.log('Dispatching UPDATE_DOCUMENT_VALUES', values)
 
 			dispatch({
 				type: 'UPDATE_DOCUMENT_VALUES',

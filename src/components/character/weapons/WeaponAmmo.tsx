@@ -11,7 +11,7 @@ const WeaponAmmo = ({ index }: Props) => {
 	})
 	const ammo = watchedWeapon?.ammo
 
-	return <div>Ammo! {ammo}</div>
+	return <td>Ammo! {ammo}</td>
 }
 
 export default WeaponAmmo

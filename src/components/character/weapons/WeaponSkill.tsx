@@ -20,7 +20,7 @@ const WeaponSkill = ({ index }: Props) => {
 	})
 
 	const skill: TSkill = useWatch({
-		name: `skills.general.${watchedWeapon.skill}`,
+		name: `skills.general.${watchedWeapon?.skill}`,
 		defaultValue: {
 			pool: '0',
 			rating: '0',
@@ -28,9 +28,9 @@ const WeaponSkill = ({ index }: Props) => {
 	})
 	const { pool, rating } = skill
 
-	let skillDisplayString: string = watchedWeapon.skill || '—'
+	let skillDisplayString: string = watchedWeapon?.skill || '—'
 
-	if (watchedWeapon.skill && pool !== undefined && rating !== undefined) {
+	if (watchedWeapon?.skill && pool !== undefined && rating !== undefined) {
 		skillDisplayString = `${watchedWeapon.skill} (${pool}/${rating})`
 	}
 
