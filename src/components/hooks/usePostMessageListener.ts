@@ -50,9 +50,11 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 
 					break
 
-				case 'update data':
+				case 'update data': {
+					console.log('System received update data message:', data)
+					const { documentId } = data
 					const newDocument = data.documents?.find(
-						(d: TDocument) => d._id === state.documentId,
+						(d: TDocument) => d._id === documentId,
 					)
 
 					// if (!newDocument) {
@@ -81,6 +83,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					reset(newDocument?.values)
 
 					break
+				}
 
 				case 'update document mode':
 					dispatch({
