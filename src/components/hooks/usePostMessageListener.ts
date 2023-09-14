@@ -68,7 +68,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					) {
 						return
 					}
-					console.log('made it to the top')
+
 					dispatch({
 						type: 'LOAD',
 						payload: {
@@ -80,7 +80,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					resetInProgress.current = true
 
 					reset(newDocument?.values)
-					console.log('made it to the bottom')
+
 					break
 				}
 
