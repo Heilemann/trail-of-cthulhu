@@ -51,7 +51,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					break
 
 				case 'update data': {
-					console.log('System received update data message:', data)
 					const { documentId } = data
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
