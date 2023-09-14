@@ -41,14 +41,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						document,
 					}
 
-					if (
-						_.isEqual(data.documents, state.documents) &&
-						_.isEqual(document, state.document) &&
-						_.isEqual(data.assets, state.assets)
-					) {
-						return
-					}
-
 					dispatch({
 						type: 'LOAD',
 						payload,
@@ -77,6 +69,9 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					) {
 						return
 					}
+
+					console.log('System received update data message:', data, state)
+					debugger
 
 					dispatch({
 						type: 'LOAD',
