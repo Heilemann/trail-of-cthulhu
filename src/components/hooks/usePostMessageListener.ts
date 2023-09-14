@@ -51,7 +51,8 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					break
 
 				case 'update data': {
-					const { documentId } = data
+					// @ts-ignore
+					const { id: documentId } = data
 					const newDocument = data.documents?.find(
 						(d: TDocument) => d._id === documentId,
 					)
