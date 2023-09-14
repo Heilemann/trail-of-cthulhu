@@ -71,7 +71,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					}
 
 					console.log('System received update data message:', data, state)
-					debugger
 
 					dispatch({
 						type: 'LOAD',
@@ -97,7 +96,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					break
 			}
 		},
-		[dispatch, reset, resetInProgress], // eslint-disable-line react-hooks/exhaustive-deps
+		[state, dispatch, reset, resetInProgress], // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	useEffect(() => {
