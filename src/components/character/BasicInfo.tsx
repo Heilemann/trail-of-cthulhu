@@ -6,7 +6,7 @@ import Button from '../Button'
 import DecoBox from '../DecoBox'
 import HInput from '../HInput'
 import HTextArea from '../HTextArea'
-import useMessageToApp from '../UseMessageToApp'
+import useMessageToApp from '../hooks/UseMessageToApp'
 import context from '../context'
 
 export interface IBasicInfoProps {}

@@ -33,7 +33,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					)
 
 					if (!document) {
-						throw new Error(`document with id ${documentId} not found by aux`)
+						throw new Error(`Document with id ${documentId} not found`)
 					}
 
 					const payload = {
@@ -56,10 +56,8 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						(d: TDocument) => d._id === documentId,
 					)
 
-					console.log('newDocument', newDocument, documentId, data.documents)
-
 					if (!newDocument) {
-						console.error('New document not found')
+						console.error('New document not found', documentId, data.documents)
 						return
 					}
 

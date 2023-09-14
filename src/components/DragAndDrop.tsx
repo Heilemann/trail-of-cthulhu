@@ -1,5 +1,5 @@
 import { DragEvent, useCallback, useContext, useEffect } from 'react'
-import useSyntheticEvent from './UseSyntheticEvent'
+import useSyntheticEvent from './hooks/UseSyntheticEvent'
 import context from './context'
 
 export interface IDragAndDropProps {

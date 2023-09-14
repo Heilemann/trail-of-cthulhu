@@ -7,7 +7,7 @@ import DecoBox from '../DecoBox'
 import Input from '../Input'
 import Label from '../Label'
 import SectionDivider from '../SectionDivider'
-import useMessageToApp from '../UseMessageToApp'
+import useMessageToApp from '../hooks/UseMessageToApp'
 import context from '../context'
 
 export default function Scene() {
