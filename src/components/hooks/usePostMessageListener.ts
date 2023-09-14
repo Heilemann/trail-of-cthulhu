@@ -70,8 +70,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						return
 					}
 
-					console.log('System received update data message:', data, state)
-
 					dispatch({
 						type: 'LOAD',
 						payload: {
@@ -81,7 +79,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					})
 
 					resetInProgress.current = true
-					console.log('Resetting form', newDocument?.values)
 
 					reset(newDocument?.values)
 
