@@ -56,6 +56,8 @@ export default function Weapons() {
 			...droppedWeapon,
 			documentId: droppedDoc._id,
 		} as TWeaponOnCharacter)
+
+		setDragIsOver(false)
 	}
 
 	const [dragIsOver, setDragIsOver] = useState(false)
