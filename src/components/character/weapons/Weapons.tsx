@@ -67,11 +67,6 @@ export default function Weapons() {
 		e.preventDefault()
 	}
 
-	const handleDragOver = (e: DragEvent) => {
-		setDragIsOver(true)
-		e.preventDefault()
-	}
-
 	const handleDragLeave = (e: DragEvent) => {
 		setDragIsOver(false)
 		e.preventDefault()
@@ -81,9 +76,8 @@ export default function Weapons() {
 		<DecoBox
 			onDrop={handleDrop}
 			onDragEnter={handleDragEnter}
-			onDragOver={handleDragOver}
 			onDragLeave={handleDragLeave}
-			className={dragIsOver ? 'outline outline-4 outline-red-500' : ''}
+			className={dragIsOver ? 'bg-white/10' : ''}
 		>
 			<table
 				className='w-full border-collapse text-center text-base'
