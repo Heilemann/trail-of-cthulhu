@@ -27,7 +27,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 			onDrop={e => {
 				const dataString = e.dataTransfer.getData('application/json')
 				const data = JSON.parse(dataString)
-				console.log('basic info drop', data)
+				console.log('basic info drop', dataString, data, e)
 			}}
 		>
 			<div
