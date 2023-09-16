@@ -48,6 +48,8 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 			const dragEvent = new DragEvent('dragover', {
 				bubbles: true,
 				cancelable: true,
+				clientX: x,
+				clientY: y,
 			})
 			element.dispatchEvent(dragEvent)
 		}
@@ -108,7 +110,6 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 				switch (message) {
 					case 'onDragOver':
 						simulateDragEvent(pointer.x, pointer.y)
-						// handleDragOverFromParent(e)
 						break
 
 					case 'onDrop':
