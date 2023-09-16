@@ -2,6 +2,7 @@
 // into native drag and drop events. This is necessary because the iframe'd system
 // does not have access to the native drag and drop events form the platform otherwise.
 import { useCallback, useEffect } from 'react'
+import useSyntheticEvent from './BaseComponents/hooks/UseSyntheticEvent'
 
 export interface IDragAndDropProps {
 	children: React.ReactNode
@@ -19,6 +20,27 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 	const { children } = props
 	// const { state } = useContext(context)
 	// const { documents } = state
+	const fireSyntheticEvent = useSyntheticEvent()
+
+	const handleDragEnterFromParent = useCallback(
+		(e: MessageEvent) => fireSyntheticEvent(e, 'dragEnter'),
+		[fireSyntheticEvent],
+	)
+
+	const handleDragOverFromParent = useCallback(
+		(e: MessageEvent) => fireSyntheticEvent(e, 'dragOver'),
+		[fireSyntheticEvent],
+	)
+
+	const handleDragLeaveFromParent = useCallback(
+		(e: MessageEvent) => fireSyntheticEvent(e, 'dragLeave'),
+		[fireSyntheticEvent],
+	)
+
+	const handleDropFromParent = useCallback(
+		(e: MessageEvent) => fireSyntheticEvent(e, 'drop'),
+		[fireSyntheticEvent],
+	)
 
 	const simulateDragEvent = (x: number, y: number) => {
 		const element = document.elementFromPoint(x, y)
@@ -59,39 +81,51 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 		}
 	}
 
-	const postMessageListener = useCallback((e: MessageEvent) => {
-		const payload: TDragAndDropMessages = e.data
-		const { message, source, pointer } = payload
-		const wrongSource = source !== 'App' && source !== 'Aux'
+	const postMessageListener = useCallback(
+		(e: MessageEvent) => {
+			const payload: TDragAndDropMessages = e.data
+			const { message, source, pointer } = payload
+			const wrongSource = source !== 'App' && source !== 'Aux'
 
-		if (wrongSource) return
+			if (wrongSource) return
 
-		if (pointer) {
-			const newElement = document.elementFromPoint(pointer.x, pointer.y)
+			if (pointer) {
+				const newElement = document.elementFromPoint(pointer.x, pointer.y)
 
-			if (newElement !== currentElement) {
-				// If the dragged item has moved to a new element
-				if (currentElement) {
-					simulateDragLeaveEvent(currentElement)
+				if (newElement !== currentElement) {
+					// If the dragged item has moved to a new element
+					if (currentElement) {
+						simulateDragLeaveEvent(currentElement)
+						handleDragLeaveFromParent(e)
+					}
+					if (newElement) {
+						simulateDragEnterEvent(newElement)
+						handleDragEnterFromParent(e)
+					}
+					currentElement = newElement
 				}
-				if (newElement) {
-					simulateDragEnterEvent(newElement)
+
+				switch (message) {
+					case 'onDragOver':
+						simulateDragEvent(pointer.x, pointer.y)
+						handleDragOverFromParent(e)
+						break
+
+					case 'onDrop':
+						console.log('drop')
+						// simulateDropEvent(pointer.x, pointer.y) // simulate drop event
+						handleDropFromParent(e)
+						break
 				}
-				currentElement = newElement
 			}
-
-			switch (message) {
-				case 'onDragOver':
-					simulateDragEvent(pointer.x, pointer.y)
-					break
-
-				case 'onDrop':
-					console.log('drop')
-					simulateDropEvent(pointer.x, pointer.y) // simulate drop event
-					break
-			}
-		}
-	}, [])
+		},
+		[
+			handleDragEnterFromParent,
+			handleDragOverFromParent,
+			handleDropFromParent,
+			handleDragLeaveFromParent,
+		],
+	)
 
 	// const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
 	// 	if (e.dataTransfer) {
