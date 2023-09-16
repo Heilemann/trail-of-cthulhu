@@ -28,11 +28,16 @@ export default function BasicInfo(props: IBasicInfoProps) {
 				console.log('basic info drop ---->', e.dataTransfer)
 				if (e.dataTransfer) {
 					// @ts-ignore
-					const data = e.dataTransfer.data
+					const documentId = e.dataTransfer?.data?.documentId
 					const document = state.documents.find(
-						document => document._id === data.documentId,
+						document => document._id === documentId,
 					)
-					console.log('------------------------> ', document, data)
+					console.log(
+						'------------------------> ',
+						document,
+						documentId,
+						state.documents,
+					)
 				}
 			}}
 		>
