@@ -1,4 +1,4 @@
-import Asset from '../Asset'
+import Asset from '../BaseComponents/Asset'
 import DecoBox from '../DecoBox'
 
 export default function Token() {

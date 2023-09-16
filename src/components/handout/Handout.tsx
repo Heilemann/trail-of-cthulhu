@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Asset from '../Asset'
+import Asset from '../BaseComponents/Asset'
 import context from '../context'
 import DecoBox from '../DecoBox'
 import Input from '../Input'
@@ -21,7 +21,7 @@ export default function Handout(props: IHandoutProps) {
 		<DecoBox>
 			<Input
 				className={twMerge(
-					'flex-0 font-bold mb-2',
+					'flex-0 mb-2 font-bold',
 					editMode === 'view' && 'hidden',
 				)}
 				placeholder='Name...'

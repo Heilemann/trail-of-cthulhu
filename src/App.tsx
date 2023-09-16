@@ -4,7 +4,7 @@ import './App.css'
 import Container from './components/Container'
 import DevToolbar from './components/dev/DevToolbar'
 import Context from './components/context'
-import Reducer from './components/reducer'
+import Reducer from './components/BaseComponents/reducer'
 import { TState, TValues } from './interfaces'
 
 function App() {

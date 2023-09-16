@@ -1,10 +1,10 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TAsset } from '../interfaces'
-import Button from './Button'
-import useMessageToApp from './hooks/UseMessageToApp'
-import context from './context'
+import { TAsset } from '../../interfaces'
+import Button from '../Button'
+import useMessageToApp from '../hooks/UseMessageToApp'
+import context from '../context'
 
 interface AssetProps {
 	name: string

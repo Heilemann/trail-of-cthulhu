@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Asset from '../Asset'
+import Asset from '../BaseComponents/Asset'
 import Button from '../Button'
 import DecoBox from '../DecoBox'
 import Input from '../Input'
