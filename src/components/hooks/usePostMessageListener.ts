@@ -27,6 +27,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 			switch (message) {
 				case 'load':
 					console.log('System received load message:', data)
+
 					const { documentId } = data
 					const document = data.documents?.find(
 						(d: TDocument) => d._id === documentId,

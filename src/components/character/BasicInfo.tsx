@@ -22,7 +22,6 @@ export default function BasicInfo(props: IBasicInfoProps) {
 
 	return (
 		<DecoBox
-			id='basic info'
 			className='flex flex-1 flex-col'
 			onDrop={e => {
 				console.log('basic info drop ---->', e.dataTransfer)
@@ -32,12 +31,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					const document = state.documents.find(
 						document => document._id === documentId,
 					)
-					console.log(
-						'------------------------> ',
-						document,
-						documentId,
-						state.documents,
-					)
+					console.log('------------------------> ', document)
 				}
 			}}
 		>

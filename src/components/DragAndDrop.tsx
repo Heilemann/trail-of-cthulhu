@@ -94,11 +94,11 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 				if (newElement !== currentElement) {
 					// If the dragged item has moved to a new element
 					if (currentElement) {
-						simulateDragLeaveEvent(currentElement)
+						// simulateDragLeaveEvent(currentElement)
 						handleDragLeaveFromParent(e)
 					}
 					if (newElement) {
-						simulateDragEnterEvent(newElement)
+						// simulateDragEnterEvent(newElement)
 						handleDragEnterFromParent(e)
 					}
 					currentElement = newElement
@@ -106,13 +106,12 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 
 				switch (message) {
 					case 'onDragOver':
-						console.log('drag over')
-						simulateDragEvent(pointer.x, pointer.y)
+						// simulateDragEvent(pointer.x, pointer.y)
 						handleDragOverFromParent(e)
 						break
+
 					case 'onDrop':
-						console.log('drop')
-						simulateDropEvent(pointer.x, pointer.y) // simulate drop event
+						// simulateDropEvent(pointer.x, pointer.y) // simulate drop event
 						handleDropFromParent(e)
 						break
 				}
