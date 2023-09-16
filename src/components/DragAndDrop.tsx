@@ -1,4 +1,4 @@
-import { DragEvent, useCallback, useContext, useEffect } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import useSyntheticEvent from './hooks/UseSyntheticEvent'
 import context from './context'
 
@@ -6,19 +6,11 @@ export interface IDragAndDropProps {
 	children: React.ReactNode
 }
 
-type TDragAndDropMessages =
-	| {
-			message: 'onDragEnter'
-			source: 'App'
-	  }
-	| {
-			message: 'onDragOver'
-			source: 'App'
-	  }
-	| {
-			message: 'onDrop'
-			source: 'App'
-	  }
+type TDragAndDropMessages = {
+	message: 'onDragEnter' | 'onDragOver' | 'onDrop'
+	source: 'App' | 'Aux'
+	pointer?: { x: number; y: number } // Added pointer to get coordinates
+}
 
 export default function DragAndDrop(props: IDragAndDropProps) {
 	const { children } = props
@@ -41,25 +33,38 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 		[fireSyntheticEvent],
 	)
 
+	const simulateDragEvent = (x: number, y: number) => {
+		const element = document.elementFromPoint(x, y)
+		if (element) {
+			const dragEvent = new DragEvent('dragover', {
+				bubbles: true,
+				cancelable: true,
+			})
+			element.dispatchEvent(dragEvent)
+		}
+	}
+
 	const postMessageListener = useCallback(
 		(e: MessageEvent) => {
 			const payload: TDragAndDropMessages = e.data
-			const { message, source } = payload
+			const { message, source, pointer } = payload // Extract pointer
 			const wrongSource = source !== 'App' && source !== 'Aux'
 
 			if (wrongSource) return
+
+			if (pointer) {
+				simulateDragEvent(pointer.x, pointer.y)
+			}
 
 			switch (message) {
 				case 'onDragEnter':
 					console.log('drag enter')
 					handleDragEnterFromParent(e)
 					break
-
 				case 'onDragOver':
 					console.log('drag over')
 					handleDragOverFromParent(e)
 					break
-
 				case 'onDrop':
 					console.log('drop')
 					handleDropFromParent(e)
@@ -69,20 +74,23 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 		[handleDragEnterFromParent, handleDragOverFromParent, handleDropFromParent],
 	)
 
-	const handleDrop = (e: DragEvent) => {
-		const droppedDocumentId = e.dataTransfer.getData('documentId')[0]
-		const droppedDoc = documents.find(d => d._id === droppedDocumentId)
+	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		if (e.dataTransfer) {
+			const droppedDocumentId = e.dataTransfer.getData('documentId')[0]
+			const droppedDoc = documents.find(d => d._id === droppedDocumentId)
 
-		if (!droppedDoc)
-			throw new Error(
-				`Could not find dropped document. ID: ${droppedDocumentId}`,
-			)
+			if (!droppedDoc) {
+				throw new Error(
+					`Could not find dropped document. ID: ${droppedDocumentId}`,
+				)
+			}
 
-		const type: string = droppedDoc.type
+			const type: string = droppedDoc.type
 
-		console.log('dropped type', type)
+			console.log('dropped type', type)
 
-		// if (type in dropHandlers.current) dropHandlers.current[type](e)
+			// if (type in dropHandlers.current) dropHandlers.current[type](e);
+		}
 	}
 
 	const handleInitialLoad = () => {
