@@ -95,12 +95,12 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 				if (newElement !== currentElement) {
 					// If the dragged item has moved to a new element
 					if (currentElement) {
-						// simulateDragLeaveEvent(currentElement)
-						handleDragLeaveFromParent(e)
+						simulateDragLeaveEvent(currentElement)
+						// handleDragLeaveFromParent(e)
 					}
 					if (newElement) {
-						// simulateDragEnterEvent(newElement)
-						handleDragEnterFromParent(e)
+						simulateDragEnterEvent(newElement)
+						// handleDragEnterFromParent(e)
 					}
 					currentElement = newElement
 				}
