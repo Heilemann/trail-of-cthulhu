@@ -32,7 +32,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					const document = state.documents.find(
 						document => document._id === data.documentId,
 					)
-					console.log('------------------------> ', document)
+					console.log('------------------------> ', document, data)
 				}
 			}}
 		>
