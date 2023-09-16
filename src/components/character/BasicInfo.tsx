@@ -28,7 +28,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 				console.log('basic info drop ---->', e.dataTransfer)
 				if (e.dataTransfer) {
 					// @ts-ignore
-					const documentId = e.dataTransfer?.data?.documentId
+					const documentId = e.dataTransfer?.data?.documentId?.documentId
 					const document = state.documents.find(
 						document => document._id === documentId,
 					)
