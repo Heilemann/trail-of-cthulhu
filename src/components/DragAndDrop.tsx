@@ -12,6 +12,8 @@ type TDragAndDropMessages = {
 	pointer?: { x: number; y: number } // Added pointer to get coordinates
 }
 
+let currentElement: Element | null = null // To keep track of the current element
+
 export default function DragAndDrop(props: IDragAndDropProps) {
 	const { children } = props
 	const { state } = useContext(context)
@@ -25,6 +27,11 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 
 	const handleDragOverFromParent = useCallback(
 		(e: MessageEvent) => fireSyntheticEvent(e, 'dragOver'),
+		[fireSyntheticEvent],
+	)
+
+	const handleDragLeaveFromParent = useCallback(
+		(e: MessageEvent) => fireSyntheticEvent(e, 'dragLeave'),
 		[fireSyntheticEvent],
 	)
 
@@ -44,35 +51,75 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 		}
 	}
 
+	const simulateDropEvent = (x: number, y: number) => {
+		const element = document.elementFromPoint(x, y)
+		if (element) {
+			const dropEvent = new DragEvent('drop', {
+				bubbles: true,
+				cancelable: true,
+			})
+			element.dispatchEvent(dropEvent)
+		}
+	}
+
 	const postMessageListener = useCallback(
 		(e: MessageEvent) => {
 			const payload: TDragAndDropMessages = e.data
-			const { message, source, pointer } = payload // Extract pointer
+			const { message, source, pointer } = payload
 			const wrongSource = source !== 'App' && source !== 'Aux'
 
 			if (wrongSource) return
 
 			if (pointer) {
-				simulateDragEvent(pointer.x, pointer.y)
-			}
+				const newElement = document.elementFromPoint(pointer.x, pointer.y)
 
-			switch (message) {
-				case 'onDragEnter':
-					console.log('drag enter')
-					handleDragEnterFromParent(e)
-					break
-				case 'onDragOver':
-					console.log('drag over')
-					handleDragOverFromParent(e)
-					break
-				case 'onDrop':
-					console.log('drop')
-					handleDropFromParent(e)
-					break
+				if (newElement !== currentElement) {
+					// If the dragged item has moved to a new element
+					if (currentElement) {
+						simulateDragLeaveEvent(currentElement)
+						handleDragLeaveFromParent(e)
+					}
+					if (newElement) {
+						simulateDragEvent(pointer.x, pointer.y)
+						handleDragEnterFromParent(e)
+					}
+					currentElement = newElement
+				}
+
+				switch (message) {
+					case 'onDragEnter':
+						console.log('drag enter')
+						simulateDragEvent(pointer.x, pointer.y)
+						handleDragEnterFromParent(e)
+						break
+					case 'onDragOver':
+						console.log('drag over')
+						simulateDragEvent(pointer.x, pointer.y)
+						handleDragOverFromParent(e)
+						break
+					case 'onDrop':
+						console.log('drop')
+						simulateDropEvent(pointer.x, pointer.y) // simulate drop event
+						handleDropFromParent(e)
+						break
+				}
 			}
 		},
-		[handleDragEnterFromParent, handleDragOverFromParent, handleDropFromParent],
+		[
+			handleDragEnterFromParent,
+			handleDragOverFromParent,
+			handleDropFromParent,
+			handleDragLeaveFromParent,
+		],
 	)
+
+	const simulateDragLeaveEvent = (element: Element) => {
+		const dragLeaveEvent = new DragEvent('dragleave', {
+			bubbles: true,
+			cancelable: true,
+		})
+		element.dispatchEvent(dragLeaveEvent)
+	}
 
 	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
 		if (e.dataTransfer) {
