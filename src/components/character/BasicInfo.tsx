@@ -26,9 +26,14 @@ export default function BasicInfo(props: IBasicInfoProps) {
 			className='flex flex-1 flex-col'
 			onDrop={e => {
 				console.log('basic info drop ---->', e.dataTransfer)
-				// const dataString = e.dataTransfer.getData('application/json')
-				// const data = JSON.parse(dataString)
-				// console.log('basic info drop', dataString, data, e)
+				if (e.dataTransfer) {
+					const dataString = e.dataTransfer.getData('application/json')
+					const data = JSON.parse(dataString)
+					const document = state.documents.find(
+						document => document._id === data.documentId,
+					)
+					console.log('------------------------> ', document)
+				}
 			}}
 		>
 			<div
