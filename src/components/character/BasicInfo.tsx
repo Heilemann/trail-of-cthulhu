@@ -27,8 +27,8 @@ export default function BasicInfo(props: IBasicInfoProps) {
 			onDrop={e => {
 				console.log('basic info drop ---->', e.dataTransfer)
 				if (e.dataTransfer) {
-					const dataString = e.dataTransfer.getData('application/json')
-					const data = JSON.parse(dataString)
+					// @ts-ignore
+					const data = e.dataTransfer.data
 					const document = state.documents.find(
 						document => document._id === data.documentId,
 					)
