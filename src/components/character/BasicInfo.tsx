@@ -21,7 +21,13 @@ export default function BasicInfo(props: IBasicInfoProps) {
 	if (!messageToApp) return null
 
 	return (
-		<DecoBox id='basic info' className='flex flex-1 flex-col'>
+		<DecoBox
+			id='basic info'
+			className='flex flex-1 flex-col'
+			onDrop={e => {
+				console.log('basic info drop', e)
+			}}
+		>
 			<div
 				className={twMerge(
 					'flex-1',

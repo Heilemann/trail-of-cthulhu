@@ -1,3 +1,6 @@
+// This file handles translating drag and drop events sent through postMessage
+// into native drag and drop events. This is necessary because the iframe'd system
+// does not have access to the native drag and drop events form the platform otherwise.
 import { useCallback, useEffect } from 'react'
 import useSyntheticEvent from './hooks/UseSyntheticEvent'
 
@@ -8,7 +11,7 @@ export interface IDragAndDropProps {
 type TDragAndDropMessages = {
 	message: 'onDragOver' | 'onDrop'
 	source: 'App' | 'Aux'
-	pointer?: { x: number; y: number } // Added pointer to get coordinates
+	pointer?: { x: number; y: number }
 }
 
 let currentElement: Element | null = null // To keep track of the current element
