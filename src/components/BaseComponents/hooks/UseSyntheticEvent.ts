@@ -11,6 +11,7 @@ interface CustomMessageEvent extends MessageEvent {
 }
 
 const useSyntheticEvent = () => {
+	console.log('useSyntheticEvent')
 	const getElementFromEvent = (e: CustomMessageEvent) => {
 		const y = e.data.pointer.y
 		const x = e.data.pointer.x

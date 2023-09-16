@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Button from '../../Button'
 import Input from '../../Input'
-import useMessageToApp from '../../hooks/UseMessageToApp'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../context'
 
 export interface IWeaponDamageProps {

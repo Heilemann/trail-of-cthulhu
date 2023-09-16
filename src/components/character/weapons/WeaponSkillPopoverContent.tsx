@@ -4,7 +4,7 @@ import Button from '../../Button'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useState } from 'react'
-import useMessageToApp from '../../hooks/UseMessageToApp'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 
 type Props = {
 	index: number

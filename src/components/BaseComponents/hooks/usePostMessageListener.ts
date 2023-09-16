@@ -3,8 +3,12 @@
 import _ from 'lodash'
 import { MutableRefObject, useCallback, useContext, useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { TDocument, TSystemReceivableMessages, TValues } from '../../interfaces'
-import context from '../context'
+import {
+	TDocument,
+	TSystemReceivableMessages,
+	TValues,
+} from '../../../interfaces'
+import context from '../../context'
 
 type Props = {
 	resetInProgress: MutableRefObject<boolean>

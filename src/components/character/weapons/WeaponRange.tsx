@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import Button from '../../Button'
 import Input from '../../Input'
-import useMessageToApp from '../../hooks/UseMessageToApp'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../context'
 
 type Props = {
