@@ -34,6 +34,15 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					console.log('------------------------> ', document)
 				}
 			}}
+			onDragEnter={() => {
+				console.log('onDragEnter')
+			}}
+			onDragOver={e => {
+				console.log('onDragOver')
+			}}
+			onDragLeave={() => {
+				console.log('onDragLeave')
+			}}
 		>
 			<div
 				className={twMerge(
