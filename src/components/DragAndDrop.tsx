@@ -108,7 +108,7 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 				switch (message) {
 					case 'onDragOver':
 						simulateDragEvent(pointer.x, pointer.y)
-						handleDragOverFromParent(e)
+						// handleDragOverFromParent(e)
 						break
 
 					case 'onDrop':
