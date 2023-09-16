@@ -68,6 +68,7 @@ export default function Weapons() {
 	}
 
 	const handleDragOver = (e: DragEvent) => {
+		console.log('drag over', e)
 		setDragIsOver(true)
 		e.preventDefault()
 	}
