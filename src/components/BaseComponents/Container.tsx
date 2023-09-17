@@ -1,6 +1,6 @@
 // The Container component is the parent of all the other components. It is responsible for
-// rendering the correct component based on the document type. It also handles the
-// communication with the platform.
+// rendering the correct component based on the document type. It also handles outbound
+// communication to the platform.
 import _ from 'lodash'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'

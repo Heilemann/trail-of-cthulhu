@@ -1,5 +1,5 @@
 // listen for messages from the app in window.parent
-// (which are forwarded by aux) deal with them as needed
+// (which are forwarded by the aux server) deal with them as needed
 import _ from 'lodash'
 import { MutableRefObject, useCallback, useContext, useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
@@ -75,6 +75,21 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						return
 					}
 
+					console.log(
+						'System received update data message, and decided to update:',
+						_.isEqual(data.documents, state.documents),
+						_.isEqual(newDocument, state.document),
+						_.isEqual(data.assets, state.assets),
+						{
+							'data.documents': data.documents,
+							'state.documents': state.documents,
+							newDocument: newDocument,
+							'state.document': state.document,
+							'data.assets': data.assets,
+							'state.assets': state.assets,
+						},
+					)
+
 					dispatch({
 						type: 'LOAD',
 						payload: {
@@ -98,7 +113,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 					break
 			}
 		},
-		[state, dispatch, reset, resetInProgress], // eslint-disable-line react-hooks/exhaustive-deps
+		[state, dispatch, reset, resetInProgress],
 	)
 
 	useEffect(() => {
