@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import Dropdown from '../Dropdown'
-import context from '../context'
+import Dropdown from '../Form/Dropdown'
+import context from '../BaseComponents/context'
 
 export interface ISettingsProps {}
 

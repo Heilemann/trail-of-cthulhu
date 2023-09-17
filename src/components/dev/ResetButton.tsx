@@ -1,4 +1,4 @@
-import Button from '../Button'
+import Button from '../Form/Button'
 
 export default function ResetButton() {
 	const handleClearStorage = () => {

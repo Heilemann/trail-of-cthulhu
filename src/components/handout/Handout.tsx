@@ -2,10 +2,10 @@ import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Asset from '../BaseComponents/Asset'
-import context from '../context'
+import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
-import Input from '../Input'
-import TextArea from '../Textarea'
+import Input from '../Form/Input'
+import TextArea from '../Form/Textarea'
 
 export interface IHandoutProps {}
 

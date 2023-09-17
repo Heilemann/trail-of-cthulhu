@@ -1,10 +1,11 @@
 import { useReducer } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import './App.css'
-import Container from './components/Container'
-import DevToolbar from './components/dev/DevToolbar'
-import Context from './components/context'
 import Reducer from './components/BaseComponents/reducer'
+import Container from './components/BaseComponents/Container'
+import DragAndDrop from './components/BaseComponents/DragAndDrop'
+import Context from './components/BaseComponents/context'
+import DevToolbar from './components/dev/DevToolbar'
 import { TState, TValues } from './interfaces'
 
 function App() {
@@ -17,8 +18,10 @@ function App() {
 	return (
 		<Context.Provider value={{ state, dispatch }}>
 			<FormProvider {...form}>
-				{isDevelopment && <DevToolbar />}
-				<Container />
+				<DragAndDrop>
+					{isDevelopment && <DevToolbar />}
+					<Container />
+				</DragAndDrop>
 			</FormProvider>
 		</Context.Provider>
 	)

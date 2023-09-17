@@ -1,11 +1,11 @@
-import { borderStyle } from '../borderStyle'
+import { borderStyle } from '../styles/borderStyle'
 import { useFormContext, useWatch } from 'react-hook-form'
 import DecoBox from '../DecoBox'
-import HInput from '../HInput'
-import weaponSkillList from '../weaponSkillList'
+import HInput from '../Form/HInput'
+import weaponSkillList from '../data/weaponSkillList'
 import { twMerge } from 'tailwind-merge'
-import HTextArea from '../HTextArea'
-import VInput from '../VInput'
+import HTextArea from '../Form/HTextArea'
+import VInput from '../Form/VInput'
 
 export default function Weapon() {
 	const { register, control } = useFormContext()

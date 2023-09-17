@@ -1,17 +1,14 @@
+// The Container component is the parent of all the other components. It is responsible for
+// rendering the correct component based on the document type. It also handles the
+// communication with the platform.
 import _ from 'lodash'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { TDocument, TDocumentType, TValues } from '../interfaces'
-import DragAndDrop from './DragAndDrop'
-import Book from './book/Book'
-import Character from './character/Character'
+import { TDocument, TDocumentType, TValues } from '../../interfaces'
+import useMessageToApp from './hooks/UseMessageToApp'
+import usePostMessageListener from './hooks/usePostMessageListener'
+import TypeSwitcher from '../TypeSwitcher'
 import context from './context'
-import Handout from './handout/Handout'
-import useMessageToApp from './BaseComponents/hooks/UseMessageToApp'
-import usePostMessageListener from './BaseComponents/hooks/usePostMessageListener'
-import Note from './note/Note'
-import Scene from './scene/Scene'
-import Weapon from './weapon/Weapon'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
@@ -19,7 +16,6 @@ export default function Container() {
 	const [type, setType] = useState<TDocumentType | null>(state.document?.type)
 	const { watch } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
-
 	const messageToApp = useMessageToApp()
 	usePostMessageListener({ resetInProgress })
 
@@ -45,7 +41,6 @@ export default function Container() {
 					...values,
 				},
 			}
-			console.log('Dispatching UPDATE_DOCUMENT_VALUES', values)
 
 			dispatch({
 				type: 'UPDATE_DOCUMENT_VALUES',
@@ -62,7 +57,7 @@ export default function Container() {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleDocumentChanges, [JSON.stringify(document)]) // eslint-disable-line
+	useEffect(handleDocumentChanges, [document]) // eslint-disable-line
 
 	useEffect(() => {
 		// tell the platform we're ready to receive messages,
@@ -78,16 +73,5 @@ export default function Container() {
 
 	if (!type) return null
 
-	return (
-		<DragAndDrop>
-			<div className='bottom-0 box-border flex min-h-full w-full flex-col bg-gray-100 p-4 text-sm text-gray-900 dark:bg-gray-900 dark:text-gray-100'>
-				{type === 'character' && <Character />}
-				{type === 'note' && <Note />}
-				{type === 'book' && <Book />}
-				{type === 'scene' && <Scene />}
-				{type === 'weapon' && <Weapon />}
-				{type === 'handout' && <Handout />}
-			</div>
-		</DragAndDrop>
-	)
+	return <TypeSwitcher type={type} />
 }

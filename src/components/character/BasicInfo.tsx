@@ -2,12 +2,12 @@ import { BoltIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Button from '../Button'
+import Button from '../Form/Button'
 import DecoBox from '../DecoBox'
-import HInput from '../HInput'
-import HTextArea from '../HTextArea'
+import HInput from '../Form/HInput'
+import HTextArea from '../Form/HTextArea'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
-import context from '../context'
+import context from '../BaseComponents/context'
 
 export interface IBasicInfoProps {}
 

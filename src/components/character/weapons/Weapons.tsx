@@ -3,10 +3,10 @@ import { DragEvent, useContext, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
-import Button from '../../Button'
+import Button from '../../Form/Button'
 import DecoBox from '../../DecoBox'
-import { borderStyle } from '../../borderStyle'
-import context from '../../context'
+import { borderStyle } from '../../styles/borderStyle'
+import context from '../../BaseComponents/context'
 import WeaponRow from './WeaponRow'
 
 const emptyWeapon: TWeaponOnCharacter = {

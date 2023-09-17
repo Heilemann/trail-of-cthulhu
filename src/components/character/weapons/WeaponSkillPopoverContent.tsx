@@ -1,6 +1,6 @@
 import * as Popover from '@radix-ui/react-popover'
-import Input from '../../Input'
-import Button from '../../Button'
+import Input from '../../Form/Input'
+import Button from '../../Form/Button'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { useState } from 'react'

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Button from '../../Button'
-import Input from '../../Input'
+import Button from '../../Form/Button'
+import Input from '../../Form/Input'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
-import context from '../../context'
+import context from '../../BaseComponents/context'
 
 export interface IWeaponDamageProps {
 	index: number

@@ -8,7 +8,7 @@ import {
 	TSystemReceivableMessages,
 	TValues,
 } from '../../../interfaces'
-import context from '../../context'
+import context from '../context'
 
 type Props = {
 	resetInProgress: MutableRefObject<boolean>

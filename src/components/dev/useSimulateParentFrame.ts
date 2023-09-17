@@ -4,7 +4,7 @@
 // to 'Aux' which then forwards them to the system.
 import { useContext, useEffect } from 'react'
 import { TDocument, TEditMode, TState } from '../../interfaces'
-import context from '../context'
+import context from '../BaseComponents/context'
 import defaultDocuments from './defaultData'
 
 let initialData: TState = {

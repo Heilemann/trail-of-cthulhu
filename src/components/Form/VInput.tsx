@@ -2,7 +2,7 @@ import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Input from './Input'
 import Label from './Label'
-import context from './context'
+import context from '../BaseComponents/context'
 
 interface IVInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string

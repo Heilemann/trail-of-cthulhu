@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import useSyntheticEvent from './BaseComponents/hooks/UseSyntheticEvent'
+import useSyntheticEvent from './hooks/UseSyntheticEvent'
 
 export interface IDragAndDropProps {
 	children: React.ReactNode

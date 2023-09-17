@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { TCollection, TSystemConfig } from '../../interfaces'
 import systemConfig from '../../system.json'
-import context from '../context'
+import context from '../BaseComponents/context'
 
 export default function CollectionPicker() {
 	const { state, dispatch } = useContext(context)

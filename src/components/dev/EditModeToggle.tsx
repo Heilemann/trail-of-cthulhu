@@ -1,7 +1,7 @@
 import { EyeIcon, PencilIcon } from '@heroicons/react/24/solid'
 import { useContext, useEffect } from 'react'
 import Tabs from '../Tabs'
-import context from '../context'
+import context from '../BaseComponents/context'
 import { useWatch } from 'react-hook-form'
 
 function EditModeToggle() {

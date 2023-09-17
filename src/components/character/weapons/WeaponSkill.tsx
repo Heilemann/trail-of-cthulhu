@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TSkill, TWeaponOnCharacter } from '../../../interfaces'
-import context from '../../context'
-import weaponSkillList from '../../weaponSkillList'
+import context from '../../BaseComponents/context'
+import weaponSkillList from '../../data/weaponSkillList'
 import { WeaponSkillPopover } from './WeaponSkillPopover'
 
 type Props = {

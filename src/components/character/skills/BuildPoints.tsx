@@ -1,5 +1,5 @@
 import { useWatch } from 'react-hook-form'
-import HInput from '../../HInput'
+import HInput from '../../Form/HInput'
 
 export interface IBuildPointsProps {
 	watchKey: string

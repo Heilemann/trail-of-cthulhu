@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Label from './Label'
 import TextareaAutosize from 'react-textarea-autosize'
-import { borderStyle } from './borderStyle'
-import context from './context'
+import { borderStyle } from '../styles/borderStyle'
+import context from '../BaseComponents/context'
 
 interface ITextareaProps
 	extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

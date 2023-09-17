@@ -2,13 +2,13 @@ import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Asset from '../BaseComponents/Asset'
-import Button from '../Button'
+import Button from '../Form/Button'
 import DecoBox from '../DecoBox'
-import Input from '../Input'
-import Label from '../Label'
+import Input from '../Form/Input'
+import Label from '../Form/Label'
 import SectionDivider from '../SectionDivider'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
-import context from '../context'
+import context from '../BaseComponents/context'
 
 export default function Scene() {
 	const { state } = useContext(context)

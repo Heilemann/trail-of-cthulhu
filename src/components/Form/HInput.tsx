@@ -1,9 +1,9 @@
 import { forwardRef, useContext } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { borderStyle } from './borderStyle'
+import { borderStyle } from '../styles/borderStyle'
 import Input from './Input'
 import Label from './Label'
-import context from './context'
+import context from '../BaseComponents/context'
 
 interface IHInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string

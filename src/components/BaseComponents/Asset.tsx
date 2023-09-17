@@ -1,10 +1,13 @@
+// This file contains the Asset component which is used to display an asset
+// (image, video, pdf) and allow the user to upload a new asset or remove the
+// current asset.
 import { FC, useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TAsset } from '../../interfaces'
-import Button from '../Button'
+import Button from '../Form/Button'
 import useMessageToApp from './hooks/UseMessageToApp'
-import context from '../context'
+import context from './context'
 
 interface AssetProps {
 	name: string
@@ -105,7 +108,7 @@ const Asset: FC<AssetProps> = props => {
 			<Button
 				className={twMerge(
 					'w-full',
-					// , editMode === 'view' ? 'hidden' : 'block'
+					//  editMode === 'view' ? 'hidden' : 'block'
 				)}
 				onClick={handleRemoveAsset}
 			>
