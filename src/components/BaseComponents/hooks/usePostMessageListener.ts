@@ -85,6 +85,14 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						state.documents,
 					)
 
+					if (
+						_.isEqual(data.documents, state.documents) ||
+						_.isEqual(newDocument, state.document) ||
+						_.isEqual(data.assets, state.assets)
+					) {
+						debugger
+					}
+
 					dispatch({
 						type: 'LOAD',
 						payload: {
