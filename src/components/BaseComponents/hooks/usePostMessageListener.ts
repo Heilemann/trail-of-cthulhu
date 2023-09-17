@@ -81,10 +81,8 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						_.isEqual(newDocument, state.document),
 						_.isEqual(data.assets, state.assets),
 						documentId,
-						{
-							'data.documents': data.documents,
-							'state.documents': state.documents,
-						},
+						data.documents,
+						state.documents,
 					)
 
 					dispatch({
