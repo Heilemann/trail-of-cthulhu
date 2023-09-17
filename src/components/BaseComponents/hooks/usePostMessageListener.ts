@@ -80,9 +80,9 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						_.isEqual(data.documents, state.documents),
 						_.isEqual(newDocument, state.document),
 						_.isEqual(data.assets, state.assets),
-						documentId,
-						data.documents,
-						state.documents,
+						JSON.stringify(documentId),
+						JSON.stringify(data.documents),
+						JSON.stringify(state.documents),
 					)
 
 					if (
