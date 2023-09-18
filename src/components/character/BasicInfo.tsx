@@ -21,29 +21,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 	if (!messageToApp) return null
 
 	return (
-		<DecoBox
-			className='flex flex-1 flex-col'
-			onDrop={e => {
-				console.log('basic info drop ---->', e.dataTransfer)
-				if (e.dataTransfer) {
-					// @ts-ignore
-					const documentId = e.dataTransfer?.data?.documentId?.documentId
-					const document = state.documents.find(
-						document => document._id === documentId,
-					)
-					console.log('------------------------> ', document)
-				}
-			}}
-			onDragEnter={() => {
-				console.log('onDragEnter')
-			}}
-			onDragOver={e => {
-				console.log('onDragOver')
-			}}
-			onDragLeave={() => {
-				console.log('onDragLeave')
-			}}
-		>
+		<DecoBox className='flex flex-1 flex-col'>
 			<div
 				className={twMerge(
 					'flex-1',

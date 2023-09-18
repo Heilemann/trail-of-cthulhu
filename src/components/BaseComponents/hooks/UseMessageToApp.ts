@@ -4,10 +4,9 @@ import { TAppReceivableMessages } from '../../../interfaces'
 export default function useMessageToApp() {
 	let searchParams = new URLSearchParams(window.parent.location.search)
 	let documentId = searchParams.get('id')
-	console.log('--------> documentId', documentId)
 
 	if (documentId === null) {
-		console.warn('Document ID is not specified in the parent URL.')
+		console.warn('Document ID not found in AUX URL.')
 	}
 
 	const messageToApp = ({ message, data }: TAppReceivableMessages) => {
@@ -15,7 +14,7 @@ export default function useMessageToApp() {
 			source: 'System',
 			message,
 			data: {
-				...data,
+				payload: data,
 				documentId,
 			},
 		} as TAppReceivableMessages)
