@@ -14,8 +14,10 @@ export default function useMessageToApp() {
 		window.parent.postMessage({
 			source: 'System',
 			message,
-			documentId,
-			data,
+			data: {
+				...data,
+				documentId,
+			},
 		} as TAppReceivableMessages)
 	}
 
