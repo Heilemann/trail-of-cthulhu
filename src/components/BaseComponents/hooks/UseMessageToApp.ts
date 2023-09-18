@@ -6,6 +6,11 @@ import context from '../context'
 export default function useMessageToApp() {
 	const { state } = useContext(context)
 
+	// read the url of the parent window and console log it
+	// this is useful for debugging
+	const parentUrl = new URL(document.referrer)
+	console.log('parentUrl', parentUrl)
+
 	const messageToApp = ({ message, data }: TAppReceivableMessages) => {
 		window.parent.postMessage({
 			source: 'System',
