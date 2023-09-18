@@ -13,6 +13,7 @@ import context from './context'
 export default function Container() {
 	const { state, dispatch } = useContext(context)
 	const [document, setDocument] = useState<TDocument | null>(state.document)
+	console.log(setDocument)
 	const [type, setType] = useState<TDocumentType | null>(state.document?.type)
 	const { watch } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
@@ -23,11 +24,11 @@ export default function Container() {
 		console.log('>>>>>>>>>> Container, handleDocumentChanges', document)
 		// type controls the sheet to show, if the document is updated
 		// we update the type as well
-		setType(document?.type || null)
+		setType(state.document?.type || null)
 
 		const subscription = watch(values => {
-			if (!values || !document) return
-			if (_.isEqual(values, document.values)) return
+			if (!values || !state.document) return
+			if (_.isEqual(values, state.document.values)) return
 			if (resetInProgress.current) {
 				resetInProgress.current = false
 				return
@@ -36,9 +37,9 @@ export default function Container() {
 			console.log('>>>>>>>>>> TOC values changed', values)
 
 			const payload = {
-				...document,
+				...state.document,
 				values: {
-					...document.values,
+					...state.document.values,
 					...values,
 				},
 			}
@@ -46,7 +47,7 @@ export default function Container() {
 			dispatch({
 				type: 'UPDATE_DOCUMENT_VALUES',
 				payload: {
-					documentId: document._id,
+					documentId: state.document._id,
 					values: values,
 				},
 			})
@@ -58,15 +59,15 @@ export default function Container() {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleDocumentChanges, [document]) // eslint-disable-line
+	useEffect(handleDocumentChanges, [state.document]) // eslint-disable-line
 
 	// when the document changes, update the local state
-	useEffect(() => {
-		console.log('>>>>>>>>>> Container, state.document changed', state.document)
-		if (!state.document) return
-		setDocument(state.document)
-		setType(state.document.type)
-	}, [state.document])
+	// useEffect(() => {
+	// 	console.log('>>>>>>>>>> Container, state.document changed', state.document)
+	// 	if (!state.document) return
+	// 	setDocument(state.document)
+	// 	setType(state.document.type)
+	// }, [state.document])
 
 	// tell the platform we're ready to receive messages,
 	// the first of which will be 'load' containing our data
