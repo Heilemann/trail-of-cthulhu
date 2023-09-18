@@ -14,7 +14,7 @@ import useSimulateParentFrame from './useSimulateParentFrame'
 	It will do very simple message handling to the parent window, and will also listen for messages from the parent window (although none are currently sent; it exists for future improvements to dev mode), and it will store the documentId in localStorage so that it will persist between page refreshes.
 */
 
-export default function DevToolbar() {
+export default function DevMode() {
 	useSimulateParentFrame()
 
 	return (

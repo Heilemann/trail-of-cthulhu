@@ -75,23 +75,9 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						return
 					}
 
-					console.log(
-						'System received update data message, and decided to update:',
-						_.isEqual(data.documents, state.documents),
-						_.isEqual(newDocument, state.document),
-						_.isEqual(data.assets, state.assets),
-						JSON.stringify(documentId),
-						JSON.stringify(data.documents),
-						JSON.stringify(state.documents),
-					)
-
-					if (
-						_.isEqual(data.documents, state.documents) ||
-						_.isEqual(newDocument, state.document) ||
-						_.isEqual(data.assets, state.assets)
-					) {
-						debugger
-					}
+					// somehow a stale version of the document gets pushed to the parent,
+					// maybe because the platform updates the asset first and pushes that down
+					// and then the document gets updated and pushed down causing a loop
 
 					dispatch({
 						type: 'LOAD',
@@ -122,7 +108,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 	useEffect(() => {
 		window.addEventListener('message', messageListener)
 		return () => window.removeEventListener('message', messageListener)
-	}, [state, messageListener])
+	}, [messageListener])
 }
 
 export default usePostMessageListener

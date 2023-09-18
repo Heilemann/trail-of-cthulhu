@@ -59,17 +59,20 @@ export default function Container() {
 	}
 	useEffect(handleDocumentChanges, [document]) // eslint-disable-line
 
-	useEffect(() => {
-		// tell the platform we're ready to receive messages,
-		// the first of which will be 'load' containing our data
-		messageToApp({ message: 'system is ready', data: null })
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
-
+	// when the document changes, update the local state
 	useEffect(() => {
 		if (!state.document) return
 		setDocument(state.document)
 		setType(state.document.type)
 	}, [state.document])
+
+	// tell the platform we're ready to receive messages,
+	// the first of which will be 'load' containing our data
+	const tellAppWeAreReady = () => {
+		messageToApp({ message: 'system is ready', data: null })
+	}
+
+	useEffect(tellAppWeAreReady, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	if (!type) return null
 

@@ -5,7 +5,7 @@ import Reducer from './components/BaseComponents/reducer'
 import Container from './components/BaseComponents/Container'
 import DragAndDrop from './components/BaseComponents/DragAndDrop'
 import Context from './components/BaseComponents/context'
-import DevToolbar from './components/dev/DevToolbar'
+import DevToolbar from './components/dev/DevMode'
 import { TState, TValues } from './interfaces'
 
 function App() {

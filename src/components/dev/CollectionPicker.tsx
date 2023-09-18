@@ -8,9 +8,7 @@ export default function CollectionPicker() {
 	const { state, dispatch } = useContext(context)
 	const { register } = useFormContext()
 	const { collections } = systemConfig as TSystemConfig
-
 	const defaultCollectionType = collections[0].type
-	// const defaultCollectionType = 'weapon' // TODO: change back to the above
 
 	const selectedCollectionType = useWatch({
 		name: 'documentId',
@@ -30,8 +28,8 @@ export default function CollectionPicker() {
 			},
 		})
 		// reset(state.documents.find(d => d.type === selectedCollectionType))
-	}, [state.documents, selectedCollectionType]) // eslint-disable-line react-hooks/exhaustive-deps
-
+	}, [dispatch, state, selectedCollectionType])
+	console.log('AWO!UR)!TU)!#UGJ!O@JG@$O)GU@)G$UJG@$OJG')
 	return (
 		<select
 			className='mr-4 h-10 rounded-full bg-gray-800 px-3 text-white'

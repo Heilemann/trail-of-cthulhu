@@ -1,7 +1,7 @@
-// This hook simulates how the platform handles post messages from the system
-// It's very incomplete, but will get built out later.
-// Source in these messages is 'Aux' because in production the 'App' sends message
-// to 'Aux' which then forwards them to the system.
+// This hook is used by the DevMode component to simulate how the platform
+// handles post messages from the system. It's very incomplete, but will get built
+// out later. Source in these messages is 'Aux' because in production the 'App'
+// sends message to 'Aux' which then forwards them to the system.
 import { useContext, useEffect } from 'react'
 import { TDocument, TEditMode, TState } from '../../interfaces'
 import context from '../BaseComponents/context'
