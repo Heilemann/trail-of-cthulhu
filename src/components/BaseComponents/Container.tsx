@@ -4,16 +4,14 @@
 import _ from 'lodash'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { TDocument, TDocumentType, TValues } from '../../interfaces'
-import useMessageToApp from './hooks/UseMessageToApp'
-import usePostMessageListener from './hooks/usePostMessageListener'
+import { TDocumentType, TValues } from '../../interfaces'
 import TypeSwitcher from '../TypeSwitcher'
 import context from './context'
+import useMessageToApp from './hooks/UseMessageToApp'
+import usePostMessageListener from './hooks/usePostMessageListener'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
-	const [document, setDocument] = useState<TDocument | null>(state.document)
-	console.log(setDocument)
 	const [type, setType] = useState<TDocumentType | null>(state.document?.type)
 	const { watch } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
