@@ -1,4 +1,9 @@
-import { TAccess, TDocument, TWeapon, TWeaponDocument } from '../../interfaces'
+import {
+	TAccess,
+	TDocument,
+	TWeapon,
+	TWeaponDocument,
+} from '../../../interfaces'
 
 const weapon: TWeapon = {
 	name: 'Sword',

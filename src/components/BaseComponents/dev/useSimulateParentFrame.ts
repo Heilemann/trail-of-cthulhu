@@ -3,8 +3,8 @@
 // out later. Source in these messages is 'Aux' because in production the 'App'
 // sends message to 'Aux' which then forwards them to the system.
 import { useContext, useEffect } from 'react'
-import { TDocument, TEditMode, TState } from '../../interfaces'
-import context from '../BaseComponents/context'
+import { TDocument, TEditMode, TState } from '../../../interfaces'
+import context from '../context'
 import defaultDocuments from './defaultData'
 
 let initialData: TState = {
@@ -103,8 +103,8 @@ const useSimulateParentFrame = () => {
 	}
 
 	useEffect(() => {
+		console.log('usesimulateparentframe, liste for messages')
 		window.addEventListener('message', simulatedMessages)
-
 		return () => {
 			window.removeEventListener('message', simulatedMessages)
 		}

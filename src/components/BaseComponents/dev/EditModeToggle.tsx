@@ -1,7 +1,7 @@
 import { EyeIcon, PencilIcon } from '@heroicons/react/24/solid'
 import { useContext, useEffect } from 'react'
-import Tabs from '../Tabs'
-import context from '../BaseComponents/context'
+import Tabs from '../../Tabs'
+import context from '../context'
 import { useWatch } from 'react-hook-form'
 
 function EditModeToggle() {
@@ -13,6 +13,7 @@ function EditModeToggle() {
 	})
 
 	useEffect(() => {
+		console.log('>>>>>>>>>> EditModeToggle, editMode', editMode)
 		if (!editMode || editMode === state.editMode) return
 
 		dispatch({

@@ -5,8 +5,8 @@ import {
 	TDocumentType,
 	TState,
 	TEditMode,
-} from '../../interfaces'
-import systemConfig from '../../system.json'
+} from '../../../interfaces'
+import systemConfig from '../../../system.json'
 
 export const fakeDocumentsFromSystemConfig = (
 	setCollections: React.Dispatch<React.SetStateAction<TCollection[]>>,

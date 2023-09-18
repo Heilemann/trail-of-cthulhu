@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { TCollection, TSystemConfig } from '../../interfaces'
-import systemConfig from '../../system.json'
-import context from '../BaseComponents/context'
+import { TCollection, TSystemConfig } from '../../../interfaces'
+import systemConfig from '../../../system.json'
+import context from '../context'
 
 export default function CollectionPicker() {
 	const { state, dispatch } = useContext(context)
@@ -16,6 +16,10 @@ export default function CollectionPicker() {
 	})
 
 	useEffect(() => {
+		console.log(
+			'>>>>>>>>>> CollectionPicker, selectedCollectionType',
+			selectedCollectionType,
+		)
 		if (!selectedCollectionType || !state.documents) return
 		if (selectedCollectionType === state.documentId) return
 
@@ -29,7 +33,7 @@ export default function CollectionPicker() {
 		})
 		// reset(state.documents.find(d => d.type === selectedCollectionType))
 	}, [dispatch, state, selectedCollectionType])
-	console.log('AWO!UR)!TU)!#UGJ!O@JG@$O)GU@)G$UJG@$OJG')
+
 	return (
 		<select
 			className='mr-4 h-10 rounded-full bg-gray-800 px-3 text-white'

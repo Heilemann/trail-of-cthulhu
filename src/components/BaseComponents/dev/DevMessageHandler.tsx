@@ -13,6 +13,7 @@ export default function DevMessageHandler() {
 
 	// listen for window messages
 	const messageListener = () => {
+		console.log('>>>>>>>>>> DevMessageHandler, messageListener')
 		window.addEventListener('message', handleMessage)
 		return () => window.removeEventListener('message', handleMessage)
 	}

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import Button from '../Form/Button'
-import context from '../BaseComponents/context'
+import Button from '../../Form/Button'
+import context from '../context'
 
 const fakeGameData = {
 	documents: [

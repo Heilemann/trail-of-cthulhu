@@ -27,6 +27,7 @@ const Asset: FC<AssetProps> = props => {
 	const messageToApp = useMessageToApp()
 
 	useEffect(() => {
+		console.log('>>>>>>>>>> ASSET', document.values[name])
 		setAssetId(document.values[name])
 	}, [document, assets, setAssetId, name])
 

@@ -106,6 +106,9 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 	)
 
 	useEffect(() => {
+		console.log(
+			'usepostmessagelistener, System listening for messages from App',
+		)
 		window.addEventListener('message', messageListener)
 		return () => window.removeEventListener('message', messageListener)
 	}, [messageListener])
