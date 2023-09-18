@@ -12,7 +12,7 @@ export default function useMessageToApp() {
 			message,
 			data: {
 				...data,
-				documentId: state.document._id ?? null,
+				documentId: state?.document?._id ?? null,
 			},
 		} as TAppReceivableMessages)
 	}
