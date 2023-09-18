@@ -7,17 +7,12 @@ export default function useMessageToApp() {
 	const { state } = useContext(context)
 
 	const messageToApp = ({ message, data }: TAppReceivableMessages) => {
-		if (!state?.document?._id) {
-			console.error('cannot send message without documentId')
-			return
-		}
-
 		window.parent.postMessage({
 			source: 'System',
 			message,
 			data: {
 				...data,
-				documentId: state?.document?._id,
+				documentId: state?.document?._id ?? null,
 			},
 		} as TAppReceivableMessages)
 	}
