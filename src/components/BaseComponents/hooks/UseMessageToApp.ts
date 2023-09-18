@@ -8,8 +8,13 @@ export default function useMessageToApp() {
 
 	// read the url of the parent window and console log it
 	// this is useful for debugging
-	const parentUrl = new URL(document.referrer)
-	console.log('parentUrl', parentUrl)
+	// Inside the iframe
+	let searchParams = new URLSearchParams(window.parent.location.search)
+	let documentId = searchParams.get('id') // Replace 'myParam' with the actual parameter name
+	console.log(
+		'120348102i2490124901902r019ru the systems documentId',
+		documentId,
+	)
 
 	const messageToApp = ({ message, data }: TAppReceivableMessages) => {
 		window.parent.postMessage({
