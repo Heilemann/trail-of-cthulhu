@@ -13,7 +13,6 @@ function EditModeToggle() {
 	})
 
 	useEffect(() => {
-		console.log('>>>>>>>>>> EditModeToggle, editMode', editMode)
 		if (!editMode || editMode === state.editMode) return
 
 		dispatch({

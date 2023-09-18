@@ -57,7 +57,6 @@ export default function DragAndDrop(props: IDragAndDropProps) {
 	)
 
 	useEffect(() => {
-		console.log('>>>>>>>>>> DragAndDrop, useEffect')
 		window.addEventListener('message', postMessageListener)
 		return () => window.removeEventListener('message', postMessageListener)
 	}, [postMessageListener])

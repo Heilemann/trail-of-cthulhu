@@ -21,7 +21,6 @@ export default function Container() {
 	usePostMessageListener({ resetInProgress })
 
 	const handleDocumentChanges = () => {
-		console.log('>>>>>>>>>> Container, handleDocumentChanges', document)
 		// type controls the sheet to show, if the document is updated
 		// we update the type as well
 		setType(state.document?.type || null)
@@ -61,18 +60,9 @@ export default function Container() {
 	}
 	useEffect(handleDocumentChanges, [state.document]) // eslint-disable-line
 
-	// when the document changes, update the local state
-	// useEffect(() => {
-	// 	console.log('>>>>>>>>>> Container, state.document changed', state.document)
-	// 	if (!state.document) return
-	// 	setDocument(state.document)
-	// 	setType(state.document.type)
-	// }, [state.document])
-
 	// tell the platform we're ready to receive messages,
 	// the first of which will be 'load' containing our data
 	const tellAppWeAreReady = () => {
-		console.log('>>>>>>>>>> Container, tellAppWeAreReady')
 		messageToApp({ message: 'system is ready', data: null })
 	}
 

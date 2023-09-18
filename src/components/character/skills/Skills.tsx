@@ -1,19 +1,17 @@
 import { useContext } from 'react'
 import { useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
+import context from '../../BaseComponents/context'
 import DecoBox from '../../DecoBox'
 import SectionDivider from '../../SectionDivider'
-import context from '../../BaseComponents/context'
-import BuildPoints from './BuildPoints'
 import CreditRating from '../CreditRating'
 import Health from '../Health'
+import BuildPoints from './BuildPoints'
 import Refresh24Hour from './Refresh24Hour'
 import RefreshSkills from './RefreshSkills'
 import Skill from './Skill'
 
-export interface ISkillsListProps {}
-
-export default function SkillsList(props: ISkillsListProps) {
+export default function SkillsList() {
 	const { state } = useContext(context)
 	const { editMode } = state
 
