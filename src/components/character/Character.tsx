@@ -26,7 +26,7 @@ export default function Character(props: ICharacterProps) {
 
 	return (
 		<div className='space-y-4'>
-			{state.document._id}
+			{state?.document?._id && state.document._id}
 			<div className='space-y-4 md:flex md:space-y-0 md:space-x-4'>
 				<BasicInfo />
 
