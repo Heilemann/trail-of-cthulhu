@@ -13,7 +13,7 @@ export default function Weapon() {
 	const skill = useWatch({
 		control,
 		name: 'skill',
-		defaultValue: 'Firearms(Handgun)',
+		defaultValue: 'Firearms',
 	})
 
 	return (
