@@ -74,14 +74,14 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	return (
 		<td className='text-center'>
 			<Input
+				type='number'
 				className={twMerge(
 					'mt-1 text-center',
 					editMode === 'view' ? 'hidden' : '',
 				)}
-				type='number'
 				placeholder='—'
-				{...register(`weapons.${index}.range.${rangeType}`, {
-					// validate: validateNumberOrEmpty,
+				{...register(`weapons[index].range[rangeType]`, {
+					validate: validateNumberOrEmpty,
 				})}
 			/>
 			{editMode === 'view' && (
