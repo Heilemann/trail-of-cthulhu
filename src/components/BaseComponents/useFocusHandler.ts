@@ -8,9 +8,11 @@ const useFocusHandler = () => {
 		const onFocus = () => {
 			messageToApp({ message: 'focus', data: undefined })
 		}
-		window.addEventListener('focus', onFocus)
+		window.addEventListener('click', onFocus)
+		window.addEventListener('pointerdown', onFocus)
 		return () => {
 			window.removeEventListener('focus', onFocus)
+			window.removeEventListener('pointerdown', onFocus)
 		}
 	}, [])
 }
