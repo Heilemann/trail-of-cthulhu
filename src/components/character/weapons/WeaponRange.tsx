@@ -80,7 +80,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 					editMode === 'view' ? 'hidden' : '',
 				)}
 				placeholder='—'
-				{...register(`weapons[index].range[rangeType]`, {
+				{...register(`weapons.${index}.range.${rangeType}`, {
 					validate: validateNumberOrEmpty,
 				})}
 			/>
