@@ -10,7 +10,7 @@ export default function useMessageToApp() {
 	}
 
 	const messageToApp = ({ message, data }: TAppReceivableMessages) => {
-		console.log('System sending message to app', message, data)
+		console.log('System sending message to app:', { message, data })
 
 		window.parent.postMessage({
 			source: 'System',
