@@ -6,6 +6,7 @@ import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../BaseComponents/context'
+import validateNumberOrEmpty from '../../tools/validateNumberOrEmpty'
 
 type Props = {
 	index: number
@@ -34,14 +35,6 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 		near = 'near',
 		long = 'long',
 	}
-
-	const validateNumberOrEmpty = (value: string) => {
-		return (
-			value === '' || !isNaN(Number(value)) || 'Input must be a number or empty'
-		)
-	}
-
-	console.log('watchedWeapon', watchedWeapon)
 
 	const handleClick = () => {
 		const roll = '/r 1d6'

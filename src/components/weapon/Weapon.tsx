@@ -6,6 +6,7 @@ import weaponSkillList from '../data/weaponSkillList'
 import { twMerge } from 'tailwind-merge'
 import HTextArea from '../Form/HTextArea'
 import VInput from '../Form/VInput'
+import validateNumberOrEmpty from '../tools/validateNumberOrEmpty'
 
 export default function Weapon() {
 	const { register, control } = useFormContext()
@@ -46,22 +47,22 @@ export default function Weapon() {
 				<VInput
 					label='Point Blank'
 					placeholder='&mdash;'
-					{...register('range.pointblank')}
+					{...register('range.pointblank', { validate: validateNumberOrEmpty })}
 				/>
 				<VInput
 					label='Close'
 					placeholder='&mdash;'
-					{...register('range.close')}
+					{...register('range.close', { validate: validateNumberOrEmpty })}
 				/>
 				<VInput
 					label='Near'
 					placeholder='&mdash;'
-					{...register('range.near')}
+					{...register('range.near', { validate: validateNumberOrEmpty })}
 				/>
 				<VInput
 					label='Long'
 					placeholder='&mdash;'
-					{...register('range.long')}
+					{...register('range.long', { validate: validateNumberOrEmpty })}
 				/>
 			</div>
 
