@@ -81,7 +81,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 				type='number'
 				placeholder='—'
 				{...register(`weapons.${index}.range.${rangeType}`, {
-					validate: validateNumberOrEmpty,
+					// validate: validateNumberOrEmpty,
 				})}
 			/>
 			{editMode === 'view' && (
