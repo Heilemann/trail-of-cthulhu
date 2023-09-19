@@ -2,15 +2,15 @@ import { TrashIcon, WindowIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TWeaponOnCharacter } from '../../../interfaces'
+import { TSkill, TWeaponOnCharacter } from '../../../interfaces'
+import context from '../../BaseComponents/context'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import TextArea from '../../Form/Textarea'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
-import context from '../../BaseComponents/context'
-import WeaponSkill from './WeaponSkill'
-import WeaponRange from './WeaponRange'
 import WeaponAmmo from './WeaponAmmo'
+import WeaponRange from './WeaponRange'
+import WeaponSkill from './WeaponSkill'
 
 export interface IWeaponRowProps {
 	index: number
@@ -36,6 +36,17 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 	const handleRemove = (index: number) => {
 		remove(index)
 	}
+
+	const skill: TSkill = useWatch({
+		name: `skills.general.${watchedWeapon?.skill}`,
+		defaultValue: {
+			pool: '0',
+			rating: '0',
+		},
+	})
+	const { pool, rating } = skill
+
+	console.log('skill', { skill, pool, rating })
 
 	return (
 		<>

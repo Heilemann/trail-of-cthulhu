@@ -41,6 +41,8 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 		)
 	}
 
+	console.log('watchedWeapon', watchedWeapon)
+
 	const handleClick = () => {
 		const roll = '/r 1d6'
 		const modifier = watchedWeapon.range[rangeType] // This is initially a string
