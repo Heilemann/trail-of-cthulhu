@@ -9,6 +9,7 @@ import TypeSwitcher from '../TypeSwitcher'
 import context from './context'
 import useMessageToApp from './hooks/UseMessageToApp'
 import usePostMessageListener from './hooks/usePostMessageListener'
+import useFocusHandler from './useFocusHandler'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
@@ -17,6 +18,7 @@ export default function Container() {
 	const resetInProgress = useRef(false)
 	const messageToApp = useMessageToApp()
 	usePostMessageListener({ resetInProgress })
+	useFocusHandler()
 
 	const handleDocumentChanges = () => {
 		// type controls the sheet to show, if the document is updated
