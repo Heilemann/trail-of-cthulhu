@@ -17,7 +17,6 @@ const WeaponReferenceButton = ({ index }: Props) => {
 	})
 
 	const handleOpenWeapon = () => {
-		console.log('handleOpenWeapon', { watchedWeapon })
 		const { documentId } = watchedWeapon
 		messageToApp({ message: 'open document', data: { documentId } })
 	}
