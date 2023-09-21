@@ -31,17 +31,6 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 		remove(index)
 	}
 
-	const skill: TSkill = useWatch({
-		name: `skills.general.${watchedWeapon?.skill}`,
-		defaultValue: {
-			pool: '0',
-			rating: '0',
-		},
-	})
-	const { pool, rating } = skill
-
-	console.log('skill', { skill, pool, rating })
-
 	return (
 		<>
 			<tr key={index}>
