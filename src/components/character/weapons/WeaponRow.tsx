@@ -1,15 +1,15 @@
-import { TrashIcon, WindowIcon } from '@heroicons/react/24/solid'
+import { TrashIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { UseFieldArrayRemove, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TSkill, TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../BaseComponents/context'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import Button from '../../Form/Button'
 import Input from '../../Form/Input'
 import TextArea from '../../Form/Textarea'
 import WeaponAmmo from './WeaponAmmo'
 import WeaponRange from './WeaponRange'
+import WeaponReferenceButton from './WeaponReferenceButton'
 import WeaponSkill from './WeaponSkill'
 
 export interface IWeaponRowProps {
@@ -22,16 +22,10 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 	const { state } = useContext(context)
 	const { editMode } = state
 	const { register } = useFormContext()
-	const messageToApp = useMessageToApp()
 
 	const watchedWeapon: TWeaponOnCharacter = useWatch({
 		name: `weapons.${index}`,
 	})
-
-	const handleOpenWeapon = () => {
-		const { documentId } = watchedWeapon
-		messageToApp({ message: 'open document', data: { documentId } })
-	}
 
 	const handleRemove = (index: number) => {
 		remove(index)
@@ -69,16 +63,7 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 
 				<WeaponAmmo index={index} />
 
-				<td>
-					<Button
-						onClick={handleOpenWeapon}
-						className='self-end p-1.5'
-						aria-label='Open weapon sheet'
-					>
-						<WindowIcon className='h-4 w-4' title='Open weapon sheet' />
-					</Button>
-					<input type='hidden' {...register(`weapons.${index}.documentId`)} />
-				</td>
+				<WeaponReferenceButton index={index} />
 
 				<td>
 					<Button
