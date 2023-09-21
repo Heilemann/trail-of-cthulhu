@@ -20,24 +20,19 @@ const WeaponReferenceButton = ({ index }: Props) => {
 		const { documentId } = watchedWeapon
 		messageToApp({ message: 'open document', data: { documentId } })
 	}
-	console.log('watchedWeapon', watchedWeapon)
-	if (!watchedWeapon.documentId) {
-		return (
-			<td>
-				<input type='hidden' {...register(`weapons.${index}.documentId`)} />
-			</td>
-		)
-	}
 
 	return (
 		<td>
-			<Button
-				onClick={handleOpenWeapon}
-				className='self-end p-1.5'
-				aria-label='Open weapon sheet'
-			>
-				<WindowIcon className='h-4 w-4' title='Open weapon sheet' />
-			</Button>
+			{watchedWeapon.documentId && (
+				<Button
+					onClick={handleOpenWeapon}
+					className='self-end p-1.5'
+					aria-label='Open weapon sheet'
+				>
+					<WindowIcon className='h-4 w-4' title='Open weapon sheet' />
+				</Button>
+			)}
+
 			<input type='hidden' {...register(`weapons.${index}.documentId`)} />
 		</td>
 	)
