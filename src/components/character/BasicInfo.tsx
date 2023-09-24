@@ -58,7 +58,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 					label='Drive'
 					className='mx-2'
 					placeholder='&mdash;'
-					{...register('drive')}
+					{...register('info.drive')}
 				/>
 
 				<HInput

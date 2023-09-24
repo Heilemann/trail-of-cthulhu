@@ -47,22 +47,30 @@ export default function Weapon() {
 				<VInput
 					label='Point Blank'
 					placeholder='&mdash;'
-					{...register('range.pointblank', { validate: validateNumberOrEmpty })}
+					{...register('range.pointblank', {
+						// validate: validateNumberOrEmpty
+					})}
 				/>
 				<VInput
 					label='Close'
 					placeholder='&mdash;'
-					{...register('range.close', { validate: validateNumberOrEmpty })}
+					{...register('range.close', {
+						// validate: validateNumberOrEmpty
+					})}
 				/>
 				<VInput
 					label='Near'
 					placeholder='&mdash;'
-					{...register('range.near', { validate: validateNumberOrEmpty })}
+					{...register('range.near', {
+						// validate: validateNumberOrEmpty
+					})}
 				/>
 				<VInput
 					label='Long'
 					placeholder='&mdash;'
-					{...register('range.long', { validate: validateNumberOrEmpty })}
+					{...register('range.long', {
+						// validate: validateNumberOrEmpty
+					})}
 				/>
 			</div>
 

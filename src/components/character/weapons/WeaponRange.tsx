@@ -1,12 +1,10 @@
 import { useContext } from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
+import { useWatch } from 'react-hook-form'
 import { TWeaponOnCharacter } from '../../../interfaces'
-import Button from '../../Form/Button'
-import Input from '../../Form/Input'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../BaseComponents/context'
-import validateNumberOrEmpty from '../../tools/validateNumberOrEmpty'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
+import Button from '../../Form/Button'
+import { default as NumberInput } from '../../Form/NumberInput'
 
 type Props = {
 	index: number
@@ -16,7 +14,6 @@ type Props = {
 const WeaponRange = ({ index, rangeType }: Props) => {
 	const { state } = useContext(context)
 	const { editMode } = state
-	const { register } = useFormContext()
 	const messageToApp = useMessageToApp()
 
 	const watchedWeapon: TWeaponOnCharacter = useWatch({
@@ -66,16 +63,10 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 
 	return (
 		<td className='text-center'>
-			<Input
-				type='number'
-				className={twMerge(
-					'mt-1 text-center',
-					editMode === 'view' ? 'hidden' : '',
-				)}
-				placeholder='—'
-				{...register(`weapons.${index}.range.${rangeType}`, {
-					validate: validateNumberOrEmpty,
-				})}
+			<NumberInput
+				name={`weapons.${index}.range.${rangeType}`}
+				className='mt-1'
+				min={0}
 			/>
 			{editMode === 'view' && (
 				<Button
