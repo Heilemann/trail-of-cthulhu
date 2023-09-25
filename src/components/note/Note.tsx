@@ -1,5 +1,5 @@
 import MDEditor from '@uiw/react-md-editor'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../BaseComponents/context'
@@ -16,6 +16,10 @@ export default function Note() {
 		defaultValue: '',
 	})
 
+	useEffect(() => {
+		console.log('text', text)
+	}, [text])
+
 	if (!document?.values) return null
 
 	return (
@@ -28,16 +32,17 @@ export default function Note() {
 				{...register('name')}
 			/>
 
+			{/* @ts-ignore */}
 			<MDEditor
 				className={twMerge(
 					'm-0 mt-2 flex-1 resize-none',
 					editMode === 'view' && 'hidden',
 				)}
-				value={text}
-				onChange={value => {
-					console.log('Note text:', value)
-					setValue('text', value)
-				}}
+				{...register('text')}
+				// value={text}
+				// onChange={value => {
+				// 	setValue('text', value)
+				// }}
 			/>
 		</DecoBox>
 	)
