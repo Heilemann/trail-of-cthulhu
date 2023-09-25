@@ -39,7 +39,7 @@ export default function Note() {
 					editMode === 'view' && 'hidden',
 				)}
 				// {...register('text')}
-				defaultValue={text}
+				value={text}
 				onChange={value => {
 					setValue('text', value)
 				}}
