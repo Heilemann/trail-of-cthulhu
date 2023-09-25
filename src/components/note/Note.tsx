@@ -36,7 +36,6 @@ export default function Note() {
 					onChange={value => {
 						setValue('text', value)
 					}}
-					visibleDragbar={false}
 					preview='edit'
 				/>
 			</div>
