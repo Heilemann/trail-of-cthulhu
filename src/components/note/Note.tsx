@@ -21,7 +21,9 @@ export default function Note() {
 
 	return (
 		<DecoBox className='flex flex-1 flex-col'>
-			{editMode === 'view' && <MDEditor.Markdown source={text} />}
+			{editMode === 'view' && (
+				<MDEditor.Markdown className='bg-transparent' source={text} />
+			)}
 
 			<Input
 				className={twMerge('flex-0 font-bold', editMode === 'view' && 'hidden')}
@@ -31,12 +33,13 @@ export default function Note() {
 
 			<div className={twMerge(editMode === 'view' && 'hidden')}>
 				<MDEditor
-					className='m-0 mt-2 flex-1 resize-none'
+					className='m-0 mt-2 flex-1 resize-none bg-transparent'
 					value={text}
 					onChange={value => {
 						setValue('text', value)
 					}}
 					preview='edit'
+					height={600}
 				/>
 			</div>
 		</DecoBox>
