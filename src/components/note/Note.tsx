@@ -32,13 +32,11 @@ export default function Note() {
 				{...register('name')}
 			/>
 
-			{/* @ts-ignore */}
 			<MDEditor
 				className={twMerge(
 					'm-0 mt-2 flex-1 resize-none',
 					editMode === 'view' && 'hidden',
 				)}
-				// {...register('text')}
 				value={text}
 				onChange={value => {
 					setValue('text', value)
