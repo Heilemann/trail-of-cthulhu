@@ -1,9 +1,22 @@
 import {
 	TAccess,
 	TDocument,
+	TNote,
 	TWeapon,
 	TWeaponDocument,
 } from '../../../interfaces'
+
+const note: TNote = {
+	_id: 'note',
+	creator: 'abc',
+	access: 'public' as TAccess,
+	accessList: [],
+	type: 'note',
+	values: {
+		name: 'Note',
+		text: 'This is a **note**.',
+	},
+}
 
 const weapon: TWeapon = {
 	name: 'Sword',
@@ -45,6 +58,7 @@ const defaultDocuments: TDocument[] = [
 		},
 	},
 	{ ...weaponDocument },
+	{ ...note },
 ]
 
 export default defaultDocuments

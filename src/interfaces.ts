@@ -229,3 +229,10 @@ export type TWeaponOnCharacter = TWeapon & {
 export type TWeaponDocument = TDocument & {
 	values: TWeapon
 }
+
+export type TNote = TDocument & {
+	values: {
+		name: string
+		text: string
+	}
+}
