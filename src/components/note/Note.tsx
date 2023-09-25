@@ -41,6 +41,7 @@ export default function Note() {
 					className='m-0 mt-2 flex-1 resize-none'
 					style={{
 						backgroundColor: 'transparent',
+						fontSize: '40px',
 					}}
 					value={text}
 					onChange={value => {
