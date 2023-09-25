@@ -6,13 +6,13 @@ import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
 import Input from '../Form/Input'
 
+// css from App.css affects this component
+
 export default function Note() {
 	const { state } = useContext(context)
 	const { document, editMode } = state
 	const { values } = document
 	const { register, setValue } = useFormContext()
-
-	console.log('-------> Note', values)
 
 	const text = useWatch({
 		name: 'text',
@@ -29,16 +29,18 @@ export default function Note() {
 				{...register('name')}
 			/>
 
-			<MDEditor
-				className={twMerge(
-					'm-0 mt-2 flex-1 resize-none',
-					editMode === 'view' && 'hidden',
-				)}
-				value={text}
-				onChange={value => {
-					setValue('text', value)
-				}}
-			/>
+			<div className={twMerge(editMode === 'view' && 'hidden')}>
+				<MDEditor
+					className='m-0 mt-2 flex-1 resize-none'
+					value={text}
+					onChange={value => {
+						setValue('text', value)
+					}}
+					visibleDragbar={false}
+					preview='edit'
+					enableScroll={false}
+				/>
+			</div>
 		</DecoBox>
 	)
 }
