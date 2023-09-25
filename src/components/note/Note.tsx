@@ -9,18 +9,17 @@ import Input from '../Form/Input'
 export default function Note() {
 	const { state } = useContext(context)
 	const { document, editMode } = state
+	const { values } = document
 	const { register, setValue } = useFormContext()
 
 	const text = useWatch({
 		name: 'text',
-		defaultValue: '',
+		defaultValue: values.text || '',
 	})
 
 	useEffect(() => {
 		console.log('text', text)
 	}, [text])
-
-	if (!document?.values) return null
 
 	return (
 		<DecoBox className='flex flex-1 flex-col'>

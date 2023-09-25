@@ -19,7 +19,7 @@ export default function Character(props: ICharacterProps) {
 
 	const athletics = useWatch({
 		name: 'skills.Athletics.rating',
-		defaultValue: (skills && skills.athletics?.rating) || 0,
+		defaultValue: skills?.athletics?.rating || 0,
 	})
 	const athleticsInt = parseInt(athletics || 0, 10)
 	const defaultHitThreshold = athleticsInt < 8 ? '3' : '4'
