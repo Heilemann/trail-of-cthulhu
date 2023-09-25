@@ -38,11 +38,11 @@ export default function Note() {
 					'm-0 mt-2 flex-1 resize-none',
 					editMode === 'view' && 'hidden',
 				)}
-				{...register('text')}
-				// value={text}
-				// onChange={value => {
-				// 	setValue('text', value)
-				// }}
+				// {...register('text')}
+				defaultValue={text}
+				onChange={value => {
+					setValue('text', value)
+				}}
 			/>
 		</DecoBox>
 	)
