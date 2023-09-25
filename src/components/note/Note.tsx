@@ -38,7 +38,6 @@ export default function Note() {
 					}}
 					visibleDragbar={false}
 					preview='edit'
-					enableScroll={false}
 				/>
 			</div>
 		</DecoBox>
