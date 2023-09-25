@@ -1,5 +1,5 @@
 import MDEditor from '@uiw/react-md-editor'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../BaseComponents/context'
@@ -12,14 +12,12 @@ export default function Note() {
 	const { values } = document
 	const { register, setValue } = useFormContext()
 
+	console.log('-------> Note', values)
+
 	const text = useWatch({
 		name: 'text',
-		defaultValue: values.text || '',
+		defaultValue: values?.text || '',
 	})
-
-	useEffect(() => {
-		console.log('text', text)
-	}, [text])
 
 	return (
 		<DecoBox className='flex flex-1 flex-col'>
