@@ -14,7 +14,7 @@ const useFocusHandler = () => {
 			window.removeEventListener('focus', onFocus)
 			window.removeEventListener('pointerdown', onFocus)
 		}
-	}, [])
+	}, [messageToApp])
 }
 
 export default useFocusHandler
