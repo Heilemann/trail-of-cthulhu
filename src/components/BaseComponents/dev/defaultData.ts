@@ -1,4 +1,5 @@
 import {
+	Documents,
 	TAccess,
 	TDocument,
 	TNote,
@@ -40,25 +41,30 @@ const weaponDocument: TWeaponDocument = {
 	values: weapon,
 }
 
-const defaultDocuments: TDocument[] = [
-	{
-		_id: 'character',
-		creator: 'abc',
-		access: 'public' as TAccess,
-		accessList: [],
-		type: 'character',
-		values: {
-			name: 'Bob',
-			weapons: [
-				{
-					documentId: 'weapon',
-					...weapon,
-				},
-			],
-		},
+const characterDocument: TDocument = {
+	_id: 'character',
+	creator: 'abc',
+	access: 'public' as TAccess,
+	accessList: [],
+	type: 'character',
+	values: {
+		name: 'Bob',
+		weapons: [
+			{
+				documentId: 'weapon',
+				...weapon,
+			},
+		],
 	},
-	{ ...weaponDocument },
-	{ ...note },
-]
+}
+
+const defaultDocuments: Documents = {
+	byId: {
+		note,
+		weaponDocument,
+		characterDocument,
+	},
+	allIds: ['note', 'weaponDocument', 'characterDocument'],
+}
 
 export default defaultDocuments

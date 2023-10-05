@@ -24,10 +24,8 @@ const WeaponReferenceButton = ({ index }: Props) => {
 	}, [watchedWeapon.documentId])
 
 	const referenceDocumentExists = useMemo(() => {
-		return state.documents.some(document => {
-			return document._id === watchedWeapon.documentId
-		})
-	}, [state.documents, watchedWeapon.documentId])
+		return state.documents.byId.hasOwnProperty(watchedWeapon.documentId)
+	}, [state.documents.byId, watchedWeapon.documentId])
 
 	const handleOpenWeapon = () => {
 		const { documentId } = watchedWeapon

@@ -1,5 +1,15 @@
 import { FieldValues } from 'react-hook-form'
 
+export type Documents = {
+	byId: { [id: string]: TDocument }
+	allIds: string[]
+}
+
+export type Assets = {
+	byId: { [id: string]: TAsset }
+	allIds: string[]
+}
+
 export type TGrid = {
 	type: 'hex' | 'square'
 	size: number
@@ -86,8 +96,8 @@ export type TState = {
 	documentId: string
 	editMode: TEditMode
 	document: TDocument
-	documents: TDocument[]
-	assets: TAsset[]
+	documents: Documents
+	assets: Assets
 }
 
 export type TReducerAction =
@@ -176,8 +186,8 @@ export type TAppReceivableMessages =
 
 export type TSystemReceivableMessageData = {
 	documentId: string
-	documents: TDocument[]
-	assets: TAsset[]
+	documents: Documents
+	assets: Assets
 	editMode: TEditMode
 }
 

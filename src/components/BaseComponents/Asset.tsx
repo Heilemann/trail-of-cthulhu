@@ -4,10 +4,9 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TAsset } from '../../interfaces'
 import Button from '../Form/Button'
-import useMessageToApp from './hooks/UseMessageToApp'
 import context from './context'
+import useMessageToApp from './hooks/UseMessageToApp'
 
 interface AssetProps {
 	name: string
@@ -22,7 +21,7 @@ const Asset: FC<AssetProps> = props => {
 	const { state } = useContext(context)
 	const { assets, document } = state
 	const [assetId, setAssetId] = useState<string>(document.values[name])
-	const asset = assetId && assets.find((asset: TAsset) => asset._id === assetId)
+	const asset = assets.byId[assetId]
 	const { setValue } = useFormContext()
 	const messageToApp = useMessageToApp()
 

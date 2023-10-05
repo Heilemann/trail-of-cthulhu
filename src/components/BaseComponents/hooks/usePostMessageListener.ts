@@ -31,9 +31,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 			switch (message) {
 				case 'load':
 					const { documentId } = data
-					const document = data.documents?.find(
-						(d: TDocument) => d._id === documentId,
-					)
+					const document = data.documents.byId[documentId]
 
 					if (!document) {
 						throw new Error(`Document with id ${documentId} not found`)
@@ -56,9 +54,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 				case 'update data': {
 					// @ts-ignore
 					const { id: documentId } = data
-					const newDocument = data.documents?.find(
-						(d: TDocument) => d._id === documentId,
-					)
+					const newDocument = data.documents.byId[documentId]
 
 					if (!newDocument) {
 						console.error('New document not found', documentId, data.documents)

@@ -39,7 +39,7 @@ export default function Weapons() {
 	const handleDrop = (e: DragEvent) => {
 		// @ts-ignore
 		const droppedDocumentId = e.dataTransfer.getData('documentId').documentId
-		const droppedDoc = documents.find(d => d._id === droppedDocumentId)
+		const droppedDoc = documents.byId[droppedDocumentId]
 		console.log('droppedDoc', droppedDoc, e)
 		if (!droppedDoc)
 			throw new Error(

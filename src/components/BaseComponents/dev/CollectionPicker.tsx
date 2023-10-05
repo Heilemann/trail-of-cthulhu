@@ -27,11 +27,11 @@ export default function CollectionPicker() {
 			type: 'LOAD',
 			payload: {
 				...state,
-				document: state.documents.find(d => d.type === selectedCollectionType),
+				document: state.documents.byId[selectedCollectionType],
 				documentId: selectedCollectionType,
 			},
 		})
-		// reset(state.documents.find(d => d.type === selectedCollectionType))
+		// reset(state.documents.byId[selectedCollectionType])
 	}, [dispatch, state, selectedCollectionType])
 
 	return (

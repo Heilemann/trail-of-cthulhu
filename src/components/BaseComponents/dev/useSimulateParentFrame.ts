@@ -3,16 +3,19 @@
 // out later. Source in these messages is 'Aux' because in production the 'App'
 // sends message to 'Aux' which then forwards them to the system.
 import { useContext, useEffect } from 'react'
-import { TDocument, TEditMode, TState } from '../../../interfaces'
+import { TEditMode, TState } from '../../../interfaces'
 import context from '../context'
 import defaultDocuments from './defaultData'
 
 let initialData: TState = {
 	editMode: 'edit' as TEditMode,
-	documentId: defaultDocuments[0]._id,
-	document: defaultDocuments[0],
+	documentId: defaultDocuments.allIds[0],
+	document: defaultDocuments.byId[defaultDocuments.allIds[0]],
 	documents: defaultDocuments,
-	assets: [],
+	assets: {
+		byId: {},
+		allIds: [],
+	},
 }
 
 const useSimulateParentFrame = () => {
@@ -49,10 +52,7 @@ const useSimulateParentFrame = () => {
 				const newState = { ...state }
 
 				// update the document in the state
-				const documentIndex = newState.documents?.findIndex(
-					(document: TDocument) => document._id === data._id,
-				)
-				newState.documents[documentIndex] = data
+				newState.documents.byId[data._id] = data
 
 				localStorage.setItem('state', JSON.stringify(newState))
 

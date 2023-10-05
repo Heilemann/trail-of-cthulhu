@@ -1,4 +1,3 @@
-import * as React from 'react'
 import DecoBox from './DecoBox'
 import TD from './TD'
 

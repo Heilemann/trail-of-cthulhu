@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 export interface ILogoProps {}
 
 export default function Logo(props: ILogoProps) {

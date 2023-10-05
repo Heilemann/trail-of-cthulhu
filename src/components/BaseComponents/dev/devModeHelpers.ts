@@ -15,8 +15,14 @@ export const fakeDocumentsFromSystemConfig = (
 	setCollections(systemConfig.collections as TCollection[])
 
 	const fakeData = {
-		documents: [],
-		assets: [],
+		documents: {
+			byId: {},
+			allIds: [],
+		},
+		assets: {
+			byId: {},
+			allIds: [],
+		},
 		editMode: 'edit' as TEditMode,
 	} as Partial<TState>
 
@@ -31,10 +37,12 @@ export const fakeDocumentsFromSystemConfig = (
 				name: 'No name',
 			},
 		}
-		fakeData.documents?.push(document)
+		fakeData.documents!.allIds?.push(document._id)
+		fakeData.documents!.byId[document._id] = document
 	})
 
-	fakeData['document'] = fakeData.documents![0]
+	const firstType = fakeData.documents!.allIds[0]
+	fakeData['document'] = fakeData.documents!.byId[firstType]
 
 	const savedData = JSON.parse(localStorage.getItem('state') || '{}')
 
