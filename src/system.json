@@ -1,8 +1,8 @@
 {
 	"name": "Trail of Cthulhu",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"author": "Michael Heilemann",
-	"description": "Attempt at a better system... system.",
+	"description": "Trail of Cthulhu reference game system implementation.",
 	"code": "dist/index.html",
 	"grid": {
 		"type": "square",
