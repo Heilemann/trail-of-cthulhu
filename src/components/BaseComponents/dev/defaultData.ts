@@ -3,7 +3,6 @@ import {
 	TAccess,
 	TDocument,
 	TNote,
-	TWeapon,
 	TWeaponDocument,
 } from '../../../interfaces'
 
@@ -19,29 +18,27 @@ const note: TNote = {
 	},
 }
 
-const weapon: TWeapon = {
-	name: 'Sword',
-	skill: 'Weapons',
-	range: {
-		pointblank: '1',
-		close: '0',
-		near: '',
-		long: '',
-	},
-	ammo: '',
-	notes: '',
-}
-
-const weaponDocument: TWeaponDocument = {
+const weapon: TWeaponDocument = {
 	_id: 'weapon',
 	type: 'weapon',
 	creator: 'abc',
 	access: 'public',
 	accessList: [],
-	values: weapon,
+	values: {
+		name: 'Sword',
+		skill: 'Weapons',
+		range: {
+			pointblank: '1',
+			close: '0',
+			near: '',
+			long: '',
+		},
+		ammo: '',
+		notes: '',
+	},
 }
 
-const characterDocument: TDocument = {
+const character: TDocument = {
 	_id: 'character',
 	creator: 'abc',
 	access: 'public' as TAccess,
@@ -61,10 +58,10 @@ const characterDocument: TDocument = {
 const defaultDocuments: Documents = {
 	byId: {
 		note,
-		weaponDocument,
-		characterDocument,
+		weapon,
+		character,
 	},
-	allIds: ['note', 'weaponDocument', 'characterDocument'],
+	allIds: ['note', 'weapon', 'character'],
 }
 
 export default defaultDocuments

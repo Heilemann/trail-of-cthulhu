@@ -11,6 +11,7 @@ import Input from '../Form/Input'
 export default function Note() {
 	const { state } = useContext(context)
 	const { document, editMode } = state
+	console.log('Note', { state, document, editMode })
 	const { values } = document
 	const { register, setValue } = useFormContext()
 

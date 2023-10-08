@@ -49,7 +49,7 @@ const NumberInput: React.FC<Props> = ({
 				placeholder='—'
 				{...rest}
 			/>
-			{showButtons && (
+			{showButtons && editMode === 'edit' && (
 				<div className='flex w-8 flex-col space-y-px'>
 					<button
 						onClick={() => changeValue(1)}

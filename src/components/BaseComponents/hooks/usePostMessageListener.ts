@@ -27,6 +27,11 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 			switch (message) {
 				case 'load':
 					const { documentId } = data
+					console.log(
+						'System received load message for document',
+						documentId,
+						data,
+					)
 					const document = data.documents.byId[documentId]
 
 					if (!document) {
