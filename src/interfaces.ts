@@ -81,6 +81,11 @@ export type TSkill = {
 	specialities?: string[]
 }
 
+export type TCharacterNote = {
+	title: string
+	note: string
+}
+
 export type TAsset = {
 	_id: string
 	name: string

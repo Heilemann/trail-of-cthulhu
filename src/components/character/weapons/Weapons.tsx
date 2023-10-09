@@ -118,8 +118,7 @@ export default function Weapons() {
 					</tr>
 				</thead>
 				<tbody>
-					{fields.map((weapon, index) => {
-						return (
+					{fields.map((weapon, index) => (
 							<WeaponRow
 								key={index}
 								index={index}
@@ -127,7 +126,7 @@ export default function Weapons() {
 								weapon={weapon as any}
 							/>
 						)
-					})}
+					)}
 				</tbody>
 			</table>
 		</DecoBox>
