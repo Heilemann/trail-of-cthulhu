@@ -27,7 +27,7 @@ const NumberInput: React.FC<Props> = ({
 	const { state } = useContext(context)
 	const { editMode } = state
 	const { register, setValue } = useFormContext()
-	const inputValue: string = useWatch({ name, defaultValue: '' })
+	const inputValue: string = useWatch({ name, defaultValue: null })
 
 	const changeValue = (delta: number) => {
 		const newValue = `${parseFloat(inputValue || '0') + delta}`
