@@ -21,7 +21,6 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 		name: `weapons.${index}`,
 	})
 
-	alert(JSON.stringify(watchedWeapon))
 	const isDisabled =
 		!watchedWeapon?.range ||
 		watchedWeapon?.range[rangeType] === null ||
