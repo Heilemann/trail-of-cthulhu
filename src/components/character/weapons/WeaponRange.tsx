@@ -22,8 +22,8 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 
 	const isDisabled =
 		!watchedWeapon?.range ||
-		watchedWeapon.range[rangeType] === null ||
-		watchedWeapon.range[rangeType] === undefined
+		watchedWeapon?.range[rangeType] === null ||
+		watchedWeapon?.range[rangeType] === undefined
 
 	// enum for rangeType
 	enum range {

@@ -1,11 +1,10 @@
 import CollectionPicker from './CollectionPicker'
 import EditModeToggle from './EditModeToggle'
 import ResetButton from './ResetButton'
-import UpdateButton from './UpdateButton'
 import useSimulateParentFrame from './useSimulateParentFrame'
 
 /*
-	This is a development tool which is enabled by creating a .env file and putting this in it:
+	This is a development tool which is enabled by creating a .env file and putting this in it, then starting the dev server (see readme for more info):
 
   `NODE_ENV = development`
 
@@ -23,7 +22,6 @@ export default function DevMode() {
 
 			<div className='flex flex-1 justify-end space-x-2'>
 				<EditModeToggle />
-				<UpdateButton />
 				<ResetButton />
 			</div>
 		</div>
