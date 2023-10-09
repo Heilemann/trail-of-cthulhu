@@ -12,7 +12,7 @@ const CharacterNotes = () => {
 	const { control } = useFormContext()
 	const { fields, prepend, remove } = useFieldArray<FieldValues, any, any>({
 		control,
-		name: 'notes',
+		name: 'characternotes',
 	})
 
 	const handleAdd = () => {

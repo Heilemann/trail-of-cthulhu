@@ -1,5 +1,5 @@
 import { MinusIcon } from '@heroicons/react/24/solid'
-import { UseFieldArrayRemove } from 'react-hook-form'
+import { UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { TCharacterNote } from '../../interfaces'
 import DecoBox from '../DecoBox'
 import Button from '../Form/Button'
@@ -13,6 +13,8 @@ interface Props {
 }
 
 const CharacterNote = ({ remove, index, characternote }: Props) => {
+	const { register } = useFormContext()
+
 	const handleRemove = () => {
 		remove(index)
 	}
@@ -20,7 +22,10 @@ const CharacterNote = ({ remove, index, characternote }: Props) => {
 	return (
 		<DecoBox>
 			<div className='flex'>
-				<Input placeholder='Title...' />
+				<Input
+					placeholder='Title...'
+					{...register(`characternotes.${index}.title`)}
+				/>
 				<Button
 					onClick={handleRemove}
 					className='my-1 p-1.5'
@@ -29,7 +34,10 @@ const CharacterNote = ({ remove, index, characternote }: Props) => {
 					<MinusIcon className='h-4 w-4' title='Remove note' />
 				</Button>
 			</div>
-			<TextArea placeholder='Note text...' />
+			<TextArea
+				placeholder='Note text...'
+				{...register(`characternotes.${index}.note`)}
+			/>
 		</DecoBox>
 	)
 }
