@@ -19,7 +19,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	const watchedWeapon: TWeaponOnCharacter = useWatch({
 		name: `weapons.${index}`,
 	})
-	alert(watchedWeapon)
+	alert(JSON.stringify(watchedWeapon))
 	const isDisabled =
 		!watchedWeapon?.range ||
 		watchedWeapon?.range[rangeType] === null ||
