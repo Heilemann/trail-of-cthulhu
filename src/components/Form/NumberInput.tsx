@@ -7,7 +7,7 @@ import inputStyle from '../styles/inputStyle'
 import validateNumberOrEmpty from '../tools/validateNumberOrEmpty'
 import Input from './Input'
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> { 
 	name: string
 	alwaysShow?: boolean
 	inputClassname?: string

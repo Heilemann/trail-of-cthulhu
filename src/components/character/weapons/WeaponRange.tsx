@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useWatch } from 'react-hook-form'
+import { useFormContext, useWatch } from 'react-hook-form'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../BaseComponents/context'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
@@ -15,10 +15,12 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	const { state } = useContext(context)
 	const { editMode } = state
 	const messageToApp = useMessageToApp()
+	const { register } = useFormContext()
 
 	const watchedWeapon: TWeaponOnCharacter = useWatch({
 		name: `weapons.${index}`,
 	})
+
 	alert(JSON.stringify(watchedWeapon))
 	const isDisabled =
 		!watchedWeapon?.range ||
@@ -64,9 +66,9 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	return (
 		<td className='text-center'>
 			<NumberInput
-				name={`weapons.${index}.range.${rangeType}`}
 				className='mt-1'
 				min={0}
+				{...register(`weapons.${index}.range.${rangeType}`)}
 			/>
 			{editMode === 'view' && (
 				<Button

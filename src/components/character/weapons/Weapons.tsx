@@ -11,8 +11,8 @@ import WeaponRow from './WeaponRow'
 
 const emptyWeapon: TWeaponOnCharacter = {
 	documentId: '',
-	skill: 'Weapons',
 	name: 'Unnamed Weapon',
+	skill: 'Weapons',
 	range: {
 		pointblank: null,
 		close: null,
