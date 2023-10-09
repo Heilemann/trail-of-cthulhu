@@ -44,7 +44,7 @@ const NumberInput: React.FC<Props> = ({
 				)}
 				{...register(name, {
 					validate: value => validateNumberOrEmpty(value, min, max),
-					// valueAsNumber: true,
+					valueAsNumber: true,
 				})}
 				placeholder='—'
 				{...rest}

@@ -22,7 +22,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 
 	const isDisabled =
 		!watchedWeapon?.range ||
-		watchedWeapon.range[rangeType] === '' ||
+		watchedWeapon.range[rangeType] === null ||
 		watchedWeapon.range[rangeType] === undefined
 
 	// enum for rangeType
@@ -39,7 +39,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 
 		let modifierString = ''
 
-		if (modifier !== undefined && modifier !== '') {
+		if (modifier !== undefined && modifier !== null) {
 			const modifierNumber = Number(modifier)
 
 			// Ensure the conversion was successful and the value is not NaN
