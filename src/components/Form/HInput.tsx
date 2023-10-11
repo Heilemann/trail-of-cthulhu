@@ -31,10 +31,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 				}}
 			>
 				<Label
-					className={twMerge(
-						'w-2/5 self-center whitespace-nowrap text-gray-500',
-						labelClassName,
-					)}
+					className={twMerge('w-2/5 self-center text-gray-500', labelClassName)}
 					htmlFor={rest.name}
 				>
 					{label}

@@ -14,7 +14,7 @@ const Dropdown = forwardRef<HTMLSelectElement, IDropdownProps>(
 			<select
 				ref={ref}
 				className={twMerge(
-					'rounded-lg bg-gray-800 p-2 px-4 text-xl',
+					'rounded-lg bg-gray-800 p-2 px-4 text-xl focus:outline-none',
 					className,
 				)}
 				style={{

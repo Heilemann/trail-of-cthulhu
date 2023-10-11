@@ -1,12 +1,13 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Input from '../../Form/Input'
-import { borderStyle } from '../../styles/borderStyle'
 import context from '../../BaseComponents/context'
-import OccupationalAbility from './OccupationalAbility'
+import NumberInput from '../../Form/NumberInput'
 import { SkillPopover } from '../../SkillPopover'
+import { borderStyle } from '../../styles/borderStyle'
+import OccupationalAbility from './OccupationalAbility'
 import SkillSpecialities from './SkillSpecialities'
+import SkillSpecialitiesList from './SkillSpecialitiesList'
 
 export interface ISkillProps {
 	name: string
@@ -43,7 +44,7 @@ export default function Skill({
 	const SkillContent = (
 		<div
 			className={twMerge(
-				'py-1 px-2 text-base',
+				'py-1 text-base',
 				borderStyle,
 				editMode === 'view' && rating === 0 && 'text-gray-400',
 				editMode === 'view' &&
@@ -54,7 +55,7 @@ export default function Skill({
 				fontFamily: 'DustismoRoman',
 			}}
 		>
-			<div className={'flex'}>
+			<div className='flex space-x-2'>
 				<OccupationalAbility name={name} category={category} />
 				<span
 					className={twMerge(
@@ -64,50 +65,52 @@ export default function Skill({
 				>
 					{name}
 				</span>
-				<Input
-					className={twMerge(
-						'w-12 bg-green-400 py-0.5 text-right dark:bg-gray-800/50',
-						pool > rating && 'dark:bg-red-800/50',
-						editMode === 'view' && 'hidden',
-					)}
-					type='number'
-					title='Pool points'
-					placeholder='0'
-					defaultValue={pool}
-					max={rating || 0}
-					min={0}
-					disabled={!pool || pool === 0}
-					{...register(`skills.${category}.${name}.pool`, {
-						max: rating || 0,
-						valueAsNumber: true,
-					})}
-				/>
-				{editMode === 'view' && <div>{pool}</div>}
-				<span className='mx-1 self-center'>/</span>
-				<Input
-					className={twMerge(
-						'w-12 bg-gray-50 py-0.5 dark:bg-gray-800/50',
-						editMode === 'view' && 'hidden',
-					)}
-					type='number'
-					title='Rating points'
-					placeholder='0'
-					defaultValue={rating}
-					min={0}
-					{...register(`skills.${category}.${name}.rating`, {
-						min: 0,
-						valueAsNumber: true,
-					})}
-				/>
-				{editMode === 'view' && <div>{rating}</div>}
+				<div className='flex space-x-0.5'>
+					<NumberInput
+						className={twMerge(
+							'w-12',
+							// pool > rating && 'dark:bg-red-800/50',
+							editMode === 'view' && 'hidden',
+						)}
+						title='Pool points'
+						placeholder='0'
+						defaultValue={pool}
+						max={rating || 0}
+						min={0}
+						disabled={!pool || pool === 0}
+						{...register(`skills.${category}.${name}.pool`, {
+							max: rating || 0,
+							valueAsNumber: true,
+						})}
+					/>
+					{editMode === 'view' && <div>{pool}</div>}
+					<span className='self-center'>/</span>
+					<NumberInput
+						className={twMerge('w-12', editMode === 'view' && 'hidden')}
+						title='Rating points'
+						placeholder='0'
+						defaultValue={rating}
+						min={0}
+						{...register(`skills.${category}.${name}.rating`, {
+							min: 0,
+							valueAsNumber: true,
+						})}
+					/>
+					{editMode === 'view' && <div>{rating}</div>}
+				</div>
 			</div>
 
 			{note}
 
 			{specialities &&
 				ratingArray.map((_, index) => (
-					<SkillSpecialities name={name} category={category} index={index} />
+					<>
+						<SkillSpecialities name={name} category={category} index={index} />
+					</>
 				))}
+			{specialities && (
+				<SkillSpecialitiesList name={name} category={category} />
+			)}
 		</div>
 	)
 

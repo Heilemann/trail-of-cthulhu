@@ -19,7 +19,7 @@ export function SkillPopover({
 			<Popover.Root>
 				<Popover.Trigger asChild>{children}</Popover.Trigger>
 				<Popover.Portal>
-					<Popover.Content className='PopoverContent' sideOffset={5}>
+					<Popover.Content sideOffset={5}>
 						<SkillPopoverContents name={name} category={category} />
 						{/* <Popover.Close className='PopoverClose' aria-label='Close'>
 							X

@@ -19,9 +19,8 @@ export default function SkillSpecialities(props: ISkillSpecialitiesProps) {
 	return (
 		<Input
 			type='text'
-			className={twMerge('mt-1 py-1')}
+			className={twMerge('mt-1 py-1', editMode === 'view' ? 'hidden' : '')}
 			placeholder='&mdash;'
-			disabled={editMode === 'view'}
 			{...register(`skills.${category}.${name}.specialities[${index}]`)}
 		/>
 	)

@@ -27,14 +27,18 @@ export default function Character(props: ICharacterProps) {
 
 	return (
 		<div className='space-y-4'>
-			<div className='space-y-4 md:flex md:space-y-0 md:space-x-4'>
+			<div className='space-y-4 md:flex md:space-x-4 md:space-y-0'>
 				<BasicInfo />
 
 				<div className='flex flex-col space-y-4'>
 					<Token />
 
 					<DecoBox>
-						<HInput label='Hit Threshold' placeholder={defaultHitThreshold} />
+						<HInput
+							label='Hit Threshold'
+							placeholder={defaultHitThreshold}
+							className='border-0'
+						/>
 					</DecoBox>
 				</div>
 			</div>

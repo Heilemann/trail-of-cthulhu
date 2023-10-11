@@ -1,17 +1,18 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
-import React, { useContext } from 'react'
+import React, { MutableRefObject, useContext, useRef } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../BaseComponents/context'
-import inputStyle from '../styles/inputStyle'
 import validateNumberOrEmpty from '../tools/validateNumberOrEmpty'
 import Input from './Input'
+import NumberInputPopover from './NumberInputPopover'
+import './NumberInput.css'
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> { 
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 	name: string
 	alwaysShow?: boolean
 	inputClassname?: string
 	showButtons?: boolean
+	largeButtons?: boolean
 }
 
 const NumberInput: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const NumberInput: React.FC<Props> = ({
 	inputClassname,
 	alwaysShow = false,
 	showButtons = true,
+	largeButtons = true,
 	min,
 	max,
 	...rest
@@ -28,43 +30,73 @@ const NumberInput: React.FC<Props> = ({
 	const { editMode } = state
 	const { register, setValue } = useFormContext()
 	const inputValue: string = useWatch({ name, defaultValue: null })
+	const inputRef = useRef<HTMLInputElement | null>(
+		null,
+	) as MutableRefObject<HTMLInputElement | null>
+	const [open, setOpen] = React.useState(false)
+	const popoverRef = useRef<HTMLDivElement | null>(null)
+
+	const { ref, ...restRegister } = register('name', {
+		validate: value => validateNumberOrEmpty(value, min, max),
+		valueAsNumber: true,
+	})
+
+	const setRefs = (element: HTMLInputElement | null) => {
+		const { ref } = register(name)
+		ref(element)
+		inputRef.current = element
+	}
 
 	const changeValue = (delta: number) => {
 		const newValue = `${parseFloat(inputValue || '0') + delta}`
+		console.log('inputRef', inputRef.current, newValue)
 		setValue(name, newValue)
+		inputRef.current?.focus()
 	}
 
+	const handleOutsideClick = (event: MouseEvent) => {
+		if (
+			inputRef.current &&
+			!inputRef.current.contains(event.target as Node) && // Type assert event.target as Node
+			popoverRef.current &&
+			!popoverRef.current.contains(event.target as Node) // Type assert event.target as Node
+		) {
+			setOpen(false)
+		}
+	}
+
+	React.useEffect(() => {
+		document.addEventListener('click', handleOutsideClick)
+		return () => {
+			document.removeEventListener('click', handleOutsideClick)
+		}
+	}, [])
+
 	return (
-		<div className={twMerge(inputStyle, 'flex overflow-hidden p-0', className)}>
+		<div className='numberinputcontainer relative'>
 			<Input
+				ref={setRefs}
 				className={twMerge(
-					'rounded-none bg-transparent px-0 text-center',
+					'py-0.5 text-center',
+					inputClassname,
 					!alwaysShow && editMode === 'view' ? 'hidden' : '',
+					className,
 					inputClassname,
 				)}
-				{...register(name, {
-					validate: value => validateNumberOrEmpty(value, min, max),
-					valueAsNumber: true,
-				})}
 				placeholder='—'
+				onFocus={() => setOpen(true)}
+				// {...rest(name, {
+				// 	validate: value => validateNumberOrEmpty(value, min, max),
+				// 	valueAsNumber: true,
+				// })}
+				{...restRegister}
 				{...rest}
 			/>
-			{showButtons && editMode === 'edit' && (
-				<div className='flex w-8 flex-col space-y-px'>
-					<button
-						onClick={() => changeValue(1)}
-						className='flex flex-1 items-center justify-center focus:outline-none'
-					>
-						<ChevronUpIcon className='h-4 w-4' />
-					</button>
-					<button
-						onClick={() => changeValue(-1)}
-						className='flex flex-1 items-center justify-center text-center focus:outline-none'
-					>
-						<ChevronDownIcon className='h-4 w-4' />
-					</button>
-				</div>
-			)}
+			<NumberInputPopover
+				ref={popoverRef}
+				changeValue={changeValue}
+				open={open}
+			/>{' '}
 		</div>
 	)
 }
