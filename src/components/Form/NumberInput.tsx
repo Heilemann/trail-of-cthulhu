@@ -5,7 +5,6 @@ import context from '../BaseComponents/context'
 import validateNumberOrEmpty from '../tools/validateNumberOrEmpty'
 import Input from './Input'
 import NumberInputPopover from './NumberInputPopover'
-import './NumberInput.css'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 	name: string

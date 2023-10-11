@@ -1,86 +1,66 @@
-import { useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import DecoBox from '../DecoBox'
+import Dropdown from '../Form/Dropdown'
 import HInput from '../Form/HInput'
 import HTextArea from '../Form/HTextArea'
-import VInput from '../Form/VInput'
+import Label from '../Form/Label'
 import weaponSkillList from '../data/weaponSkillList'
 import { borderStyle } from '../styles/borderStyle'
+import RangeInput from './RangeInput'
 
 export default function Weapon() {
 	const { register } = useFormContext()
-
-	const skill = useWatch({
-		name: 'skill',
-		defaultValue: 'Firearms',
-	})
 
 	return (
 		<DecoBox className='mx-auto w-full max-w-md'>
 			<HInput label='Name' {...register('name')} />
 
 			<div
-				className={twMerge('relative py-2 text-xl', borderStyle)}
+				className={twMerge('relative py-1 text-xl', borderStyle)}
 				style={{
 					fontFamily: 'CovingtonCondensed',
 				}}
 			>
-				<div className=' cursor-pointer rounded-lg hover:bg-gray-800'>
-					<select
-						className='m-0 w-full p-2 text-base opacity-0'
-						{...register('skill')}
-					>
+				<div className='flex cursor-pointer space-x-4 rounded-lg'>
+					<Label className='w-2/5 self-center text-gray-500'>Skill</Label>
+					<Dropdown className='w-3/5' {...register('skill')}>
 						{weaponSkillList.map(skill => (
 							<option key={skill}>{skill}</option>
 						))}
-					</select>
-					<div className='pointer-events-none absolute top-0 left-0 flex h-full w-full'>
-						<span className='flex-1 self-center text-gray-500'>Skill</span>
-						<span className='flex-1 self-center pr-2 text-right '>{skill}</span>
-					</div>
+					</Dropdown>
 				</div>
 			</div>
 
-			<div className='flex flex-row space-x-2'>
-				<VInput
-					label='Point Blank'
-					placeholder='&mdash;'
-					{...register('range.pointblank', {
-						// validate: validateNumberOrEmpty
-					})}
-				/>
-				<VInput
-					label='Close'
-					placeholder='&mdash;'
-					{...register('range.close', {
-						// validate: validateNumberOrEmpty
-					})}
-				/>
-				<VInput
-					label='Near'
-					placeholder='&mdash;'
-					{...register('range.near', {
-						// validate: validateNumberOrEmpty
-					})}
-				/>
-				<VInput
-					label='Long'
-					placeholder='&mdash;'
-					{...register('range.long', {
-						// validate: validateNumberOrEmpty
-					})}
-				/>
-			</div>
-
 			<HInput
-				label='Ammo Capacity'
+				label='Ammo'
 				placeholder='&mdash;'
 				{...register('ammoCapacity')}
 			/>
 
 			<HInput label='Cost' placeholder='&mdash;' {...register('cost')} />
 
-			<HTextArea label='Notes' placeholder='&mdash;' {...register('notes')} />
+			<div
+				className='flex flex-row space-x-2 border-0 border-b border-gray-800 py-1'
+				style={{
+					fontFamily: 'CovingtonCondensed',
+				}}
+			>
+				<div className='w-2/5 text-xl text-gray-500'>Range</div>
+				<div className='flex w-3/5 space-x-1'>
+					<RangeInput labelText='Pt. Bl.' registerName='range.pointblank' />
+					<RangeInput labelText='Close' registerName='range.close' />
+					<RangeInput labelText='Near' registerName='range.near' />
+					<RangeInput labelText='Long' registerName='range.long' />
+				</div>
+			</div>
+
+			<HTextArea
+				label='Notes'
+				placeholder='&mdash;'
+				className='my-0 border-0'
+				{...register('notes')}
+			/>
 		</DecoBox>
 	)
 }
