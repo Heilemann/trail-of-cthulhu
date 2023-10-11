@@ -8,11 +8,12 @@ import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import React, { useContext } from 'react'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
-import ErrorBoundary from '../../../ErrorBoundary'
-import context from '../../context'
-import ChangePlugin from './OnChangePlugin'
-import inputStyle from '../../../styles/inputStyle'
 import { twMerge } from 'tailwind-merge'
+import ErrorBoundary from '../../../ErrorBoundary'
+import inputStyle from '../../../styles/inputStyle'
+import context from '../../context'
+import EditorContentLoader from './EditorContentLoader'
+import ChangePlugin from './OnChangePlugin'
 
 const theme = {
 	ltr: 'ltr',
@@ -84,6 +85,7 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 						/>
 					</div>
 					<ChangePlugin />
+					<EditorContentLoader htmlContent={text} />
 				</LexicalComposer>
 			)}
 		/>

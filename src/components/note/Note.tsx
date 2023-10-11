@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
+import Input from '../BaseComponents/Form/Input'
 import RichTextEditor from '../BaseComponents/Form/RTE/RichTextEditor'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
-import Input from '../BaseComponents/Form/Input'
-import { twMerge } from 'tailwind-merge'
 
 const Note: React.FC = () => {
 	const { state } = useContext(context)
@@ -13,10 +13,12 @@ const Note: React.FC = () => {
 	const { register } = useFormContext()
 	const name = 'text'
 
-	const text = useWatch({
-		name: name,
-		defaultValue: values?.text || '',
-	})
+	// const text = useWatch({
+	// 	name: name,
+	// 	defaultValue: values?.text || '',
+	// })
+
+	const text = '<div>poooooop</div>'
 
 	console.log('======>', text)
 
