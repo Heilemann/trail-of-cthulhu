@@ -33,6 +33,7 @@ export default function BasicInfo(props: IBasicInfoProps) {
 						label='Name'
 						className='mx-2'
 						placeholder='&mdash;'
+						autoComplete='off'
 						{...register('name')}
 					/>
 					{state.editMode !== 'view' && (
