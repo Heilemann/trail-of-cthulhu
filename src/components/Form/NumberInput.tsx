@@ -34,11 +34,11 @@ const NumberInput: React.FC<Props> = ({
 		null,
 	) as MutableRefObject<HTMLInputElement | null>
 	const [open, setOpen] = React.useState(false)
-	const popoverRef = useRef<HTMLDivElement | null>(null)
 
 	const { ref, ...restRegister } = register('name', {
 		validate: value => validateNumberOrEmpty(value, min, max),
 		valueAsNumber: true,
+		onBlur: () => setOpen(false),
 	})
 
 	const setRefs = (element: HTMLInputElement | null) => {
@@ -49,54 +49,44 @@ const NumberInput: React.FC<Props> = ({
 
 	const changeValue = (delta: number) => {
 		const newValue = `${parseFloat(inputValue || '0') + delta}`
-		console.log('inputRef', inputRef.current, newValue)
 		setValue(name, newValue)
-		inputRef.current?.focus()
+		setTimeout(() => {
+			inputRef.current?.focus()
+		}, 0)
 	}
 
-	const handleOutsideClick = (event: MouseEvent) => {
-		if (
-			inputRef.current &&
-			!inputRef.current.contains(event.target as Node) && // Type assert event.target as Node
-			popoverRef.current &&
-			!popoverRef.current.contains(event.target as Node) // Type assert event.target as Node
-		) {
-			setOpen(false)
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		switch (event.key) {
+			case 'Escape':
+				setOpen(false)
+				break
+			case 'ArrowUp':
+				changeValue(1)
+				break
+			case 'ArrowDown':
+				changeValue(-1)
+				break
+			default:
+				break
 		}
 	}
-
-	React.useEffect(() => {
-		document.addEventListener('click', handleOutsideClick)
-		return () => {
-			document.removeEventListener('click', handleOutsideClick)
-		}
-	}, [])
 
 	return (
 		<div className='numberinputcontainer relative'>
 			<Input
 				ref={setRefs}
+				autoComplete='off'
 				className={twMerge(
-					'py-0.5 text-center',
-					inputClassname,
 					!alwaysShow && editMode === 'view' ? 'hidden' : '',
 					className,
-					inputClassname,
 				)}
 				placeholder='—'
 				onFocus={() => setOpen(true)}
-				// {...rest(name, {
-				// 	validate: value => validateNumberOrEmpty(value, min, max),
-				// 	valueAsNumber: true,
-				// })}
+				onKeyDown={handleKeyDown} // Add the onKeyDown event handler here
 				{...restRegister}
 				{...rest}
 			/>
-			<NumberInputPopover
-				ref={popoverRef}
-				changeValue={changeValue}
-				open={open}
-			/>{' '}
+			<NumberInputPopover changeValue={changeValue} open={open} />{' '}
 		</div>
 	)
 }

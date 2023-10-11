@@ -27,8 +27,8 @@ export default function BuildPoints(props: IBuildPointsProps) {
 			label={label}
 			placeholder={total + '' || '&mdash;'}
 			className='border-none'
-			labelClassName='w-3/5'
-			inputClassName='w-2/5'
+			labelClassName='w-4/5'
+			inputClassName='w-1/5'
 		/>
 	)
 }

@@ -15,9 +15,9 @@ export default function SkillsList() {
 				<Refresh24Hour />
 				<BuildPoints
 					watchKey='skills.investigative'
-					label='Invest. Build Points'
+					label='Invest. Build Pts'
 				/>
-				<BuildPoints watchKey='skills.general' label='General Build Points' />
+				<BuildPoints watchKey='skills.general' label='General Build Pts' />
 			</div>
 
 			{/* <div className='h-4 bg-red-500 sm:bg-blue-500 md:bg-green-500 lg:bg-yellow-500'></div> */}

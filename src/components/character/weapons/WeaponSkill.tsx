@@ -5,6 +5,7 @@ import { TSkill, TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../BaseComponents/context'
 import weaponSkillList from '../../data/weaponSkillList'
 import { WeaponSkillPopover } from './WeaponSkillPopover'
+import Dropdown from '../../Form/Dropdown'
 
 type Props = {
 	index: number
@@ -38,16 +39,11 @@ const WeaponSkill = ({ index }: Props) => {
 		<td className='relative'>
 			<div className='rounded-lg bg-gray-200/50 pr-3 dark:bg-gray-800'>
 				<div className={twMerge('mt-1', editMode === 'view' ? 'hidden' : '')}>
-					<select
-						className={twMerge(
-							'm-0 w-full cursor-pointer bg-transparent py-2.5 pl-1 text-base',
-						)}
-						{...register(`weapons.${index}.skill`)}
-					>
+					<Dropdown {...register(`weapons.${index}.skill`)}>
 						{weaponSkillList.map(skill => (
 							<option key={skill}>{skill}</option>
 						))}
-					</select>
+					</Dropdown>
 				</div>
 				{editMode === 'view' && (
 					<WeaponSkillPopover index={index} skillName={watchedWeapon.skill}>

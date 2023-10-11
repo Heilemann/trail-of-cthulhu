@@ -68,7 +68,7 @@ export default function Skill({
 				<div className='flex space-x-0.5'>
 					<NumberInput
 						className={twMerge(
-							'w-12',
+							'w-12 py-0.5 text-center',
 							// pool > rating && 'dark:bg-red-800/50',
 							editMode === 'view' && 'hidden',
 						)}
@@ -86,7 +86,10 @@ export default function Skill({
 					{editMode === 'view' && <div>{pool}</div>}
 					<span className='self-center'>/</span>
 					<NumberInput
-						className={twMerge('w-12', editMode === 'view' && 'hidden')}
+						className={twMerge(
+							'w-12 py-0.5 text-center',
+							editMode === 'view' && 'hidden',
+						)}
 						title='Rating points'
 						placeholder='0'
 						defaultValue={rating}

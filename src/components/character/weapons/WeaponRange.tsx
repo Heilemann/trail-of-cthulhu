@@ -65,7 +65,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 	return (
 		<td className='text-center'>
 			<NumberInput
-				className='mt-1'
+				className='mt-1 text-center'
 				min={0}
 				{...register(`weapons.${index}.range.${rangeType}`)}
 			/>

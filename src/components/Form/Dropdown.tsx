@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import inputStyle from '../styles/inputStyle'
 
 export interface IDropdownProps
 	extends React.SelectHTMLAttributes<HTMLSelectElement> {
@@ -13,10 +14,7 @@ const Dropdown = forwardRef<HTMLSelectElement, IDropdownProps>(
 		return (
 			<select
 				ref={ref}
-				className={twMerge(
-					'rounded-lg bg-gray-800 p-2 px-4 text-xl focus:outline-none',
-					className,
-				)}
+				className={twMerge(inputStyle, 'text-xl', className)}
 				style={{
 					fontFamily: 'CovingtonCondensed',
 				}}
