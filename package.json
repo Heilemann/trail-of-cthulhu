@@ -1,9 +1,10 @@
 {
-	"name": "frametest",
+	"name": "nr-trail-of-cthulhu",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
 		"@heroicons/react": "^2.0.13",
+		"@lexical/react": "^0.12.2",
 		"@radix-ui/react-popover": "1.0.2",
 		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "^13.4.0",
@@ -14,8 +15,8 @@
 		"@types/react": "^18.0.15",
 		"@types/react-dom": "^18.0.6",
 		"@types/react-textarea-autosize": "^8.0.0",
-		"@uiw/react-md-editor": "^3.23.6",
 		"gulp-css-base64": "^2.0.0",
+		"lexical": "^0.12.2",
 		"lodash": "^4.17.21",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

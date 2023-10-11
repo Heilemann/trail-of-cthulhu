@@ -1,56 +1,35 @@
-import MDEditor from '@uiw/react-md-editor'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { twMerge } from 'tailwind-merge'
+import RichTextEditor from '../BaseComponents/Form/RTE/RichTextEditor'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
 import Input from '../BaseComponents/Form/Input'
+import { twMerge } from 'tailwind-merge'
 
-// css from App.css affects this component
-
-export default function Note() {
+const Note: React.FC = () => {
 	const { state } = useContext(context)
 	const { document, editMode } = state
 	const { values } = document
-	const { register, setValue } = useFormContext()
+	const { register } = useFormContext()
+	const name = 'text'
 
 	const text = useWatch({
-		name: 'text',
+		name: name,
 		defaultValue: values?.text || '',
 	})
 
-	return (
-		<DecoBox className='flex flex-1 flex-col'>
-			{editMode === 'view' && (
-				<MDEditor.Markdown
-					source={text}
-					style={{
-						backgroundColor: 'transparent',
-					}}
-				/>
-			)}
+	console.log('======>', text)
 
+	return (
+		<DecoBox>
 			<Input
 				className={twMerge('flex-0 font-bold', editMode === 'view' && 'hidden')}
 				placeholder='Name...'
 				{...register('name')}
 			/>
-
-			<div className={twMerge(editMode === 'view' && 'hidden')}>
-				<MDEditor
-					className='m-0 mt-2 flex-1 resize-none'
-					style={{
-						backgroundColor: 'transparent',
-						fontSize: '40px',
-					}}
-					value={text}
-					onChange={value => {
-						setValue('text', value)
-					}}
-					preview='edit'
-					height={600}
-				/>
-			</div>
+			<RichTextEditor name='text' defaultValue={text} />
 		</DecoBox>
 	)
 }
+
+export default Note
