@@ -103,7 +103,7 @@ const useSimulateParentFrame = () => {
 	}
 
 	useEffect(() => {
-		console.log('usesimulateparentframe, liste for messages')
+		console.log('usesimulateparentframe, listen for messages')
 		window.addEventListener('message', simulatedMessages)
 		return () => {
 			window.removeEventListener('message', simulatedMessages)

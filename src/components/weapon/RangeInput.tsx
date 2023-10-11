@@ -22,7 +22,7 @@ const RangeInput: React.FC<RangeInputProps> = ({ labelText, registerName }) => {
 
 	return (
 		<div className='flex-1'>
-			<Label className='block text-center text-xl text-gray-500'>
+			<Label className='block whitespace-nowrap text-center text-xl text-gray-500'>
 				{labelText}
 			</Label>
 			{editMode === 'view' && (
