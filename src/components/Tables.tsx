@@ -1,9 +1,7 @@
 import DecoBox from './DecoBox'
 import TD from './TD'
 
-export interface ITablesProps {}
-
-export default function Tables(props: ITablesProps) {
+export default function Tables() {
 	return (
 		<DecoBox className='grid grid-cols-4 gap-4'>
 			<table className='border border-yellow-400/60 text-center'>

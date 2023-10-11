@@ -3,7 +3,7 @@ import { DragEvent, useContext, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
-import Button from '../../Form/Button'
+import Button from '../../BaseComponents/Form/Button'
 import DecoBox from '../../DecoBox'
 import { borderStyle } from '../../styles/borderStyle'
 import context from '../../BaseComponents/context'
@@ -119,14 +119,13 @@ export default function Weapons() {
 				</thead>
 				<tbody>
 					{fields.map((weapon, index) => (
-							<WeaponRow
-								key={index}
-								index={index}
-								remove={remove}
-								weapon={weapon as any}
-							/>
-						)
-					)}
+						<WeaponRow
+							key={index}
+							index={index}
+							remove={remove}
+							weapon={weapon as any}
+						/>
+					))}
 				</tbody>
 			</table>
 		</DecoBox>

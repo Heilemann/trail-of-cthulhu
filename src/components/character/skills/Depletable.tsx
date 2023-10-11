@@ -1,7 +1,7 @@
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Input from '../../Form/Input'
-import Label from '../../Form/Label'
+import Input from '../../BaseComponents/Form/Input'
+import Label from '../../BaseComponents/Form/Label'
 
 export interface IDepletableProps {
 	label: string

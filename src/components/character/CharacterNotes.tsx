@@ -1,6 +1,6 @@
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { TCharacterNote } from '../../interfaces'
-import Button from '../Form/Button'
+import Button from '../BaseComponents/Form/Button'
 import CharacterNote from './CharacterNote'
 
 const emptyNote: TCharacterNote = {

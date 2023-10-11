@@ -1,4 +1,4 @@
-import Button from '../../Form/Button'
+import Button from '../Form/Button'
 
 export default function ResetButton() {
 	const handleClearStorage = () => {
@@ -9,7 +9,7 @@ export default function ResetButton() {
 	return (
 		<Button
 			onClick={handleClearStorage}
-			className='h-10 self-center rounded-full bg-gray-800 py-0 px-3 '
+			className='h-10 self-center rounded-full bg-gray-800 px-3 py-0 '
 		>
 			Clear <span className='hidden sm:inline'>Storage</span>
 		</Button>

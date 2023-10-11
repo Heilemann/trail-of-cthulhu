@@ -1,8 +1,8 @@
 import { useContext, useMemo } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import Button from '../Form/Button'
+import Button from '../BaseComponents/Form/Button'
 import context from '../BaseComponents/context'
-import VInput from '../Form/VInput'
+import VInput from '../BaseComponents/Form/VInput'
 
 export interface IDodgeProps {}
 

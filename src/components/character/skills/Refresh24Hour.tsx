@@ -1,5 +1,5 @@
 import { useFormContext, useWatch } from 'react-hook-form'
-import Button from '../../Form/Button'
+import Button from '../../BaseComponents/Form/Button'
 
 export default function Refresh24Hour() {
 	const { setValue } = useFormContext()

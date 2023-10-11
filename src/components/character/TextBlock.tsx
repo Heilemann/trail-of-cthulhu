@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form'
-import TextArea from '../Form/Textarea'
+import TextArea from '../BaseComponents/Form/Textarea'
 
 export interface ITextBlockProps {
 	name: string

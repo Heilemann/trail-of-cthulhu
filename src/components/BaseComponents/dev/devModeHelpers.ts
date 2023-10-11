@@ -14,6 +14,8 @@ export const fakeDocumentsFromSystemConfig = (
 ) => {
 	setCollections(systemConfig.collections as TCollection[])
 
+	// this is the structure of the data sent to the system
+	// using post messages
 	const fakeData = {
 		documents: {
 			byId: {},

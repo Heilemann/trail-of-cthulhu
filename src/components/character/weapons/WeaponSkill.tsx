@@ -5,7 +5,7 @@ import { TSkill, TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../BaseComponents/context'
 import weaponSkillList from '../../data/weaponSkillList'
 import { WeaponSkillPopover } from './WeaponSkillPopover'
-import Dropdown from '../../Form/Dropdown'
+import Dropdown from '../../BaseComponents/Form/Dropdown'
 
 type Props = {
 	index: number

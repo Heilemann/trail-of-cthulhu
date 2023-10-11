@@ -3,8 +3,8 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../BaseComponents/context'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
-import Button from '../../Form/Button'
-import { default as NumberInput } from '../../Form/NumberInput'
+import Button from '../../BaseComponents/Form/Button'
+import { default as NumberInput } from '../../BaseComponents/Form/NumberInput'
 
 type Props = {
 	index: number

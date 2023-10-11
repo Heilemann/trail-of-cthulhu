@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../BaseComponents/context'
-import Label from '../Form/Label'
-import NumberInput from '../Form/NumberInput'
+import Label from '../BaseComponents/Form/Label'
+import NumberInput from '../BaseComponents/Form/NumberInput'
 
 interface RangeInputProps {
 	labelText: string

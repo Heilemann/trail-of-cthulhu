@@ -5,7 +5,7 @@
 import { useContext, useEffect } from 'react'
 import { TEditMode, TState } from '../../../interfaces'
 import context from '../context'
-import defaultDocuments from './defaultData'
+import defaultDocuments from '../../defaultData'
 
 let initialData: TState = {
 	editMode: 'edit' as TEditMode,

@@ -222,6 +222,17 @@ export type TSystemReceivableMessages =
 			}
 	  }
 
+export type TScene = TDocument & {
+	values: {
+		name: string
+		subtitle: string
+		nameIsSecret: stringBoolean
+		mapId: string
+		coverId: string
+		showMap: stringBoolean
+	}
+}
+
 export type TWeaponSkills = 'Firearms' | 'Weapons' | 'Scuffling'
 
 export type TWeapon = {

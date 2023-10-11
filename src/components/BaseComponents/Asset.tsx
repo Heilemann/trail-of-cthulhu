@@ -4,7 +4,7 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Button from '../Form/Button'
+import Button from './Form/Button'
 import context from './context'
 import useMessageToApp from './hooks/UseMessageToApp'
 

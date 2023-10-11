@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Button from '../../Form/Button'
-import Input from '../../Form/Input'
+import Button from '../../BaseComponents/Form/Button'
+import Input from '../../BaseComponents/Form/Input'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../BaseComponents/context'
 
@@ -56,7 +56,7 @@ export default function WeaponDamage(props: IWeaponDamageProps) {
 			/>
 
 			{editMode === 'view' && damage && (
-				<Button className='m-1 py-1 px-2' onClick={handleRollDamage}>
+				<Button className='m-1 px-2 py-1' onClick={handleRollDamage}>
 					{`${damage} ${brawlBonus}` || '—'}
 				</Button>
 			)}

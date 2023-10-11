@@ -1,6 +1,6 @@
 import { useFormContext, useWatch } from 'react-hook-form'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
-import Button from '../../Form/Button'
+import Button from '../../BaseComponents/Form/Button'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import { WindowIcon } from '@heroicons/react/24/solid'
 import { useContext, useMemo } from 'react'

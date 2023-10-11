@@ -4,14 +4,13 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
-import Input from '../Form/Input'
+import Input from '../BaseComponents/Form/Input'
 
 // css from App.css affects this component
 
 export default function Note() {
 	const { state } = useContext(context)
 	const { document, editMode } = state
-	console.log('Note', { state, document, editMode })
 	const { values } = document
 	const { register, setValue } = useFormContext()
 
