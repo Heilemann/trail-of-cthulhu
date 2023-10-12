@@ -1,10 +1,6 @@
 import {
 	ArrowUturnLeftIcon,
 	ArrowUturnRightIcon,
-	Bars3BottomLeftIcon,
-	Bars3BottomRightIcon,
-	Bars3CenterLeftIcon,
-	Bars3Icon,
 	ChevronDownIcon,
 } from '@heroicons/react/24/solid'
 import {
@@ -29,6 +25,17 @@ import {
 } from '@lexical/rich-text'
 import { $isAtNodeEnd, $wrapNodes } from '@lexical/selection'
 import { $getNearestNodeOfType, mergeRegister } from '@lexical/utils'
+import {
+	FontBoldIcon,
+	FontItalicIcon,
+	Link1Icon,
+	StrikethroughIcon,
+	TextAlignCenterIcon,
+	TextAlignJustifyIcon,
+	TextAlignLeftIcon,
+	TextAlignRightIcon,
+	UnderlineIcon,
+} from '@radix-ui/react-icons'
 import {
 	$createParagraphNode,
 	$getNodeByKey,
@@ -55,8 +62,8 @@ import {
 	useState,
 } from 'react'
 import { createPortal } from 'react-dom'
-import ToolbarButton from './ToolbarButton'
 import Divider from './Divider'
+import ToolbarButton from './ToolbarButton'
 
 const LowPriority = 1
 
@@ -483,7 +490,6 @@ export default function ToolbarPlugin() {
 	const [isItalic, setIsItalic] = useState(false)
 	const [isUnderline, setIsUnderline] = useState(false)
 	const [isStrikethrough, setIsStrikethrough] = useState(false)
-	const [isCode, setIsCode] = useState(false)
 
 	const updateToolbar = useCallback(() => {
 		const selection = $getSelection()
@@ -516,7 +522,6 @@ export default function ToolbarPlugin() {
 			setIsItalic(selection.hasFormat('italic'))
 			setIsUnderline(selection.hasFormat('underline'))
 			setIsStrikethrough(selection.hasFormat('strikethrough'))
-			setIsCode(selection.hasFormat('code'))
 
 			// Update links
 			const node = getSelectedNode(selection)
@@ -634,108 +639,85 @@ export default function ToolbarPlugin() {
 					<Divider />
 				</>
 			)}
-			{blockType === 'code' ? (
-				<>
-					<Select
-						className='toolbar-item code-language'
-						onChange={onCodeLanguageSelect}
-						options={codeLanguges}
-						value={codeLanguage}
-					/>
-					<i className='chevron-down inside' />
-				</>
-			) : (
-				<>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
-						}}
-						isActive={isBold}
-						aria-label='Format Bold'
-					>
-						Bold
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
-						}}
-						isActive={isItalic}
-						aria-label='Format Italics'
-					>
-						Italic
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')
-						}}
-						isActive={isUnderline}
-						aria-label='Format Underline'
-					>
-						Underline
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
-						}}
-						isActive={isStrikethrough}
-						aria-label='Format Strikethrough'
-					>
-						Strike
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code')
-						}}
-						isActive={isCode}
-						aria-label='Insert Code'
-					>
-						Code
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={insertLink}
-						isActive={isLink}
-						aria-label='Insert Link'
-					>
-						Link
-					</ToolbarButton>
-					{isLink &&
-						createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
-					<Divider />
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left')
-						}}
-						aria-label='Left Align'
-					>
-						<Bars3BottomLeftIcon className='format left-align h-4 w-4' />
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center')
-						}}
-						aria-label='Center Align'
-					>
-						<i className='format center-align' />
-						<Bars3CenterLeftIcon className='format center-align h-4 w-4' />
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right')
-						}}
-						aria-label='Right Align'
-					>
-						<Bars3BottomRightIcon className='format right-align h-4 w-4' />
-					</ToolbarButton>
-					<ToolbarButton
-						onClick={() => {
-							editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify')
-						}}
-						aria-label='Justify Align'
-					>
-						<Bars3Icon className='format justify-align h-4 w-4' />
-					</ToolbarButton>
-				</>
-			)}
+
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
+				}}
+				isActive={isBold}
+				aria-label='Format Bold'
+			>
+				<FontBoldIcon className='format bold h-4 w-4' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
+				}}
+				isActive={isItalic}
+				aria-label='Format Italics'
+			>
+				<FontItalicIcon className='format h-4 w-4 italic' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')
+				}}
+				isActive={isUnderline}
+				aria-label='Format Underline'
+			>
+				<UnderlineIcon className='format h-4 w-4 underline' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
+				}}
+				isActive={isStrikethrough}
+				aria-label='Format Strikethrough'
+			>
+				<StrikethroughIcon className='format strikethrough h-4 w-4' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={insertLink}
+				isActive={isLink}
+				aria-label='Insert Link'
+			>
+				<Link1Icon className='format h-4 w-4' />
+			</ToolbarButton>
+			{isLink &&
+				createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
+			<Divider />
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left')
+				}}
+				aria-label='Left Align'
+			>
+				<TextAlignLeftIcon className='h-4 w-4' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center')
+				}}
+				aria-label='Center Align'
+			>
+				<TextAlignCenterIcon className='h-4 w-4' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right')
+				}}
+				aria-label='Right Align'
+			>
+				<TextAlignRightIcon className='h-4 w-4' />
+			</ToolbarButton>
+			<ToolbarButton
+				onClick={() => {
+					editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify')
+				}}
+				aria-label='Justify Align'
+			>
+				<TextAlignJustifyIcon className='h-4 w-4' />
+			</ToolbarButton>
 		</div>
 	)
 }

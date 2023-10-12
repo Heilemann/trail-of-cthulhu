@@ -15,6 +15,7 @@ import context from '../../context'
 import EditorContentLoader from './EditorContentLoader'
 import ChangePlugin from './OnChangePlugin'
 import ToolbarPlugin from './ToolbarPlugin'
+import EditorMode from './EditorMode'
 
 const theme = {
 	ltr: 'ltr',
@@ -30,7 +31,7 @@ interface Props {
 
 const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 	const { state } = useContext(context)
-	const { document } = state
+	const { document, editMode } = state
 	const { values } = document
 	const { control } = useFormContext()
 
@@ -47,6 +48,7 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 
 	const initialConfig = {
 		namespace: 'MyEditor',
+		editable: editMode === 'edit',
 		theme,
 		onError,
 		defaultValue: text,
@@ -78,9 +80,14 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 			defaultValue={defaultValue}
 			render={() => (
 				<LexicalComposer initialConfig={initialConfig}>
-					<div className={twMerge(inputStyle, 'relative mt-3 p-0')}>
-						<ToolbarPlugin />
-						<div className='p-4'>
+					<div
+						className={twMerge(
+							editMode === 'edit' && inputStyle,
+							'relative mt-3 p-0',
+						)}
+					>
+						{editMode === 'edit' && <ToolbarPlugin />}
+						<div>
 							<RichTextPlugin
 								contentEditable={<ContentEditable />}
 								placeholder={placeholder}
@@ -90,6 +97,7 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 					</div>
 					<ChangePlugin />
 					<EditorContentLoader htmlContent={text} />
+					<EditorMode />
 				</LexicalComposer>
 			)}
 		/>
