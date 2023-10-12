@@ -3,7 +3,7 @@ import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin'
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import React, { useContext } from 'react'
@@ -14,6 +14,7 @@ import inputStyle from '../../../styles/inputStyle'
 import context from '../../context'
 import EditorContentLoader from './EditorContentLoader'
 import ChangePlugin from './OnChangePlugin'
+import ToolbarPlugin from './ToolbarPlugin'
 
 const theme = {
 	ltr: 'ltr',
@@ -77,12 +78,15 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 			defaultValue={defaultValue}
 			render={() => (
 				<LexicalComposer initialConfig={initialConfig}>
-					<div className={twMerge(inputStyle, 'relative mt-1')}>
-						<PlainTextPlugin
-							contentEditable={<ContentEditable />}
-							placeholder={placeholder}
-							ErrorBoundary={ErrorBoundary}
-						/>
+					<div className={twMerge(inputStyle, 'relative mt-3 p-0')}>
+						<ToolbarPlugin />
+						<div className='p-4'>
+							<RichTextPlugin
+								contentEditable={<ContentEditable />}
+								placeholder={placeholder}
+								ErrorBoundary={ErrorBoundary}
+							/>
+						</div>
 					</div>
 					<ChangePlugin />
 					<EditorContentLoader htmlContent={text} />

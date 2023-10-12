@@ -22,7 +22,7 @@ const EditorContentLoader: React.FC<Props> = ({ htmlContent }) => {
 				// Generate Lexical nodes from the DOM object
 				const nodes = $generateNodesFromDOM(editor, dom)
 
-				const root = $getRoot() // Ensure this is called within the editor.update()
+				const root = $getRoot()
 				if (root) {
 					root.select() // select root of editor
 					$insertNodes(nodes) // insert new nodes at root
