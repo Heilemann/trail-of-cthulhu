@@ -13,12 +13,10 @@ import {
 	FontBoldIcon,
 	FontItalicIcon,
 	Link1Icon,
-	StrikethroughIcon,
 	TextAlignCenterIcon,
 	TextAlignJustifyIcon,
 	TextAlignLeftIcon,
 	TextAlignRightIcon,
-	UnderlineIcon,
 } from '@radix-ui/react-icons'
 import {
 	$getSelection,
@@ -66,7 +64,7 @@ export type BlockType =
 	| 'quote'
 	| 'ul'
 
-const blockTypeToBlockName: { [key in BlockType]: string } = {
+export const blockTypeToBlockName: { [key in BlockType]: string } = {
 	code: 'Code Block',
 	h1: 'Heading 1',
 	h2: 'Heading 2',
@@ -109,8 +107,8 @@ export default function ToolbarPlugin() {
 	const [isLink, setIsLink] = useState(false)
 	const [isBold, setIsBold] = useState(false)
 	const [isItalic, setIsItalic] = useState(false)
-	const [isUnderline, setIsUnderline] = useState(false)
-	const [isStrikethrough, setIsStrikethrough] = useState(false)
+	// const [isUnderline, setIsUnderline] = useState(false)
+	// const [isStrikethrough, setIsStrikethrough] = useState(false)
 
 	const updateToolbar = useCallback(() => {
 		const selection = $getSelection()
@@ -137,8 +135,8 @@ export default function ToolbarPlugin() {
 			// Update text format
 			setIsBold(selection.hasFormat('bold'))
 			setIsItalic(selection.hasFormat('italic'))
-			setIsUnderline(selection.hasFormat('underline'))
-			setIsStrikethrough(selection.hasFormat('strikethrough'))
+			// setIsUnderline(selection.hasFormat('underline'))
+			// setIsStrikethrough(selection.hasFormat('strikethrough'))
 
 			// Update links
 			const node = getSelectedNode(selection)

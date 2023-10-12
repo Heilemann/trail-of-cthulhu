@@ -163,30 +163,38 @@ const BlockOptionsDropdownList: FC<BlockOptionsDropdownListProps> = ({
 			className='absolute -bottom-1 left-0 flex translate-y-full flex-col overflow-hidden whitespace-nowrap rounded-lg bg-gray-900 py-1 text-white'
 			ref={dropDownRef}
 		>
-			<Option onClick={formatParagraph} isActive={blockType === 'paragraph'}>
-				Normal
-			</Option>
-			<Option onClick={formatLargeHeading} isActive={blockType === 'h1'}>
-				Large Heading
-			</Option>
-			<Option onClick={formatMediumHeading} isActive={blockType === 'h2'}>
-				Medium Heading
-			</Option>
-			<Option onClick={formatSmallHeading} isActive={blockType === 'h3'}>
-				Small Heading
-			</Option>
-			<Option onClick={formatBulletList} isActive={blockType === 'ul'}>
-				Bullet List
-			</Option>
-			<Option onClick={formatNumberedList} isActive={blockType === 'ol'}>
-				Numbered List
-			</Option>
-			<Option onClick={formatQuote} isActive={blockType === 'quote'}>
-				Quote
-			</Option>
-			<Option onClick={formatCode} isActive={blockType === 'code'}>
-				Code Block
-			</Option>
+			<Option
+				onClick={formatParagraph}
+				blockType={blockType}
+				optionType='paragraph'
+			/>
+			<Option
+				onClick={formatLargeHeading}
+				blockType={blockType}
+				optionType='h1'
+			/>
+			<Option
+				onClick={formatMediumHeading}
+				blockType={blockType}
+				optionType='h2'
+			/>
+			<Option
+				onClick={formatSmallHeading}
+				blockType={blockType}
+				optionType='h3'
+			/>
+			<Option
+				onClick={formatBulletList}
+				blockType={blockType}
+				optionType='ul'
+			/>
+			<Option
+				onClick={formatNumberedList}
+				blockType={blockType}
+				optionType='ol'
+			/>
+			<Option onClick={formatQuote} blockType={blockType} optionType='quote' />
+			<Option onClick={formatCode} blockType={blockType} optionType='code' />
 		</div>
 	)
 }
