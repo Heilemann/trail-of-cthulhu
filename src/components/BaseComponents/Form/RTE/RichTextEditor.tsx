@@ -1,21 +1,27 @@
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
+import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import React, { useContext } from 'react'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import ErrorBoundary from '../../../ErrorBoundary'
 import inputStyle from '../../../styles/inputStyle'
 import context from '../../context'
 import EditorContentLoader from './EditorContentLoader'
+import EditorMode from './EditorMode'
 import ChangePlugin from './OnChangePlugin'
 import ToolbarPlugin from './ToolbarPlugin'
-import EditorMode from './EditorMode'
+import AutoLinkPlugin from './AutoLinkPlugin'
+import './styles.css'
 
 const theme = {
 	ltr: 'ltr',
@@ -83,19 +89,22 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 					<div
 						className={twMerge(
 							editMode === 'edit' && inputStyle,
-							'relative mt-3 p-0',
+							'editor-container relative mt-3 p-0',
 						)}
 					>
 						{editMode === 'edit' && <ToolbarPlugin />}
-						<div>
-							<RichTextPlugin
-								contentEditable={<ContentEditable />}
-								placeholder={placeholder}
-								ErrorBoundary={ErrorBoundary}
-							/>
-						</div>
+						<RichTextPlugin
+							contentEditable={<ContentEditable />}
+							placeholder={placeholder}
+							ErrorBoundary={LexicalErrorBoundary}
+						/>
 					</div>
 					<ChangePlugin />
+					<HistoryPlugin />
+					<LinkPlugin />
+					<ListPlugin />
+					<AutoFocusPlugin />
+					<AutoLinkPlugin />
 					<EditorContentLoader htmlContent={text} />
 					<EditorMode />
 				</LexicalComposer>

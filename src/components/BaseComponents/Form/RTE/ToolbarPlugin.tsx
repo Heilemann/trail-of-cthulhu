@@ -3,27 +3,11 @@ import {
 	ArrowUturnRightIcon,
 	ChevronDownIcon,
 } from '@heroicons/react/24/solid'
-import {
-	$createCodeNode,
-	$isCodeNode,
-	getCodeLanguages,
-	getDefaultCodeLanguage,
-} from '@lexical/code'
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
-import {
-	$isListNode,
-	INSERT_ORDERED_LIST_COMMAND,
-	INSERT_UNORDERED_LIST_COMMAND,
-	ListNode,
-	REMOVE_LIST_COMMAND,
-} from '@lexical/list'
+import { $isListNode, ListNode } from '@lexical/list'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import {
-	$createHeadingNode,
-	$createQuoteNode,
-	$isHeadingNode,
-} from '@lexical/rich-text'
-import { $isAtNodeEnd, $wrapNodes } from '@lexical/selection'
+import { $isHeadingNode } from '@lexical/rich-text'
+import { $isAtNodeEnd } from '@lexical/selection'
 import { $getNearestNodeOfType, mergeRegister } from '@lexical/utils'
 import {
 	FontBoldIcon,
@@ -37,32 +21,24 @@ import {
 	UnderlineIcon,
 } from '@radix-ui/react-icons'
 import {
-	$createParagraphNode,
-	$getNodeByKey,
 	$getSelection,
 	$isRangeSelection,
 	CAN_REDO_COMMAND,
 	CAN_UNDO_COMMAND,
 	FORMAT_ELEMENT_COMMAND,
 	FORMAT_TEXT_COMMAND,
-	LexicalEditor,
 	REDO_COMMAND,
 	RangeSelection,
 	SELECTION_CHANGE_COMMAND,
 	UNDO_COMMAND,
 } from 'lexical'
-import {
-	ChangeEvent,
-	FC,
-	MutableRefObject,
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { twMerge } from 'tailwind-merge'
+import inputStyle from '../../../styles/inputStyle'
+import BlockOptionsDropdownList from './BlockOptionsDropdownList'
 import Divider from './Divider'
+import FloatingLinkEditor from './FloatingLinkEditor'
 import ToolbarButton from './ToolbarButton'
 
 const LowPriority = 1
@@ -102,188 +78,6 @@ const blockTypeToBlockName: { [key in BlockType]: string } = {
 	ul: 'Bulleted List',
 }
 
-function positionEditorElement(
-	editorElement: HTMLDivElement,
-	rect: DOMRect | null,
-) {
-	if (rect === null) {
-		editorElement.style.opacity = '0'
-		editorElement.style.top = '-1000px'
-		editorElement.style.left = '-1000px'
-	} else {
-		editorElement.style.opacity = '1'
-		editorElement.style.top = `${
-			rect.top + rect.height + window.pageYOffset + 10
-		}px`
-		editorElement.style.left = `${
-			rect.left +
-			window.pageXOffset -
-			editorElement.offsetWidth / 2 +
-			rect.width / 2
-		}px`
-	}
-}
-
-function FloatingLinkEditor({ editor }: { editor: LexicalEditor }) {
-	const editorRef = useRef<HTMLDivElement | null>(null)
-	const inputRef = useRef<HTMLInputElement | null>(null)
-	const mouseDownRef = useRef(false)
-	const [linkUrl, setLinkUrl] = useState('')
-	const [isEditMode, setEditMode] = useState(false)
-	const [lastSelection, setLastSelection] = useState<any>(null) // type fixed?
-
-	const updateLinkEditor = useCallback(() => {
-		const selection = $getSelection()
-		if ($isRangeSelection(selection)) {
-			const node = getSelectedNode(selection)
-			const parent = node.getParent()
-			if ($isLinkNode(parent)) {
-				setLinkUrl(parent.getURL())
-			} else if ($isLinkNode(node)) {
-				setLinkUrl(node.getURL())
-			} else {
-				setLinkUrl('')
-			}
-		}
-		const editorElem = editorRef.current
-		const nativeSelection = window.getSelection()
-		const activeElement = document.activeElement
-
-		if (editorElem === null || nativeSelection === null) {
-			return
-		}
-
-		const rootElement = editor.getRootElement()
-		if (
-			selection !== null &&
-			!nativeSelection.isCollapsed &&
-			rootElement !== null &&
-			rootElement.contains(nativeSelection.anchorNode)
-		) {
-			const domRange = nativeSelection.getRangeAt(0)
-			let rect
-			if (nativeSelection.anchorNode === rootElement) {
-				let inner = rootElement
-				while (inner.firstElementChild != null) {
-					inner = inner.firstElementChild as HTMLElement // fixed type?
-				}
-				rect = inner.getBoundingClientRect()
-			} else {
-				rect = domRange.getBoundingClientRect()
-			}
-
-			if (!mouseDownRef.current) {
-				positionEditorElement(editorElem, rect)
-			}
-			setLastSelection(selection)
-		} else if (!activeElement || activeElement.className !== 'link-input') {
-			positionEditorElement(editorElem, null)
-			setLastSelection(null)
-			setEditMode(false)
-			setLinkUrl('')
-		}
-
-		return true
-	}, [editor])
-
-	useEffect(() => {
-		return mergeRegister(
-			editor.registerUpdateListener(({ editorState }) => {
-				editorState.read(() => {
-					updateLinkEditor()
-				})
-			}),
-
-			editor.registerCommand(
-				SELECTION_CHANGE_COMMAND,
-				() => {
-					updateLinkEditor()
-					return true
-				},
-				LowPriority,
-			),
-		)
-	}, [editor, updateLinkEditor])
-
-	useEffect(() => {
-		editor.getEditorState().read(() => {
-			updateLinkEditor()
-		})
-	}, [editor, updateLinkEditor])
-
-	useEffect(() => {
-		if (isEditMode && inputRef.current) {
-			inputRef.current.focus()
-		}
-	}, [isEditMode])
-
-	return (
-		<div ref={editorRef} className='link-editor'>
-			{isEditMode ? (
-				<input
-					ref={inputRef}
-					className='link-input'
-					value={linkUrl}
-					onChange={event => {
-						setLinkUrl(event.target.value)
-					}}
-					onKeyDown={event => {
-						if (event.key === 'Enter') {
-							event.preventDefault()
-							if (lastSelection !== null) {
-								if (linkUrl !== '') {
-									editor.dispatchCommand(TOGGLE_LINK_COMMAND, linkUrl)
-								}
-								setEditMode(false)
-							}
-						} else if (event.key === 'Escape') {
-							event.preventDefault()
-							setEditMode(false)
-						}
-					}}
-				/>
-			) : (
-				<>
-					<div className='link-input'>
-						<a href={linkUrl} target='_blank' rel='noopener noreferrer'>
-							{linkUrl}
-						</a>
-						<div
-							className='link-edit'
-							role='button'
-							tabIndex={0}
-							onMouseDown={event => event.preventDefault()}
-							onClick={() => {
-								setEditMode(true)
-							}}
-						/>
-					</div>
-				</>
-			)}
-		</div>
-	)
-}
-
-interface SelectProps {
-	onChange: (event: ChangeEvent<HTMLSelectElement>) => void
-	className?: string
-	options: string[]
-	value: string
-}
-
-const Select: FC<SelectProps> = ({ onChange, className, options, value }) => {
-	return (
-		<select className={className} onChange={onChange} value={value}>
-			<option hidden={true} value='' />
-			{options.map(option => (
-				<option key={option} value={option}>
-					{option}
-				</option>
-			))}
-		</select>
-	)
-}
-
 function getSelectedNode(selection: RangeSelection | null) {
 	if (selection === null) {
 		throw new Error('Selection is null')
@@ -303,188 +97,14 @@ function getSelectedNode(selection: RangeSelection | null) {
 	}
 }
 
-interface BlockOptionsDropdownListProps {
-	editor: LexicalEditor
-	blockType: string
-	toolbarRef: React.RefObject<HTMLDivElement> // You should specify the correct element type here
-	setShowBlockOptionsDropDown: (show: boolean) => void
-}
-
-const BlockOptionsDropdownList: FC<BlockOptionsDropdownListProps> = ({
-	editor,
-	blockType,
-	toolbarRef,
-	setShowBlockOptionsDropDown,
-}) => {
-	const dropDownRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
-
-	useEffect(() => {
-		const toolbar = toolbarRef.current
-		const dropDown = dropDownRef.current
-
-		if (toolbar !== null && dropDown !== null) {
-			const { top, left } = toolbar.getBoundingClientRect()
-			dropDown.style.top = `${top + 40}px`
-			dropDown.style.left = `${left}px`
-		}
-	}, [dropDownRef, toolbarRef])
-
-	useEffect(() => {
-		const dropDown = dropDownRef.current
-		const toolbar = toolbarRef.current
-
-		if (dropDown !== null && toolbar !== null) {
-			const handle = (event: { target: any }) => {
-				const target = event.target
-
-				if (!dropDown.contains(target) && !toolbar.contains(target)) {
-					setShowBlockOptionsDropDown(false)
-				}
-			}
-			document.addEventListener('click', handle)
-
-			return () => {
-				document.removeEventListener('click', handle)
-			}
-		}
-	}, [dropDownRef, setShowBlockOptionsDropDown, toolbarRef])
-
-	const formatParagraph = () => {
-		if (blockType !== 'paragraph') {
-			editor.update(() => {
-				const selection = $getSelection()
-
-				if ($isRangeSelection(selection)) {
-					$wrapNodes(selection, () => $createParagraphNode())
-				}
-			})
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	const formatLargeHeading = () => {
-		if (blockType !== 'h1') {
-			editor.update(() => {
-				const selection = $getSelection()
-
-				if ($isRangeSelection(selection)) {
-					$wrapNodes(selection, () => $createHeadingNode('h1'))
-				}
-			})
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	const formatSmallHeading = () => {
-		if (blockType !== 'h2') {
-			editor.update(() => {
-				const selection = $getSelection()
-
-				if ($isRangeSelection(selection)) {
-					$wrapNodes(selection, () => $createHeadingNode('h2'))
-				}
-			})
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	const formatBulletList = () => {
-		if (blockType !== 'ul') {
-			editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, void 0)
-		} else {
-			editor.dispatchCommand(REMOVE_LIST_COMMAND, void 0)
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	const formatNumberedList = () => {
-		if (blockType !== 'ol') {
-			editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, void 0)
-		} else {
-			editor.dispatchCommand(REMOVE_LIST_COMMAND, void 0)
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	const formatQuote = () => {
-		if (blockType !== 'quote') {
-			editor.update(() => {
-				const selection = $getSelection()
-
-				if ($isRangeSelection(selection)) {
-					$wrapNodes(selection, () => $createQuoteNode())
-				}
-			})
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	const formatCode = () => {
-		if (blockType !== 'code') {
-			editor.update(() => {
-				const selection = $getSelection()
-
-				if ($isRangeSelection(selection)) {
-					$wrapNodes(selection, () => $createCodeNode())
-				}
-			})
-		}
-		setShowBlockOptionsDropDown(false)
-	}
-
-	return (
-		<div className='dropdown' ref={dropDownRef}>
-			<button className='item' onClick={formatParagraph}>
-				<span className='icon paragraph' />
-				<span className='text'>Normal</span>
-				{blockType === 'paragraph' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatLargeHeading}>
-				<span className='icon large-heading' />
-				<span className='text'>Large Heading</span>
-				{blockType === 'h1' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatSmallHeading}>
-				<span className='icon small-heading' />
-				<span className='text'>Small Heading</span>
-				{blockType === 'h2' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatBulletList}>
-				<span className='icon bullet-list' />
-				<span className='text'>Bullet List</span>
-				{blockType === 'ul' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatNumberedList}>
-				<span className='icon numbered-list' />
-				<span className='text'>Numbered List</span>
-				{blockType === 'ol' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatQuote}>
-				<span className='icon quote' />
-				<span className='text'>Quote</span>
-				{blockType === 'quote' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatCode}>
-				<span className='icon code' />
-				<span className='text'>Code Block</span>
-				{blockType === 'code' && <span className='active' />}
-			</button>
-		</div>
-	)
-}
-
 export default function ToolbarPlugin() {
 	const [editor] = useLexicalComposerContext()
 	const toolbarRef = useRef(null)
 	const [canUndo, setCanUndo] = useState(false)
 	const [canRedo, setCanRedo] = useState(false)
 	const [blockType, setBlockType] = useState<BlockType>('paragraph')
-	const [selectedElementKey, setSelectedElementKey] = useState<string | null>(
-		null,
-	)
 	const [showBlockOptionsDropDown, setShowBlockOptionsDropDown] =
 		useState(false)
-	const [codeLanguage, setCodeLanguage] = useState('')
 	const [isLink, setIsLink] = useState(false)
 	const [isBold, setIsBold] = useState(false)
 	const [isItalic, setIsItalic] = useState(false)
@@ -502,7 +122,6 @@ export default function ToolbarPlugin() {
 			const elementKey = element.getKey()
 			const elementDOM = editor.getElementByKey(elementKey)
 			if (elementDOM !== null) {
-				setSelectedElementKey(elementKey)
 				if ($isListNode(element)) {
 					const parentList = $getNearestNodeOfType(anchorNode, ListNode)
 					const type = parentList ? parentList.getTag() : element.getTag()
@@ -512,9 +131,6 @@ export default function ToolbarPlugin() {
 						? element.getTag()
 						: element.getType()
 					setBlockType(type as BlockType)
-					if ($isCodeNode(element)) {
-						setCodeLanguage(element.getLanguage() || getDefaultCodeLanguage())
-					}
 				}
 			}
 			// Update text format
@@ -568,35 +184,26 @@ export default function ToolbarPlugin() {
 		)
 	}, [editor, updateToolbar])
 
-	const codeLanguges = useMemo(() => getCodeLanguages(), [])
-	const onCodeLanguageSelect = useCallback(
-		(e: { target: { value: string } }) => {
-			editor.update(() => {
-				if (selectedElementKey !== null) {
-					const node = $getNodeByKey(selectedElementKey)
-					if ($isCodeNode(node)) {
-						node.setLanguage(e.target.value)
-					}
-				}
-			})
-		},
-		[editor, selectedElementKey],
-	)
-
 	const insertLink = useCallback(() => {
 		if (!isLink) {
-			editor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://')
+			editor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://google.com')
 		} else {
 			editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
 		}
 	}, [editor, isLink])
 
 	return (
-		<div className='flex space-x-0.5 border-b border-gray-900' ref={toolbarRef}>
+		<div
+			className={twMerge(
+				inputStyle,
+				'sticky top-0 flex space-x-0.5 border-b border-gray-900 bg-gray-800/100 py-1 dark:bg-gray-800',
+			)}
+			ref={toolbarRef}
+		>
 			<ToolbarButton
 				disabled={!canUndo}
 				onClick={() => {
-					editor.dispatchCommand(UNDO_COMMAND, void 0)
+					editor.dispatchCommand(UNDO_COMMAND, undefined)
 				}}
 				aria-label='Undo'
 			>
@@ -605,7 +212,7 @@ export default function ToolbarPlugin() {
 			<ToolbarButton
 				disabled={!canRedo}
 				onClick={() => {
-					editor.dispatchCommand(REDO_COMMAND, void 0)
+					editor.dispatchCommand(REDO_COMMAND, undefined)
 				}}
 				className='toolbar-item'
 				aria-label='Redo'
@@ -647,7 +254,7 @@ export default function ToolbarPlugin() {
 				isActive={isBold}
 				aria-label='Format Bold'
 			>
-				<FontBoldIcon className='format bold h-4 w-4' />
+				<FontBoldIcon className='h-4 w-4' />
 			</ToolbarButton>
 			<ToolbarButton
 				onClick={() => {
@@ -656,7 +263,7 @@ export default function ToolbarPlugin() {
 				isActive={isItalic}
 				aria-label='Format Italics'
 			>
-				<FontItalicIcon className='format h-4 w-4 italic' />
+				<FontItalicIcon className='h-4 w-4' />
 			</ToolbarButton>
 			<ToolbarButton
 				onClick={() => {
@@ -665,7 +272,7 @@ export default function ToolbarPlugin() {
 				isActive={isUnderline}
 				aria-label='Format Underline'
 			>
-				<UnderlineIcon className='format h-4 w-4 underline' />
+				<UnderlineIcon className='h-4 w-4' />
 			</ToolbarButton>
 			<ToolbarButton
 				onClick={() => {
@@ -674,14 +281,14 @@ export default function ToolbarPlugin() {
 				isActive={isStrikethrough}
 				aria-label='Format Strikethrough'
 			>
-				<StrikethroughIcon className='format strikethrough h-4 w-4' />
+				<StrikethroughIcon className='h-4 w-4' />
 			</ToolbarButton>
 			<ToolbarButton
 				onClick={insertLink}
 				isActive={isLink}
 				aria-label='Insert Link'
 			>
-				<Link1Icon className='format h-4 w-4' />
+				<Link1Icon className='h-4 w-4' />
 			</ToolbarButton>
 			{isLink &&
 				createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
