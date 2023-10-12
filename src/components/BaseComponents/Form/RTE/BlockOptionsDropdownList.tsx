@@ -86,13 +86,26 @@ const BlockOptionsDropdownList: FC<BlockOptionsDropdownListProps> = ({
 		setShowBlockOptionsDropDown(false)
 	}
 
-	const formatSmallHeading = () => {
+	const formatMediumHeading = () => {
 		if (blockType !== 'h2') {
 			editor.update(() => {
 				const selection = $getSelection()
 
 				if ($isRangeSelection(selection)) {
 					$wrapNodes(selection, () => $createHeadingNode('h2'))
+				}
+			})
+		}
+		setShowBlockOptionsDropDown(false)
+	}
+
+	const formatSmallHeading = () => {
+		if (blockType !== 'h3') {
+			editor.update(() => {
+				const selection = $getSelection()
+
+				if ($isRangeSelection(selection)) {
+					$wrapNodes(selection, () => $createHeadingNode('h3'))
 				}
 			})
 		}
@@ -149,37 +162,34 @@ const BlockOptionsDropdownList: FC<BlockOptionsDropdownListProps> = ({
 			ref={dropDownRef}
 		>
 			<button className='item' onClick={formatParagraph}>
-				<span className='icon paragraph' />
 				<span className='text'>Normal</span>
 				{blockType === 'paragraph' && <span className='active' />}
 			</button>
 			<button className='item' onClick={formatLargeHeading}>
-				<span className='icon large-heading' />
 				<span className='text'>Large Heading</span>
 				{blockType === 'h1' && <span className='active' />}
 			</button>
-			<button className='item' onClick={formatSmallHeading}>
-				<span className='icon small-heading' />
-				<span className='text'>Small Heading</span>
+			<button className='item' onClick={formatMediumHeading}>
+				<span className='text'>Medium Heading</span>
 				{blockType === 'h2' && <span className='active' />}
 			</button>
+			<button className='item' onClick={formatSmallHeading}>
+				<span className='text'>Small Heading</span>
+				{blockType === 'h3' && <span className='active' />}
+			</button>
 			<button className='item' onClick={formatBulletList}>
-				<span className='icon bullet-list' />
 				<span className='text'>Bullet List</span>
 				{blockType === 'ul' && <span className='active' />}
 			</button>
 			<button className='item' onClick={formatNumberedList}>
-				<span className='icon numbered-list' />
 				<span className='text'>Numbered List</span>
 				{blockType === 'ol' && <span className='active' />}
 			</button>
 			<button className='item' onClick={formatQuote}>
-				<span className='icon quote' />
 				<span className='text'>Quote</span>
 				{blockType === 'quote' && <span className='active' />}
 			</button>
 			<button className='item' onClick={formatCode}>
-				<span className='icon code' />
 				<span className='text'>Code Block</span>
 				{blockType === 'code' && <span className='active' />}
 			</button>
