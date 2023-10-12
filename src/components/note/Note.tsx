@@ -34,7 +34,11 @@ const Note: React.FC = () => {
 				placeholder='Name...'
 				{...register('name')}
 			/>
-			<RichTextEditor name='text' defaultValue={text} className='mt-3' />
+			<RichTextEditor
+				name='text'
+				defaultValue={text}
+				className={editMode === 'edit' ? 'mt-3' : ''}
+			/>
 		</DecoBox>
 	)
 }
