@@ -49,11 +49,12 @@ const supportedBlockTypes = new Set([
 	'code',
 	'h1',
 	'h2',
+	'h3',
 	'ul',
 	'ol',
 ])
 
-type BlockType =
+export type BlockType =
 	| 'code'
 	| 'h1'
 	| 'h2'
@@ -67,9 +68,9 @@ type BlockType =
 
 const blockTypeToBlockName: { [key in BlockType]: string } = {
 	code: 'Code Block',
-	h1: 'Large Heading',
-	h2: 'Small Heading',
-	h3: 'Heading',
+	h1: 'Heading 1',
+	h2: 'Heading 2',
+	h3: 'Heading 3',
 	h4: 'Heading',
 	h5: 'Heading',
 	ol: 'Numbered List',
@@ -209,16 +210,17 @@ export default function ToolbarPlugin() {
 			>
 				<ArrowUturnLeftIcon className='format undo h-4 w-4' />
 			</ToolbarButton>
-			<ToolbarButton
-				disabled={!canRedo}
-				onClick={() => {
-					editor.dispatchCommand(REDO_COMMAND, undefined)
-				}}
-				className='toolbar-item'
-				aria-label='Redo'
-			>
-				<ArrowUturnRightIcon className='format redo h-4 w-4' />
-			</ToolbarButton>
+			{canRedo && (
+				<ToolbarButton
+					onClick={() => {
+						editor.dispatchCommand(REDO_COMMAND, undefined)
+					}}
+					className='toolbar-item'
+					aria-label='Redo'
+				>
+					<ArrowUturnRightIcon className='format redo h-4 w-4' />
+				</ToolbarButton>
+			)}
 			<Divider />
 			{supportedBlockTypes.has(blockType) && (
 				<>
@@ -226,23 +228,22 @@ export default function ToolbarPlugin() {
 						onClick={() =>
 							setShowBlockOptionsDropDown(!showBlockOptionsDropDown)
 						}
-						className='toolbar-item flex items-center space-x-2'
+						className='toolbar-item relative flex items-center space-x-2 text-sm'
 						aria-label='Formatting Options'
 					>
-						<span className={'icon block-type ' + blockType} />
-						<span className='text'>{blockTypeToBlockName[blockType]}</span>
+						<span>{blockTypeToBlockName[blockType]}</span>
 						<ChevronDownIcon className='h-4 w-4' />
-					</ToolbarButton>
-					{showBlockOptionsDropDown &&
-						createPortal(
+						{showBlockOptionsDropDown && (
+							// createPortal(
 							<BlockOptionsDropdownList
 								editor={editor}
 								blockType={blockType}
 								toolbarRef={toolbarRef}
 								setShowBlockOptionsDropDown={setShowBlockOptionsDropDown}
-							/>,
-							document.body,
+							/>
+							// document.body,
 						)}
+					</ToolbarButton>
 					<Divider />
 				</>
 			)}
@@ -265,7 +266,7 @@ export default function ToolbarPlugin() {
 			>
 				<FontItalicIcon className='h-4 w-4' />
 			</ToolbarButton>
-			<ToolbarButton
+			{/* <ToolbarButton
 				onClick={() => {
 					editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')
 				}}
@@ -273,8 +274,8 @@ export default function ToolbarPlugin() {
 				aria-label='Format Underline'
 			>
 				<UnderlineIcon className='h-4 w-4' />
-			</ToolbarButton>
-			<ToolbarButton
+			</ToolbarButton> */}
+			{/* <ToolbarButton
 				onClick={() => {
 					editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
 				}}
@@ -282,7 +283,7 @@ export default function ToolbarPlugin() {
 				aria-label='Format Strikethrough'
 			>
 				<StrikethroughIcon className='h-4 w-4' />
-			</ToolbarButton>
+			</ToolbarButton> */}
 			<ToolbarButton
 				onClick={insertLink}
 				isActive={isLink}

@@ -13,10 +13,12 @@ import {
 	LexicalEditor,
 } from 'lexical'
 import { FC, MutableRefObject, useEffect, useRef } from 'react'
+import { BlockType } from './ToolbarPlugin'
+import Option from './Option'
 
 interface BlockOptionsDropdownListProps {
 	editor: LexicalEditor
-	blockType: string
+	blockType: BlockType
 	toolbarRef: React.RefObject<HTMLDivElement>
 	setShowBlockOptionsDropDown: (show: boolean) => void
 }
@@ -29,16 +31,16 @@ const BlockOptionsDropdownList: FC<BlockOptionsDropdownListProps> = ({
 }) => {
 	const dropDownRef: MutableRefObject<HTMLDivElement | null> = useRef(null)
 
-	useEffect(() => {
-		const toolbar = toolbarRef.current
-		const dropDown = dropDownRef.current
+	// useEffect(() => {
+	// 	const toolbar = toolbarRef.current
+	// 	const dropDown = dropDownRef.current
 
-		if (toolbar !== null && dropDown !== null) {
-			const { top, left } = toolbar.getBoundingClientRect()
-			dropDown.style.top = `${top + 40}px`
-			dropDown.style.left = `${left}px`
-		}
-	}, [dropDownRef, toolbarRef])
+	// 	if (toolbar !== null && dropDown !== null) {
+	// 		const { top, left } = toolbar.getBoundingClientRect()
+	// 		dropDown.style.top = `${top + 40}px`
+	// 		dropDown.style.left = `${left}px`
+	// 	}
+	// }, [dropDownRef, toolbarRef])
 
 	useEffect(() => {
 		const dropDown = dropDownRef.current
@@ -158,41 +160,33 @@ const BlockOptionsDropdownList: FC<BlockOptionsDropdownListProps> = ({
 
 	return (
 		<div
-			className='absolute flex flex-col bg-gray-700 p-4 text-left text-white'
+			className='absolute -bottom-1 left-0 flex translate-y-full flex-col overflow-hidden whitespace-nowrap rounded-lg bg-gray-900 py-1 text-white'
 			ref={dropDownRef}
 		>
-			<button className='item' onClick={formatParagraph}>
-				<span className='text'>Normal</span>
-				{blockType === 'paragraph' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatLargeHeading}>
-				<span className='text'>Large Heading</span>
-				{blockType === 'h1' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatMediumHeading}>
-				<span className='text'>Medium Heading</span>
-				{blockType === 'h2' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatSmallHeading}>
-				<span className='text'>Small Heading</span>
-				{blockType === 'h3' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatBulletList}>
-				<span className='text'>Bullet List</span>
-				{blockType === 'ul' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatNumberedList}>
-				<span className='text'>Numbered List</span>
-				{blockType === 'ol' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatQuote}>
-				<span className='text'>Quote</span>
-				{blockType === 'quote' && <span className='active' />}
-			</button>
-			<button className='item' onClick={formatCode}>
-				<span className='text'>Code Block</span>
-				{blockType === 'code' && <span className='active' />}
-			</button>
+			<Option onClick={formatParagraph} isActive={blockType === 'paragraph'}>
+				Normal
+			</Option>
+			<Option onClick={formatLargeHeading} isActive={blockType === 'h1'}>
+				Large Heading
+			</Option>
+			<Option onClick={formatMediumHeading} isActive={blockType === 'h2'}>
+				Medium Heading
+			</Option>
+			<Option onClick={formatSmallHeading} isActive={blockType === 'h3'}>
+				Small Heading
+			</Option>
+			<Option onClick={formatBulletList} isActive={blockType === 'ul'}>
+				Bullet List
+			</Option>
+			<Option onClick={formatNumberedList} isActive={blockType === 'ol'}>
+				Numbered List
+			</Option>
+			<Option onClick={formatQuote} isActive={blockType === 'quote'}>
+				Quote
+			</Option>
+			<Option onClick={formatCode} isActive={blockType === 'code'}>
+				Code Block
+			</Option>
 		</div>
 	)
 }

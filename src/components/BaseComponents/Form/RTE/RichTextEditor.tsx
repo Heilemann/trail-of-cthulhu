@@ -89,7 +89,7 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 					<div
 						className={twMerge(
 							editMode === 'edit' && inputStyle,
-							'editor-container relative mt-3 p-0',
+							'editor-container relative p-0',
 						)}
 					>
 						{editMode === 'edit' && <ToolbarPlugin />}

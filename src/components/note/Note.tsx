@@ -19,7 +19,7 @@ const Note: React.FC = () => {
 
 	return (
 		<DecoBox>
-			{editMode === 'view' && (
+			{/* {editMode === 'view' && values?.name && (
 				<h1
 					className='text-xl font-bold'
 					style={{
@@ -28,7 +28,7 @@ const Note: React.FC = () => {
 				>
 					{values?.name}
 				</h1>
-			)}
+			)} */}
 			<Input
 				className={twMerge('flex-0 font-bold', editMode === 'view' && 'hidden')}
 				placeholder='Name...'
