@@ -31,8 +31,6 @@ export default function Refresh24Hour() {
 			}
 		})
 
-		console.log(newSkills)
-
 		setValue('skills', newSkills, { shouldDirty: true })
 	}
 

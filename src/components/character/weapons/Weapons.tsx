@@ -40,7 +40,6 @@ export default function Weapons() {
 		// @ts-ignore
 		const droppedDocumentId = e.dataTransfer.getData('documentId').documentId
 		const droppedDoc = documents.byId[droppedDocumentId]
-		console.log('droppedDoc', droppedDoc, e)
 		if (!droppedDoc)
 			throw new Error(
 				`Could not find dropped document. ID: ${droppedDocumentId}`,

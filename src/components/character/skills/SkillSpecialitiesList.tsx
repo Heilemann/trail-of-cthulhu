@@ -30,14 +30,6 @@ const SkillSpecialitiesList = ({ name, category }: Props) => {
 		return emptyCount > 0 ? ` (${emptyCount} remaining)` : ''
 	}, [emptyCount])
 
-	console.log(
-		name,
-		specialities,
-		emptyCount,
-		namedSpecialities,
-		remainingPhrase,
-	)
-
 	return (
 		<div className='ml-2 text-sm text-gray-500'>
 			{namedSpecialities}

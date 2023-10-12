@@ -33,8 +33,6 @@ export default function Depletable(props: IDepletableProps) {
 		defaultValue: 0,
 	})
 
-	console.log(currentName, pool, rating, Number(pool) > Number(rating))
-
 	return (
 		<div className={twMerge('flex flex-1 flex-col border-b', className)}>
 			<Label className='-mb-2 text-center text-gray-500'>{label}</Label>

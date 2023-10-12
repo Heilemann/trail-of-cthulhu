@@ -47,8 +47,6 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue, className }) => {
 		defaultValue: values?.text || '',
 	})
 
-	console.log('======>', text)
-
 	const onError = (error: any) => {
 		throw error
 	}

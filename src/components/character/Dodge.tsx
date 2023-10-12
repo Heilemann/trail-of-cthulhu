@@ -1,8 +1,8 @@
-import { useContext, useMemo } from 'react'
+import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import Button from '../BaseComponents/Form/Button'
-import context from '../BaseComponents/context'
 import VInput from '../BaseComponents/Form/VInput'
+import context from '../BaseComponents/context'
 
 export interface IDodgeProps {}
 
@@ -20,8 +20,6 @@ export default function Dodge(props: IDodgeProps) {
 	}) as string
 
 	const defaultValue = dexterity && (parseInt(dexterity) / 2).toString()
-
-	// console.log(defaultValue)
 
 	return (
 		<div>
