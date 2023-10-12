@@ -33,9 +33,10 @@ const theme = {
 interface Props {
 	name: string
 	defaultValue?: string
+	className?: string
 }
 
-const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
+const RichTextEditor: React.FC<Props> = ({ name, defaultValue, className }) => {
 	const { state } = useContext(context)
 	const { document, editMode } = state
 	const { values } = document
@@ -90,6 +91,7 @@ const RichTextEditor: React.FC<Props> = ({ name, defaultValue }) => {
 						className={twMerge(
 							editMode === 'edit' && inputStyle,
 							'editor-container relative p-0',
+							className,
 						)}
 					>
 						{editMode === 'edit' && <ToolbarPlugin />}
