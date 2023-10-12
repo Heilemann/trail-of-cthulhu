@@ -16,7 +16,7 @@ const RangeInput: React.FC<RangeInputProps> = ({ labelText, registerName }) => {
 	const { register } = useFormContext()
 
 	const range = useWatch({
-		name: `${registerName}`,
+		name: registerName,
 		defaultValue: '',
 	})
 
