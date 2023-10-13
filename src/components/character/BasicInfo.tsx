@@ -8,9 +8,7 @@ import context from '../BaseComponents/context'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
 import DecoBox from '../DecoBox'
 
-export interface IBasicInfoProps {}
-
-export default function BasicInfo(props: IBasicInfoProps) {
+export default function BasicInfo() {
 	const { state } = useContext(context)
 	const messageToApp = useMessageToApp()
 	const { register } = useFormContext()
