@@ -44,7 +44,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 						editMode === 'edit' ? 'bg-white dark:bg-gray-800/50' : '',
 						inputClassName,
 					)}
-					id={rest.name}
+					// id={rest.name}
 					disabled={editMode === 'view'}
 					{...rest}
 				/>

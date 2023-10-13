@@ -7,7 +7,6 @@ import HTextArea from '../BaseComponents/Form/HTextArea'
 import context from '../BaseComponents/context'
 import useMessageToApp from '../BaseComponents/hooks/UseMessageToApp'
 import DecoBox from '../DecoBox'
-import Input from '../BaseComponents/Form/Input'
 
 export interface IBasicInfoProps {}
 
@@ -23,19 +22,13 @@ export default function BasicInfo(props: IBasicInfoProps) {
 	return (
 		<DecoBox className='flex flex-1 flex-col'>
 			<div className='flex flex-row'>
-				<input
-					className='mx-2'
-					placeholder='&mdash;'
-					autoComplete='off'
-					{...register('name')}
-				/>
-				{/* <HInput
+				<HInput
 					label='Name'
 					className='mx-2'
 					placeholder='&mdash;'
 					autoComplete='off'
 					{...register('name')}
-				/> */}
+				/>
 				{state.editMode !== 'view' && (
 					<Button
 						className='mt-1 h-10 w-10 p-3'
