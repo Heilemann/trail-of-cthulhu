@@ -34,7 +34,7 @@ const NumberInput: React.FC<Props> = ({
 	) as MutableRefObject<HTMLInputElement | null>
 	const [open, setOpen] = React.useState(false)
 
-	const { ref, ...restRegister } = register('name', {
+	const { ref, ...restRegister } = register(name, {
 		validate: value => validateNumberOrEmpty(value, min, max),
 		valueAsNumber: true,
 		onBlur: () => setOpen(false),
