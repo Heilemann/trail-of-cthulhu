@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import Asset from '../BaseComponents/Asset'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
-import Input from '../BaseComponents/Form/Input'
+import { Input } from 'nrsystemtools/dist/types/components/input/Input'
 import TextArea from '../BaseComponents/Form/Textarea'
 
 export interface IHandoutProps {}

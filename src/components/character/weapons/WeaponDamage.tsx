@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Button from '../../BaseComponents/Form/Button'
-import Input from '../../BaseComponents/Form/Input'
+import { Input } from 'nrsystemtools/dist/types/components/input/Input'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../BaseComponents/context'
 
