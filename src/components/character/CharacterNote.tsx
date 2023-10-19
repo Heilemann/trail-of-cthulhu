@@ -3,7 +3,7 @@ import { UseFieldArrayRemove, useFormContext } from 'react-hook-form'
 import { TCharacterNote } from '../../interfaces'
 import DecoBox from '../DecoBox'
 import Button from '../BaseComponents/Form/Button'
-import { Input } from 'nrsystemtools/dist/types/components/input/Input'
+import { Input } from 'nrsystemtools'
 import TextArea from '../BaseComponents/Form/Textarea'
 
 interface Props {

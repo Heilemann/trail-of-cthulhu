@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../BaseComponents/context'
 import Label from '../BaseComponents/Form/Label'
-import NumberInput from '../BaseComponents/Form/NumberInput'
+import { NumberInput } from 'nrsystemtools'
 
 interface RangeInputProps {
 	labelText: string

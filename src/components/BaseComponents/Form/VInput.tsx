@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { twMerge } from 'tailwind-merge'
-import { Input } from 'nrsystemtools/dist/types/components/input/Input'
+import { Input } from 'nrsystemtools'
 import Label from './Label'
 import context from '../context'
 

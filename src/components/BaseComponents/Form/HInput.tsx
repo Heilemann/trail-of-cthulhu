@@ -1,7 +1,7 @@
 import { forwardRef, useContext } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { borderStyle } from '../../styles/borderStyle'
-import { Input } from 'nrsystemtools/dist/types/components/input/Input'
+import { Input } from 'nrsystemtools'
 import Label from './Label'
 import context from '../context'
 

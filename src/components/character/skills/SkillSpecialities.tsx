@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { Input } from 'nrsystemtools/dist/types/components/input/Input'
+import { Input } from 'nrsystemtools'
 import context from '../../BaseComponents/context'
 
 export interface ISkillSpecialitiesProps {

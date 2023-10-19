@@ -1,5 +1,5 @@
 import * as Popover from '@radix-ui/react-popover'
-import { Input } from 'nrsystemtools/dist/types/components/input/Input'
+import { Input } from 'nrsystemtools'
 import Button from '../../BaseComponents/Form/Button'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import { useFormContext, useWatch } from 'react-hook-form'

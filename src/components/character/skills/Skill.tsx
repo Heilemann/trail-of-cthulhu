@@ -2,12 +2,12 @@ import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import context from '../../BaseComponents/context'
-import NumberInput from '../../BaseComponents/Form/NumberInput'
 import { SkillPopover } from '../../SkillPopover'
 import { borderStyle } from '../../styles/borderStyle'
 import OccupationalAbility from './OccupationalAbility'
 import SkillSpecialities from './SkillSpecialities'
 import SkillSpecialitiesList from './SkillSpecialitiesList'
+import { NumberInput } from 'nrsystemtools'
 
 export interface ISkillProps {
 	name: string

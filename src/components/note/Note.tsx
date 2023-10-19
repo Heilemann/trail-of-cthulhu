@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { Input } from 'nrsystemtools/dist/types/components/input/Input'
+import { Input } from 'nrsystemtools'
 import RichTextEditor from '../BaseComponents/Form/RTE/RichTextEditor'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
