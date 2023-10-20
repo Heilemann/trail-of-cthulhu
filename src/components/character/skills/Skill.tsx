@@ -67,32 +67,25 @@ export default function Skill({
 				</span>
 				<div className='flex space-x-0.5'>
 					<NumberInput
-						className={twMerge(
-							'w-12 py-0.5 text-center',
-							// pool > rating && 'dark:bg-red-800/50',
-							editMode === 'view' && 'hidden',
-						)}
-						title='Pool points'
-						placeholder='0'
-						defaultValue={pool}
-						max={rating || 0}
-						min={0}
-						disabled={!pool || pool === 0}
 						{...register(`skills.${category}.${name}.pool`, {
-							max: rating || 0,
+							max: { value: rating || 0, message: 'Pool cannot exceed rating' },
+							min: { value: 0, message: 'Pool cannot be negative' },
 							valueAsNumber: true,
 						})}
+						className={twMerge(
+							'w-12 py-0.5 text-center',
+							editMode === 'view' && 'hidden',
+						)}
+						placeholder='0'
 					/>
 					{editMode === 'view' && <div>{pool}</div>}
 					<span className='self-center'>/</span>
 					<NumberInput
-						className={twMerge(
-							'w-12 py-0.5 text-center',
-							editMode === 'view' && 'hidden',
-						)}
+						className={twMerge('w-12 py-0.5', editMode === 'view' && 'hidden')}
 						title='Rating points'
 						placeholder='0'
 						defaultValue={rating}
+						centerValue={true}
 						min={0}
 						{...register(`skills.${category}.${name}.rating`, {
 							min: 0,
