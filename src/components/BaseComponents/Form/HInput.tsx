@@ -21,7 +21,11 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 
 		return (
 			<div
-				className={twMerge('flex space-x-4 text-xl', borderStyle, className)}
+				className={twMerge(
+					'flex flex-1 space-x-4 text-xl',
+					borderStyle,
+					className,
+				)}
 				style={{
 					fontFamily: 'CovingtonCondensed',
 				}}
@@ -36,8 +40,8 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 				<Input
 					ref={ref}
 					className={twMerge(
-						'my-1 w-3/5 bg-transparent py-1.5 text-right dark:bg-transparent',
-						editMode === 'edit' ? 'bg-white dark:bg-gray-800/50' : '',
+						'my-1 w-3/5 py-1.5 text-right',
+						editMode === 'edit' ? 'bg-white dark:bg-gray-800' : '',
 						inputClassName,
 					)}
 					// id={rest.name}
