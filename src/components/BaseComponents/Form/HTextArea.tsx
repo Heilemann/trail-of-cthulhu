@@ -40,7 +40,7 @@ const HTextArea = React.forwardRef<HTMLTextAreaElement, ITextareaProps>(
 						`leading-16 block w-full rounded-lg border-0 bg-transparent py-2 text-xl placeholder-gray-500 transition-all focus:ring-0 dark:text-white dark:shadow-none dark:focus:ring-0 sm:text-sm`,
 						editMode === 'edit'
 							? 'bg-white px-2 dark:bg-gray-800 dark:bg-opacity-50'
-							: 'px-0',
+							: 'cursor-default resize-none px-0',
 					)}
 					disabled={editMode === 'view'}
 					// @ts-ignore - the component is typed wrong; it works fine

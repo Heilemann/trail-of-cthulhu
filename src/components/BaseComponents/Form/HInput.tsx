@@ -39,7 +39,7 @@ const HInput = forwardRef<HTMLInputElement, IHInputProps>(
 						'my-1 w-3/5 py-1.5 text-right',
 						editMode === 'edit'
 							? 'border border-green-500 bg-gray-800'
-							: 'cursor-default border-none bg-transparent',
+							: 'cursor-default border-none bg-transparent px-0',
 						inputClassName,
 					)}
 					// id={rest.name}
