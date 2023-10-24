@@ -22,7 +22,7 @@ export default function BasicInfo() {
 			<div className='flex flex-row'>
 				<HInput
 					label='Name'
-					className='mx-2'
+					className='mx-2 flex-1'
 					placeholder='&mdash;'
 					autoComplete='off'
 					{...register('name')}
