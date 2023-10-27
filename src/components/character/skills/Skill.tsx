@@ -70,7 +70,7 @@ export default function Skill({
 						{...register(`skills.${category}.${name}.pool`, {
 							max: { value: rating || 0, message: 'Pool cannot exceed rating' },
 							min: { value: 0, message: 'Pool cannot be negative' },
-							valueAsNumber: true,
+							// valueAsNumber: true,
 						})}
 						className={twMerge(
 							'w-12 py-0.5 text-center',
