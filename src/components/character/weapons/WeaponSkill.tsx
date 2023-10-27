@@ -37,9 +37,9 @@ const WeaponSkill = ({ index }: Props) => {
 
 	return (
 		<td className='relative'>
-			<div className='rounded-lg bg-gray-200/50 pr-3 dark:bg-gray-800'>
+			<div className='mt-1 rounded-lg bg-gray-800 p-0.5 pr-2'>
 				<div className={twMerge('mt-1', editMode === 'view' ? 'hidden' : '')}>
-					<Dropdown {...register(`weapons.${index}.skill`)}>
+					<Dropdown {...register(`weapons.${index}.skill`)} className='m-0 p-0'>
 						{weaponSkillList.map(skill => (
 							<option key={skill}>{skill}</option>
 						))}
