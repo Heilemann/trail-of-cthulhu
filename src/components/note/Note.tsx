@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import { Input } from 'nrsystemtools'
-import RichTextEditor from '../BaseComponents/Form/RTE/RichTextEditor'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
+import RichTextEditor from '../BaseComponents/Form/RTE/RichTextEditor'
 
 const Note: React.FC = () => {
 	const { state } = useContext(context)
@@ -30,7 +30,10 @@ const Note: React.FC = () => {
 				</h1>
 			)} */}
 			<Input
-				className={twMerge('flex-0 font-bold', editMode === 'view' && 'hidden')}
+				className={twMerge(
+					'flex-0 w-full text-lg',
+					editMode === 'view' && 'hidden',
+				)}
 				placeholder='Name...'
 				{...register('name')}
 			/>

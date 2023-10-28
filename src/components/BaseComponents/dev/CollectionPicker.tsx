@@ -16,10 +16,6 @@ export default function CollectionPicker() {
 	})
 
 	useEffect(() => {
-		console.log(
-			'>>>>>>>>>> CollectionPicker, selectedCollectionType',
-			selectedCollectionType,
-		)
 		if (!selectedCollectionType || !state.documents) return
 		if (selectedCollectionType === state.documentId) return
 

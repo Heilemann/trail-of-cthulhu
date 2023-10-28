@@ -1,6 +1,15 @@
 /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
 
 /**
+     * Prism: Lightweight, robust, elegant syntax highlighting
+     *
+     * @license MIT <https://opensource.org/licenses/MIT>
+     * @author Lea Verou <https://lea.verou.me>
+     * @namespace
+     * @public
+     */
+
+/**
  * @license
  * Lodash <https://lodash.com/>
  * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
