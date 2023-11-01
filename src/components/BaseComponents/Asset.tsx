@@ -19,7 +19,7 @@ interface AssetProps {
 const Asset: FC<AssetProps> = props => {
 	const { name, className, style, addLabel, removeLabel } = props
 	const { state } = useContext(context)
-	const { assets, document } = state
+	const { assets, document, editMode } = state
 	const [assetId, setAssetId] = useState<string>(document.values[name])
 	const asset = assets.byId[assetId]
 	const { setValue } = useFormContext()
@@ -105,10 +105,7 @@ const Asset: FC<AssetProps> = props => {
 				/>
 			)}
 			<Button
-				className={twMerge(
-					'w-full',
-					//  editMode === 'view' ? 'hidden' : 'block'
-				)}
+				className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
 				onClick={handleRemoveAsset}
 			>
 				{removeLabel || 'Remove'}
