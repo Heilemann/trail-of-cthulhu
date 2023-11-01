@@ -195,7 +195,7 @@ export default function ToolbarPlugin() {
 		<div
 			className={twMerge(
 				inputStyle,
-				'sticky top-0 flex space-x-0.5 border-b border-gray-900 bg-gray-800/100 py-1 dark:bg-gray-800',
+				'sticky top-0 flex space-x-0.5 border-b border-gray-900 bg-gray-800 py-1',
 			)}
 			ref={toolbarRef}
 		>

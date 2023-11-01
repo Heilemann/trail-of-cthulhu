@@ -16,7 +16,7 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 		return (
 			<div
 				className={twMerge(
-					'mb-1 flex flex-1 flex-col border-b border-gray-200 px-1 dark:border-gray-800',
+					'mb-1 flex flex-1 flex-col border-b border-gray-800 px-1',
 					className,
 				)}
 				style={{
@@ -29,10 +29,8 @@ const VInput = React.forwardRef<HTMLInputElement, IVInputProps>(
 				<Input
 					ref={ref}
 					className={twMerge(
-						'flex-1 bg-transparent text-center dark:bg-transparent',
-						editMode === 'edit'
-							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-							: '',
+						'flex-1 bg-transparent text-center',
+						editMode === 'edit' ? 'hover:bg-gray-800' : '',
 					)}
 					id={rest.name}
 					{...rest}

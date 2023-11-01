@@ -52,7 +52,7 @@ const WeaponSkillPopoverContent = ({ index, setOpen }: Props) => {
 	return (
 		<Popover.Portal>
 			<Popover.Content className='PopoverContent' sideOffset={5}>
-				<div className='flex space-x-1 rounded-lg bg-gray-200 p-1 pl-2 dark:bg-gray-700 dark:text-white'>
+				<div className='flex space-x-1 rounded-lg bg-gray-700 p-1 pl-2 text-white'>
 					<label htmlFor='poolPointsToUse'>Use pool points </label>
 					<Input
 						type='number'
@@ -67,7 +67,7 @@ const WeaponSkillPopoverContent = ({ index, setOpen }: Props) => {
 						Attack!
 					</Button>
 				</div>
-				<Popover.Arrow className='fill-white dark:fill-gray-800' />
+				<Popover.Arrow className='fill-gray-800' />
 			</Popover.Content>
 		</Popover.Portal>
 	)

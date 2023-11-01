@@ -60,7 +60,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 	}) => (
 		<Popover.Close className='w-full'>
 			<button
-				className='w-full whitespace-nowrap rounded-md bg-gray-100 py-2 px-4 text-sm text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+				className='w-full whitespace-nowrap rounded-md bg-gray-700 px-4 py-2 text-sm text-gray-200 hover:bg-gray-600'
 				onClick={onClick}
 			>
 				{children}
@@ -70,7 +70,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 
 	return (
 		<div
-			className='min-w-[200px] rounded-lg bg-white p-1 shadow-lg dark:bg-gray-800 dark:text-gray-200'
+			className='min-w-[200px] rounded-lg bg-gray-800 p-1 text-gray-200 shadow-lg'
 			style={{ fontFamily: 'DustismoRoman' }}
 		>
 			<div className='flex justify-between space-x-1'>

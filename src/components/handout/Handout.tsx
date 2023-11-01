@@ -32,7 +32,7 @@ export default function Handout(props: IHandoutProps) {
 				name='image'
 				addLabel='Add Media'
 				removeLabel='Remove Media'
-				className='-m-4'
+				// className='-m-4'
 			/>
 
 			<TextArea

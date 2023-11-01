@@ -47,10 +47,7 @@ export default function WeaponDamage(props: IWeaponDamageProps) {
 	return (
 		<td>
 			<Input
-				className={twMerge(
-					'bg-transparent dark:bg-transparent',
-					editMode === 'view' && 'hidden',
-				)}
+				className={twMerge('bg-transparent', editMode === 'view' && 'hidden')}
 				placeholder='—'
 				{...register(`weapons.${index}.damage`)}
 			/>

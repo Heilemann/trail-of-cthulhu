@@ -49,7 +49,7 @@ export default function Skill({
 				editMode === 'view' && rating === 0 && 'text-gray-400',
 				editMode === 'view' &&
 					rating > 0 &&
-					'cursor-pointer text-gray-800 hover:bg-gray-800 dark:text-gray-300',
+					'cursor-pointer text-gray-300 hover:bg-gray-800',
 			)}
 			style={{
 				fontFamily: 'DustismoRoman',

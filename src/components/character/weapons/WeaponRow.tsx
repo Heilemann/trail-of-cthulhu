@@ -64,18 +64,18 @@ export default function WeaponRow({ index, remove, weapon }: IWeaponRowProps) {
 					</Button>
 				</td>
 			</tr>
-			<tr className='border-b border-gray-300 dark:border-gray-800'>
+			<tr className='border-b border-gray-800'>
 				<td className='text-left ' colSpan={6}>
 					<TextArea
 						className={twMerge(
-							'mt-0 text-sm text-gray-500 placeholder:text-gray-700 dark:text-gray-500',
+							'mt-0 text-sm text-gray-500 placeholder:text-gray-700',
 							editMode === 'view' && 'hidden',
 						)}
 						placeholder='Notes...'
 						{...register(`weapons.${index}.notes`)}
 					/>
 					{editMode === 'view' && watchedWeapon?.notes && (
-						<div className='my-1 text-sm text-gray-500 dark:text-gray-500'>
+						<div className='my-1 text-sm text-gray-500'>
 							{watchedWeapon?.notes}
 						</div>
 					)}

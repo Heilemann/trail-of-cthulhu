@@ -13,7 +13,7 @@ const Option = ({ blockType, optionType, ...rest }: Props) => {
 
 	return (
 		<button
-			className='flex rounded-lg py-1.5 pl-4 pr-4 text-left dark:hover:bg-gray-800'
+			className='flex rounded-lg py-1.5 pl-4 pr-4 text-left hover:bg-gray-800'
 			{...rest}
 		>
 			<span className='w-32'>{blockTypeToBlockName[blockType]}</span>
