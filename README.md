@@ -4,7 +4,7 @@ First create a .env file in the root of the project with the following contents:
 
 `NODE_ENV=development`
 
-This will enable the developemnt toolbar to show up when you're running the localhost server. Then run the following commands:
+This will enable the development toolbar to show up when you're running the localhost server. Then run the following commands:
 
 `npm install`
 `npm start`
