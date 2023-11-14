@@ -11,6 +11,7 @@
 		"unit": "px"
 	},
 	"assetsPath": "build/static/media/",
+	"logoPath": "build/static/media/logo.png",
 	"collections": [
 		{
 			"type": "character",
