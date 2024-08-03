@@ -12,6 +12,7 @@
 	},
 	"assetsPath": "build/static/media/",
 	"logoPath": "build/static/media/logo.png",
+	"coverPath": "build/static/media/cover.jpg",
 	"collections": [
 		{
 			"type": "character",
