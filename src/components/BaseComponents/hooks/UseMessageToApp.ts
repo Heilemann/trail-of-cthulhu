@@ -16,7 +16,7 @@ export default function useMessageToApp() {
 			source: 'System',
 			message,
 			data: {
-				payload: data,
+				...data,
 				documentId,
 			},
 		} as TAppReceivableMessages)
