@@ -22,6 +22,7 @@ const WeaponSkillPopoverContent = ({ index, setOpen }: Props) => {
 
 	const pool = useWatch({
 		name: `skills.general.${skillName}.pool`,
+		defaultValue: 0,
 	})
 
 	const handleClick = () => {
