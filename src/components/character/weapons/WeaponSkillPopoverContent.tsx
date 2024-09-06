@@ -1,9 +1,9 @@
 import * as Popover from '@radix-ui/react-popover'
 import { Input } from 'nrsystemtools'
-import Button from '../../BaseComponents/Form/Button'
-import { TWeaponOnCharacter } from '../../../interfaces'
-import { useFormContext, useWatch } from 'react-hook-form'
 import { useState } from 'react'
+import { useFormContext, useWatch } from 'react-hook-form'
+import { TWeaponOnCharacter } from '../../../interfaces'
+import Button from '../../BaseComponents/Form/Button'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 
 type Props = {
@@ -34,7 +34,7 @@ const WeaponSkillPopoverContent = ({ index, setOpen }: Props) => {
 			messageToApp({
 				message: 'send message',
 				data: {
-					message: `/r 1d6 ${
+					payload: `/r 1d6 ${
 						poolPointsToUse !== 0 ? `+ ${poolPointsToUse}` : ''
 					} to attack using ${watchedWeapon.skill} with my ${
 						watchedWeapon.name

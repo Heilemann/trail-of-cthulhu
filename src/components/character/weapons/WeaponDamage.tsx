@@ -1,10 +1,10 @@
+import { Input } from 'nrsystemtools'
 import * as React from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import Button from '../../BaseComponents/Form/Button'
-import { Input } from 'nrsystemtools'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../BaseComponents/context'
+import Button from '../../BaseComponents/Form/Button'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 
 export interface IWeaponDamageProps {
 	index: number
@@ -39,7 +39,7 @@ export default function WeaponDamage(props: IWeaponDamageProps) {
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `/roll ${damage} ${brawlBonus} for ${name} damage`,
+				payload: `/roll ${damage} ${brawlBonus} for ${name} damage`,
 			},
 		})
 	}

@@ -1,10 +1,10 @@
+import { NumberInput } from 'nrsystemtools'
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { TWeaponOnCharacter } from '../../../interfaces'
 import context from '../../BaseComponents/context'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import Button from '../../BaseComponents/Form/Button'
-import { NumberInput } from 'nrsystemtools'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 
 type Props = {
 	index: number
@@ -58,7 +58,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 
 		messageToApp({
 			message: 'send message',
-			data: { message },
+			data: { payload: message },
 		})
 	}
 

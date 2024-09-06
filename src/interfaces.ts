@@ -160,7 +160,7 @@ export type TAppReceivableMessages =
 	  }
 	| {
 			message: 'send message'
-			data: { message: string }
+			data: { payload: string }
 	  }
 	| {
 			message: 'upload asset'

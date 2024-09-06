@@ -1,8 +1,8 @@
 import * as Popover from '@radix-ui/react-popover'
 import { MouseEventHandler, ReactNode, useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 import context from '../../BaseComponents/context'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 
 type Props = {
 	name: string
@@ -39,7 +39,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `Refresh ${name}`,
+				payload: `Refresh ${name}`,
 			},
 		})
 	}
@@ -49,7 +49,7 @@ export default function SkillPopoverContents({ name, category }: Props) {
 		messageToApp({
 			message: 'send message',
 			data: {
-				message: `Spend ${points} point of ${name}`,
+				payload: `Spend ${points} point of ${name}`,
 			},
 		})
 	}
