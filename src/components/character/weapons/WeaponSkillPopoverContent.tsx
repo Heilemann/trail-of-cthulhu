@@ -25,6 +25,8 @@ const WeaponSkillPopoverContent = ({ index, setOpen }: Props) => {
 	})
 
 	const handleClick = () => {
+		console.log('poolPointsToUse', poolPointsToUse)
+		console.log('pool', pool)
 		if (poolPointsToUse <= pool && poolPointsToUse >= 0) {
 			setValue(
 				`skills.general.${watchedWeapon.skill}.pool`,
