@@ -21,7 +21,10 @@
 			"description": "A player character.",
 			"hasEditMode": "true",
 			"windowSize": "large",
-			"thumbnailField": ["portrait", "token"],
+			"thumbnailField": [
+				"portrait",
+				"token"
+			],
 			"allowCreate": "true",
 			"canAssumeAsCharacter": "true"
 		},
@@ -41,7 +44,10 @@
 			"pluralName": "Scenes",
 			"description": "Provide context, cover art and maps.",
 			"hasEditMode": "false",
-			"thumbnailField": ["mapId", "coverId"],
+			"thumbnailField": [
+				"mapId",
+				"coverId"
+			],
 			"windowSize": "small",
 			"allowCreate": "false",
 			"canAssumeAsCharacter": "false"
@@ -64,8 +70,16 @@
 			"hasEditMode": "true",
 			"windowSize": "small",
 			"allowCreate": "false",
-			"thumbnailField": ["image"],
+			"thumbnailField": [
+				"image"
+			],
 			"canAssumeAsCharacter": "false"
+		}
+	],
+	"diceConfig": [
+		{
+			"label": "1D6",
+			"notation": "1d6"
 		}
 	]
 }
