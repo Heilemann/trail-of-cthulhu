@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { useWatch } from 'react-hook-form'
+import HInput from '../BaseComponents/Form/HInput'
 import context from '../BaseComponents/context'
 import DecoBox from '../DecoBox'
-import HInput from '../BaseComponents/Form/HInput'
 import BasicInfo from './BasicInfo'
 import Notes from './CharacterNotes'
 import Settings from './Settings'
@@ -10,9 +10,7 @@ import Token from './Token'
 import Skills from './skills/Skills'
 import Weapons from './weapons/Weapons'
 
-export interface ICharacterProps {}
-
-export default function Character(props: ICharacterProps) {
+export default function Character() {
 	const { state } = useContext(context)
 	const { document } = state
 	const { values } = document
