@@ -1,5 +1,5 @@
-// this component renders the correct component based on a given document's type.
-// This is where you add and remove your sheets.
+// render the correct component based on the given document's type.
+// this is where you add and remove sheets.
 import { TDocumentType } from '../interfaces'
 import Character from './character/Character'
 import Handout from './handout/Handout'

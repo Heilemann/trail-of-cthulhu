@@ -152,7 +152,7 @@ export type TAppReceivableMessages =
 	  }
 	| {
 			message: 'save'
-			data: TDocument
+			data: { payload: TDocument }
 	  }
 	| {
 			message: 'focus'

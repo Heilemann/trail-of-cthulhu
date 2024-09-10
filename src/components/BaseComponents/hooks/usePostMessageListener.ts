@@ -22,8 +22,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 
 			if (wrongSource) return
 
-			console.log('System received message:', message, data)
-
 			switch (message) {
 				case 'load':
 					const { documentId } = data
@@ -70,7 +68,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						return
 					}
 
-					// somehow a stale version of the document gets pushed to the parent,
+					// TODO: somehow a stale version of the document gets pushed to the parent,
 					// maybe because the platform updates the asset first and pushes that down
 					// and then the document gets updated and pushed down causing a loop
 
@@ -101,9 +99,6 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 	)
 
 	useEffect(() => {
-		console.log(
-			'usepostmessagelistener, System listening for messages from App',
-		)
 		window.addEventListener('message', messageListener)
 		return () => window.removeEventListener('message', messageListener)
 	}, [messageListener])

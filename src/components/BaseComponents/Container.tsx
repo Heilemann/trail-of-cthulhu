@@ -13,7 +13,9 @@ import useFocusHandler from './useFocusHandler'
 
 export default function Container() {
 	const { state, dispatch } = useContext(context)
-	const [type, setType] = useState<TDocumentType | null>(state.document?.type)
+	const [type, setType] = useState<TDocumentType | null>(
+		state?.document?.type ?? null,
+	)
 	const { watch } = useFormContext<TValues>()
 	const resetInProgress = useRef(false)
 	const messageToApp = useMessageToApp()
@@ -21,12 +23,10 @@ export default function Container() {
 	useFocusHandler()
 
 	const handleDocumentChanges = () => {
-		// type controls the sheet to show, if the document is updated
-		// we update the type as well
-		setType(state.document?.type || null)
+		setType(state?.document?.type ?? null)
 
 		const subscription = watch(values => {
-			if (!values || !state.document) return
+			if (!values || !state?.document) return
 			if (_.isEqual(values, state.document.values)) return
 			if (resetInProgress.current) {
 				resetInProgress.current = false
@@ -49,21 +49,20 @@ export default function Container() {
 				},
 			})
 
-			messageToApp({ message: 'save', data: payload })
+			messageToApp({ message: 'save', data: { payload } })
 		})
 
 		return () => {
 			subscription.unsubscribe()
 		}
 	}
-	useEffect(handleDocumentChanges, [state.document]) // eslint-disable-line
+	useEffect(handleDocumentChanges, [state?.document]) // eslint-disable-line
 
 	// tell the platform we're ready to receive messages,
 	// the first of which will be 'load' containing our data
 	const tellAppWeAreReady = () => {
 		messageToApp({ message: 'system is ready', data: null })
 	}
-
 	useEffect(tellAppWeAreReady, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	if (!type) return null
