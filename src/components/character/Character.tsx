@@ -12,16 +12,20 @@ import Weapons from './weapons/Weapons'
 
 export default function Character() {
 	const { state } = useContext(context)
-	const { document } = state
-	const { values } = document
-	const { skills } = values
+	const document = state?.document
+	const values = document?.values || {}
+	const skills = values.skills || {}
 
 	const athletics = useWatch({
 		name: 'skills.Athletics.rating',
-		defaultValue: skills?.athletics?.rating || 0,
+		defaultValue: skills?.Athletics?.rating || 0,
 	})
-	const athleticsInt = parseInt(athletics || 0, 10)
+	const athleticsInt = parseInt(athletics || '0', 10)
 	const defaultHitThreshold = athleticsInt < 8 ? '3' : '4'
+
+	if (!document) {
+		return <div>Loading character data...</div>
+	}
 
 	return (
 		<div className='space-y-4'>
