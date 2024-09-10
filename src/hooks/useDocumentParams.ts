@@ -10,39 +10,38 @@ export function useDocumentParams() {
 	})
 
 	useEffect(() => {
+		console.log('useDocumentParams effect running')
+
 		const getParams = () => {
-			// Check if we're in an iframe
-			if (window.parent !== window) {
-				// We're in an iframe, likely a srcdoc
-				const handleMessage = (event: MessageEvent) => {
-					if (event.data && event.data.type === 'DOCUMENT_PARAMS') {
-						setParams({
-							id: event.data.id || null,
-							dice: event.data.dice || null,
-						})
-					}
-				}
+			try {
+				// Try to access window.parent.location
+				const parentLocation = window.parent.location
+				console.log('Running in srcdoc')
 
-				window.addEventListener('message', handleMessage)
-
-				// Request params from parent
-				window.parent.postMessage({ type: 'REQUEST_DOCUMENT_PARAMS' }, '*')
-
-				return () => {
-					window.removeEventListener('message', handleMessage)
-				}
-			} else {
-				// We're not in an iframe, use URL params
-				const searchParams = new URLSearchParams(window.location.search)
-				setParams({
+				// We're in a srcdoc, use parent's URL params
+				const searchParams = new URLSearchParams(parentLocation.search)
+				const newParams = {
 					id: searchParams.get('id'),
 					dice: searchParams.get('dice'),
-				})
+				}
+				console.log('Setting params from parent URL:', newParams)
+				setParams(newParams)
+			} catch (error) {
+				console.log('Running in main window')
+				// We're not in a srcdoc, use our own URL params
+				const searchParams = new URLSearchParams(window.location.search)
+				const newParams = {
+					id: searchParams.get('id'),
+					dice: searchParams.get('dice'),
+				}
+				console.log('Setting params from own URL:', newParams)
+				setParams(newParams)
 			}
 		}
 
 		getParams()
 	}, [])
 
+	console.log('useDocumentParams returning:', params)
 	return params
 }
