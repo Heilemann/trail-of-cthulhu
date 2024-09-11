@@ -2,11 +2,11 @@ import { PlusIcon } from '@heroicons/react/24/solid'
 import { DragEvent, useContext, useState } from 'react'
 import { FieldValues, useFieldArray, useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TWeapon, TWeaponOnCharacter } from '../../../interfaces'
+import { TWeapon, TWeaponOnCharacter } from '../../../interfaces/interfaces'
+import context from '../../BaseComponents/context'
 import Button from '../../BaseComponents/Form/Button'
 import DecoBox from '../../DecoBox'
 import { borderStyle } from '../../styles/borderStyle'
-import context from '../../BaseComponents/context'
 import WeaponRow from './WeaponRow'
 
 const emptyWeapon: TWeaponOnCharacter = {

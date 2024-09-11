@@ -1,10 +1,10 @@
 import { MinusIcon } from '@heroicons/react/24/solid'
-import { UseFieldArrayRemove, useFormContext } from 'react-hook-form'
-import { TCharacterNote } from '../../interfaces'
-import DecoBox from '../DecoBox'
-import Button from '../BaseComponents/Form/Button'
 import { Input } from 'nrsystemtools'
+import { UseFieldArrayRemove, useFormContext } from 'react-hook-form'
+import { TCharacterNote } from '../../interfaces/interfaces'
+import Button from '../BaseComponents/Form/Button'
 import TextArea from '../BaseComponents/Form/Textarea'
+import DecoBox from '../DecoBox'
 
 interface Props {
 	remove: UseFieldArrayRemove

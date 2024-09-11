@@ -1,4 +1,4 @@
-import { TWeaponSkills } from '../../interfaces'
+import { TWeaponSkills } from '../../interfaces/interfaces'
 
 const weaponSkillList = ['Firearms', 'Weapons', 'Scuffling'] as TWeaponSkills[]
 

@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TSkill, TWeaponOnCharacter } from '../../../interfaces'
+import { TSkill, TWeaponOnCharacter } from '../../../interfaces/interfaces'
 import context from '../../BaseComponents/context'
+import Dropdown from '../../BaseComponents/Form/Dropdown'
 import weaponSkillList from '../../data/weaponSkillList'
 import { WeaponSkillPopover } from './WeaponSkillPopover'
-import Dropdown from '../../BaseComponents/Form/Dropdown'
 
 type Props = {
 	index: number

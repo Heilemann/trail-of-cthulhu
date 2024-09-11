@@ -1,5 +1,5 @@
 import { useWatch } from 'react-hook-form'
-import { TWeaponOnCharacter } from '../../../interfaces'
+import { TWeaponOnCharacter } from '../../../interfaces/interfaces'
 
 type Props = {
 	index: number

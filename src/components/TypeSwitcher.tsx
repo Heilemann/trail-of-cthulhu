@@ -1,6 +1,6 @@
 // render the correct component based on the given document's type.
 // this is where you add and remove sheets.
-import { TDocumentType } from '../interfaces'
+import { TDocumentType } from '../interfaces/interfaces'
 import Character from './character/Character'
 import Handout from './handout/Handout'
 import Note from './note/Note'

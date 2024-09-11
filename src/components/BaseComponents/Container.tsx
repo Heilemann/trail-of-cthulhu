@@ -4,7 +4,7 @@
 import _ from 'lodash'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { TDocumentType, TValues } from '../../interfaces'
+import { TDocumentType, TValues } from '../../interfaces/interfaces'
 import TypeSwitcher from '../TypeSwitcher'
 import context from './context'
 import useMessageToApp from './hooks/UseMessageToApp'

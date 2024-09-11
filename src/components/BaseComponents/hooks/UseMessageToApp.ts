@@ -1,4 +1,4 @@
-import { TAppReceivableMessages } from '../../../interfaces'
+import { TAppReceivableMessages } from '../../../interfaces/interfaces'
 
 // hook that returns function to send messages to the parent window
 export default function useMessageToApp() {

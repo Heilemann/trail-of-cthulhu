@@ -8,7 +8,7 @@ import Context from './components/BaseComponents/context'
 import Reducer from './components/BaseComponents/reducer'
 import DiceResults from './components/DiceResults'
 import { useDocumentParams } from './hooks/useDocumentParams'
-import { TState, TValues } from './interfaces'
+import { TState, TValues } from './interfaces/interfaces'
 
 function App() {
 	const [state, dispatch] = useReducer(Reducer, {} as TState)

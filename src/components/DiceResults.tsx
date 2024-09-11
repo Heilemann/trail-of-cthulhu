@@ -1,4 +1,5 @@
 import React from 'react'
+import { IDiceResults, RollGroup } from '../interfaces/dicebox'
 
 interface DiceResultsProps {
 	diceData: string

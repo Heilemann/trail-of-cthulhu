@@ -1,11 +1,11 @@
 import {
+	TAccess,
 	TCollection,
 	TDocument,
-	TAccess,
 	TDocumentType,
-	TState,
 	TEditMode,
-} from '../../../interfaces'
+	TState,
+} from '../../../interfaces/interfaces'
 import systemConfig from '../../../system.json'
 
 export const fakeDocumentsFromSystemConfig = (

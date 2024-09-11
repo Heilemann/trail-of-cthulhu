@@ -5,7 +5,7 @@ import {
 	TNote,
 	TScene,
 	TWeaponDocument,
-} from '../interfaces'
+} from '../interfaces/interfaces'
 
 const note: TNote = {
 	_id: 'note',

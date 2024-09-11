@@ -1,4 +1,4 @@
-import { TReducerAction, TState } from '../../interfaces'
+import { TReducerAction, TState } from '../../interfaces/interfaces'
 
 export default function Reducer(state: TState, action: TReducerAction) {
 	switch (action.type) {

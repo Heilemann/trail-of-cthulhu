@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { TCollection, TSystemConfig } from '../../../interfaces'
+import { TCollection, TSystemConfig } from '../../../interfaces/interfaces'
 import systemConfig from '../../../system.json'
 import context from '../context'
 

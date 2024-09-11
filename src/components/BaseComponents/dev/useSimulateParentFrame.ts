@@ -3,9 +3,9 @@
 // out later. Source in these messages is 'Aux' because in production the 'App'
 // sends message to 'Aux' which then forwards them to the system.
 import { useContext, useEffect } from 'react'
-import { TEditMode, TState } from '../../../interfaces'
-import context from '../context'
+import { TEditMode, TState } from '../../../interfaces/interfaces'
 import defaultDocuments from '../../defaultData'
+import context from '../context'
 
 let initialData: TState = {
 	editMode: 'edit' as TEditMode,

@@ -1,7 +1,7 @@
 import { NumberInput } from 'nrsystemtools'
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
-import { TWeaponOnCharacter } from '../../../interfaces'
+import { TWeaponOnCharacter } from '../../../interfaces/interfaces'
 import context from '../../BaseComponents/context'
 import Button from '../../BaseComponents/Form/Button'
 import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
