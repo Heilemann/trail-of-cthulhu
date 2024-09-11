@@ -13,14 +13,6 @@
 	"assetsPath": "build/static/media/",
 	"logoPath": "build/static/media/logo.png",
 	"coverPath": "build/static/media/cover.jpg",
-	"widgets": [
-		{
-			"type": "diceResult",
-			"options": {
-				"height": "200px"
-			}
-		}
-	],
 	"collections": [
 		{
 			"type": "character",
