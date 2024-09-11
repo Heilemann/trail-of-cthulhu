@@ -44,13 +44,10 @@ export interface DieResult {
 }
 
 export interface RollGroup {
-	id: number
-	mods: any[]
+	id: string
 	qty: number
-	rolls: DieResult[]
 	sides: number
-	theme: string
-	themeColor?: string
+	rolls: Roll[]
 	value: number
 }
 
@@ -58,7 +55,7 @@ export interface IDiceParsedResults {
 	count: Count
 	die: Die
 	rolls: Roll[]
-	success: null | boolean // Updated to allow boolean
+	success: boolean | null
 	successes: number
 	failures: number
 	type: 'die'
@@ -78,7 +75,7 @@ export interface IDiceResults {
 	failures: number
 	ops: string[]
 	order: number
-	success: boolean
+	success: boolean | null
 	successes: number
 	type: string
 	valid: boolean

@@ -13,6 +13,14 @@
 	"assetsPath": "build/static/media/",
 	"logoPath": "build/static/media/logo.png",
 	"coverPath": "build/static/media/cover.jpg",
+	"widgets": [
+		{
+			"type": "diceResult",
+			"options": {
+				"height": "200px"
+			}
+		}
+	],
 	"collections": [
 		{
 			"type": "character",
@@ -78,8 +86,44 @@
 	],
 	"diceConfig": [
 		{
-			"label": "1D6",
-			"notation": "1d6"
+			"label": "Fistful of D6",
+			"notation": "5d6"
+		},
+		{
+			"label": "Percentile",
+			"notation": "d100"
+		},
+		{
+			"label": "Advantage",
+			"notation": "2d20kh1"
+		},
+		{
+			"label": "Exploding D10",
+			"notation": "1d10!"
+		},
+		{
+			"label": "3D6 Drop Lowest",
+			"notation": "3d6dl1"
+		},
+		{
+			"label": "Fate/Fudge Dice",
+			"notation": "4dF"
+		},
+		{
+			"label": "D&D Ability Check",
+			"notation": "4d6dl1"
+		},
+		{
+			"label": "Complex Attack",
+			"notation": "2d8+1d6+5"
+		},
+		{
+			"label": "Reroll 1s and 2s",
+			"notation": "3d6r<3"
+		},
+		{
+			"label": "Shadowrun",
+			"notation": "8d6>5"
 		}
 	]
 }
