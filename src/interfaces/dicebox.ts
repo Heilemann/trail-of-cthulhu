@@ -1,7 +1,7 @@
 export interface BaseStats {
 	type: string
 	value: number
-	success: null | boolean // Updated to allow boolean
+	success: boolean | null
 	successes: number
 	failures: number
 	valid: boolean
@@ -11,20 +11,6 @@ export interface BaseStats {
 export type Count = BaseStats
 
 export type Die = BaseStats
-
-export interface Roll {
-	critical: boolean | null // Updated to allow boolean
-	die: number
-	matched: boolean
-	order: number
-	roll: number
-	success: boolean | null // Updated to allow boolean
-	successes: number
-	failures: number
-	type: 'roll'
-	valid: boolean
-	value: number
-}
 
 export interface RollObject {
 	modifier?: number
@@ -47,14 +33,31 @@ export interface RollGroup {
 	id: string
 	qty: number
 	sides: number
-	rolls: Roll[]
+	rolls: IndividualDieResult[]
 	value: number
 }
 
-export interface IDiceParsedResults {
+// Used
+export interface IndividualDieResult {
+	critical: 'success' | 'failure' | null
+	die: number
+	matched: boolean
+	order: number
+	roll: number
+	reroll: boolean | null
+	success: boolean | null
+	successes: number
+	failures: number
+	type: 'roll'
+	valid: boolean
+	value: number
+}
+
+// Used
+export interface RollResultArray {
 	count: Count
 	die: Die
-	rolls: Roll[]
+	rolls: IndividualDieResult[]
 	success: boolean | null
 	successes: number
 	failures: number
@@ -66,18 +69,14 @@ export interface IDiceParsedResults {
 	groupId: string
 }
 
-export interface IDiceResults {
-	groups: RollGroup[]
-}
-
-export interface IDiceResults {
-	dice: IDiceParsedResults[]
+export interface ExpressionResult {
+	dice: RollResultArray[]
 	failures: number
 	ops: string[]
 	order: number
 	success: boolean | null
 	successes: number
-	type: string
+	type: 'expressionroll'
 	valid: boolean
 	value: number
 }
