@@ -1,10 +1,10 @@
-import { useFormContext, useWatch } from 'react-hook-form'
-import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
-import Button from '../../BaseComponents/Form/Button'
-import { TWeaponOnCharacter } from '../../../interfaces'
 import { WindowIcon } from '@heroicons/react/24/solid'
 import { useContext, useMemo } from 'react'
+import { useFormContext, useWatch } from 'react-hook-form'
+import { TWeaponOnCharacter } from '../../../interfaces/interfaces'
 import context from '../../BaseComponents/context'
+import Button from '../../BaseComponents/Form/Button'
+import useMessageToApp from '../../BaseComponents/hooks/UseMessageToApp'
 
 type Props = {
 	index: number

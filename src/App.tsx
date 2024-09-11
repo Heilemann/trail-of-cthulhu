@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useReducer } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import './App.css'
 import './assets/logo.png'
@@ -17,10 +17,6 @@ function App() {
 	})
 
 	const { id, dice } = useDocumentParams()
-
-	useEffect(() => {
-		console.log('App received params:', { id, dice })
-	}, [id, dice])
 
 	return (
 		<Context.Provider value={{ state, dispatch }}>

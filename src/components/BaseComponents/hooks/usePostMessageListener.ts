@@ -28,14 +28,9 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 			switch (message) {
 				case 'load':
 					const { documentId } = data
-					console.log(
-						'System received load message for document',
-						documentId,
-						data,
-					)
 					const document = data.documents.byId[documentId]
 
-					if (!document) {
+					if (documentId !== 'dice' && !document) {
 						throw new Error(`Document with id ${documentId} not found`)
 					}
 
@@ -49,7 +44,7 @@ const usePostMessageListener = ({ resetInProgress }: Props) => {
 						payload,
 					})
 
-					reset(payload.document.values)
+					reset(payload.document?.values)
 
 					break
 
