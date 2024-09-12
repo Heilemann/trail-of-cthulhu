@@ -32,14 +32,15 @@ const DiceResults: React.FC<DiceResultsProps> = ({ diceData }) => {
 
 	const typeDie = (die: RollResultArray | Modifier, idx: number) => {
 		if (die.type === 'die') {
-			return die.rolls?.map((roll, idx) => (
+			return die.rolls?.map((roll, i) => (
 				<div
-					key={idx}
+					key={idx + '-' + i}
 					className={twMerge(
 						'flex aspect-square w-12 flex-col items-center justify-center border-2 p-2',
 						roll.success && 'border-green-500',
 						roll.critical === 'failure' && 'bg-red-500',
 						roll.critical === 'success' && 'bg-white text-black',
+						roll.drop && 'opacity-30',
 					)}
 				>
 					<div>{roll.value}</div>
@@ -71,11 +72,11 @@ const DiceResults: React.FC<DiceResultsProps> = ({ diceData }) => {
 					</div>
 				)}
 
-				{/* {diceResult.type === 'die' && (
+				{diceResult.type === 'die' && (
 					<div className='flex'>
-						{diceResult.rolls.map((die, idx) => typeDie(die, idx))}
-					</div>	
-				)} */}
+						{typeDie(diceResult as RollResultArray, 0)}
+					</div>
+				)}
 				<div className='flex aspect-square w-12 items-center justify-center p-2'>
 					=
 				</div>

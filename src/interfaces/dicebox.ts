@@ -19,6 +19,7 @@ interface BaseObject {
 	success?: boolean
 	successes: number
 	failures: number
+	drop?: boolean
 	valid: boolean
 	order: number
 }

@@ -76,6 +76,11 @@
 			"canAssumeAsCharacter": "false"
 		}
 	],
+	"chatMessageTypes": [
+		{
+			"type": "dice"
+		}
+	],
 	"diceConfig": [
 		{
 			"label": "1D6",
