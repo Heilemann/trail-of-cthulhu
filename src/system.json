@@ -83,48 +83,8 @@
 	],
 	"diceConfig": [
 		{
-			"label": "1D6",
+			"label": "D6",
 			"notation": "1d6"
-		},
-		{
-			"label": "2D20",
-			"notation": "2d20"
-		},
-		{
-			"label": "3D6+5",
-			"notation": "3d6+5"
-		},
-		{
-			"label": "D100",
-			"notation": "d100"
-		},
-		{
-			"label": "4D6 Drop Lowest",
-			"notation": "4d6dl1"
-		},
-		{
-			"label": "2D10 Exploding",
-			"notation": "2d10!"
-		},
-		{
-			"label": "3D8 Keep Highest 2",
-			"notation": "3d8kh2"
-		},
-		{
-			"label": "5D4 Reroll 1s",
-			"notation": "5d4r1"
-		},
-		{
-			"label": "D20 Advantage",
-			"notation": "2d20kh1"
-		},
-		{
-			"label": "Complex Attack",
-			"notation": "1d20+5+1d6"
-		},
-		{
-			"label": "Fate/Fudge Dice",
-			"notation": "4dF"
 		}
 	]
 }
