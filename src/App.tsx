@@ -11,7 +11,10 @@ import { useDocumentParams } from './hooks/useDocumentParams'
 import { TState, TValues } from './interfaces/interfaces'
 
 function App() {
-	const [state, dispatch] = useReducer(Reducer, {} as TState)
+	const [state, dispatch] = useReducer(Reducer, {
+		showAllSkills: true,
+		// ... other initial state properties
+	} as TState)
 	const form = useForm<TValues>({
 		shouldUnregister: true,
 	})

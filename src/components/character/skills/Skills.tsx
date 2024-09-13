@@ -6,21 +6,21 @@ import Interpersonal from './Interpersonal'
 import Refresh24Hour from './Refresh24Hour'
 import RefreshSkills from './RefreshSkills'
 import Technical from './Technical'
+import ToggleSkillsVisibility from './ToggleSkillsVisibility'
 
 export default function SkillsList() {
 	return (
 		<DecoBox>
-			<div className='mb-4 grid-cols-4 gap-4 sm:grid'>
+			<div className='mb-4 grid-cols-5 gap-4 space-y-1 sm:grid'>
 				<RefreshSkills />
 				<Refresh24Hour />
 				<BuildPoints
 					watchKey='skills.investigative'
-					label='Invest. Build Pts'
+					label='Investigation Points'
 				/>
-				<BuildPoints watchKey='skills.general' label='General Build Pts' />
+				<BuildPoints watchKey='skills.general' label='General Points' />
+				<ToggleSkillsVisibility />
 			</div>
-
-			{/* <div className='h-4 bg-red-500 sm:bg-blue-500 md:bg-green-500 lg:bg-yellow-500'></div> */}
 
 			<div className='flex flex-1 flex-col space-x-4 sm:flex-row md:space-x-4 lg:hidden'>
 				<div className='flex-1 space-y-8 lg:flex'>

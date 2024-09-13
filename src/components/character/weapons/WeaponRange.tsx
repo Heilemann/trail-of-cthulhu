@@ -68,6 +68,7 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 				className='mt-1 w-12 text-center'
 				centerValue
 				min={0}
+				hidden={editMode === 'view'}
 				{...register(`weapons.${index}.range.${rangeType}`)}
 			/>
 			{editMode === 'view' && (

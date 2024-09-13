@@ -1,3 +1,4 @@
+import { NumberInput } from 'nrsystemtools'
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
@@ -7,7 +8,6 @@ import { borderStyle } from '../../styles/borderStyle'
 import OccupationalAbility from './OccupationalAbility'
 import SkillSpecialities from './SkillSpecialities'
 import SkillSpecialitiesList from './SkillSpecialitiesList'
-import { NumberInput } from 'nrsystemtools'
 
 export interface ISkillProps {
 	name: string
@@ -23,7 +23,7 @@ export default function Skill({
 	note,
 }: ISkillProps) {
 	const { state } = useContext(context)
-	const { document, editMode } = state
+	const { showAllSkills, document, editMode } = state
 	const { values } = document
 	const { skills } = values
 	const { register } = useFormContext()
@@ -111,6 +111,10 @@ export default function Skill({
 			)}
 		</div>
 	)
+
+	if (!showAllSkills && rating === 0) {
+		return null
+	}
 
 	if (editMode === 'view' && rating) {
 		return (

@@ -18,12 +18,8 @@ export function WeaponSkillPopover({
 
 	return (
 		<div {...rest}>
-			<Popover.Root open={open}>
-				<Popover.Trigger
-					asChild
-					onClick={() => setOpen(!open)}
-					className='cursor-pointer'
-				>
+			<Popover.Root open={open} onOpenChange={setOpen}>
+				<Popover.Trigger asChild className='cursor-pointer'>
 					{children}
 				</Popover.Trigger>
 				<WeaponSkillPopoverContent setOpen={setOpen} index={index} />

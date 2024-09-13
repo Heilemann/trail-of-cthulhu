@@ -32,14 +32,16 @@ const WeaponSkillPopoverContent = ({ index, setOpen }: Props) => {
 				pool - poolPointsToUse,
 			)
 
+			const payload = `/r 1d6 ${
+				poolPointsToUse !== 0 ? `+ ${poolPointsToUse}` : ''
+			} to attack using ${watchedWeapon.skill} with my ${watchedWeapon.name}.`
+
+			console.log(payload)
+
 			messageToApp({
 				message: 'send message',
 				data: {
-					payload: `/r 1d6 ${
-						poolPointsToUse !== 0 ? `+ ${poolPointsToUse}` : ''
-					} to attack using ${watchedWeapon.skill} with my ${
-						watchedWeapon.name
-					}.`,
+					payload,
 				},
 			})
 

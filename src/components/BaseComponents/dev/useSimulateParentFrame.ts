@@ -16,6 +16,7 @@ let initialData: TState = {
 		byId: {},
 		allIds: [],
 	},
+	showAllSkills: true, // Add this line
 }
 
 const useSimulateParentFrame = () => {

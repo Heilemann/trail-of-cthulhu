@@ -103,8 +103,10 @@ export type TState = {
 	document: TDocument
 	documents: Documents
 	assets: Assets
+	showAllSkills: boolean
 }
 
+// Add a new action type for toggling showAllSkills
 export type TReducerAction =
 	| {
 			type: 'LOAD'
@@ -116,6 +118,9 @@ export type TReducerAction =
 				documentId: string
 				values: FieldValues
 			}
+	  }
+	| {
+			type: 'TOGGLE_SHOW_ALL_SKILLS'
 	  }
 
 export type TContext = {

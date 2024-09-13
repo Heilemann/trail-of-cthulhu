@@ -1,6 +1,6 @@
 import { TReducerAction, TState } from '../../interfaces/interfaces'
 
-export default function Reducer(state: TState, action: TReducerAction) {
+const reducer = (state: TState, action: TReducerAction): TState => {
 	switch (action.type) {
 		case 'LOAD':
 			return {
@@ -31,7 +31,15 @@ export default function Reducer(state: TState, action: TReducerAction) {
 				document: updatedDocument,
 			}
 
+		case 'TOGGLE_SHOW_ALL_SKILLS':
+			return {
+				...state,
+				showAllSkills: !state.showAllSkills,
+			}
+
 		default:
 			return state
 	}
 }
+
+export default reducer
