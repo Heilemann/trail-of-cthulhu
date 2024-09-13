@@ -27,7 +27,7 @@ const DiceResults: React.FC<DiceResultsProps> = ({ diceData }) => {
 				<div
 					key={idx + '-' + i}
 					className={twMerge(
-						'flex aspect-square w-12 flex-col items-center justify-center rounded-md border border-white/20 p-2',
+						'flex h-8 w-8 flex-col items-center justify-center rounded-md border border-white/20 p-2',
 					)}
 				>
 					<div>{roll.value}</div>
@@ -35,10 +35,7 @@ const DiceResults: React.FC<DiceResultsProps> = ({ diceData }) => {
 			))
 		} else if (die.type === 'number') {
 			return (
-				<div
-					key={idx}
-					className='flex aspect-square w-12 items-center justify-center p-2'
-				>
+				<div key={idx} className='flex h-8 w-8 items-center justify-center p-2'>
 					{diceResult.type === 'expressionroll' && diceResult.ops[idx - 1]}
 					{die.value}
 				</div>
@@ -54,16 +51,15 @@ const DiceResults: React.FC<DiceResultsProps> = ({ diceData }) => {
 				fontFamily: 'CovingtonCondensed',
 			}}
 		>
-			<div className='flex flex-wrap gap-2'>
-				{diceResult.type === 'expressionroll' &&
-					diceResult.dice.map((die, idx) => typeDie(die, idx))}
+			<div className='flex flex-col items-center gap-1'>
+				<div className='text-4xl font-bold'>{diceResult.value}</div>
 
-				{diceResult.type === 'die' && typeDie(diceResult as RollResultArray, 0)}
-				<div className='flex aspect-square w-6 items-center justify-center p-2'>
-					=
-				</div>
-				<div className='flex aspect-square w-12 items-center justify-center p-2 text-3xl font-bold'>
-					{diceResult.value}
+				<div className='mb-4 flex flex-wrap gap-2'>
+					{diceResult.type === 'expressionroll' &&
+						diceResult.dice.map((die, idx) => typeDie(die, idx))}
+
+					{diceResult.type === 'die' &&
+						typeDie(diceResult as RollResultArray, 0)}
 				</div>
 			</div>
 
