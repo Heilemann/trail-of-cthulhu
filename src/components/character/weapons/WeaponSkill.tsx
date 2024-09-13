@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
-import { TSkill, TWeaponOnCharacter } from '../../../interfaces/interfaces'
+import { TSkill } from '../../../interfaces/interfaces'
 import context from '../../BaseComponents/context'
 import Dropdown from '../../BaseComponents/Form/Dropdown'
 import weaponSkillList from '../../data/weaponSkillList'
@@ -14,25 +14,28 @@ type Props = {
 const WeaponSkill = ({ index }: Props) => {
 	const { state } = useContext(context)
 	const { editMode } = state
-	const { register } = useFormContext()
+	const { register, control } = useFormContext()
 
-	const watchedWeapon: TWeaponOnCharacter = useWatch({
-		name: `weapons.${index}`,
+	const skillName = useWatch({
+		control,
+		name: `weapons.${index}.skill`,
 	})
 
 	const skill: TSkill = useWatch({
-		name: `skills.general.${watchedWeapon?.skill}`,
+		control,
+		name: `skills.general.${skillName}`,
 		defaultValue: {
-			pool: '0',
-			rating: '0',
+			pool: 0,
+			rating: 0,
 		},
 	})
+
 	const { pool, rating } = skill
 
-	let skillDisplayString: string = watchedWeapon?.skill || '—'
+	let skillDisplayString: string = skillName || '—'
 
-	if (watchedWeapon?.skill && pool !== undefined && rating !== undefined) {
-		skillDisplayString = `${watchedWeapon.skill} (${pool}/${rating})`
+	if (skillName && pool !== undefined && rating !== undefined) {
+		skillDisplayString = `${skillName} (${pool}/${rating})`
 	}
 
 	return (
@@ -46,7 +49,7 @@ const WeaponSkill = ({ index }: Props) => {
 					</Dropdown>
 				</div>
 				{editMode === 'view' && (
-					<WeaponSkillPopover index={index} skillName={watchedWeapon.skill}>
+					<WeaponSkillPopover index={index} skillName={skillName}>
 						<div className='py-1.5'>{skillDisplayString}</div>
 					</WeaponSkillPopover>
 				)}

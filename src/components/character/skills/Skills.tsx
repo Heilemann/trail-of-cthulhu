@@ -16,7 +16,7 @@ export default function SkillsList() {
 				<Refresh24Hour />
 				<BuildPoints
 					watchKey='skills.investigative'
-					label='Investigation Points'
+					label='Investigative Points'
 				/>
 				<BuildPoints watchKey='skills.general' label='General Points' />
 				<ToggleSkillsVisibility />

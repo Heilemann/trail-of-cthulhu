@@ -59,7 +59,6 @@ export default function RefreshAllSkills(props: IRefreshAllSkillsProps) {
 			<Button onClick={handleRefresh} className='w-full sm:w-auto'>
 				Refresh All
 			</Button>
-			{error && <p className='mt-2 text-red-500'>{error}</p>}
 		</>
 	)
 }

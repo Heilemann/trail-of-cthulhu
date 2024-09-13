@@ -24,19 +24,15 @@ export default function Skill({
 }: ISkillProps) {
 	const { state } = useContext(context)
 	const { showAllSkills, document, editMode } = state
-	const { values } = document
-	const { skills } = values
-	const { register } = useFormContext()
+	const { register, control } = useFormContext()
 
-	const pool = useWatch({
-		name: `skills.${category}.${name}.pool`,
-		defaultValue: (skills && skills[category][name]?.pool) || 0,
+	const skill = useWatch({
+		control,
+		name: `skills.${category}.${name}`,
+		defaultValue: { pool: 0, rating: 0 },
 	})
 
-	const rating = useWatch({
-		name: `skills.${category}.${name}.rating`,
-		defaultValue: (skills && skills[category][name]?.rating) || 0,
-	})
+	const { pool, rating } = skill
 
 	// convert rating to an array to map over
 	const ratingArray = Array(rating || 0).fill(0) || []
@@ -44,7 +40,7 @@ export default function Skill({
 	const SkillContent = (
 		<div
 			className={twMerge(
-				'py-1 text-base',
+				'py-1 text-lg',
 				borderStyle,
 				editMode === 'view' && rating === 0 && 'text-gray-400',
 				editMode === 'view' &&
