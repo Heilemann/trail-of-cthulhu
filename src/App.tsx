@@ -5,9 +5,9 @@ import './assets/logo.png'
 import Container from './components/BaseComponents/Container'
 import DragAndDrop from './components/BaseComponents/DragAndDrop'
 import Context from './components/BaseComponents/context'
+import { useDocumentParams } from './components/BaseComponents/hooks/useDocumentParams'
 import Reducer from './components/BaseComponents/reducer'
 import DiceResults from './components/DiceResults'
-import { useDocumentParams } from './hooks/useDocumentParams'
 import { TState, TValues } from './interfaces/interfaces'
 
 function App() {
