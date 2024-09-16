@@ -15,13 +15,14 @@ const inlineScriptsAndCSS = () => {
 	return (
 		src('./build/*.html')
 			// move <script> to end of file, as defer won't work with inline scripts
-			// TODO: This is broken, it duplicates code, but it sort of works for now
 			.pipe(
-				replace(regex, function replace(match, offset, string) {
-					const newString = string
-						.replace(match, '')
-						.replace('</body></html>', match + '</body></html>')
-					return newString
+				replace(regex, function (match) {
+					return '' // Remove the script tag from its original position
+				}),
+			)
+			.pipe(
+				replace('</body>', function (match) {
+					return `${regex.source}${match}` // Add all script tags before </body>
 				}),
 			)
 			// inline js and css
