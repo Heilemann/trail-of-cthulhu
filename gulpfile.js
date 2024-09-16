@@ -1,6 +1,6 @@
-import { dest, series, src } from 'gulp'
-import inlinesource from 'gulp-inline-source'
-import replace from 'gulp-replace'
+const { src, series, dest } = require('gulp')
+const replace = require('gulp-replace')
+const inlinesource = require('gulp-inline-source')
 
 const cleanUp = () => {
 	return src('./dist/*.html')
