@@ -62,35 +62,46 @@ export default function Skill({
 					{name}
 				</span>
 				<div className='flex space-x-0.5'>
-					<NumberInput
-						className={twMerge(
-							'w-12 py-0.5 text-center',
-							editMode === 'view' && 'hidden',
-						)}
-						title='Pool points'
-						placeholder='0'
-						centerValue={true}
-						{...register(`skills.${category}.${name}.pool`, {
-							min: { value: 0, message: 'Pool cannot be negative' },
-							max: { value: rating || 0, message: 'Pool cannot exceed rating' },
-							valueAsNumber: true,
-						})}
-					/>
-					{editMode === 'view' && <div>{pool}</div>}
-					<span className='self-center'>/</span>
-					<NumberInput
-						className={twMerge('w-12 py-0.5', editMode === 'view' && 'hidden')}
-						title='Rating points'
-						placeholder='0'
-						// defaultValue={rating}
-						centerValue={true}
-						min={0}
-						{...register(`skills.${category}.${name}.rating`, {
-							min: 0,
-							valueAsNumber: true,
-						})}
-					/>
-					{editMode === 'view' && <div>{rating}</div>}
+					{editMode === 'edit' ? (
+						<>
+							<NumberInput
+								className='w-12 py-0.5 text-center'
+								title='Pool points'
+								placeholder='0'
+								centerValue={true}
+								{...register(`skills.${category}.${name}.pool`, {
+									min: { value: 0, message: 'Pool cannot be negative' },
+									max: {
+										value: rating || 0,
+										message: 'Pool cannot exceed rating',
+									},
+									valueAsNumber: true,
+								})}
+							/>
+							<span className='self-center'>/</span>
+							<NumberInput
+								className='w-12 py-0.5'
+								title='Rating points'
+								placeholder='0'
+								centerValue={true}
+								min={0}
+								{...register(`skills.${category}.${name}.rating`, {
+									min: 0,
+									valueAsNumber: true,
+								})}
+							/>
+						</>
+					) : (
+						<>
+							<div className='w-12 text-center'>
+								{pool !== undefined ? pool : '0'}
+							</div>
+							<span className='self-center'>/</span>
+							<div className='w-12 text-center'>
+								{rating !== undefined ? rating : '0'}
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 

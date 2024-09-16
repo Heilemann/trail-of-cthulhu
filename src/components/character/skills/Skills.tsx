@@ -3,17 +3,15 @@ import Academic from './Academic'
 import BuildPoints from './BuildPoints'
 import General from './General'
 import Interpersonal from './Interpersonal'
-import Refresh24Hour from './Refresh24Hour'
-import RefreshSkills from './RefreshSkills'
+import RefreshPopover from './RefreshPopover'
 import Technical from './Technical'
 import ToggleSkillsVisibility from './ToggleSkillsVisibility'
 
 export default function SkillsList() {
 	return (
 		<DecoBox>
-			<div className='mb-4 grid-cols-5 gap-4 space-y-1 sm:grid'>
-				<RefreshSkills />
-				<Refresh24Hour />
+			<div className='mb-4 flex flex-row gap-4'>
+				<RefreshPopover />
 				<BuildPoints
 					watchKey='skills.investigative'
 					label='Investigative Points'

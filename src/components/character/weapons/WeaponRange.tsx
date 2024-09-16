@@ -54,11 +54,11 @@ const WeaponRange = ({ index, rangeType }: Props) => {
 			}
 		}
 
-		const message = `${roll}${modifierString} for damage at ${range[rangeType]} range with my ${watchedWeapon.name}`
+		const payload = `${roll}${modifierString} for damage at ${range[rangeType]} range with my ${watchedWeapon.name}`
 
 		messageToApp({
 			message: 'send message',
-			data: { payload: message },
+			data: { payload },
 		})
 	}
 

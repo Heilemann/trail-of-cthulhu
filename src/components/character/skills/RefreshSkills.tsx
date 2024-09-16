@@ -55,10 +55,8 @@ export default function RefreshAllSkills(props: IRefreshAllSkillsProps) {
 	}
 
 	return (
-		<>
-			<Button onClick={handleRefresh} className='w-full sm:w-auto'>
-				Refresh All
-			</Button>
-		</>
+		<Button onClick={handleRefresh} className='w-full sm:w-auto'>
+			Refresh All
+		</Button>
 	)
 }
