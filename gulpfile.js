@@ -11,22 +11,28 @@ const cleanUp = () => {
 }
 
 const inlineScriptsAndCSS = () => {
-	let scripts = ''
 	return (
 		src('./build/*.html')
-			// move <script> to end of file, as defer won't work with inline scripts
 			.pipe(
-				replace(/<script.*?<\/script>/gs, function (match) {
-					scripts += match // Store the script tags
-					return '' // Remove the script tag from its original position
+				replace(/([\s\S]*)/, function (match) {
+					let newString = match
+					let scripts = ''
+
+					// Collect and remove all script tags
+					newString = newString.replace(
+						/<script[\s\S]*?<\/script>/g,
+						function (scriptTag) {
+							scripts += scriptTag + '\n'
+							return ''
+						},
+					)
+
+					// Append collected scripts before </body>
+					newString = newString.replace('</body>', scripts + '\n</body>')
+					return newString
 				}),
 			)
-			.pipe(
-				replace('</body>', function (match) {
-					return scripts + match // Add all script tags before </body>
-				}),
-			)
-			// inline js and css
+			// Inline JS and CSS
 			.pipe(replace('.js"></script>', '.js" inline></script>'))
 			.pipe(replace('rel="stylesheet">', 'rel="stylesheet" inline>'))
 			.pipe(
