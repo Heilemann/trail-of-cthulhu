@@ -1,43 +1,37 @@
 // This file contains the Asset component which is used to display an asset
 // (image, video, pdf) and allow the user to upload a new asset or remove the
 // current asset.
+import { TrashIcon } from '@heroicons/react/24/solid'
 import { FC, useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import Button from './Form/Button'
 import context from './context'
 import useMessageToApp from './hooks/UseMessageToApp'
+import useOrigin from './hooks/useOrigin'
 
 interface AssetProps {
 	name: string
 	className?: string
 	style?: React.CSSProperties
+	mediaStyle?: React.CSSProperties
 	addLabel?: string
 	removeLabel?: string
 }
 
 const Asset: FC<AssetProps> = props => {
-	const { name, className, style, addLabel, removeLabel } = props
+	const { name, className, style, mediaStyle, addLabel } = props
 	const { state } = useContext(context)
-	const { assets, document, editMode } = state
-	const [assetId, setAssetId] = useState<string>(document.values[name])
+	const { editMode, assets, document } = state
+	const [assetId, setAssetId] = useState<string>(document?.values[name])
 	const asset = assets.byId[assetId]
 	const { setValue } = useFormContext()
 	const messageToApp = useMessageToApp()
+	const { origin } = useOrigin()
 
 	useEffect(() => {
-		setAssetId(document.values[name])
+		setAssetId(document?.values[name])
 	}, [document, assets, setAssetId, name])
-
-	// should move this to a context
-	let parentOrigin = ''
-	// if (process.env.NODE_ENV === 'development') {
-	// const protocol = window.location.protocol;
-	// const host = window.location.hostname;
-	parentOrigin = `http://localhost:3000`
-	// } else {
-	// 	parentOrigin = 'https://newreal.ms'
-	// }
 
 	const handleUpload = () => {
 		messageToApp({
@@ -57,7 +51,7 @@ const Asset: FC<AssetProps> = props => {
 				<Button
 					className={twMerge(
 						'w-full',
-						// editMode === 'view' ? 'hidden' : 'block',
+						editMode === 'view' ? 'hidden' : 'block',
 					)}
 					onClick={handleUpload}
 				>
@@ -70,16 +64,28 @@ const Asset: FC<AssetProps> = props => {
 	// TODO: Other file types
 	// TODO: alt text
 	return (
-		<div className={twMerge('max-w-xs space-y-2', className)} style={style}>
+		<div
+			className={twMerge(
+				'relative flex max-w-xs items-center justify-center space-y-2',
+				className,
+			)}
+			style={style}
+		>
 			{asset.filetype.includes('image') && (
-				<img
-					alt='wonderful'
-					src={parentOrigin + asset.fileurl}
-					className='rounded-lg'
-					style={{
-						objectFit: 'cover',
-					}}
-				/>
+				<div className='relative aspect-square object-contain'>
+					<img
+						alt='na'
+						src={origin + asset.fileurl}
+						className='relative z-10 h-full w-full rounded-lg object-contain'
+						style={mediaStyle}
+					/>
+					<div
+						className='absolute inset-0 z-0 bg-contain bg-center opacity-20 blur-xl'
+						style={{
+							backgroundImage: `url(${origin + asset.fileurl})`,
+						}}
+					/>
+				</div>
 			)}
 			{asset.filetype.includes('video') && (
 				<video
@@ -87,28 +93,22 @@ const Asset: FC<AssetProps> = props => {
 					loop={true}
 					muted={true}
 					playsInline={true}
-					src={parentOrigin + asset.fileurl}
-					style={{
-						objectFit: 'cover',
-					}}
-				/>
-			)}
-			{asset.filetype.includes('pdf') && (
-				<iframe
-					title='PDF Preview'
-					src={parentOrigin + asset.fileurl}
-					style={{
-						objectFit: 'cover',
-						width: '100%',
-						height: '100%',
-					}}
+					src={origin + asset.fileurl}
+					className='object-contain'
+					style={mediaStyle}
 				/>
 			)}
 			<Button
-				className={twMerge('w-full', editMode === 'view' ? 'hidden' : 'block')}
+				className={twMerge(
+					'absolute right-1 top-1 mt-0 p-2',
+					editMode === 'view' ? 'hidden' : 'block',
+				)}
+				style={{
+					zIndex: 100,
+				}}
 				onClick={handleRemoveAsset}
 			>
-				{removeLabel || 'Remove'}
+				<TrashIcon className='h-4 w-4' />
 			</Button>
 		</div>
 	)
