@@ -70,7 +70,10 @@
 	"diceConfig": [
 		{
 			"label": "D6",
-			"notation": "1d6"
+			"notation": "1d6",
+			"icons": [
+				"d6"
+			]
 		}
 	]
 }
