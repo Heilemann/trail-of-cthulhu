@@ -47,7 +47,8 @@ const inlineScriptsAndCSS = () => {
 // rename path to asset files (which are uploaded on installation)
 const renameAssetsPaths = () => {
 	return src('./dist/index.html')
-		.pipe(replace('static/media/', 'files/'))
+		.pipe(replace('static/media/', 'files/')) // react
+		.pipe(replace('assets/', 'files/')) // vite
 		.pipe(dest('./dist'))
 }
 
